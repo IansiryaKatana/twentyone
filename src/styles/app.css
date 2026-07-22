@@ -1,0 +1,177 @@
+@import "tailwindcss" source("../");
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+  Twentyone06 — Luxury Interior Design
+  Fonts: Big Shoulders Display (titles) + Inter Tight (body, weight capped at 300 light)
+*/
+
+:root {
+  --radius: 0.5rem;
+
+  /* Brand palette (warm luxury) */
+  --cream: #f4ebdf;
+  --cream-2: #efe3d3;
+  --cream-3: #e9dcc9;
+  --sand: #d9c9b2;
+  --espresso: #35291d;
+  --espresso-2: #4a3c2c;
+  --crimson: #cc0001; /* secondary accent */
+  --clay: #9a7b5b;
+  --ink: #2b2117;
+  --muted-ink: #8c7d6b;
+  --line: #ddccb6;
+
+  /* shadcn tokens mapped to brand */
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--cream-2);
+  --card-foreground: var(--ink);
+  --popover: var(--cream);
+  --popover-foreground: var(--ink);
+  --primary: var(--espresso);
+  --primary-foreground: #f4ebdf;
+  --secondary: var(--cream-3);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cream-3);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--sand);
+  --accent-foreground: var(--ink);
+  --destructive: #b3412c;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--clay);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-cream: var(--cream);
+  --color-cream-2: var(--cream-2);
+  --color-cream-3: var(--cream-3);
+  --color-sand: var(--sand);
+  --color-espresso: var(--espresso);
+  --color-espresso-2: var(--espresso-2);
+  --color-crimson: var(--crimson);
+  --color-clay: var(--clay);
+  --color-ink: var(--ink);
+  --color-muted-ink: var(--muted-ink);
+  --color-line: var(--line);
+
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-weight: 300; /* Inter Tight capped at light 300 */
+    letter-spacing: 0.01em;
+  }
+
+  /* Titles use Big Shoulders Display — regular weight, uppercase */
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.005em;
+  }
+
+  ::selection {
+    background: var(--espresso);
+    color: var(--cream);
+  }
+}
+
+/* Thin, elegant scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--sand);
+  border-radius: 999px;
+  border: 2px solid var(--cream);
+}
+
+/* Marquee for the giant footer wordmark reveal */
+@keyframes eloria-kenburns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.12) translate3d(0, -1.5%, 0);
+  }
+}
+.animate-kenburns {
+  animation: eloria-kenburns 16s ease-in-out infinite alternate;
+}
+
+/* Infinite logo marquee */
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 32s linear infinite;
+}
+.marquee-track-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 38s linear infinite reverse;
+}
+.marquee-strip:hover .marquee-track,
+.gallery-marquee-row:hover .marquee-track,
+.gallery-marquee-row:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .marquee-track-reverse {
+    animation: none;
+  }
+}

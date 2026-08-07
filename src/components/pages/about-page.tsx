@@ -101,16 +101,16 @@ export function AboutPage() {
 
               <Stagger
                 stagger={0.1}
-                className="mt-10 grid grid-cols-1 gap-8 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-6"
+                className="mt-10 grid grid-cols-3 gap-3 border-t border-white/20 pt-8 sm:gap-6"
               >
                 {milestones.stats.map((stat) => (
                   <StaggerItem key={stat.label}>
                     <CountUp
                       to={stat.value}
                       suffix={stat.suffix}
-                      className="font-display text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-none tracking-tighter text-[var(--nh-white)]"
+                      className="font-display text-[clamp(1.75rem,5vw,3.25rem)] font-medium leading-none tracking-tighter text-[var(--nh-white)]"
                     />
-                    <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--nh-muted)]">
+                    <p className="mt-2 text-[10px] uppercase leading-snug tracking-[0.14em] text-white/75 sm:mt-3 sm:text-xs sm:tracking-[0.18em]">
                       {stat.label}
                     </p>
                   </StaggerItem>

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import type { Project } from "@/data/content";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
 type ProjectSlide = {
@@ -146,6 +147,47 @@ export function ServiceProjectCarousel({
     });
   }, [projectIndex, reduced]);
 
+  const goNext = React.useCallback(() => {
+    const currentProject = projectIndexRef.current;
+    const currentImage = imageIndexRef.current;
+    const activeSlide = slides[currentProject];
+    if (!activeSlide) return;
+
+    if (currentImage + 1 < activeSlide.images.length) {
+      setImageIndex(currentImage + 1);
+      return;
+    }
+
+    setImageIndex(0);
+    if (slides.length > 1) {
+      setProjectIndex((currentProject + 1) % slides.length);
+    }
+  }, [slides]);
+
+  const goPrev = React.useCallback(() => {
+    const currentProject = projectIndexRef.current;
+    const currentImage = imageIndexRef.current;
+    const activeSlide = slides[currentProject];
+    if (!activeSlide) return;
+
+    if (currentImage > 0) {
+      setImageIndex(currentImage - 1);
+      return;
+    }
+
+    if (slides.length <= 1) return;
+    const prevProject = (currentProject - 1 + slides.length) % slides.length;
+    const prevImages = slides[prevProject]?.images ?? [];
+    setProjectIndex(prevProject);
+    setImageIndex(Math.max(0, prevImages.length - 1));
+  }, [slides]);
+
+  const swipe = useCarouselSwipe({
+    onNext: goNext,
+    onPrev: goPrev,
+    enabled: canAutoplay,
+  });
+
   if (slides.length === 0) return null;
 
   const active = slides[projectIndex] ?? slides[0];
@@ -154,9 +196,10 @@ export function ServiceProjectCarousel({
 
   return (
     <div
-      className="relative aspect-[4/5] h-full overflow-hidden rounded-md md:aspect-auto md:rounded-none"
+      className="relative aspect-[4/5] h-full overflow-hidden rounded-md touch-pan-y md:aspect-auto md:rounded-none"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
+      {...swipe}
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -178,6 +221,7 @@ export function ServiceProjectCarousel({
                 src={activeImage}
                 alt={active.title}
                 className="size-full object-cover"
+                draggable={false}
               />
             </Link>
           ) : (
@@ -185,13 +229,17 @@ export function ServiceProjectCarousel({
               src={activeImage}
               alt={fallbackAlt}
               className="size-full object-cover"
+              draggable={false}
             />
           )}
         </motion.div>
       </AnimatePresence>
 
       {showThumbs ? (
-        <div className="absolute top-4 left-4 z-10 md:top-6 md:left-6">
+        <div
+          data-no-swipe
+          className="absolute top-4 left-4 z-10 md:top-6 md:left-6"
+        >
           <div className="flex max-w-[7.75rem] gap-2 overflow-x-auto md:max-w-[8.75rem] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {slides.map((slide, thumbIndex) => {
               const selected = thumbIndex === projectIndex;

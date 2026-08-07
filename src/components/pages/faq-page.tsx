@@ -34,7 +34,7 @@ function FaqAccordion({ items }: { items: FaqItem[] }) {
               </span>
               <span
                 className={cn(
-                  "font-display flex-1 text-[clamp(1.25rem,2.8vw,2.35rem)] font-medium uppercase leading-[1.12] tracking-tighter transition-colors",
+                  "font-detective flex-1 text-[clamp(1rem,2.24vw,1.88rem)] font-medium leading-[1.12] tracking-tighter normal-case transition-colors",
                   isOpen ? "text-white" : "text-white/75"
                 )}
               >

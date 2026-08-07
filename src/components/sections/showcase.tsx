@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, ArrowRight, MapPin, Pause, Play } from "lucide-react";
 import { showcase } from "@/data/content";
 import { EASE } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 
 const DURATION = 6000;
 
@@ -17,6 +18,14 @@ export function Showcase() {
   );
   const goTo = (i: number) => setIndex(i);
 
+  const prev = React.useCallback(() => go(-1), [go]);
+  const next = React.useCallback(() => go(1), [go]);
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    enabled: count > 1,
+  });
+
   React.useEffect(() => {
     if (!playing) return;
     const t = setTimeout(() => go(1), DURATION);
@@ -24,12 +33,13 @@ export function Showcase() {
   }, [index, playing, go]);
 
   const active = showcase[index];
-  const next = showcase[(index + 1) % count];
+  const nextSlide = showcase[(index + 1) % count];
 
   return (
     <section
       id="showcase"
-      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink"
+      className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink touch-pan-y"
+      {...swipe}
     >
       {/* Background slides — clip-wipe reveal */}
       <AnimatePresence initial={false}>
@@ -54,7 +64,10 @@ export function Showcase() {
       </AnimatePresence>
 
       <div className="relative z-10 mx-auto flex h-full max-w-[1440px] flex-col justify-end px-5 pb-12 md:px-10 md:pb-16">
-        <div className="flex items-end justify-between gap-6">
+        <div
+          data-no-swipe
+          className="flex items-end justify-between gap-6"
+        >
           {/* Info card */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -120,9 +133,9 @@ export function Showcase() {
             </span>
             <AnimatePresence mode="popLayout">
               <motion.img
-                key={next.preview}
-                src={next.preview}
-                alt={next.title}
+                key={nextSlide.preview}
+                src={nextSlide.preview}
+                alt={nextSlide.title}
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
@@ -134,7 +147,7 @@ export function Showcase() {
         </div>
 
         {/* Progress dots */}
-        <div className="mt-8 flex items-center gap-2">
+        <div data-no-swipe className="mt-8 flex items-center gap-2">
           {showcase.map((_, i) => (
             <button
               key={i}

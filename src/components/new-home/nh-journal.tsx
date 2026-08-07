@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { newHome, type JournalPost } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, Stagger, StaggerItem, useReducedMotionSafe } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
 function JournalCard({ post }: { post: JournalPost }) {
@@ -71,6 +72,23 @@ export function NhJournal() {
     setIndex((current) => Math.min(current, Math.max(posts.length - 1, 0)));
   }, [posts.length]);
 
+  const maxIndex = Math.max(0, posts.length - 1);
+  const prev = React.useCallback(
+    () => setIndex((i) => Math.max(0, i - 1)),
+    [],
+  );
+  const next = React.useCallback(
+    () => setIndex((i) => Math.min(maxIndex, i + 1)),
+    [maxIndex],
+  );
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    canNext: index < maxIndex,
+    canPrev: index > 0,
+    enabled: maxIndex > 0,
+  });
+
   if (posts.length === 0) return null;
 
   return (
@@ -97,16 +115,17 @@ export function NhJournal() {
           </Reveal>
         </div>
 
-        {/* Mobile: one-card carousel */}
-        <div className="relative md:hidden">
+        {/* Mobile / tablet: one-card carousel */}
+        <div className="relative lg:hidden">
           <div className="overflow-hidden">
             <motion.div
               ref={trackRef}
-              className="flex gap-5"
+              className="flex touch-pan-y gap-5"
               animate={{ x: reduced ? 0 : -(index * step) }}
               transition={
                 reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }
               }
+              {...swipe}
             >
               {posts.map((post) => (
                 <div key={post.slug} className="w-full shrink-0">
@@ -144,7 +163,7 @@ export function NhJournal() {
 
         {/* Desktop: three-up grid */}
         <Stagger
-          className="hidden grid-cols-1 gap-8 md:grid md:grid-cols-3 md:gap-6"
+          className="hidden grid-cols-1 gap-8 lg:grid lg:grid-cols-3 lg:gap-6"
           stagger={0.1}
         >
           {posts.map((post) => (

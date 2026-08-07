@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { aboutPage, type TeamMember } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
 function SocialBadge({
@@ -133,10 +134,23 @@ export function AboutTeamSection() {
     setIndex((i) => Math.min(i, maxIndex));
   }, [maxIndex]);
 
-  if (teamMembers.length === 0) return null;
+  const prev = React.useCallback(
+    () => setIndex((i) => Math.max(0, i - 1)),
+    [],
+  );
+  const next = React.useCallback(
+    () => setIndex((i) => Math.min(maxIndex, i + 1)),
+    [maxIndex],
+  );
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    canNext: index < maxIndex,
+    canPrev: index > 0,
+    enabled: maxIndex > 0,
+  });
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1));
-  const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
+  if (teamMembers.length === 0) return null;
 
   const pageCount = maxIndex + 1;
 
@@ -190,9 +204,10 @@ export function AboutTeamSection() {
           <div className="overflow-hidden">
             <motion.div
               ref={trackRef}
-              className="flex gap-4 md:gap-6"
+              className="flex touch-pan-y gap-4 md:gap-6"
               animate={{ x: reduced ? 0 : -(index * step) }}
               transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
+              {...swipe}
             >
               {teamMembers.map((member) => (
                 <div

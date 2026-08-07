@@ -11,6 +11,7 @@ export function PageHero({
   image,
   imageMobile,
   className,
+  titleClassName,
 }: {
   eyebrow: string;
   title: string[];
@@ -20,6 +21,8 @@ export function PageHero({
   /** Optional mobile background; falls back to `image` when omitted. */
   imageMobile?: string;
   className?: string;
+  /** Optional override for the display title (e.g. `font-detective`). */
+  titleClassName?: string;
 }) {
   const hasImage = Boolean(image || imageMobile);
 
@@ -72,8 +75,9 @@ export function PageHero({
           as="h1"
           lines={title}
           className={cn(
-            "font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter",
-            hasImage ? "text-white" : "text-ink"
+            "max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter",
+            titleClassName ?? "font-display",
+            hasImage ? "text-white" : "text-ink",
           )}
         />
         {description && (

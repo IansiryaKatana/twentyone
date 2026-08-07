@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
 export function NhProjects() {
@@ -53,8 +54,22 @@ export function NhProjects() {
     setIndex((i) => Math.min(i, maxIndex));
   }, [maxIndex]);
 
-  const prev = () => setIndex((i) => Math.max(0, i - 1));
-  const next = () => setIndex((i) => Math.min(maxIndex, i + 1));
+  const prev = React.useCallback(
+    () => setIndex((i) => Math.max(0, i - 1)),
+    [],
+  );
+  const next = React.useCallback(
+    () => setIndex((i) => Math.min(maxIndex, i + 1)),
+    [maxIndex],
+  );
+
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    canNext: index < maxIndex,
+    canPrev: index > 0,
+    enabled: maxIndex > 0,
+  });
 
   return (
     <section className="overflow-hidden bg-[var(--nh-black)] py-20 md:py-28">
@@ -117,9 +132,10 @@ export function NhProjects() {
           <div className="overflow-hidden">
             <motion.div
               ref={trackRef}
-              className="flex gap-5 md:gap-6"
+              className="flex touch-pan-y gap-5 md:gap-6"
               animate={{ x: reduced ? 0 : -(index * step) }}
               transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
+              {...swipe}
             >
               {items.map((project) => (
                 <Link

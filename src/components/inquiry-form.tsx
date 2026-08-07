@@ -247,25 +247,27 @@ export function InquiryForm({
           </p>
         </div>
       ) : (
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <p
-            className={cn(
-              "max-w-sm text-xs leading-relaxed",
-              dark ? "text-white/65" : "text-ink/55"
-            )}
-          >
-            {contactPage.form.note}
-          </p>
-          <button
-            type="submit"
-            disabled={submitting}
-            className="group inline-flex shrink-0 items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson disabled:opacity-60"
-          >
-            {submitting ? "Sending…" : contactPage.form.submit}
-            <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
-              <ArrowUpRight className="size-4" />
-            </span>
-          </button>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <p
+              className={cn(
+                "max-w-sm text-xs leading-relaxed",
+                dark ? "text-white/65" : "text-ink/55"
+              )}
+            >
+              {contactPage.form.note}
+            </p>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="group inline-flex w-full shrink-0 items-center justify-between gap-2 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-black disabled:opacity-60 sm:w-auto sm:justify-start sm:gap-2"
+            >
+              {submitting ? "Sending…" : contactPage.form.submit}
+              <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[var(--nh-red)] group-hover:text-white">
+                <ArrowUpRight className="size-4" />
+              </span>
+            </button>
+          </div>
           {submitErr ? (
             <p className="text-sm text-crimson">{submitErr}</p>
           ) : null}

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
 export function NhTestimonial() {
@@ -22,6 +23,26 @@ export function NhTestimonial() {
     );
     return () => window.clearInterval(timer);
   }, [paused, reduced, testimonials.length]);
+
+  const prev = React.useCallback(() => {
+    setIndex((current) =>
+      testimonials.length === 0
+        ? 0
+        : (current - 1 + testimonials.length) % testimonials.length,
+    );
+  }, [testimonials.length]);
+
+  const next = React.useCallback(() => {
+    setIndex((current) =>
+      testimonials.length === 0 ? 0 : (current + 1) % testimonials.length,
+    );
+  }, [testimonials.length]);
+
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    enabled: testimonials.length > 1,
+  });
 
   if (!testimonial) return null;
 
@@ -60,7 +81,11 @@ export function NhTestimonial() {
           </Reveal>
         ) : null}
 
-        <div className="w-full" aria-live="polite">
+        <div
+          className="w-full touch-pan-y"
+          aria-live="polite"
+          {...swipe}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={index}

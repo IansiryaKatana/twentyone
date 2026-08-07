@@ -11,6 +11,7 @@ import {
   StaggerItem,
   useReducedMotionSafe,
 } from "@/components/anim";
+import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 import interiorArchitectureIcon from "@/Assets/interior architechture.png";
 import brandDesignIcon from "@/Assets/brand design.png";
@@ -157,6 +158,23 @@ export function NhServices() {
     setIndex((current) => Math.min(current, Math.max(items.length - 1, 0)));
   }, [items.length]);
 
+  const maxIndex = Math.max(0, items.length - 1);
+  const prev = React.useCallback(
+    () => setIndex((i) => Math.max(0, i - 1)),
+    [],
+  );
+  const next = React.useCallback(
+    () => setIndex((i) => Math.min(maxIndex, i + 1)),
+    [maxIndex],
+  );
+  const swipe = useCarouselSwipe({
+    onNext: next,
+    onPrev: prev,
+    canNext: index < maxIndex,
+    canPrev: index > 0,
+    enabled: maxIndex > 0,
+  });
+
   return (
     <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] md:py-20">
       <div className="w-full px-5 md:px-[7vw]">
@@ -182,14 +200,15 @@ export function NhServices() {
           </Reveal>
         </div>
 
-        <div className="overflow-hidden md:hidden">
+        <div className="overflow-hidden lg:hidden">
           <motion.div
             ref={trackRef}
-            className="flex gap-2"
+            className="flex touch-pan-y gap-2"
             animate={{ x: -(index * step) }}
             transition={
               reduced ? { duration: 0 } : { duration: 0.7, ease: EASE }
             }
+            {...swipe}
           >
             {items.map((item, itemIndex) => (
               <div key={item.slug} className="w-full shrink-0">
@@ -200,7 +219,7 @@ export function NhServices() {
         </div>
 
         <div
-          className="mt-7 flex items-center justify-center gap-1.5 md:hidden"
+          className="mt-7 flex items-center justify-center gap-1.5 lg:hidden"
           role="tablist"
           aria-label="Choose service slide"
         >
@@ -223,7 +242,7 @@ export function NhServices() {
         </div>
 
         <Stagger
-          className="hidden gap-2 md:grid md:grid-cols-2 xl:grid-cols-4"
+          className="hidden gap-2 lg:grid lg:grid-cols-2 xl:grid-cols-4"
           stagger={0.1}
         >
           {items.map((item, itemIndex) => (

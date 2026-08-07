@@ -1,0 +1,36 @@
+:root {
+  --admin-primary: #e01e26;
+  --admin-surface: #111;
+  --admin-bg: #f7f5f2;
+  --admin-ink: #1a1a1a;
+  --admin-muted: #6b6b6b;
+  --admin-border: #e5e2dc;
+  --admin-radius-lg: 12px;
+}
+
+.admin-theme {
+  background-color: var(--admin-bg);
+  color: var(--admin-ink);
+  font-family: "Inter Tight", system-ui, sans-serif;
+}
+
+.admin-theme * {
+  border-color: var(--admin-border);
+}
+
+.admin-theme ::selection {
+  background: color-mix(in srgb, var(--admin-primary) 20%, white);
+}
+
+.admin-theme a:focus-visible,
+.admin-theme button:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--admin-primary) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.admin-theme input:focus-visible,
+.admin-theme select:focus-visible,
+.admin-theme textarea:focus-visible {
+  outline: none;
+  border-color: var(--admin-primary);
+}

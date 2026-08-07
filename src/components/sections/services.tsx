@@ -24,7 +24,7 @@ export function Services() {
           <LinesReveal
             as="h2"
             lines={services.title}
-            className="font-display text-[clamp(2rem,4vw,3.4rem)] font-normal leading-[1] text-ink"
+            className="font-display text-[clamp(2rem,4vw,3.4rem)] font-medium leading-[1] tracking-tighter text-ink"
           />
 
           <div className="mt-10 flex flex-col gap-1 md:mt-16">
@@ -53,10 +53,10 @@ export function Services() {
           <Reveal delay={0.2} className="mt-10 md:mt-auto md:pt-14">
             <Link
               to="/services"
-              className="group inline-flex items-center gap-2 rounded-full bg-espresso py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
+              className="group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
             >
               {services.cta}
-              <span className="flex size-8 items-center justify-center rounded-full bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
+              <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
                 <ArrowRight className="size-4" />
               </span>
             </Link>

@@ -5,6 +5,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { nav } from "@/data/content";
 import { cn } from "@/lib/utils";
 import { EASE } from "@/components/anim";
+import { BrandLogo } from "@/components/brand-logo";
 
 type HeaderVariant = "overlay" | "solid";
 
@@ -57,18 +58,19 @@ export function SiteHeader({ variant = "overlay" }: { variant?: HeaderVariant })
 
         <Link
           to="/"
-          className={cn(
-            "font-display min-w-0 justify-self-center truncate text-center text-lg font-normal tracking-[0.18em] transition-colors sm:text-xl sm:tracking-[0.28em] md:text-[1.65rem] md:tracking-[0.35em]",
-            dark ? "text-ink" : "text-cream"
-          )}
+          aria-label="Twentyone06 home"
+          className="min-w-0 justify-self-center"
         >
-          {nav.brand}
+          <BrandLogo
+            surface={dark ? "light" : "dark"}
+            className="mx-auto h-6 sm:h-7 md:h-8"
+          />
         </Link>
 
         <Link
           to="/contact"
           className={cn(
-            "group flex shrink-0 items-center gap-1 rounded-full py-1.5 pl-3 pr-1.5 text-sm transition-colors sm:pl-5",
+            "group flex shrink-0 items-center gap-1 rounded-md py-1.5 pl-3 pr-1.5 text-sm transition-colors sm:pl-5",
             dark
               ? "bg-ink text-cream hover:bg-crimson"
               : "bg-cream text-ink hover:bg-white"
@@ -78,7 +80,7 @@ export function SiteHeader({ variant = "overlay" }: { variant?: HeaderVariant })
           <span className="sm:hidden">Contact</span>
           <span
             className={cn(
-              "flex size-8 items-center justify-center rounded-full transition-all duration-300 group-hover:rotate-45",
+              "flex size-8 items-center justify-center rounded-md transition-all duration-300 group-hover:rotate-45",
               dark ? "bg-cream text-ink" : "bg-ink text-cream group-hover:bg-crimson"
             )}
           >

@@ -65,7 +65,7 @@ export function Showcase() {
               transition={{ duration: 0.6, ease: EASE }}
               className="max-w-md rounded-xl bg-cream/95 p-6 backdrop-blur-sm md:p-7"
             >
-              <h3 className="font-display text-2xl font-normal text-ink md:text-3xl">
+              <h3 className="font-display text-2xl font-medium text-ink md:text-3xl">
                 {active.title}
               </h3>
               <p className="mt-2 flex items-center gap-1.5 text-xs tracking-wide text-muted-ink">
@@ -80,21 +80,21 @@ export function Showcase() {
                   <button
                     aria-label="Previous"
                     onClick={() => go(-1)}
-                    className="flex size-9 items-center justify-center rounded-full border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
+                    className="flex size-9 items-center justify-center rounded-md border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
                     <ArrowLeft className="size-4" />
                   </button>
                   <button
                     aria-label="Next"
                     onClick={() => go(1)}
-                    className="flex size-9 items-center justify-center rounded-full border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
+                    className="flex size-9 items-center justify-center rounded-md border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
                     <ArrowRight className="size-4" />
                   </button>
                   <button
                     aria-label={playing ? "Pause" : "Play"}
                     onClick={() => setPlaying((p) => !p)}
-                    className="ml-1 flex size-9 items-center justify-center rounded-full bg-ink text-cream transition-colors hover:bg-crimson"
+                    className="ml-1 flex size-9 items-center justify-center rounded-md bg-ink text-cream transition-colors hover:bg-crimson"
                   >
                     {playing ? (
                       <Pause className="size-3.5" />

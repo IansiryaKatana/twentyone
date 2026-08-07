@@ -6,23 +6,41 @@
 /*
   Twentyone06 — Luxury Interior Design
   Fonts: Big Shoulders Display (titles) + Inter Tight (body, weight capped at 300 light)
+  + Detective (testimonial quotes)
 */
+
+@font-face {
+  font-family: "Detective";
+  src: url("../Assets/fonts/Detective.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --radius: 0.5rem;
 
-  /* Brand palette (warm luxury) */
-  --cream: #f4ebdf;
-  --cream-2: #efe3d3;
-  --cream-3: #e9dcc9;
-  --sand: #d9c9b2;
-  --espresso: #35291d;
-  --espresso-2: #4a3c2c;
+  /* Brand palette (light surfaces — white / grey) */
+  --cream: #ffffff;
+  --cream-2: #f2f2f2;
+  --cream-3: #ebebeb;
+  --sand: #e5e5e5;
+  --espresso: #1a1a1a;
+  --espresso-2: #2a2a2a;
   --crimson: #cc0001; /* secondary accent */
-  --clay: #9a7b5b;
-  --ink: #2b2117;
-  --muted-ink: #8c7d6b;
-  --line: #ddccb6;
+  --clay: #9a9a9a;
+  --ink: #1a1a1a;
+  --muted-ink: #8a8a8a;
+  --line: #e0e0e0;
+
+  /* New-home / sitewide dark UI tokens */
+  --nh-black: #000000;
+  --nh-white: #ffffff;
+  --nh-red: #e01e26;
+  --nh-gray: #f2f2f2;
+  --nh-muted: #8a8a8a;
+  --nh-panel: #141414;
+  --nh-line: rgba(255, 255, 255, 0.18);
 
   /* shadcn tokens mapped to brand */
   --background: var(--cream);
@@ -32,7 +50,7 @@
   --popover: var(--cream);
   --popover-foreground: var(--ink);
   --primary: var(--espresso);
-  --primary-foreground: #f4ebdf;
+  --primary-foreground: #ffffff;
   --secondary: var(--cream-3);
   --secondary-foreground: var(--ink);
   --muted: var(--cream-3);
@@ -78,6 +96,7 @@
   --color-line: var(--line);
 
   --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-detective: "Detective", "Big Shoulders Display", "Arial Narrow", sans-serif;
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -105,12 +124,20 @@
     letter-spacing: 0.01em;
   }
 
-  /* Titles use Big Shoulders Display — regular weight, uppercase */
+  /* Titles use Big Shoulders Display — medium weight, tight tracking */
   .font-display {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0.005em;
+    letter-spacing: -0.025em;
+  }
+
+  /* Testimonial quotes — Detective display face */
+  .font-detective {
+    font-family: var(--font-detective);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.025em;
   }
 
   ::selection {
@@ -174,4 +201,47 @@
   .marquee-track-reverse {
     animation: none;
   }
+}
+
+/* Floating WhatsApp pulse */
+@keyframes whatsapp-pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.whatsapp-pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: #25d366;
+  animation: whatsapp-pulse-ring 1.8s ease-out infinite;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-pulse-ring {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*  /new-home reference page — scoped black / white / red palette             */
+/* -------------------------------------------------------------------------- */
+.new-home {
+  color: var(--nh-white);
+  background: var(--nh-black);
+}
+
+.new-home ::selection {
+  background: var(--nh-red);
+  color: var(--nh-white);
 }

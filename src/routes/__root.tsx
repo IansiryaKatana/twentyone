@@ -8,6 +8,10 @@ import {
 } from "@tanstack/react-router";
 import appCss from "@/styles/app.css?url";
 import favicon from "@/Assets/favicon.png?url";
+import { NotFoundPage } from "@/components/pages/not-found-page";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { AdminAuthProvider } from "@/contexts/AdminAuthContext";
+import { CmsProvider } from "@/contexts/CmsContext";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -41,12 +45,18 @@ export const Route = createRootRoute({
     ],
   }),
   component: RootComponent,
+  notFoundComponent: NotFoundPage,
 });
 
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <AdminAuthProvider>
+        <CmsProvider>
+          <Outlet />
+          <ScrollToTop />
+        </CmsProvider>
+      </AdminAuthProvider>
     </RootDocument>
   );
 }

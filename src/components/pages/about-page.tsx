@@ -1,8 +1,14 @@
 import { motion } from "motion/react";
-import { aboutPage, stats } from "@/data/content";
+import { aboutPage } from "@/data/content";
+import ceoPortrait from "@/Assets/ceo-twentyone06.webp";
+import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
+import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero, PillCta } from "@/components/page-hero";
 import { Partners } from "@/components/sections/partners";
+import { AboutTeamSection } from "@/components/sections/about-team";
+import { AboutWhySection } from "@/components/sections/about-why";
+import { AboutAwardsSection } from "@/components/sections/about-awards";
 import {
   CountUp,
   EASE,
@@ -13,21 +19,25 @@ import {
 } from "@/components/anim";
 
 export function AboutPage() {
+  const { milestones } = aboutPage;
+
   return (
-    <PageShell>
+    <PageShell headerVariant="overlay">
       <PageHero
         eyebrow={aboutPage.eyebrow}
         title={[...aboutPage.title]}
         description={aboutPage.description}
+        image={aboutHeroDesktop}
+        imageMobile={aboutHeroMobile}
       />
 
-      <section className="bg-cream pb-20 md:pb-28">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 md:grid-cols-12 md:px-10">
+      <section id="press" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
+        <div className="grid w-full grid-cols-1 gap-10 px-5 md:grid-cols-12 md:px-10">
           <div className="md:col-span-5">
             <Reveal className="overflow-hidden rounded-md">
               <motion.img
-                src={aboutPage.imageA}
-                alt="Studio craft"
+                src={ceoPortrait}
+                alt="Govind Shepley — Twentyone06"
                 className="aspect-[4/5] w-full object-cover"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.8, ease: EASE }}
@@ -37,69 +47,81 @@ export function AboutPage() {
           <div className="flex flex-col justify-center md:col-span-7 md:pl-8">
             <LinesReveal
               as="h2"
-              lines={["Crafted With Care,", "Delivered With Clarity"]}
-              className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal leading-[1.05] text-ink"
+              lines={[...aboutPage.storyTitle]}
+              className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
             />
-            <Reveal delay={0.15} className="mt-8 space-y-4">
+            <Reveal delay={0.15} className="mt-8 max-w-xl space-y-4">
               {aboutPage.story.map((para) => (
                 <p
                   key={para}
-                  className="max-w-lg text-sm leading-relaxed text-muted-ink"
+                  className="text-sm leading-relaxed text-white/75"
                 >
                   {para}
                 </p>
               ))}
+              <p className="text-sm leading-relaxed text-white/75">
+                {aboutPage.recognition}
+              </p>
+              <p className="pt-2 text-[0.65rem] font-light uppercase tracking-[0.14em] text-white/55">
+                {aboutPage.recognitionCredits}
+              </p>
             </Reveal>
             <Reveal delay={0.25} className="mt-10">
-              <PillCta to="/contact">{aboutPage.cta}</PillCta>
+              <PillCta
+                to="/contact"
+                className="bg-[var(--nh-red)] text-[var(--nh-white)] hover:bg-[var(--nh-white)] hover:text-[var(--nh-black)] [&_span]:bg-[var(--nh-white)] [&_span]:text-[var(--nh-black)] group-hover:[&_span]:bg-[var(--nh-black)] group-hover:[&_span]:text-[var(--nh-white)]"
+              >
+                {aboutPage.cta}
+              </PillCta>
             </Reveal>
           </div>
         </div>
-
-        <div className="mx-auto mt-16 max-w-[1440px] px-5 md:mt-24 md:px-10">
-          <Reveal className="overflow-hidden rounded-md">
-            <motion.img
-              src={aboutPage.imageB}
-              alt="Twentyone06 interior"
-              className="aspect-[21/9] w-full object-cover"
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.9, ease: EASE }}
-            />
-          </Reveal>
-        </div>
       </section>
 
-      <section className="bg-cream-2 py-20 md:py-28">
-        <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-          <Stagger
-            stagger={0.12}
-            className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
-          >
-            {stats.map((stat) => (
-              <StaggerItem
-                key={stat.sub}
-                className="rounded-lg border border-line/60 bg-cream p-6 md:p-8"
-              >
-                <div className="flex items-baseline gap-1 font-display text-ink">
-                  <CountUp
-                    to={stat.value}
-                    suffix={stat.suffix}
-                    className="text-[clamp(2.5rem,4.5vw,3.75rem)] font-normal leading-none tracking-tight"
-                  />
-                  <span className="ml-1 font-sans text-xs tracking-wide text-muted-ink">
-                    {stat.label}
-                  </span>
-                </div>
-                <p className="mt-6 text-xs tracking-wide text-muted-ink">
-                  {stat.sub}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
+      <AboutTeamSection />
+
+      <AboutWhySection />
 
       <Partners />
+
+      <section className="bg-[var(--nh-black)] py-20 md:py-28">
+        <div className="px-5 md:px-[7vw]">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-5">
+              <LinesReveal
+                as="h2"
+                lines={[...milestones.title]}
+                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+              />
+            </div>
+            <Reveal delay={0.12} className="md:col-span-6 md:col-start-7">
+              <p className="max-w-xl text-sm leading-relaxed text-[var(--nh-muted)] md:text-base">
+                {milestones.body}
+              </p>
+
+              <Stagger
+                stagger={0.1}
+                className="mt-10 grid grid-cols-1 gap-8 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-6"
+              >
+                {milestones.stats.map((stat) => (
+                  <StaggerItem key={stat.label}>
+                    <CountUp
+                      to={stat.value}
+                      suffix={stat.suffix}
+                      className="font-display text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-none tracking-tighter text-[var(--nh-white)]"
+                    />
+                    <p className="mt-3 text-xs uppercase tracking-[0.18em] text-[var(--nh-muted)]">
+                      {stat.label}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <AboutAwardsSection />
     </PageShell>
   );
 }

@@ -31,7 +31,7 @@ export function About() {
           <LinesReveal
             as="h2"
             lines={about.title}
-            className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-normal leading-[0.98] text-ink"
+            className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-medium leading-[0.98] tracking-tighter text-ink"
           />
           <Reveal delay={0.2} className="mt-6 max-w-lg">
             <p className="text-sm leading-relaxed text-muted-ink md:text-[15px]">
@@ -41,10 +41,10 @@ export function About() {
           <Reveal delay={0.3} className="mt-8">
             <Link
               to="/about"
-              className="group inline-flex items-center gap-2 rounded-full bg-espresso py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
+              className="group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
             >
               {about.cta}
-              <span className="flex size-8 items-center justify-center rounded-full bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
+              <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
                 <ArrowRight className="size-4" />
               </span>
             </Link>

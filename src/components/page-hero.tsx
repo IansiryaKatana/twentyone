@@ -8,33 +8,82 @@ export function PageHero({
   eyebrow,
   title,
   description,
+  image,
+  imageMobile,
   className,
 }: {
   eyebrow: string;
   title: string[];
   description?: string;
+  /** Optional full-bleed background — desktop (and fallback). */
+  image?: string;
+  /** Optional mobile background; falls back to `image` when omitted. */
+  imageMobile?: string;
   className?: string;
 }) {
+  const hasImage = Boolean(image || imageMobile);
+
   return (
     <section
       className={cn(
-        "bg-cream pt-28 pb-12 md:pt-36 md:pb-16",
+        "relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16",
+        hasImage ? "bg-[var(--nh-black,#0a0a0a)]" : "bg-cream",
         className
       )}
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10">
-        <p className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-muted-ink">
-          <span className="h-px w-10 bg-ink/25" />
+      {hasImage ? (
+        <>
+          <picture>
+            {imageMobile ? (
+              <source media="(max-width: 767px)" srcSet={imageMobile} />
+            ) : null}
+            {image ? (
+              <source media="(min-width: 768px)" srcSet={image} />
+            ) : null}
+            <img
+              src={image || imageMobile}
+              alt=""
+              className="absolute inset-0 size-full object-cover"
+            />
+          </picture>
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70"
+            aria-hidden
+          />
+        </>
+      ) : null}
+
+      <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
+        <p
+          className={cn(
+            "mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.35em]",
+            hasImage ? "text-white/65" : "text-muted-ink"
+          )}
+        >
+          <span
+            className={cn(
+              "h-px w-10",
+              hasImage ? "bg-white/35" : "bg-ink/25"
+            )}
+          />
           {eyebrow}
         </p>
         <LinesReveal
           as="h1"
           lines={title}
-          className="font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-normal leading-[0.95] text-ink"
+          className={cn(
+            "font-display max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter",
+            hasImage ? "text-white" : "text-ink"
+          )}
         />
         {description && (
           <Reveal delay={0.2} className="mt-6 max-w-xl">
-            <p className="text-sm leading-relaxed text-muted-ink md:text-base">
+            <p
+              className={cn(
+                "text-sm leading-relaxed md:text-base",
+                hasImage ? "text-white/75" : "text-muted-ink"
+              )}
+            >
               {description}
             </p>
           </Reveal>
@@ -56,11 +105,11 @@ export function PillCta({
   className?: string;
 }) {
   const classes = cn(
-    "group inline-flex items-center gap-2 rounded-full bg-espresso py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson",
+    "group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson",
     className
   );
   const icon = (
-    <span className="flex size-8 items-center justify-center rounded-full bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
+    <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
       <ArrowUpRight className="size-4" />
     </span>
   );

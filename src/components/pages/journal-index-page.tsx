@@ -1,28 +1,81 @@
+import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
 import {
   getFeaturedPost,
   journalPage,
   journalPosts,
 } from "@/data/content";
+import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
+import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { EASE, Reveal, Stagger, StaggerItem } from "@/components/anim";
+import { cn } from "@/lib/utils";
+
+const PAGE_SIZE = 3;
+
+const TAG_STYLES: Record<string, string> = {
+  Awards: "border-crimson/25 bg-crimson/10 text-crimson",
+  Hospitality: "border-amber-700/25 bg-amber-600/10 text-amber-900",
+  "Health & Wellness": "border-emerald-800/25 bg-emerald-800/10 text-emerald-900",
+  Insights: "border-espresso/20 bg-espresso/[0.08] text-espresso",
+  "Studio News": "border-sky-800/25 bg-sky-800/10 text-sky-950",
+  "Interior Design": "border-crimson/25 bg-crimson/10 text-crimson",
+  Residential: "border-espresso/20 bg-espresso/[0.08] text-espresso",
+  "Eco Design": "border-emerald-800/25 bg-emerald-800/10 text-emerald-900",
+  Lighting: "border-amber-700/25 bg-amber-600/10 text-amber-900",
+};
+
+function TagPill({
+  tag,
+  className,
+}: {
+  tag: string;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "rounded-full border px-2.5 py-0.5",
+        TAG_STYLES[tag] ?? "border-clay/30 bg-clay/10 text-espresso",
+        className
+      )}
+    >
+      {tag}
+    </span>
+  );
+}
 
 export function JournalIndexPage() {
   const featured = getFeaturedPost();
   const rest = journalPosts.filter((p) => p.slug !== featured.slug);
+  const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
+
+  const visible = rest.slice(0, visibleCount);
+  const hasMore = visibleCount < rest.length;
+  const isExpanded = visibleCount > PAGE_SIZE;
+
+  const showMore = () => {
+    setVisibleCount((current) => Math.min(current + PAGE_SIZE, rest.length));
+  };
+
+  const showLess = () => {
+    setVisibleCount(PAGE_SIZE);
+  };
 
   return (
-    <PageShell>
+    <PageShell headerVariant="overlay">
       <PageHero
         eyebrow={journalPage.eyebrow}
         title={[...journalPage.title]}
         description={journalPage.description}
+        image={aboutHeroDesktop}
+        imageMobile={aboutHeroMobile}
       />
 
-      <section className="bg-cream-2 py-20 md:py-28">
+      <section className="bg-cream-2 py-16 md:py-24 lg:py-28">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10">
           <Reveal y={40}>
             <Link
@@ -39,21 +92,19 @@ export function JournalIndexPage() {
                   transition={{ duration: 0.9, ease: EASE }}
                 />
               </div>
-              <div className="flex flex-col p-6 md:p-10">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-ink">
+              <div className="flex flex-col p-5 sm:p-6 md:p-10">
+                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-ink md:text-xs">
                   Featured
                 </span>
-                <h2 className="font-display mt-4 text-2xl font-normal uppercase leading-tight text-ink md:text-3xl">
+                <h2 className="font-display mt-3 text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink md:mt-4">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-ink">
+                <p className="mt-3 text-sm leading-relaxed text-muted-ink md:mt-4 md:text-[15px]">
                   {featured.excerpt}
                 </p>
-                <div className="mt-auto flex items-center justify-between pt-8 text-xs tracking-wide text-muted-ink">
+                <div className="mt-auto flex items-center justify-between pt-6 text-xs tracking-wide text-muted-ink md:pt-8">
                   <span>{featured.date}</span>
-                  <span className="rounded-full border border-line px-3 py-1">
-                    {featured.tag}
-                  </span>
+                  <TagPill tag={featured.tag} className="px-3 py-1" />
                 </div>
               </div>
             </Link>
@@ -61,40 +112,70 @@ export function JournalIndexPage() {
 
           <Stagger
             stagger={0.12}
-            className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 md:mt-10 lg:grid-cols-3"
           >
-            {rest.map((post) => (
+            {visible.map((post) => (
               <StaggerItem key={post.slug} className="group">
                 <Link
                   to="/journal/$slug"
                   params={{ slug: post.slug }}
-                  className="flex h-full flex-col overflow-hidden rounded-xl bg-cream"
+                  className="flex flex-col overflow-hidden rounded-xl"
                 >
-                  <div className="overflow-hidden">
+                  <div className="relative overflow-hidden rounded-xl bg-cream">
                     <motion.img
                       src={post.image}
                       alt={post.title}
-                      className="aspect-[4/3] w-full object-cover"
-                      whileHover={{ scale: 1.06 }}
+                      className="aspect-[16/10] w-full object-cover object-top"
+                      whileHover={{ scale: 1.03 }}
                       transition={{ duration: 0.9, ease: EASE }}
                     />
+                    <TagPill
+                      tag={post.tag}
+                      className="absolute top-3 left-3 z-10"
+                    />
                   </div>
-                  <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display flex items-start justify-between gap-2 text-lg font-normal uppercase leading-snug text-ink">
+                  <div className="flex flex-col pt-3">
+                    <h3 className="font-detective flex items-start justify-between gap-2 text-[clamp(1.2rem,2.2vw,1.75rem)] font-medium leading-[1.15] tracking-tighter text-ink">
                       {post.title}
                       <ArrowUpRight className="size-4 shrink-0 translate-y-1 text-muted-ink transition-transform duration-300 group-hover:translate-x-0.5" />
                     </h3>
-                    <div className="mt-auto flex items-center justify-between pt-8 text-[11px] tracking-wide text-muted-ink">
-                      <span>{post.date}</span>
-                      <span className="rounded-full border border-line px-2.5 py-0.5">
-                        {post.tag}
-                      </span>
-                    </div>
+                    <p className="mt-2 text-[11px] tracking-wide text-muted-ink">
+                      {post.date}
+                    </p>
                   </div>
                 </Link>
               </StaggerItem>
             ))}
           </Stagger>
+
+          {rest.length > PAGE_SIZE ? (
+            <div className="mt-10 flex flex-wrap gap-3">
+              {hasMore ? (
+                <button
+                  type="button"
+                  onClick={showMore}
+                  className="group inline-flex items-center gap-3 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
+                >
+                  Show more
+                  <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:bg-[var(--nh-red)] group-hover:text-white">
+                    <ArrowDown className="size-4" />
+                  </span>
+                </button>
+              ) : null}
+              {isExpanded ? (
+                <button
+                  type="button"
+                  onClick={showLess}
+                  className="group inline-flex items-center gap-3 rounded-md border border-ink/25 bg-transparent py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-cream"
+                >
+                  Show less
+                  <span className="flex size-8 items-center justify-center rounded-md bg-ink text-cream transition-all duration-300 group-hover:bg-cream group-hover:text-ink">
+                    <ArrowUp className="size-4" />
+                  </span>
+                </button>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </section>
     </PageShell>

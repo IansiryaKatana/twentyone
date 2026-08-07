@@ -1,26 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { JournalArticlePage } from "@/components/pages/journal-article-page";
-import { getPost } from "@/data/content";
+import { fetchJournalBySlug } from "@/lib/cms/contentAccess";
 
 export const Route = createFileRoute("/journal/$slug")({
-  head: ({ params }) => {
-    const post = getPost(params.slug);
-    return {
-      meta: [
-        {
-          title: post ? `${post.title} — Twentyone06` : "Journal — Twentyone06",
-        },
-        {
-          name: "description",
-          content: post?.excerpt ?? "Twentyone06 journal article.",
-        },
-      ],
-    };
+  loader: async ({ params }) => {
+    const post = await fetchJournalBySlug(params.slug);
+    if (!post) throw notFound();
+    return { post };
   },
+  head: ({ params }) => ({
+    meta: [
+      {
+        title: `${params.slug} — Twentyone06`,
+      },
+      {
+        name: "description",
+        content: "Twentyone06 blog article.",
+      },
+    ],
+  }),
   component: JournalArticleRoute,
 });
 
 function JournalArticleRoute() {
-  const { slug } = Route.useParams();
-  return <JournalArticlePage slug={slug} />;
+  const { post } = Route.useLoaderData();
+  return <JournalArticlePage post={post} />;
 }

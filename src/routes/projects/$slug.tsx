@@ -1,28 +1,28 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ProjectDetailPage } from "@/components/pages/project-detail-page";
-import { getProject } from "@/data/content";
+import { fetchProjectBySlug } from "@/lib/cms/contentAccess";
 
 export const Route = createFileRoute("/projects/$slug")({
-  head: ({ params }) => {
-    const project = getProject(params.slug);
-    return {
-      meta: [
-        {
-          title: project
-            ? `${project.title} — Twentyone06`
-            : "Project — Twentyone06",
-        },
-        {
-          name: "description",
-          content: project?.excerpt ?? "Twentyone06 project detail.",
-        },
-      ],
-    };
+  loader: async ({ params }) => {
+    const project = await fetchProjectBySlug(params.slug);
+    if (!project) throw notFound();
+    return { project };
   },
+  head: ({ params }) => ({
+    meta: [
+      {
+        title: `${params.slug} — Twentyone06`,
+      },
+      {
+        name: "description",
+        content: "Twentyone06 project detail.",
+      },
+    ],
+  }),
   component: ProjectDetailRoute,
 });
 
 function ProjectDetailRoute() {
-  const { slug } = Route.useParams();
-  return <ProjectDetailPage slug={slug} />;
+  const { project } = Route.useLoaderData();
+  return <ProjectDetailPage project={project} />;
 }

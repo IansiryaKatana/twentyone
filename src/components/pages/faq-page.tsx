@@ -1,16 +1,17 @@
 import * as React from "react";
+import { Link } from "@tanstack/react-router";
+import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { faqPage } from "@/data/content";
+import { type FaqItem, faqPage } from "@/data/content";
+import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
+import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
+import { useCmsContent } from "@/hooks/useCmsContent";
 import { PageShell } from "@/components/page-shell";
-import { PageHero, PillCta } from "@/components/page-hero";
-import { EASE, Reveal, Stagger, StaggerItem } from "@/components/anim";
+import { PageHero } from "@/components/page-hero";
+import { EASE, Stagger, StaggerItem } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
-function FaqAccordion({
-  items,
-}: {
-  items: { q: string; a: string }[];
-}) {
+function FaqAccordion({ items }: { items: FaqItem[] }) {
   const [open, setOpen] = React.useState(0);
 
   return (
@@ -20,24 +21,32 @@ function FaqAccordion({
         return (
           <div
             key={item.q}
-            className="border-b border-line/70 first:border-t"
+            className="border-b border-white/25 first:border-t"
           >
             <button
               type="button"
-              onClick={() => setOpen(i)}
-              className="flex w-full items-start gap-4 py-5 text-left"
+              onClick={() => setOpen(isOpen ? -1 : i)}
+              aria-expanded={isOpen}
+              className="flex w-full items-start gap-3 py-4 text-left md:gap-4 md:py-5"
             >
-              <span className="mt-1 text-xs tabular-nums text-muted-ink">
+              <span className="mt-1 text-[0.65rem] tabular-nums text-white/45 md:mt-1.5 md:text-xs">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <span
                 className={cn(
-                  "font-display flex-1 text-lg transition-colors md:text-xl",
-                  isOpen ? "text-ink" : "text-ink/70"
+                  "font-display flex-1 text-[clamp(1.25rem,2.8vw,2.35rem)] font-medium uppercase leading-[1.12] tracking-tighter transition-colors",
+                  isOpen ? "text-white" : "text-white/75"
                 )}
               >
                 {item.q}
               </span>
+              <ChevronDown
+                aria-hidden
+                className={cn(
+                  "mt-1 size-4 shrink-0 text-white/50 transition-transform duration-300 md:mt-1.5 md:size-5",
+                  isOpen && "rotate-180 text-white"
+                )}
+              />
             </button>
 
             <AnimatePresence initial={false}>
@@ -49,9 +58,20 @@ function FaqAccordion({
                   transition={{ duration: 0.55, ease: EASE }}
                   className="overflow-hidden"
                 >
-                  <p className="max-w-2xl pb-6 pl-10 text-sm leading-relaxed text-muted-ink md:pl-12">
-                    {item.a}
-                  </p>
+                  <div className="max-w-2xl space-y-3 pb-5 pl-9 md:pl-11">
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-white/80 md:text-[15px]">
+                      {item.a}
+                    </p>
+                    {item.link ? (
+                      <Link
+                        to={item.link.to}
+                        className="inline-flex items-center gap-1 text-xs font-medium uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-70"
+                      >
+                        {item.link.label}
+                        <span aria-hidden>→</span>
+                      </Link>
+                    ) : null}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -63,39 +83,49 @@ function FaqAccordion({
 }
 
 export function FaqPage() {
+  const { faqCategories } = useCmsContent();
+  const categories =
+    faqCategories.length > 0
+      ? faqCategories
+      : faqPage.categories.map((cat) => ({
+          id: cat.id,
+          label: cat.label,
+          items: cat.items,
+        }));
   const [category, setCategory] = React.useState(0);
-  const active = faqPage.categories[category];
+  const active = categories[category] ?? categories[0];
 
   return (
-    <PageShell>
+    <PageShell headerVariant="overlay">
       <PageHero
         eyebrow={faqPage.eyebrow}
         title={faqPage.title}
         description={faqPage.description}
+        image={aboutHeroDesktop}
+        imageMobile={aboutHeroMobile}
       />
 
-      <section className="bg-cream-2 py-20 md:py-28">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-12 md:px-10 lg:gap-16">
-          {/* Category tabs */}
+      <section className="bg-crimson py-16 md:py-24 lg:py-28">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 md:grid-cols-12 md:gap-12 md:px-10 lg:gap-16">
           <div className="md:col-span-4">
-            <Stagger stagger={0.08} className="flex flex-col gap-1">
-              {faqPage.categories.map((cat, i) => (
+            <Stagger stagger={0.08} className="flex flex-col gap-0.5">
+              {categories.map((cat, i) => (
                 <StaggerItem key={cat.id}>
                   <button
                     type="button"
                     onClick={() => setCategory(i)}
                     className={cn(
-                      "group relative w-fit py-2 text-left text-lg transition-colors md:text-xl",
+                      "group relative w-fit py-2 text-left font-sans text-[clamp(1rem,1.8vw,1.25rem)] font-light leading-[1.3] tracking-normal transition-colors",
                       i === category
-                        ? "text-ink"
-                        : "text-muted-ink/70 hover:text-ink"
+                        ? "text-white"
+                        : "text-white/55 hover:text-white"
                     )}
                   >
                     <span className="relative">
                       {cat.label}
                       <span
                         className={cn(
-                          "absolute -bottom-0.5 left-0 h-px bg-ink transition-all duration-500",
+                          "absolute -bottom-0.5 left-0 h-px bg-white transition-all duration-500",
                           i === category ? "w-full" : "w-0 group-hover:w-1/3"
                         )}
                       />
@@ -106,7 +136,6 @@ export function FaqPage() {
             </Stagger>
           </div>
 
-          {/* Accordion */}
           <div className="md:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
@@ -120,20 +149,6 @@ export function FaqPage() {
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
-      </section>
-
-      {/* Bottom CTA band */}
-      <section className="bg-cream py-16 md:py-20">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-start justify-between gap-8 px-5 md:flex-row md:items-center md:px-10">
-          <Reveal>
-            <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-normal uppercase leading-[1.05] text-ink">
-              {faqPage.ctaLabel}
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <PillCta to="/contact">{faqPage.ctaButton}</PillCta>
-          </Reveal>
         </div>
       </section>
     </PageShell>

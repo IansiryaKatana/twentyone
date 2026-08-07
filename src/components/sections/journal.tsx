@@ -12,7 +12,7 @@ export function Journal() {
           <LinesReveal
             as="h2"
             lines={journal.title}
-            className="font-display max-w-3xl text-[clamp(1.9rem,4vw,3.4rem)] font-normal leading-[1.02] text-ink"
+            className="font-display max-w-3xl text-[clamp(1.75rem,4vw,3.4rem)] font-medium leading-[0.95] tracking-tighter text-ink"
           />
           <div className="md:pb-2">
             <Reveal delay={0.15}>
@@ -23,10 +23,10 @@ export function Journal() {
             <Reveal delay={0.25} className="mt-5">
               <Link
                 to="/journal"
-                className="group inline-flex items-center gap-2 rounded-full bg-espresso py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
+                className="group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
               >
                 {journal.cta}
-                <span className="flex size-8 items-center justify-center rounded-full bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
+                <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
                   <ArrowRight className="size-4" />
                 </span>
               </Link>
@@ -51,10 +51,10 @@ export function Journal() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6 md:p-8">
-                <h3 className="font-display text-2xl font-normal leading-tight text-ink md:text-3xl">
+                <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink">
                   {journal.featured.title}
                 </h3>
-                <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-ink">
+                <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-ink md:text-[15px]">
                   {journal.featured.excerpt}
                 </p>
                 <div className="mt-auto flex items-center justify-between pt-8 text-xs tracking-wide text-muted-ink">
@@ -85,7 +85,7 @@ export function Journal() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display flex items-start justify-between gap-2 text-lg font-normal leading-snug text-ink">
+                    <h3 className="font-display flex items-start justify-between gap-2 text-[clamp(1.15rem,2vw,1.5rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink">
                       {post.title}
                       <ArrowUpRight className="size-4 shrink-0 translate-y-1 text-muted-ink transition-transform duration-300 group-hover:translate-x-0.5" />
                     </h3>

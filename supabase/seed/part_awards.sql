@@ -1,0 +1,32 @@
+-- Seed Recognition awards for About page
+INSERT INTO public.awards (id, status, title, sort_order, published) VALUES
+('b1111111-1111-4111-8111-111111111101', 'winner', 'CID Awards 2024 MENA — Interior Design Concept of the Year, Hotel  ·  Voco Monaco', 0, true),
+('b1111111-1111-4111-8111-111111111102', 'winner', 'CID Awards 2024 MENA — Design Concept of the Year, Retail, Leisure and Education  ·  ELIX Spa', 1, true),
+('b1111111-1111-4111-8111-111111111103', 'winner', 'CID Awards 2025 Hospitality — Best Use of Materials  ·  Flaky Pastry, The Galleria', 2, true),
+('b1111111-1111-4111-8111-111111111104', 'winner', 'CID Awards 2025 MENA — Retail Design of the Year  ·  Cheese Board, Bluewaters Island', 3, true),
+('b1111111-1111-4111-8111-111111111105', 'winner', 'CID Awards 2025 MENA — Healthcare Project of the Year  ·  Dental Nation', 4, true),
+('b1111111-1111-4111-8111-111111111106', 'winner', 'Luxuri Magazine 2025 — Best Storytelling-Driven Hospitality Design Studio, Dubai', 5, true),
+('b1111111-1111-4111-8111-111111111107', 'highly_commended', 'Design Middle East Awards 2024 — Interior Designer of the Year  ·  Govind Shepley', 6, true),
+('b1111111-1111-4111-8111-111111111108', 'highly_commended', 'CID Awards 2024 MENA — Best Casual Restaurant Design  ·  Nama Yoso', 7, true),
+('b1111111-1111-4111-8111-111111111109', 'highly_commended', 'CID Awards 2024 MENA — Best Hotel Design  ·  Voco Monaco', 8, true),
+('b1111111-1111-4111-8111-111111111110', 'highly_commended', 'CID Awards 2024 MENA — Best Spa/Wellness Design  ·  ELIX Spa', 9, true),
+('b1111111-1111-4111-8111-111111111111', 'highly_commended', 'CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Flaky Pastry', 10, true),
+('b1111111-1111-4111-8111-111111111112', 'highly_commended', 'CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry', 11, true),
+('b1111111-1111-4111-8111-111111111113', 'highly_commended', 'CID Awards 2025 Hospitality — Hospitality Design Firm of the Year', 12, true),
+('b1111111-1111-4111-8111-111111111114', 'highly_commended', 'CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley', 13, true),
+('b1111111-1111-4111-8111-111111111115', 'shortlisted', 'CID Awards 2024 MENA — Boutique Firm of the Year', 14, true),
+('b1111111-1111-4111-8111-111111111116', 'shortlisted', 'CID Awards 2024 Hospitality — Best Casual and Best High-End Restaurant  ·  Nama Yoso', 15, true),
+('b1111111-1111-4111-8111-111111111117', 'shortlisted', 'Design Middle East Awards 2024 — Interior Design Firm of the Year / Boutique Firm of the Year', 16, true),
+('b1111111-1111-4111-8111-111111111118', 'shortlisted', 'CID Awards 2025 Hospitality — Multiple categories', 17, true),
+('b1111111-1111-4111-8111-111111111119', 'shortlisted', 'CID Awards 2025 MENA — Interior Design of the Year, Health and Wellness  ·  Dental Nation', 18, true),
+('b1111111-1111-4111-8111-111111111120', 'shortlisted', 'Design Middle East Awards 2025 — Commercial Project of the Year  ·  Knowledge Academy Office', 19, true),
+('b1111111-1111-4111-8111-111111111121', 'editorial', 'CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2021 and 2022)', 20, true),
+('b1111111-1111-4111-8111-111111111122', 'editorial', 'Design Middle East Powerlist Creative 30 (2022, 2024, 2025)', 21, true),
+('b1111111-1111-4111-8111-111111111123', 'editorial', 'Design Middle East Cover Feature, January 2025', 22, true),
+('b1111111-1111-4111-8111-111111111124', 'editorial', 'The 50 Masters of Design 2026', 23, true)
+ON CONFLICT (id) DO UPDATE SET
+  status = EXCLUDED.status,
+  title = EXCLUDED.title,
+  sort_order = EXCLUDED.sort_order,
+  published = EXCLUDED.published,
+  updated_at = now();

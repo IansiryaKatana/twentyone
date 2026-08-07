@@ -7,6 +7,8 @@ import logo06 from "@/Assets/Partners-and-clients06-1024x512.png";
 import logo07 from "@/Assets/Partners-and-clients07-1024x434.png";
 import logo09 from "@/Assets/Partners-and-clients09-1024x348.png";
 import logo11 from "@/Assets/Partners-and-clients11-1024x386.png";
+import { partnersSection } from "@/data/content";
+import { Reveal } from "@/components/anim";
 
 const logos = [
   logo01,
@@ -23,7 +25,6 @@ const logos = [
 function Logo({ src }: { src: string }) {
   return (
     <span className="relative flex h-9 items-center md:h-12">
-      {/* invisible image holds the natural aspect ratio / box width */}
       <img
         src={src}
         alt="Partner logo"
@@ -32,10 +33,9 @@ function Logo({ src }: { src: string }) {
         draggable={false}
         aria-hidden
       />
-      {/* crimson fill masked to the logo shape */}
       <span
         aria-hidden
-        className="absolute inset-0 bg-crimson opacity-90 transition-opacity duration-300 hover:opacity-100"
+        className="absolute inset-0 bg-white opacity-90 transition-opacity duration-300 hover:opacity-100"
         style={{
           WebkitMaskImage: `url(${src})`,
           maskImage: `url(${src})`,
@@ -52,28 +52,35 @@ function Logo({ src }: { src: string }) {
 }
 
 export function Partners() {
-  // Duplicate the set so the -50% translate loops seamlessly.
   const row = [...logos, ...logos];
 
   return (
     <section
-      aria-label="Our partners and clients"
-      className="marquee-strip relative w-full overflow-hidden bg-cream py-8 md:py-10"
+      aria-label={partnersSection.title}
+      className="marquee-strip relative w-full overflow-hidden bg-[var(--nh-red)] py-16 md:py-20"
     >
-      {/* soft edge fades */}
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-cream to-transparent md:w-28" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-cream to-transparent md:w-28" />
+      <div className="px-5 md:px-[7vw]">
+        <Reveal>
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-white">
+            {partnersSection.title}
+          </h2>
+        </Reveal>
 
-      <div className="marquee-track">
-        {row.map((src, i) => (
-          <span
-            key={i}
-            className="flex shrink-0 items-center justify-center px-8 md:px-12"
-            aria-hidden={i >= logos.length}
-          >
-            <Logo src={src} />
-          </span>
-        ))}
+        <div className="relative mt-10 overflow-hidden md:mt-12">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--nh-red)] to-transparent md:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--nh-red)] to-transparent md:w-20" />
+          <div className="marquee-track">
+            {row.map((src, i) => (
+              <span
+                key={i}
+                className="flex shrink-0 items-center justify-center px-8 md:px-12"
+                aria-hidden={i >= logos.length}
+              >
+                <Logo src={src} />
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

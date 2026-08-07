@@ -62,7 +62,7 @@ export function NewListings() {
             <LinesReveal
               as="h2"
               lines={listings.title}
-              className="font-display text-[clamp(1.9rem,4vw,3.4rem)] font-normal leading-[1.02] text-ink"
+              className="font-display text-[clamp(1.9rem,4vw,3.4rem)] font-medium leading-[1.02] tracking-tighter text-ink"
             />
             <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <Reveal delay={0.2}>
@@ -73,10 +73,10 @@ export function NewListings() {
               <Reveal delay={0.3}>
                 <Link
                   to="/projects"
-                  className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-espresso py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
+                  className="group inline-flex shrink-0 items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
                 >
                   {listings.cta}
-                  <span className="flex size-8 items-center justify-center rounded-full bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
+                  <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
                     <ArrowUpRight className="size-4" />
                   </span>
                 </Link>

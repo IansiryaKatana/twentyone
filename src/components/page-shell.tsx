@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { SiteHeader } from "@/components/site-header";
+import { NhHeader } from "@/components/new-home/nh-header";
 import { SiteFooter } from "@/components/sections/site-footer";
 
 export function PageShell({
@@ -11,7 +11,7 @@ export function PageShell({
 }) {
   return (
     <div className="relative min-h-screen bg-cream">
-      <SiteHeader variant={headerVariant} />
+      <NhHeader variant={headerVariant} />
       <main>{children}</main>
       <SiteFooter />
     </div>

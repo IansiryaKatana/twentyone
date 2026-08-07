@@ -35,7 +35,7 @@ export function Hero() {
           as="h1"
           lines={hero.title}
           delay={0.5}
-          className="font-display max-w-4xl text-[clamp(2.75rem,8vw,7rem)] font-normal leading-[0.92] text-cream"
+          className="font-display max-w-4xl text-[clamp(2.75rem,8vw,7rem)] font-medium leading-[0.92] tracking-tighter text-cream"
         />
 
         <motion.p
@@ -55,19 +55,19 @@ export function Hero() {
         >
           <Link
             to="/projects"
-            className="group flex items-center gap-2 rounded-full bg-cream py-2 pl-6 pr-2 text-sm text-ink transition-colors hover:bg-white"
+            className="group flex items-center gap-2 rounded-md bg-cream py-2 pl-6 pr-2 text-sm text-ink transition-colors hover:bg-white"
           >
             {hero.primaryCta}
-            <span className="flex size-8 items-center justify-center rounded-full bg-ink text-cream transition-all duration-300 group-hover:rotate-45 group-hover:bg-crimson">
+            <span className="flex size-8 items-center justify-center rounded-md bg-ink text-cream transition-all duration-300 group-hover:rotate-45 group-hover:bg-crimson">
               <ArrowUpRight className="size-4" />
             </span>
           </Link>
           <Link
             to="/contact"
-            className="group flex items-center gap-2 rounded-full border border-cream/40 py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-cream/10"
+            className="group flex items-center gap-2 rounded-md border border-cream/40 py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-cream/10"
           >
             {hero.secondaryCta}
-            <span className="flex size-8 items-center justify-center rounded-full border border-cream/40 transition-transform duration-300 group-hover:translate-x-0.5">
+            <span className="flex size-8 items-center justify-center rounded-md border border-cream/40 transition-transform duration-300 group-hover:translate-x-0.5">
               <ArrowRight className="size-4" />
             </span>
           </Link>

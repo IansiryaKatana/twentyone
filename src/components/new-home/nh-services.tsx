@@ -78,7 +78,7 @@ function ServiceCard({
         </div>
 
         <div className="mt-auto md:max-w-none">
-          <h3 className="font-display max-w-[95%] text-[clamp(1.55rem,1.7vw,2.35rem)] font-semibold leading-[0.9] tracking-tighter text-black">
+          <h3 className="font-display max-w-[95%] text-[clamp(2.25rem,4vw,3.25rem)] font-semibold leading-[0.9] tracking-tighter text-black">
             {item.title}
           </h3>
           <p className="mt-3 max-w-[18rem] text-[11px] leading-relaxed text-black/65 md:text-xs md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0">

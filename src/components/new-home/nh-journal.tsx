@@ -96,7 +96,7 @@ export function NhJournal() {
       <div className="w-full px-5 md:px-10">
         <div className="mb-10 flex items-end justify-between gap-4 md:mb-14">
           <Reveal className="max-w-xl">
-            <h2 className="font-display text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[0.88] tracking-tighter text-[var(--nh-black)]">
+            <h2 className="font-display text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-[var(--nh-black)]">
               {section.title}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-black/55 md:text-base">

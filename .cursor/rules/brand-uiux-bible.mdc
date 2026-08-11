@@ -1,0 +1,73 @@
+---
+description: Twentyone06 brand UI/UX bible — follow for all new pages and UI
+alwaysApply: true
+---
+
+# Twentyone06 Brand UI/UX Bible
+
+Canonical reference: `docs/brand-uiux-bible.md` and tokens in `src/styles/app.css`.
+Reference implementation: `/new-home` (`src/components/new-home/*`).
+
+## Shell (every page)
+
+- Wrap cream pages in `PageShell` → `NhHeader` + `SiteFooter`.
+- Header: `overlay` on dark full-bleed heroes; `solid` on cream/light pages.
+- Footer is black/white; keep `showCta` false unless a page explicitly needs the CTA strip.
+- Do not revive the old cream `SiteHeader` for new work.
+
+## Dual palettes — pick one surface language per section
+
+**Cream (warm interior pages):** `--cream`, `--espresso`, `--crimson`, `--ink`, `--sand`.
+**Dark editorial (new-home / high-impact):** `--nh-black`, `--nh-white`, `--nh-red` (`#e01e26`), `--nh-gray`, `--nh-muted`.
+
+Use CSS variables — never invent new brand hexes. Red/crimson is accent only (CTA, emphasis line), not large fills except intentional CTA blocks.
+
+## Typography (non-negotiable)
+
+| Role | Font | Rules |
+|------|------|--------|
+| Titles / section heads / card titles | `font-display` (Zeuxis) | Uppercase via class; **≥ medium (500)**; open tracking (`0.02em` via `.font-display` — never `tracking-tighter`); leading ~`1.02–1.08` |
+| Body / UI / labels | Inter Tight (`font-sans`) | Weight **300**; never Inter/Roboto/Arial as display |
+
+- Do **not** override titles with `font-normal` (400) — it undoes the brand weight.
+- Hero lines: `clamp()` + masked line reveals (`overflow-hidden` + slide-up), same as `nh-hero` / `nh-philosophy`.
+- Section labels: small uppercase tracking (~`0.22em`) above the display title.
+
+## Layout
+
+- Full-bleed sections by default; gutters `px-5` + `md:px-10` or `md:px-[7vw]`.
+- Avoid `max-w-[1440px]` wrappers on marketing/editorial pages unless content truly needs a reading measure.
+- **One job per section:** one headline, one short support line, one primary interaction or media set.
+- **Hero budget:** brand + one headline + one support + one CTA group + one dominant edge-to-edge image. No stat strips, badges, or floating chips on hero media.
+- No cards in heroes. Cards only when they wrap a real interaction; prefer editorial full-bleed image panels (services pattern) over bordered/shadow boxes.
+- First viewport must read as one composition, not a dashboard.
+
+## Motion
+
+- Reuse `EASE`, `Reveal`, and reduced-motion helpers from `@/components/anim`.
+- Prefer 2–3 intentional motions (line mask, fade-up, carousel) — not decoration noise.
+- Marquees: `.marquee-track` pattern; pause on hover; honor `prefers-reduced-motion`.
+- Carousels: flat dots; mobile = one item; desktop arrows only when useful (projects pattern).
+
+## Components & content
+
+- Page copy and lists live in `src/data/content.ts` (or colocated data), not hardcoded strings scattered in JSX.
+- CTAs: red rounded **Let’s Talk** / clear text links with uppercase tracking; outlined circle prev/next on dark surfaces.
+- Custom controls over native where brand matters (e.g. project-type select on contact strip).
+- Imagery: real product/place/atmosphere; local assets under `src/Assets/` preferred over random stock when available.
+
+## Do not
+
+- Purple/indigo AI gradients, glow stacks, pill clusters, multi-layer shadows, emoji as UI.
+- Flat single-color pages with no atmosphere (cream depth or dark/red editorial contrast).
+- Weak branding (if removing nav makes the first viewport generic, strengthen brand).
+- Mixing cream and `--nh-*` tokens in the same section without a clear surface break.
+---
+
+## Quick checklist for a new page
+
+1. Route → page component → sections; content in `content.ts`.
+2. `PageShell` + correct header variant.
+3. Display titles use `font-display` without `font-normal`.
+4. Full-width section rhythm matching `/new-home` or existing cream pages.
+5. Motion + reduced-motion; desktop and mobile both checked.

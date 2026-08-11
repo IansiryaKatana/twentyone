@@ -80,7 +80,7 @@ export function NotFoundPage() {
               </MaskedLine>
             </h1>
 
-            <h2 className="font-display mt-4 max-w-3xl text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[0.95] tracking-tighter text-[var(--nh-white)] md:mt-6">
+            <h2 className="font-display mt-4 max-w-3xl text-[clamp(2rem,5vw,4.5rem)] font-medium leading-[1.05] text-[var(--nh-white)] md:mt-6">
               <MaskedLine delay={reduced ? 0 : 0.5}>Page Not</MaskedLine>
               <MaskedLine delay={reduced ? 0 : 0.62}>
                 <span className="text-[var(--nh-red)]">Found.</span>

@@ -80,7 +80,7 @@ export function NhProjects() {
               {section.eyebrow}
               <span className="mx-2 text-white/25">/</span>
             </p>
-            <h2 className="font-display mt-2 whitespace-nowrap text-[clamp(2rem,5.5vw,4.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]">
+            <h2 className="font-display mt-2 whitespace-nowrap text-[clamp(2rem,5.5vw,4.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]">
               {section.title}
             </h2>
           </Reveal>
@@ -160,7 +160,7 @@ export function NhProjects() {
                     />
                   </div>
                   <div className="mt-4">
-                    <h3 className="font-display text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-none tracking-tighter text-[var(--nh-white)]">
+                    <h3 className="font-display text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-none text-[var(--nh-white)]">
                       {project.title}
                     </h3>
                     <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[var(--nh-red)]">

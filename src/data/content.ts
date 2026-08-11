@@ -1507,9 +1507,11 @@ export const newHome = {
     ],
   },
   philosophy: {
-    eyebrow: "The Twentyone06 Philosophy",
-    title: ["We Design For", "People."],
-    body: "Every space we design starts with a question: what does this need to do for the people using it? Not aesthetically. Commercially. Experientially. Operationally. In hospitality, F&B, and retail, the design is not decoration. It is the reason guests stay longer, come back, and bring others. We design with that understanding at the centre of every brief — bold where it counts, precise where it matters, and always in service of the people the space is built for.",
+    eyebrow: "The Twentyone06 Philosophy:",
+    title: ["Designers With", "Teeth"],
+    body: "Anyone can make a pretty space. We make designs that grab you. Designs that make people stop scrolling, start talking, stay longer, come back. Because in hospitality, the experience is the brand. And we don't do “nice.” We do impactful, intentional, emotional, and bold. With story, with strategy, and with service at our core.",
+    /** Word in `body` rendered in brand red on desktop. */
+    bodyAccent: "is",
     cta: about.cta,
     ctaTo: "/about" as const,
     image: pexels(2379005, 1200),

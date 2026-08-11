@@ -1,8 +1,9 @@
 import { motion, useInView } from "motion/react";
 import * as React from "react";
 import { projectsPage } from "@/data/content";
-import heroBackground from "@/Assets/background.webp";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
+import { useCmsContent } from "@/hooks/useCmsContent";
 import { cn } from "@/lib/utils";
 
 function MaskedLine({
@@ -34,18 +35,19 @@ function MaskedLine({
 export function PrHero() {
   const { hero } = projectsPage;
   const reduced = useReducedMotionSafe();
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.projects;
 
   return (
     <section className="sticky top-0 z-0 flex h-[100svh] min-h-[640px] w-full items-center justify-center overflow-hidden bg-[var(--nh-black)]">
       <div className="absolute inset-0">
-        <img
-          src={heroBackground}
-          alt=""
-          className={cn(
-            "h-full w-full object-cover object-center",
-            !reduced && "animate-kenburns"
-          )}
+        <ResponsiveBgImage
+          bg={bg}
           fetchPriority="high"
+          imgClassName={cn(
+            "object-center",
+            !reduced && "animate-kenburns",
+          )}
         />
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
@@ -61,7 +63,7 @@ export function PrHero() {
           {hero.eyebrow}
         </motion.p>
 
-        <h1 className="font-display text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[0.88] tracking-tighter text-[var(--nh-white)]">
+        <h1 className="font-display text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
           {hero.titleLines.map((line, i) => (
             <MaskedLine
               key={line.text}

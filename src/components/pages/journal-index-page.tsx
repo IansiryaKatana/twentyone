@@ -7,11 +7,10 @@ import {
   journalPage,
   journalPosts,
 } from "@/data/content";
-import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
-import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { EASE, Reveal, Stagger, StaggerItem } from "@/components/anim";
+import { useCmsContent } from "@/hooks/useCmsContent";
 import { cn } from "@/lib/utils";
 
 const PAGE_SIZE = 3;
@@ -49,6 +48,8 @@ function TagPill({
 }
 
 export function JournalIndexPage() {
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.journal;
   const featured = getFeaturedPost();
   const rest = journalPosts.filter((p) => p.slug !== featured.slug);
   const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
@@ -71,8 +72,9 @@ export function JournalIndexPage() {
         eyebrow={journalPage.eyebrow}
         title={[...journalPage.title]}
         description={journalPage.description}
-        image={aboutHeroDesktop}
-        imageMobile={aboutHeroMobile}
+        image={bg.desktop}
+        imageTablet={bg.tablet}
+        imageMobile={bg.mobile}
       />
 
       <section className="bg-cream-2 py-16 md:py-24 lg:py-28">
@@ -96,7 +98,7 @@ export function JournalIndexPage() {
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-ink md:text-xs">
                   Featured
                 </span>
-                <h2 className="font-display mt-3 text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink md:mt-4">
+                <h2 className="font-display mt-3 text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium uppercase leading-[1.05] text-ink md:mt-4">
                   {featured.title}
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-muted-ink md:mt-4 md:text-[15px]">

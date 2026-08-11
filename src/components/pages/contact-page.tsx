@@ -1,20 +1,23 @@
 import { contactPage } from "@/data/content";
-import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
-import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Reveal, Stagger, StaggerItem } from "@/components/anim";
+import { useCmsContent } from "@/hooks/useCmsContent";
 
 export function ContactPage() {
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.contact;
+
   return (
     <PageShell headerVariant="overlay">
       <PageHero
         eyebrow={contactPage.eyebrow}
         title={[...contactPage.title]}
         description={contactPage.description}
-        image={aboutHeroDesktop}
-        imageMobile={aboutHeroMobile}
+        image={bg.desktop}
+        imageTablet={bg.tablet}
+        imageMobile={bg.mobile}
       />
 
       <section className="bg-white pt-16 pb-20 md:pt-24 md:pb-28">

@@ -6,10 +6,10 @@ function WhyCard({ item, index }: { item: WhyUsItem; index: number }) {
   const n = String(index + 1).padStart(2, "0");
   return (
     <article className="border-t border-line/70 pt-6 md:pt-8">
-      <p className="font-display text-[2.1rem] font-bold leading-none tracking-tighter text-muted-ink md:text-[clamp(1.5rem,2.5vw,2rem)]">
+      <p className="font-display text-[2.1rem] font-bold leading-none text-muted-ink md:text-[clamp(1.5rem,2.5vw,2rem)]">
         {n}
       </p>
-      <h3 className="font-detective mt-3 text-[clamp(1.4rem,2.56vw,1.48rem)] font-medium leading-[0.95] tracking-tighter text-ink normal-case md:text-[clamp(1.75rem,3.2vw,1.85rem)]">
+      <h3 className="font-detective mt-3 text-[clamp(1.4rem,2.56vw,1.48rem)] font-medium leading-[1.05] tracking-tighter text-ink normal-case md:text-[clamp(1.75rem,3.2vw,1.85rem)]">
         {item.title}
       </h3>
       <p className="mt-4 text-sm leading-relaxed text-muted-ink">{item.body}</p>
@@ -27,7 +27,7 @@ export function AboutWhySection() {
     <section className="bg-cream-2 py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-ink">
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-ink">
             {title}
           </h2>
         </Reveal>

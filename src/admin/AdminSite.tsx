@@ -74,7 +74,7 @@ const DEFAULT_BRAND: BrandSettings = {
 };
 
 const DEFAULT_TYPOGRAPHY: TypographySettings = {
-  displayFont: "Big Shoulders Display",
+  displayFont: "Zeuxis",
   bodyFont: "Inter Tight",
   displayWeight: 500,
   bodyWeight: 300,

@@ -24,7 +24,7 @@ export function PdGallery({
           <LinesReveal
             as="h2"
             lines={["Selected Frames"]}
-            className="font-display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+            className="font-display mt-4 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
             delay={0.08}
           />
         </div>

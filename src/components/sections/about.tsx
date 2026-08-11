@@ -31,7 +31,7 @@ export function About() {
           <LinesReveal
             as="h2"
             lines={about.title}
-            className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-medium leading-[0.98] tracking-tighter text-ink"
+            className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-medium leading-[0.98] text-ink"
           />
           <Reveal delay={0.2} className="mt-6 max-w-lg">
             <p className="text-sm leading-relaxed text-muted-ink md:text-[15px]">

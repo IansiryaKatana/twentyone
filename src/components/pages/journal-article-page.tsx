@@ -27,7 +27,7 @@ export function JournalArticlePage({ post }: { post: JournalPost }) {
             <LinesReveal
               as="h1"
               lines={[post.title]}
-              className="font-display mt-5 text-[clamp(2.25rem,5vw,4.25rem)] font-medium leading-[0.95] tracking-tighter text-ink"
+              className="font-display mt-5 text-[clamp(2.25rem,5vw,4.25rem)] font-medium leading-[1.05] text-ink"
             />
             <Reveal delay={0.15} className="mt-6">
               <p className="text-sm leading-relaxed text-muted-ink md:text-[15px]">

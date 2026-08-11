@@ -3,14 +3,18 @@ import { motion, useInView } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { newHome } from "@/data/content";
-import philosophyImage from "@/Assets/we-design-for-twentyone06.webp";
 import { EASE, Reveal } from "@/components/anim";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
+import { useCmsContent } from "@/hooks/useCmsContent";
+import type { SectionBackgroundSet } from "@/lib/cms/sectionBackgrounds";
 import { cn } from "@/lib/utils";
 
 function MaskedHeading({
   lines,
+  className,
 }: {
   lines: { text: string; className?: string }[];
+  className?: string;
 }) {
   const ref = React.useRef<HTMLHeadingElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
@@ -18,10 +22,13 @@ function MaskedHeading({
   return (
     <h2
       ref={ref}
-      className="font-display mt-6 max-w-xl text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter"
+      className={cn(
+        "font-display font-medium leading-[1.02]",
+        className,
+      )}
     >
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.12em]">
+        <span key={i} className="block overflow-hidden pb-[0.2em]">
           <motion.span
             className={cn("block", line.className)}
             initial={{ y: "115%" }}
@@ -40,69 +47,205 @@ function MaskedHeading({
   );
 }
 
-export function NhPhilosophy() {
-  const { philosophy } = newHome;
+function PhilosophyDesktopTitle({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: [string, string];
+}) {
+  const ref = React.useRef<HTMLHeadingElement | null>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const size = "text-[clamp(2.35rem,3.6vw,4rem)]";
 
   return (
-    <section className="relative grid min-h-[min(90svh,900px)] grid-cols-1 overflow-hidden bg-[var(--nh-black)] lg:grid-cols-2">
-      <div className="flex flex-col justify-center px-5 py-20 md:px-10 md:py-28 lg:px-16 xl:px-20">
-        <Reveal>
-          <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
-            {philosophy.eyebrow}
-          </p>
-        </Reveal>
+    <h2
+      ref={ref}
+      className={cn(
+        "font-display font-medium leading-[1.05]",
+        size,
+      )}
+    >
+      <span className="block overflow-hidden pb-[0.12em]">
+        <motion.span
+          className="block whitespace-nowrap text-[var(--nh-white)]"
+          initial={{ y: "115%" }}
+          animate={inView ? { y: "0%" } : { y: "115%" }}
+          transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
+        >
+          {eyebrow}
+        </motion.span>
+      </span>
+      <span className="-mt-[0.06em] block overflow-hidden pb-[0.12em]">
+        <motion.span
+          className="block whitespace-nowrap"
+          initial={{ y: "115%" }}
+          animate={inView ? { y: "0%" } : { y: "115%" }}
+          transition={{ duration: 0.95, ease: EASE, delay: 0.2 }}
+        >
+          <span className="text-[var(--nh-white)]">{title[0]} </span>
+          <span className="text-[var(--nh-red)]">{title[1]}</span>
+        </motion.span>
+      </span>
+    </h2>
+  );
+}
 
-        <MaskedHeading
-          lines={[
-            { text: philosophy.title[0], className: "text-[var(--nh-white)]" },
-            { text: philosophy.title[1], className: "text-[var(--nh-red)]" },
-          ]}
-        />
+function AccentBody({
+  body,
+  accent,
+  className,
+}: {
+  body: string;
+  accent?: string;
+  className?: string;
+}) {
+  if (!accent) {
+    return <p className={className}>{body}</p>;
+  }
 
-        <Reveal delay={0.25} className="mt-8 max-w-xl">
-          <p className="text-sm leading-relaxed text-white/70 md:text-[15px]">
-            {philosophy.body}
-          </p>
-        </Reveal>
+  const parts = body.split(new RegExp(`\\b(${accent})\\b`, "i"));
+  let used = false;
 
-        <Reveal delay={0.35} className="mt-10">
-          <Link
-            to={philosophy.ctaTo}
-            className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]"
-          >
-            {philosophy.cta}
-            <span className="flex size-9 items-center justify-center rounded-md bg-[var(--nh-red)] text-white transition-transform duration-300 group-hover:translate-x-1">
-              <ArrowRight className="size-4" />
+  return (
+    <p className={className}>
+      {parts.map((part, i) => {
+        if (!used && part.toLowerCase() === accent.toLowerCase()) {
+          used = true;
+          return (
+            <span key={i} className="text-[var(--nh-red)]">
+              {part}
             </span>
-          </Link>
+          );
+        }
+        return <React.Fragment key={i}>{part}</React.Fragment>;
+      })}
+    </p>
+  );
+}
+
+function PhilosophyArt({
+  bg,
+  className,
+}: {
+  bg: SectionBackgroundSet;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn("relative overflow-hidden bg-[var(--nh-black)]", className)}
+    >
+      <motion.div
+        className="absolute inset-0"
+        initial={{ scale: 1.08 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.4, ease: EASE }}
+        style={{
+          filter: "grayscale(1) contrast(1.5) brightness(0.8)",
+        }}
+      >
+        <ResponsiveBgImage bg={bg} />
+      </motion.div>
+      <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-50"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(-42deg, rgba(255,255,255,0.65) 0 1.25px, transparent 1.25px 4.5px)",
+          mixBlendMode: "overlay",
+        }}
+      />
+    </div>
+  );
+}
+
+export function NhPhilosophy() {
+  const { philosophy } = newHome;
+  const accent = philosophy.bodyAccent;
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.newHomePhilosophy;
+
+  return (
+    <section className="relative overflow-hidden bg-[var(--nh-black)]">
+      {/* Mobile / tablet — stacked editorial */}
+      <div className="lg:hidden">
+        <div className="flex flex-col justify-center px-5 py-16 md:px-10 md:py-20">
+          <Reveal>
+            <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
+              {philosophy.eyebrow}
+            </p>
+          </Reveal>
+
+          <MaskedHeading
+            className="mt-6 max-w-xl text-[clamp(2.5rem,8vw,4.5rem)]"
+            lines={[
+              {
+                text: philosophy.title[0],
+                className: "text-[var(--nh-white)]",
+              },
+              {
+                text: philosophy.title[1],
+                className: "text-[var(--nh-red)]",
+              },
+            ]}
+          />
+
+          <Reveal delay={0.25} className="mt-8 max-w-xl">
+            <AccentBody
+              body={philosophy.body}
+              accent={accent}
+              className="text-sm leading-relaxed text-white/75 md:text-[15px]"
+            />
+          </Reveal>
+
+          <Reveal delay={0.35} className="mt-10">
+            <Link
+              to={philosophy.ctaTo}
+              className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]"
+            >
+              {philosophy.cta}
+              <span className="flex size-9 items-center justify-center rounded-md bg-[var(--nh-red)] text-white transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowRight className="size-4" />
+              </span>
+            </Link>
+          </Reveal>
+        </div>
+
+        <Reveal y={40} amount={0.2} className="relative min-h-[380px]">
+          <PhilosophyArt bg={bg} className="absolute inset-0" />
         </Reveal>
       </div>
 
-      <Reveal y={40} amount={0.2} className="relative min-h-[420px] lg:min-h-full">
-        <motion.img
-          src={philosophyImage}
-          alt="We design for people — Twentyone06"
-          className="absolute inset-0 h-full w-full object-cover"
-          initial={{ scale: 1.12 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 1.4, ease: EASE }}
-          style={{
-            filter: "grayscale(1) contrast(1.35) brightness(0.85)",
-          }}
-        />
-        <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.35) 1px, transparent 0)",
-            backgroundSize: "3px 3px",
-            mixBlendMode: "overlay",
-          }}
-        />
-      </Reveal>
+      {/* Desktop — one composition: art frame + corner text slabs cutting into it */}
+      <div className="relative hidden px-5 py-16 md:px-[7vw] lg:block xl:py-20">
+        <div className="relative mx-auto aspect-video w-full">
+          <div className="absolute inset-[6%_5%] overflow-hidden">
+            <PhilosophyArt bg={bg} className="absolute inset-0" />
+          </div>
+
+          {/* Top-left title slab — overlaps art */}
+          <Reveal className="absolute top-0 left-0 z-10 max-w-[min(52rem,70%)] bg-[var(--nh-black)] p-5 xl:p-6">
+            <PhilosophyDesktopTitle
+              eyebrow={philosophy.eyebrow}
+              title={[philosophy.title[0], philosophy.title[1]]}
+            />
+          </Reveal>
+
+          {/* Bottom-right body slab — overlaps art */}
+          <Reveal
+            delay={0.18}
+            className="absolute right-0 bottom-0 z-10 max-w-[min(26rem,36%)] bg-[var(--nh-black)] p-5 xl:p-6"
+          >
+            <AccentBody
+              body={philosophy.body}
+              accent={accent}
+              className="text-[12.5px] leading-[1.65] text-white/88 xl:text-[13.5px]"
+            />
+          </Reveal>
+        </div>
+      </div>
     </section>
   );
 }

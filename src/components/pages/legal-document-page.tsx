@@ -208,7 +208,7 @@ function SectionBody({ section }: { section: LegalSection }) {
 }
 
 const legalProseClass =
-  "prose prose-sm max-w-none space-y-4 [&_h2]:font-display [&_h2]:text-[clamp(1.5rem,2.8vw,2rem)] [&_h2]:font-medium [&_h2]:uppercase [&_h2]:leading-[0.95] [&_h2]:tracking-tighter [&_h2]:text-ink [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-medium [&_h3]:uppercase [&_h3]:tracking-tighter [&_h3]:text-ink [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-muted-ink [&_p]:md:text-[15px] [&_a]:text-ink [&_a]:underline [&_a]:decoration-ink/25 [&_a]:underline-offset-4 [&_ul]:text-sm [&_ul]:text-muted-ink [&_ol]:text-sm [&_ol]:text-muted-ink";
+  "prose prose-sm max-w-none space-y-4 [&_h2]:font-display [&_h2]:text-[clamp(1.5rem,2.8vw,2rem)] [&_h2]:font-medium [&_h2]:uppercase [&_h2]:leading-[1.05] [&_h2]:[&_h2]:text-ink [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-medium [&_h3]:uppercase [&_h3]:[&_h3]:text-ink [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-muted-ink [&_p]:md:text-[15px] [&_a]:text-ink [&_a]:underline [&_a]:decoration-ink/25 [&_a]:underline-offset-4 [&_ul]:text-sm [&_ul]:text-muted-ink [&_ol]:text-sm [&_ol]:text-muted-ink";
 
 export function LegalDocumentPage({ doc }: { doc: LegalDoc }) {
   const bodyHtml = doc.body_html?.trim();
@@ -241,7 +241,7 @@ export function LegalDocumentPage({ doc }: { doc: LegalDoc }) {
             sections.map((section, i) => (
               <Reveal key={section.id} delay={Math.min(i * 0.04, 0.2)}>
                 <article id={section.id}>
-                  <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink">
+                  <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium uppercase leading-[1.05] text-ink">
                     {section.title}
                   </h2>
                   <SectionBody section={section} />

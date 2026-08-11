@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { LinesReveal, Reveal } from "@/components/anim";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { cn } from "@/lib/utils";
 
 export function PageHero({
@@ -9,6 +10,7 @@ export function PageHero({
   title,
   description,
   image,
+  imageTablet,
   imageMobile,
   className,
   titleClassName,
@@ -18,13 +20,15 @@ export function PageHero({
   description?: string;
   /** Optional full-bleed background — desktop (and fallback). */
   image?: string;
-  /** Optional mobile background; falls back to `image` when omitted. */
+  /** Optional tablet background; falls back to `image` when omitted. */
+  imageTablet?: string;
+  /** Optional mobile background; falls back to tablet/`image` when omitted. */
   imageMobile?: string;
   className?: string;
   /** Optional override for the display title (e.g. `font-detective`). */
   titleClassName?: string;
 }) {
-  const hasImage = Boolean(image || imageMobile);
+  const hasImage = Boolean(image || imageTablet || imageMobile);
 
   return (
     <section
@@ -36,19 +40,13 @@ export function PageHero({
     >
       {hasImage ? (
         <>
-          <picture>
-            {imageMobile ? (
-              <source media="(max-width: 767px)" srcSet={imageMobile} />
-            ) : null}
-            {image ? (
-              <source media="(min-width: 768px)" srcSet={image} />
-            ) : null}
-            <img
-              src={image || imageMobile}
-              alt=""
-              className="absolute inset-0 size-full object-cover"
-            />
-          </picture>
+          <ResponsiveBgImage
+            bg={{
+              desktop: image || imageTablet || imageMobile || "",
+              tablet: imageTablet || image || imageMobile || "",
+              mobile: imageMobile || imageTablet || image || "",
+            }}
+          />
           <div
             className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70"
             aria-hidden
@@ -75,7 +73,7 @@ export function PageHero({
           as="h1"
           lines={title}
           className={cn(
-            "max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.95] tracking-tighter",
+            "max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[1.05]",
             titleClassName ?? "font-display",
             hasImage ? "text-white" : "text-ink",
           )}

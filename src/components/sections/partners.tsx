@@ -61,7 +61,7 @@ export function Partners() {
     >
       <div className="px-5 md:px-[7vw]">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-white">
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-white">
             {partnersSection.title}
           </h2>
         </Reveal>

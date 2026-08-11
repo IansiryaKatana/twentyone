@@ -244,7 +244,7 @@ const settings: Record<string, unknown> = {
     crimson: "#cc0001",
   },
   typography: {
-    displayFont: "Big Shoulders Display",
+    displayFont: "Zeuxis",
     bodyFont: "Inter Tight",
     displayWeight: 500,
     bodyWeight: 300,

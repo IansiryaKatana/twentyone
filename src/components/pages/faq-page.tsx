@@ -3,8 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { type FaqItem, faqPage } from "@/data/content";
-import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
-import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
@@ -83,7 +81,8 @@ function FaqAccordion({ items }: { items: FaqItem[] }) {
 }
 
 export function FaqPage() {
-  const { faqCategories } = useCmsContent();
+  const { faqCategories, sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.faq;
   const categories =
     faqCategories.length > 0
       ? faqCategories
@@ -101,8 +100,9 @@ export function FaqPage() {
         eyebrow={faqPage.eyebrow}
         title={faqPage.title}
         description={faqPage.description}
-        image={aboutHeroDesktop}
-        imageMobile={aboutHeroMobile}
+        image={bg.desktop}
+        imageTablet={bg.tablet}
+        imageMobile={bg.mobile}
       />
 
       <section className="bg-crimson py-16 md:py-24 lg:py-28">

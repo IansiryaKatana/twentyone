@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { servicesPage, type Project } from "@/data/content";
-import servicesHeroImage from "@/Assets/projects-twentyone06.jpg";
 import { PageShell } from "@/components/page-shell";
 import { InquiryForm } from "@/components/inquiry-form";
 import { ServiceProjectCarousel } from "@/components/services/service-project-carousel";
 import { useCmsContent } from "@/hooks/useCmsContent";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { LinesReveal, Reveal, Stagger, StaggerItem } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
@@ -43,13 +43,12 @@ function ServiceCta({ section }: { section: Section }) {
 }
 
 function ServicesHero() {
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.services;
+
   return (
     <section className="relative min-h-[85svh] overflow-hidden bg-[var(--nh-black)] pt-28 md:min-h-[90svh] md:pt-32">
-      <img
-        src={servicesHeroImage}
-        alt=""
-        className="absolute inset-0 size-full object-cover"
-      />
+      <ResponsiveBgImage bg={bg} />
       <div
         className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/35"
         aria-hidden
@@ -68,7 +67,7 @@ function ServicesHero() {
           <LinesReveal
             as="h1"
             lines={[...servicesPage.title]}
-            className="font-display max-w-3xl text-[clamp(2.75rem,7vw,5.75rem)] font-semibold leading-[0.92] tracking-tighter text-white"
+            className="font-display max-w-3xl text-[clamp(2.75rem,7vw,5.75rem)] font-semibold leading-[1.04] text-white"
           />
           <Reveal delay={0.2} className="mt-6 max-w-xl">
             <p className="text-sm leading-relaxed text-white/75 md:text-base">
@@ -90,7 +89,7 @@ function ServicesHero() {
               <span className="text-[11px] tabular-nums tracking-[0.18em] text-white/45 group-hover:text-[var(--nh-red)]">
                 {section.index}
               </span>
-              <span className="font-display text-[clamp(1.35rem,2.6vw,2.35rem)] font-semibold uppercase leading-[0.9] tracking-tighter">
+              <span className="font-display text-[clamp(1.35rem,2.6vw,2.35rem)] font-semibold uppercase leading-[1.02]">
                 {section.tabLabel}
                 <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
@@ -159,7 +158,7 @@ function ServiceSection({
               </span>
               {section.serviceLabel}
             </p>
-            <h2 className="font-display mt-3 text-[clamp(2rem,4.2vw,3.75rem)] font-semibold uppercase leading-[0.9] tracking-tighter text-ink md:mt-4">
+            <h2 className="font-display mt-3 text-[clamp(2rem,4.2vw,3.75rem)] font-semibold uppercase leading-[1.02] text-ink md:mt-4">
               {section.title}
             </h2>
           </Reveal>
@@ -202,7 +201,7 @@ function ServicesContact() {
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-12 md:px-10 lg:gap-16">
         <div className="md:col-span-5">
           <Reveal>
-            <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase leading-[0.9] tracking-tighter text-ink">
+            <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase leading-[1.02] text-ink">
               {contact.title}
             </h2>
             <p className="mt-5 text-sm uppercase tracking-[0.22em] text-muted-ink">

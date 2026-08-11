@@ -43,7 +43,7 @@ Always use CSS variables (`bg-[var(--nh-red)]`, `text-espresso`, etc.). Do not i
 
 | Role | Face | Weight | Tracking / case |
 |------|------|--------|------------------|
-| Display titles | **Big Shoulders Display** (`font-display`) | **500+** (medium; semibold for hero emphasis) | Uppercase (built into `.font-display`); letter-spacing **`-0.025em`** / `tracking-tighter`; leading **~0.88–0.95** |
+| Display titles | **Zeuxis** (`font-display`) | **500+** (medium; semibold for hero emphasis) | Uppercase (built into `.font-display`); letter-spacing **`0.02em`** + word-spacing **`0.04em`** (Zeuxis is condensed — do **not** use `tracking-tighter`); leading **~1.02–1.08** |
 | Body / UI | **Inter Tight** (`font-sans`) | **300** (light) | Slight positive tracking on body (`0.01em` on `body`) |
 | Section eyebrows | Inter Tight | 300–400 | Small caps style: `uppercase` + wide tracking `~0.22em` |
 
@@ -117,7 +117,7 @@ Reuse these rhythms on new pages rather than inventing new section types.
 ## 8. Anti-patterns
 
 - Purple / indigo gradient “AI default” themes  
-- Warm cream + terracotta serif cliché when it fights this system (cream here is brand-specific with Big Shoulders, not generic)  
+- Warm cream + terracotta serif cliché when it fights this system (cream here is brand-specific with Zeuxis, not generic)  
 - Glow effects, heavy multi-layer shadows, pill clusters, emoji UI  
 - Inset / rounded hero cards instead of full-bleed heroes on landing surfaces  
 - Mixing `--nh-*` and cream tokens inside one undecided section  

@@ -91,7 +91,7 @@ export function AboutAwardsSection() {
     <section id="awards" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-white">
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-white">
             {title}
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/75 md:text-base">

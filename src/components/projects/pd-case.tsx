@@ -56,7 +56,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
           <LinesReveal
             as="h2"
             lines={["The Brief"]}
-            className="font-display mt-5 text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+            className="font-display mt-5 text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
             delay={0.08}
           />
           <Reveal delay={0.2}>
@@ -76,7 +76,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
           <LinesReveal
             as="h2"
             lines={["How We", "Built It"]}
-            className="font-display mt-5 max-w-md text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+            className="font-display mt-5 max-w-md text-[clamp(2rem,5vw,3.75rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
             delay={0.08}
           />
           <Reveal delay={0.22}>
@@ -153,7 +153,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
               <LinesReveal
                 as="h2"
                 lines={["In Detail"]}
-                className="font-display mt-5 text-[clamp(2rem,4.5vw,3.25rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+                className="font-display mt-5 text-[clamp(2rem,4.5vw,3.25rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
                 delay={0.08}
               />
             </div>
@@ -182,7 +182,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
           <LinesReveal
             as="h2"
             lines={["What Landed"]}
-            className="font-display mt-5 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+            className="font-display mt-5 text-[clamp(2rem,5vw,3.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
             delay={0.08}
           />
           <Reveal delay={0.2}>

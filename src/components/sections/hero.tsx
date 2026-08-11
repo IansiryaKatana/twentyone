@@ -35,7 +35,7 @@ export function Hero() {
           as="h1"
           lines={hero.title}
           delay={0.5}
-          className="font-display max-w-4xl text-[clamp(2.75rem,8vw,7rem)] font-medium leading-[0.92] tracking-tighter text-cream"
+          className="font-display max-w-4xl text-[clamp(2.75rem,8vw,7rem)] font-medium leading-[1.04] text-cream"
         />
 
         <motion.p

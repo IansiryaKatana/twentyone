@@ -62,7 +62,7 @@ export function NewListings() {
             <LinesReveal
               as="h2"
               lines={listings.title}
-              className="font-display text-[clamp(1.9rem,4vw,3.4rem)] font-medium leading-[1.02] tracking-tighter text-ink"
+              className="font-display text-[clamp(1.9rem,4vw,3.4rem)] font-medium leading-[1.02] text-ink"
             />
             <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <Reveal delay={0.2}>

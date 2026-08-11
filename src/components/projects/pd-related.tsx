@@ -36,7 +36,7 @@ export function PdRelated({
               Next project
             </p>
             <div className="mt-3 flex flex-wrap items-end justify-between gap-6">
-              <h2 className="font-display max-w-3xl text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[0.9] tracking-tighter text-[var(--nh-white)]">
+              <h2 className="font-display max-w-3xl text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
                 {next.title}
               </h2>
               <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]">
@@ -65,7 +65,7 @@ export function PdRelated({
               <LinesReveal
                 as="h2"
                 lines={["Related Projects"]}
-                className="font-display mt-4 text-[clamp(1.75rem,4vw,2.75rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+                className="font-display mt-4 text-[clamp(1.75rem,4vw,2.75rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
                 delay={0.08}
               />
             </div>

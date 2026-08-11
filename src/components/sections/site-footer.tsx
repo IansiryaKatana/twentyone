@@ -81,7 +81,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8">
           {/* The Hive + Follow Us */}
           <div>
-            <h2 className="font-display mb-6 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[0.88] tracking-tighter text-white">
+            <h2 className="font-display mb-6 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-white">
               {footer.hiveTitle}
             </h2>
             {footer.columns[0] ? (
@@ -171,7 +171,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
           {/* Newsletter */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-display mb-5 text-[clamp(1.5rem,2.4vw,2rem)] font-semibold leading-[0.95] tracking-tighter text-white">
+            <h3 className="font-display mb-5 text-[clamp(1.5rem,2.4vw,2rem)] font-semibold leading-[1.05] text-white">
               {footer.newsletter.title.map((line) => (
                 <span key={line} className="block">
                   {line}

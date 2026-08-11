@@ -5,9 +5,17 @@
 
 /*
   Twentyone06 — Luxury Interior Design
-  Fonts: Big Shoulders Display (titles) + Inter Tight (body, weight capped at 300 light)
+  Fonts: Zeuxis (titles) + Inter Tight (body, weight capped at 300 light)
   + Detective (testimonial quotes)
 */
+
+@font-face {
+  font-family: "Zeuxis";
+  src: url("../Assets/fonts/Zeuxis.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @font-face {
   font-family: "Detective";
@@ -95,8 +103,8 @@
   --color-muted-ink: var(--muted-ink);
   --color-line: var(--line);
 
-  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
-  --font-detective: "Detective", "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-display: "Zeuxis", "Arial Narrow", sans-serif;
+  --font-detective: "Detective", "Zeuxis", "Arial Narrow", sans-serif;
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -124,12 +132,14 @@
     letter-spacing: 0.01em;
   }
 
-  /* Titles use Big Shoulders Display — medium weight, tight tracking */
+  /* Titles use Zeuxis — condensed face; slight open tracking, normal words */
   .font-display {
     font-family: var(--font-display);
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: -0.025em;
+    letter-spacing: 0.02em;
+    word-spacing: 0.04em;
+    line-height: 1.02;
   }
 
   /* Testimonial quotes — Detective display face */
@@ -244,4 +254,20 @@
 .new-home ::selection {
   background: var(--nh-red);
   color: var(--nh-white);
+}
+
+/*
+  Zeuxis is condensed — keep a light open track so glyphs don’t collide,
+  without the sparse look of wide display tracking. Beats tracking-*.
+*/
+@layer utilities {
+  .font-display {
+    letter-spacing: 0.02em !important;
+    word-spacing: 0.04em !important;
+  }
+
+  .font-display.leading-none,
+  .font-display.leading-tight {
+    line-height: 1.02 !important;
+  }
 }

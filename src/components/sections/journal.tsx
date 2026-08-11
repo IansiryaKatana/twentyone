@@ -12,7 +12,7 @@ export function Journal() {
           <LinesReveal
             as="h2"
             lines={journal.title}
-            className="font-display max-w-3xl text-[clamp(1.75rem,4vw,3.4rem)] font-medium leading-[0.95] tracking-tighter text-ink"
+            className="font-display max-w-3xl text-[clamp(1.75rem,4vw,3.4rem)] font-medium leading-[1.05] text-ink"
           />
           <div className="md:pb-2">
             <Reveal delay={0.15}>
@@ -51,7 +51,7 @@ export function Journal() {
                 />
               </div>
               <div className="flex flex-1 flex-col p-6 md:p-8">
-                <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink">
+                <h3 className="font-display text-[clamp(1.5rem,3vw,2.5rem)] font-medium uppercase leading-[1.05] text-ink">
                   {journal.featured.title}
                 </h3>
                 <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-ink md:text-[15px]">
@@ -85,7 +85,7 @@ export function Journal() {
                     />
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <h3 className="font-display flex items-start justify-between gap-2 text-[clamp(1.15rem,2vw,1.5rem)] font-medium uppercase leading-[0.95] tracking-tighter text-ink">
+                    <h3 className="font-display flex items-start justify-between gap-2 text-[clamp(1.15rem,2vw,1.5rem)] font-medium uppercase leading-[1.05] text-ink">
                       {post.title}
                       <ArrowUpRight className="size-4 shrink-0 translate-y-1 text-muted-ink transition-transform duration-300 group-hover:translate-x-0.5" />
                     </h3>

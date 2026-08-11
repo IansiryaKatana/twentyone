@@ -24,7 +24,7 @@ export function Services() {
           <LinesReveal
             as="h2"
             lines={services.title}
-            className="font-display text-[clamp(2rem,4vw,3.4rem)] font-medium leading-[1] tracking-tighter text-ink"
+            className="font-display text-[clamp(2rem,4vw,3.4rem)] font-medium leading-[1] text-ink"
           />
 
           <div className="mt-10 flex flex-col gap-1 md:mt-16">

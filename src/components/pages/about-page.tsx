@@ -1,14 +1,13 @@
 import { motion } from "motion/react";
 import { aboutPage } from "@/data/content";
 import ceoPortrait from "@/Assets/ceo-twentyone06.webp";
-import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
-import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero, PillCta } from "@/components/page-hero";
 import { Partners } from "@/components/sections/partners";
 import { AboutTeamSection } from "@/components/sections/about-team";
 import { AboutWhySection } from "@/components/sections/about-why";
 import { AboutAwardsSection } from "@/components/sections/about-awards";
+import { useCmsContent } from "@/hooks/useCmsContent";
 import {
   CountUp,
   EASE,
@@ -20,6 +19,8 @@ import {
 
 export function AboutPage() {
   const { milestones } = aboutPage;
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.about;
 
   return (
     <PageShell headerVariant="overlay">
@@ -27,8 +28,9 @@ export function AboutPage() {
         eyebrow={aboutPage.eyebrow}
         title={[...aboutPage.title]}
         description={aboutPage.description}
-        image={aboutHeroDesktop}
-        imageMobile={aboutHeroMobile}
+        image={bg.desktop}
+        imageTablet={bg.tablet}
+        imageMobile={bg.mobile}
       />
 
       <section id="press" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
@@ -48,7 +50,7 @@ export function AboutPage() {
             <LinesReveal
               as="h2"
               lines={[...aboutPage.storyTitle]}
-              className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+              className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
             />
             <Reveal delay={0.15} className="mt-8 max-w-xl space-y-4">
               {aboutPage.story.map((para) => (
@@ -91,7 +93,7 @@ export function AboutPage() {
               <LinesReveal
                 as="h2"
                 lines={[...milestones.title]}
-                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-[var(--nh-white)]"
+                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
               />
             </div>
             <Reveal delay={0.12} className="md:col-span-6 md:col-start-7">
@@ -108,7 +110,7 @@ export function AboutPage() {
                     <CountUp
                       to={stat.value}
                       suffix={stat.suffix}
-                      className="font-display text-[clamp(1.75rem,5vw,3.25rem)] font-medium leading-none tracking-tighter text-[var(--nh-white)]"
+                      className="font-display text-[clamp(1.75rem,5vw,3.25rem)] font-medium leading-none text-[var(--nh-white)]"
                     />
                     <p className="mt-2 text-[10px] uppercase leading-snug tracking-[0.14em] text-white/75 sm:mt-3 sm:text-xs sm:tracking-[0.18em]">
                       {stat.label}

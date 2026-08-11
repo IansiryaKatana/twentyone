@@ -67,7 +67,7 @@ function ProjectTile({ project }: { project: Project }) {
           <p className="text-xs font-medium tracking-wide text-[var(--nh-white)] md:text-[13px]">
             {serviceLabel}
           </p>
-          <h3 className="font-display mt-1.5 text-[clamp(1.35rem,2.5vw,2rem)] font-medium leading-[0.95] tracking-tighter text-[var(--nh-white)] transition-colors duration-300 group-hover:text-[var(--nh-red)]">
+          <h3 className="font-display mt-1.5 text-[clamp(1.35rem,2.5vw,2rem)] font-medium leading-[1.05] text-[var(--nh-white)] transition-colors duration-300 group-hover:text-[var(--nh-red)]">
             {project.title}
           </h3>
           <p className="mt-2 text-[11px] tracking-wide text-white/55 md:text-xs">
@@ -266,7 +266,7 @@ export function PrPortfolio() {
         <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
           {portfolio.eyebrow}
         </p>
-        <h2 className="font-display mt-3 text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[0.9] tracking-tighter text-[var(--nh-white)]">
+        <h2 className="font-display mt-3 text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
           {portfolio.title}
         </h2>
       </Reveal>

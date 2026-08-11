@@ -4,8 +4,9 @@ import { ArrowRight } from "lucide-react";
 import * as React from "react";
 import { newHome } from "@/data/content";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
+import { useCmsContent } from "@/hooks/useCmsContent";
 import { cn } from "@/lib/utils";
-import heroSilhouettes from "@/Assets/silhouettes-no-face.png";
 
 function MaskedLine({
   children,
@@ -20,7 +21,7 @@ function MaskedLine({
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <span ref={ref} className="block overflow-hidden pb-[0.12em]">
+    <span ref={ref} className="block overflow-hidden">
       <motion.span
         className={cn("block", className)}
         initial={{ y: "115%" }}
@@ -36,6 +37,8 @@ function MaskedLine({
 export function NhHero() {
   const { hero } = newHome;
   const reduced = useReducedMotionSafe();
+  const { sectionBackgrounds } = useCmsContent();
+  const bg = sectionBackgrounds.newHomeHero;
 
   return (
     <section
@@ -43,32 +46,32 @@ export function NhHero() {
       className="relative h-[100svh] min-h-[680px] w-full overflow-hidden bg-[var(--nh-black)]"
     >
       <div className="absolute inset-0">
-        <img
-          src={heroSilhouettes}
+        <ResponsiveBgImage
+          bg={bg}
           alt="Twentyone06 creative studio atmosphere"
-          className={cn(
-            "h-full w-full object-cover object-[72%_35%] sm:object-[65%_35%] lg:object-[58%_35%] xl:object-[center_35%]",
-            !reduced && "animate-kenburns"
-          )}
           fetchPriority="high"
+          imgClassName={cn(
+            "object-[72%_35%] sm:object-[65%_35%] lg:object-[58%_35%] xl:object-[center_35%]",
+            !reduced && "animate-kenburns",
+          )}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/35 to-transparent md:from-black/60 md:via-black/20 xl:from-black/55 xl:via-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/35" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)]" />
       </div>
 
-      <div className="relative z-10 flex h-full w-full flex-col justify-end px-5 pb-14 md:px-10 md:pb-16 lg:max-w-[58%] lg:pb-20 xl:max-w-[54%] xl:pb-20 2xl:max-w-none 2xl:pr-[min(42vw,36rem)]">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-5 text-center md:px-10">
         <motion.p
           initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}
-          className="mb-4 text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--nh-red)] md:mb-5 md:text-xs"
+          className="mb-2 text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--nh-red)] md:mb-3 md:text-xs"
         >
           {hero.eyebrow}
         </motion.p>
 
-        <h1 className="font-display w-full text-[clamp(2.6rem,calc(1.1rem+5.8vw),7.25rem)] font-medium leading-[0.9] tracking-tighter text-[var(--nh-white)] xl:text-[clamp(4.25rem,7.2vw,7.25rem)]">
+        <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] xl:text-[clamp(5.1rem,8.64vw,8.7rem)]">
           {hero.titleLines.map((line, i) => (
-            <MaskedLine key={i} delay={reduced ? 0 : 0.5 + i * 0.12}>
+            <MaskedLine key={i} delay={reduced ? 0 : 0.5 + i * 0.12} className="whitespace-nowrap">
               {line.before}
               <span className="text-[var(--nh-red)]">{line.accent}</span>
             </MaskedLine>
@@ -79,12 +82,12 @@ export function NhHero() {
           initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 1 }}
-          className="mt-5 max-w-md md:mt-7 md:max-w-lg xl:max-w-xl"
+          className="mt-4 max-w-md md:mt-5 md:max-w-lg"
         >
           <p className="text-sm leading-relaxed text-white/75 md:text-base">
             {hero.description}
           </p>
-          <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 md:text-[11px] xl:text-xs">
+          <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 md:text-[11px] xl:text-xs">
             {hero.sectors}
           </p>
         </motion.div>
@@ -93,7 +96,7 @@ export function NhHero() {
           initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 1.15 }}
-          className="mt-7 flex flex-wrap items-center gap-3.5 md:mt-9 md:gap-5"
+          className="mt-5 flex flex-wrap items-center justify-center gap-3.5 md:mt-6 md:gap-5"
         >
           <Link
             to={hero.ctas[0].to}

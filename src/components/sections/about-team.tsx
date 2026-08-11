@@ -160,7 +160,7 @@ export function AboutTeamSection() {
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-muted-ink">{eyebrow}</p>
-            <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] tracking-tighter text-ink">
+            <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-ink">
               {title}
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>

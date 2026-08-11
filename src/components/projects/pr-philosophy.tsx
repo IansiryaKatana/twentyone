@@ -15,7 +15,7 @@ function MaskedHeading({
   return (
     <h2
       ref={ref}
-      className="font-display text-center text-[clamp(2.75rem,7vw,6rem)] font-medium leading-[0.9] tracking-tighter"
+      className="font-display text-center text-[clamp(2.75rem,7vw,6rem)] font-medium leading-[1.02]"
     >
       {lines.map((line, i) => (
         <span key={line.text} className="inline overflow-hidden">
@@ -60,7 +60,7 @@ export function PrPhilosophy() {
 
       <div className="mx-auto mt-12 flex max-w-3xl flex-col gap-8 md:mt-16 md:gap-10">
         <Reveal>
-          <p className="font-display text-center text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[0.95] tracking-tighter text-[var(--nh-white)]">
+          <p className="font-display text-center text-[clamp(1.75rem,3.2vw,2.75rem)] font-medium leading-[1.05] text-[var(--nh-white)]">
             {philosophy.quote}
           </p>
         </Reveal>

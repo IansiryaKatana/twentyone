@@ -11,6 +11,8 @@ type ImageUploadFieldProps = {
   onChange: (url: string) => void;
   folder?: string;
   disabled?: boolean;
+  /** Shown in the preview when `value` is empty (e.g. live site fallback). */
+  previewFallback?: string;
 };
 
 export function ImageUploadField({
@@ -19,11 +21,13 @@ export function ImageUploadField({
   onChange,
   folder = "general",
   disabled = false,
+  previewFallback,
 }: ImageUploadFieldProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [pickerOpen, setPickerOpen] = useState(false);
+  const previewSrc = value || previewFallback || "";
 
   const onFile = async (file: File | null) => {
     if (!file || disabled) return;
@@ -49,9 +53,9 @@ export function ImageUploadField({
     <div>
       {label ? <label className={adminLabel}>{label}</label> : null}
       <div className="space-y-3">
-        {value ? (
+        {previewSrc ? (
           <img
-            src={value}
+            src={previewSrc}
             alt=""
             className="h-32 w-full max-w-xs rounded-[var(--admin-radius-lg)] border border-[var(--admin-border)] object-cover"
           />
@@ -80,7 +84,7 @@ export function ImageUploadField({
             />
             <button
               type="button"
-              className={adminBtnGhost}
+              className="inline-flex items-center justify-center gap-2 rounded-[var(--admin-radius-lg)] border border-sky-200 bg-sky-50 px-3 py-2 text-sm font-medium text-sky-800 transition hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={uploading}
               onClick={() => inputRef.current?.click()}
             >
@@ -93,7 +97,7 @@ export function ImageUploadField({
             </button>
             <button
               type="button"
-              className={adminBtnGhost}
+              className="inline-flex items-center justify-center gap-2 rounded-[var(--admin-radius-lg)] border border-violet-200 bg-violet-50 px-3 py-2 text-sm font-medium text-violet-800 transition hover:bg-violet-100 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={uploading}
               onClick={() => setPickerOpen(true)}
             >

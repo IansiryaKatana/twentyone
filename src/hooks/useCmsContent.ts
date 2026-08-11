@@ -16,6 +16,7 @@ import {
   getWhyUsList,
   getTestimonialsList,
 } from "@/lib/cms/contentAccess";
+import { resolveSectionBackgrounds } from "@/lib/cms/sectionBackgrounds";
 
 export function useCmsContent() {
   const { snapshot, mode, loading, cmsEmpty, refetch } = useCms();
@@ -43,6 +44,7 @@ export function useCmsContent() {
       siteSettings: snapshot?.siteSettings ?? {},
       marketingPages: snapshot?.marketingPages ?? {},
       newHome: getNewHomeBlocks(snapshot, mode),
+      sectionBackgrounds: resolveSectionBackgrounds(snapshot?.siteSettings),
     }),
     [snapshot, mode, loading, cmsEmpty, refetch],
   );

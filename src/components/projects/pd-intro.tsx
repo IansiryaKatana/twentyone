@@ -21,7 +21,7 @@ function MaskedHeading({ lines }: { lines: string[] }) {
   return (
     <h1
       ref={ref}
-      className="font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[0.9] tracking-tighter"
+      className="font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[1.02]"
     >
       {lines.map((line, i) => (
         <span key={line} className="block overflow-hidden pb-[0.1em]">

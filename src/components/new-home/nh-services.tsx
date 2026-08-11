@@ -79,7 +79,7 @@ function ServiceCard({
         </div>
 
         <div className="mt-auto md:max-w-none">
-          <h3 className="font-display max-w-[95%] text-[clamp(2.25rem,4vw,3.25rem)] font-semibold leading-[0.9] tracking-tighter text-black">
+          <h3 className="font-display max-w-[95%] text-[clamp(1.9rem,6.5vw,2.5rem)] font-semibold leading-[1.02] text-black lg:text-[clamp(1.7rem,2.2vw,2.35rem)] xl:text-[clamp(1.65rem,1.4vw,2.15rem)]">
             {item.title}
           </h3>
           <p className="mt-3 max-w-[18rem] text-[11px] leading-relaxed text-black/65 md:text-xs md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0">
@@ -183,7 +183,7 @@ export function NhServices() {
             <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--nh-red)]">
               {section.eyebrow}
             </p>
-            <h2 className="font-display mt-1 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[0.88] tracking-tighter text-[var(--nh-black)]">
+            <h2 className="font-display mt-1 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-[var(--nh-black)]">
               {section.title}
             </h2>
           </Reveal>

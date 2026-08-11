@@ -8,6 +8,13 @@ import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
+/** CMS titles are often stored ALL CAPS — Detective reads better in title case. */
+function toTitleCase(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/(^|[\s–—/&-])(\S)/g, (_, sep: string, char: string) => sep + char.toUpperCase());
+}
+
 export function NhProjects() {
   const { projects: section } = newHome;
   const cms = useCmsContent();
@@ -160,8 +167,8 @@ export function NhProjects() {
                     />
                   </div>
                   <div className="mt-4">
-                    <h3 className="font-display text-[clamp(2.25rem,4vw,3.25rem)] font-medium leading-none text-[var(--nh-white)]">
-                      {project.title}
+                    <h3 className="font-detective text-[clamp(1.8rem,3.2vw,2.6rem)] font-medium leading-none normal-case text-[var(--nh-white)]">
+                      {toTitleCase(project.title)}
                     </h3>
                     <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[var(--nh-red)]">
                       {project.location} / {project.category}

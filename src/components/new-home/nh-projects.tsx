@@ -167,7 +167,7 @@ export function NhProjects() {
                     />
                   </div>
                   <div className="mt-4">
-                    <h3 className="font-detective text-[clamp(1.8rem,3.2vw,2.6rem)] font-medium leading-none normal-case text-[var(--nh-white)]">
+                    <h3 className="font-detective text-[clamp(1.25rem,3.2vw,2rem)] font-medium leading-none normal-case text-[var(--nh-white)]">
                       {toTitleCase(project.title)}
                     </h3>
                     <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-[var(--nh-red)]">

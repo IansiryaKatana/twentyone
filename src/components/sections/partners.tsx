@@ -57,29 +57,37 @@ export function Partners() {
   return (
     <section
       aria-label={partnersSection.title}
-      className="marquee-strip relative w-full overflow-hidden bg-[var(--nh-red)] py-16 md:py-20"
+      className="relative w-full overflow-hidden bg-[var(--nh-red)] py-16 md:py-20"
     >
       <div className="px-5 md:px-[7vw]">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-white">
+          <h2 className="font-display text-center text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-white">
             {partnersSection.title}
           </h2>
         </Reveal>
 
-        <div className="relative mt-10 overflow-hidden md:mt-12">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--nh-red)] to-transparent md:w-20" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--nh-red)] to-transparent md:w-20" />
+        <div className="marquee-strip relative mt-10 overflow-hidden md:hidden">
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[var(--nh-red)] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[var(--nh-red)] to-transparent" />
           <div className="marquee-track">
             {row.map((src, i) => (
               <span
                 key={i}
-                className="flex shrink-0 items-center justify-center px-8 md:px-12"
+                className="flex shrink-0 items-center justify-center px-8"
                 aria-hidden={i >= logos.length}
               >
                 <Logo src={src} />
               </span>
             ))}
           </div>
+        </div>
+
+        <div className="mt-12 hidden grid-cols-3 gap-x-12 gap-y-10 md:grid lg:gap-x-16 lg:gap-y-14">
+          {logos.map((src) => (
+            <div key={src} className="flex items-center justify-center px-4">
+              <Logo src={src} />
+            </div>
+          ))}
         </div>
       </div>
     </section>

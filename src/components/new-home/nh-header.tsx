@@ -1,29 +1,19 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import { footer, nav } from "@/data/content";
+import { Menu, X } from "lucide-react";
+import { nav } from "@/data/content";
 import { EASE } from "@/components/anim";
+import { BrandButton } from "@/components/brand-button";
 import { BrandLogo } from "@/components/brand-logo";
 import { cn } from "@/lib/utils";
+import flyGraphic from "@/Assets/fly.png";
 
 const NAV_ORDER = ["Home", "About", "Projects", "Services"] as const;
 
 const primaryLinks = NAV_ORDER.map(
   (label) => nav.links.find((link) => link.label === label)!
 );
-
-const quickLinks =
-  footer.columns.find((col) => col.title === "Quick Links")?.links ?? [];
-
-const mobileLinks = [
-  { label: "Home", to: "/" as const },
-  ...quickLinks.map((link) => ({
-    label: link.label,
-    to: ("to" in link && link.to ? link.to : "/") as string,
-    ...("hash" in link && link.hash ? { hash: link.hash as string } : {}),
-  })),
-];
 
 function linkLabel(label: string) {
   if (label === "About") return "About Us";
@@ -109,11 +99,11 @@ export function NhHeader({
             : "border-transparent bg-transparent"
         )}
       >
-        <div className="flex h-18 w-full items-center justify-between gap-5 px-5 sm:h-20 md:px-10">
+        <div className="relative flex h-18 w-full items-center justify-end gap-5 px-5 sm:h-20 md:px-10 lg:justify-between">
           <Link
             to="/"
             aria-label="Twentyone06 home"
-            className="shrink-0"
+            className="absolute left-1/2 shrink-0 -translate-x-1/2 lg:static lg:left-auto lg:translate-x-0"
           >
             <BrandLogo surface={onLight ? "light" : "dark"} />
           </Link>
@@ -128,7 +118,7 @@ export function NhHeader({
                       to={link.to}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative text-[10px] uppercase tracking-[0.24em] transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
+                        "relative text-[18px] uppercase tracking-[0.24em] transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
                         active ? "after:w-full font-bold" : "after:w-0 font-medium hover:after:w-full",
                         active
                           ? "text-[var(--nh-red)]"
@@ -146,15 +136,9 @@ export function NhHeader({
           </nav>
 
           <div className="flex shrink-0 items-center gap-2.5">
-            <Link
-              to="/contact"
-              className="group hidden items-center gap-3 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-white hover:text-black sm:flex"
-            >
+            <BrandButton to="/contact" className="hidden sm:inline-flex">
               Let&apos;s Talk
-              <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:bg-black group-hover:text-white group-hover:rotate-45">
-                <ArrowUpRight className="size-4" />
-              </span>
-            </Link>
+            </BrandButton>
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}
@@ -162,7 +146,7 @@ export function NhHeader({
               aria-controls="site-menu"
               aria-label={open ? "Close menu" : "Open menu"}
               className={cn(
-                "flex size-10 items-center justify-center rounded-md border transition-colors hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white lg:hidden",
+                "btn-cut flex size-10 items-center justify-center border transition-colors hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white lg:hidden",
                 onLight
                   ? "border-ink/30 text-ink"
                   : "border-white/35 text-white"
@@ -184,9 +168,9 @@ export function NhHeader({
             transition={{ duration: 0.65, ease: EASE }}
             className="fixed inset-0 z-40 flex bg-black px-5 pb-12 pt-28 md:px-10 md:pt-32"
           >
-            <nav className="flex w-full flex-col justify-between overflow-y-auto" aria-label="Menu">
+            <nav className="relative z-10 flex w-full flex-col justify-between overflow-y-auto" aria-label="Menu">
               <ul>
-                {mobileLinks.map((link, index) => {
+                {primaryLinks.map((link, index) => {
                   const active = pathIsActive(pathname, link.to);
                   return (
                     <motion.li
@@ -202,29 +186,16 @@ export function NhHeader({
                     >
                       <Link
                         to={link.to}
-                        {...("hash" in link && link.hash
-                          ? { hash: link.hash }
-                          : {})}
                         onClick={() => setOpen(false)}
                         aria-current={active ? "page" : undefined}
                         className={cn(
-                          "font-display group flex items-center justify-between py-3 text-[clamp(2.25rem,7vw,5.5rem)] leading-none transition-colors",
+                          "font-display block py-3 text-[clamp(2.25rem,7vw,5.5rem)] leading-none transition-colors",
                           active
                             ? "text-[var(--nh-red)]"
                             : "text-white hover:text-[var(--nh-red)]"
                         )}
                       >
-                        <span>{linkLabel(link.label)}</span>
-                        <span
-                          className={cn(
-                            "text-sm font-sans tracking-normal",
-                            active
-                              ? "text-[var(--nh-red)]"
-                              : "text-white/30 group-hover:text-[var(--nh-red)]"
-                          )}
-                        >
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
+                        {linkLabel(link.label)}
                       </Link>
                     </motion.li>
                   );
@@ -238,6 +209,13 @@ export function NhHeader({
                 </a>
               </div>
             </nav>
+
+            <img
+              src={flyGraphic}
+              alt=""
+              aria-hidden
+              className="pointer-events-none absolute right-[-6%] bottom-[18%] z-0 w-[min(46vw,240px)] object-contain"
+            />
           </motion.div>
         )}
       </AnimatePresence>

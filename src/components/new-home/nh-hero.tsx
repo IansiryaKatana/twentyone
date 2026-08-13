@@ -1,8 +1,7 @@
 import { motion, useInView } from "motion/react";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import * as React from "react";
 import { newHome } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { useCmsContent } from "@/hooks/useCmsContent";
@@ -60,15 +59,6 @@ export function NhHero() {
       </div>
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-5 text-center md:px-10">
-        <motion.p
-          initial={reduced ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.4 }}
-          className="mb-2 text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--nh-red)] md:mb-3 md:text-xs"
-        >
-          {hero.eyebrow}
-        </motion.p>
-
         <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] xl:text-[clamp(5.1rem,8.64vw,8.7rem)]">
           {hero.titleLines.map((line, i) => (
             <MaskedLine key={i} delay={reduced ? 0 : 0.5 + i * 0.12} className="whitespace-nowrap">
@@ -84,7 +74,7 @@ export function NhHero() {
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 1 }}
           className="mt-4 max-w-md md:mt-5 md:max-w-lg"
         >
-          <p className="text-sm leading-relaxed text-white/75 md:text-base">
+          <p className="font-detective whitespace-pre-line text-sm leading-relaxed normal-case text-white/75 md:text-[18px]">
             {hero.description}
           </p>
           <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 md:text-[11px] xl:text-xs">
@@ -98,25 +88,7 @@ export function NhHero() {
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 1.15 }}
           className="mt-5 flex flex-wrap items-center justify-center gap-3.5 md:mt-6 md:gap-5"
         >
-          <Link
-            to={hero.ctas[0].to}
-            className="group inline-flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-[var(--nh-white)] md:text-sm"
-          >
-            {hero.ctas[0].label}
-            <span className="flex size-9 items-center justify-center rounded-md border border-white/40 text-white transition-all duration-300 group-hover:border-[var(--nh-red)] group-hover:bg-[var(--nh-red)] md:size-10">
-              <ArrowRight className="size-3.5 -rotate-45 md:size-4" />
-            </span>
-          </Link>
-
-          <Link
-            to={hero.ctas[1].to}
-            className="group inline-flex items-center gap-2 rounded-md bg-[var(--nh-red)] py-2 pl-4 pr-2 text-xs uppercase tracking-[0.22em] text-white transition-transform duration-300 hover:scale-[1.02] md:py-2.5 md:pl-5 md:pr-2.5 md:text-sm"
-          >
-            {hero.ctas[1].label}
-            <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] md:size-9">
-              <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 md:size-4" />
-            </span>
-          </Link>
+          <BrandButton to={hero.ctas[0].to}>{hero.ctas[0].label}</BrandButton>
         </motion.div>
       </div>
 

@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { nav } from "@/data/content";
 import { cn } from "@/lib/utils";
 import { EASE } from "@/components/anim";
+import { BrandButton } from "@/components/brand-button";
 import { BrandLogo } from "@/components/brand-logo";
 
 type HeaderVariant = "overlay" | "solid";
@@ -67,26 +68,14 @@ export function SiteHeader({ variant = "overlay" }: { variant?: HeaderVariant })
           />
         </Link>
 
-        <Link
+        <BrandButton
           to="/contact"
-          className={cn(
-            "group flex shrink-0 items-center gap-1 rounded-md py-1.5 pl-3 pr-1.5 text-sm transition-colors sm:pl-5",
-            dark
-              ? "bg-ink text-cream hover:bg-crimson"
-              : "bg-cream text-ink hover:bg-white"
-          )}
+          variant={dark ? "black" : "cream"}
+          className="shrink-0"
         >
           <span className="hidden sm:inline">Contact Us</span>
           <span className="sm:hidden">Contact</span>
-          <span
-            className={cn(
-              "flex size-8 items-center justify-center rounded-md transition-all duration-300 group-hover:rotate-45",
-              dark ? "bg-cream text-ink" : "bg-ink text-cream group-hover:bg-crimson"
-            )}
-          >
-            <ArrowUpRight className="size-4" />
-          </span>
-        </Link>
+        </BrandButton>
       </div>
 
       <AnimatePresence>

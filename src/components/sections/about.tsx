@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import { about } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, LinesReveal, Reveal } from "@/components/anim";
 
 export function About() {
@@ -39,15 +38,9 @@ export function About() {
             </p>
           </Reveal>
           <Reveal delay={0.3} className="mt-8">
-            <Link
-              to="/about"
-              className="group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
-            >
+            <BrandButton to="/about" variant="black">
               {about.cta}
-              <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
+            </BrandButton>
           </Reveal>
         </div>
 

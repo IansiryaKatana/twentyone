@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { ArrowDown, ArrowUp } from "lucide-react";
 import { aboutPage, type Award, type AwardStatus } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
 
@@ -90,11 +90,11 @@ export function AboutAwardsSection() {
   return (
     <section id="awards" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
-        <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-white">
+        <Reveal className="text-center">
+          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-white">
             {title}
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/75 md:text-base">
+          <p className="font-detective mx-auto mt-4 max-w-2xl text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-white/75">
             {description}
           </p>
         </Reveal>
@@ -111,30 +111,21 @@ export function AboutAwardsSection() {
         </ul>
 
         {awards.length > PAGE_SIZE ? (
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
             {hasMore ? (
-              <button
-                type="button"
-                onClick={showMore}
-                className="group inline-flex items-center gap-3 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-white hover:text-black"
-              >
+              <BrandButton type="button" icon="down" onClick={showMore}>
                 Show more
-                <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:bg-black group-hover:text-white">
-                  <ArrowDown className="size-4" />
-                </span>
-              </button>
+              </BrandButton>
             ) : null}
             {isExpanded ? (
-              <button
+              <BrandButton
                 type="button"
+                variant="outline-light"
+                icon="up"
                 onClick={showLess}
-                className="group inline-flex items-center gap-3 rounded-md border border-white/35 bg-transparent py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:border-white hover:bg-white hover:text-black"
               >
                 Show less
-                <span className="flex size-8 items-center justify-center rounded-md bg-white text-black transition-all duration-300 group-hover:bg-black group-hover:text-white">
-                  <ArrowUp className="size-4" />
-                </span>
-              </button>
+              </BrandButton>
             ) : null}
           </div>
         ) : null}

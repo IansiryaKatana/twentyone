@@ -351,6 +351,9 @@ export const footer = {
     avatars: [pexels(1043471, 120), pexels(2379005, 120), pexels(1102341, 120)],
   },
   hiveTitle: "The Hive",
+  hiveCta: "Stop by the Studio",
+  hiveMapsUrl:
+    "https://www.google.com/maps/place/TwentyOne06/@25.113307,55.202634,16z/data=!4m6!3m5!1s0x65e0eb0b9615dd27:0xb05789dd21b237ae!8m2!3d25.1133073!4d55.2026337!16s%2Fg%2F11vjmqd6tl",
   columns: [
     {
       title: "Follow Us",
@@ -368,9 +371,8 @@ export const footer = {
         { label: "Services", to: "/services" },
         { label: "Projects", to: "/projects" },
         { label: "Press & Awards", to: "/about", hash: "awards" },
-        { label: "Our Blogs", to: "/journal" },
+        { label: "Blogs", to: "/journal" },
         { label: "FAQ", to: "/faq" },
-        { label: "Let's Talk", to: "/contact" },
       ],
     },
   ],
@@ -1285,7 +1287,7 @@ export const aboutPage = {
     ],
   },
   awardsSection: {
-    title: "Recognition",
+    title: "Awards & Recognition",
     description:
       "Multi-award winning across interior design, hospitality, retail, and commercial sectors in the UAE and GCC.",
   },
@@ -1370,13 +1372,6 @@ export type TeamMember = {
 
 /** Static fallback until CMS portraits are uploaded in admin. */
 export const teamMembers: TeamMember[] = [
-  {
-    name: "Govind Shepley",
-    title: "Founder and Creative Director",
-    image: "",
-    linkedin: "https://www.linkedin.com/in/govind-shepley-98869b38/",
-    instagram: "https://www.instagram.com/govind_shepley/",
-  },
   {
     name: "Mike Kobzar",
     title: "Brand Director",
@@ -1493,7 +1488,7 @@ export const newHome = {
       { before: "For the ", accent: "People." },
     ],
     description:
-      "Dubai's multi-award winning interior design and branding studio.",
+      "Dubai's multi-award winning\ninterior design and branding studio.",
     sectors: "Hospitality  ·  F&B  ·  Hotels  ·  Retail  ·  Commercial",
     ctas: [
       { label: "See Our Work", to: "/projects" as const },

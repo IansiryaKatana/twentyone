@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Link } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import { services } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, LinesReveal, Reveal } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
@@ -51,15 +50,9 @@ export function Services() {
           </div>
 
           <Reveal delay={0.2} className="mt-10 md:mt-auto md:pt-14">
-            <Link
-              to="/services"
-              className="group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
-            >
+            <BrandButton to="/services" variant="black">
               {services.cta}
-              <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:translate-x-0.5">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
+            </BrandButton>
           </Reveal>
         </div>
 

@@ -9,6 +9,7 @@ import logo09 from "@/Assets/Partners-and-clients09-1024x348.png";
 import logo11 from "@/Assets/Partners-and-clients11-1024x386.png";
 import { newHome } from "@/data/content";
 import { Reveal } from "@/components/anim";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 
 const logos = [
   logo01,
@@ -24,7 +25,7 @@ const logos = [
 
 function Logo({ src }: { src: string }) {
   return (
-    <span className="relative flex h-8 items-center md:h-10">
+    <span className="relative flex h-8 items-center md:h-11">
       <img
         src={src}
         alt="Client logo"
@@ -35,7 +36,7 @@ function Logo({ src }: { src: string }) {
       />
       <span
         aria-hidden
-        className="absolute inset-0 bg-[var(--nh-black)] opacity-80 transition-opacity duration-300 hover:opacity-100"
+        className="absolute inset-0 bg-[var(--nh-white)] opacity-90 transition-opacity duration-300 hover:opacity-100"
         style={{
           WebkitMaskImage: `url(${src})`,
           maskImage: `url(${src})`,
@@ -58,18 +59,20 @@ export function NhClients() {
   return (
     <section
       aria-label="Trusted clients"
-      className="marquee-strip relative overflow-hidden bg-[var(--nh-gray)] py-14 md:py-18"
+      className="marquee-strip relative overflow-hidden bg-[var(--nh-red)] py-14 md:py-18"
     >
       <div className="w-full px-5 md:px-10">
-        <Reveal>
-          <p className="mb-10 text-center text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
-            {clients.eyebrow}
-          </p>
+        <Reveal className="mb-10 flex justify-center">
+          <NhSectionTitle
+            title={clients.eyebrow}
+            tone="dark"
+            className="[&_.font-detective]:text-[var(--nh-white)]"
+          />
         </Reveal>
       </div>
 
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-[var(--nh-gray)] to-transparent md:w-28" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-[var(--nh-gray)] to-transparent md:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-[var(--nh-red)] to-transparent md:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-[var(--nh-red)] to-transparent md:w-28" />
 
       <div className="marquee-track items-center">
         {marqueeLogos.map((src, i) => (

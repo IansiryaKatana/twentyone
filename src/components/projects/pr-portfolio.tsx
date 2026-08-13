@@ -224,15 +224,21 @@ function matchesFilters(project: Project, filters: FilterState) {
   return true;
 }
 
-export function PrPortfolio() {
-  const { portfolio, filterGroups } = projectsPage;
+export function PrProjectGrid({
+  initialService,
+  idPrefix = "filter",
+}: {
+  initialService?: string;
+  idPrefix?: string;
+}) {
+  const { filterGroups } = projectsPage;
   const { projects } = useCmsContent();
-  const { service: serviceParam } = useSearch({ from: "/projects/" });
+  const filtersId = `${idPrefix}-project-filters`;
 
   const [filters, setFilters] = React.useState<FilterState>(() => ({
     service:
-      serviceParam && SERVICE_FROM_URL[serviceParam]
-        ? SERVICE_FROM_URL[serviceParam]
+      initialService && SERVICE_FROM_URL[initialService]
+        ? SERVICE_FROM_URL[initialService]
         : "All",
     sector: "All",
     year: "All",
@@ -261,23 +267,14 @@ export function PrPortfolio() {
   };
 
   return (
-    <section className="relative bg-[var(--nh-black)] px-5 pb-24 pt-6 md:px-10 md:pb-32 lg:px-[7vw]">
-      <Reveal>
-        <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
-          {portfolio.eyebrow}
-        </p>
-        <h2 className="font-display mt-3 text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
-          {portfolio.title}
-        </h2>
-      </Reveal>
-
+    <>
       <Reveal delay={0.1} className="mt-10 md:mt-14">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <button
             type="button"
             onClick={() => setFiltersExpanded((open) => !open)}
             aria-expanded={filtersExpanded}
-            aria-controls="project-filters"
+            aria-controls={filtersId}
             className="inline-flex items-center gap-2 self-start text-[10px] uppercase tracking-[0.28em] text-white/85 transition-colors hover:text-white md:pointer-events-none md:cursor-default"
           >
             Refine the work
@@ -301,7 +298,7 @@ export function PrPortfolio() {
         </div>
 
         <div
-          id="project-filters"
+          id={filtersId}
           className={cn(
             "mt-5 grid grid-cols-1 gap-x-6 gap-y-6 border-t border-white/20 pt-6 sm:grid-cols-2 lg:grid-cols-4",
             filtersExpanded ? "grid" : "hidden",
@@ -311,7 +308,7 @@ export function PrPortfolio() {
           {(Object.keys(filterGroups) as FilterKey[]).map((key) => (
             <FilterDropdown
               key={key}
-              id={`filter-${key}`}
+              id={`${idPrefix}-${key}`}
               label={filterGroups[key].label}
               value={filters[key]}
               options={filterGroups[key].options}
@@ -344,6 +341,26 @@ export function PrPortfolio() {
           .
         </p>
       ) : null}
+    </>
+  );
+}
+
+export function PrPortfolio() {
+  const { portfolio } = projectsPage;
+  const { service: serviceParam } = useSearch({ from: "/projects/" });
+
+  return (
+    <section className="relative bg-[var(--nh-black)] px-5 pb-24 pt-6 md:px-10 md:pb-32 lg:px-[7vw]">
+      <Reveal>
+        <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
+          {portfolio.eyebrow}
+        </p>
+        <h2 className="font-display mt-3 text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
+          {portfolio.title}
+        </h2>
+      </Reveal>
+
+      <PrProjectGrid initialService={serviceParam} />
     </section>
   );
 }

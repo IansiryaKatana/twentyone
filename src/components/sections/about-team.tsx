@@ -40,7 +40,7 @@ function TeamCard({ member }: { member: TeamMember }) {
   const instagram = member.instagram?.trim();
 
   return (
-    <article className="text-left">
+    <article className="group text-center">
       <div className="relative overflow-hidden">
         {member.image ? (
           <img
@@ -58,8 +58,13 @@ function TeamCard({ member }: { member: TeamMember }) {
           </div>
         )}
 
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[1] hidden bg-[var(--clay)]/55 transition-opacity duration-500 md:block md:group-hover:opacity-0"
+        />
+
         {(linkedin || instagram) && (
-          <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
             {linkedin ? (
               <SocialBadge
                 href={linkedin}
@@ -91,7 +96,10 @@ function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export function AboutTeamSection() {
-  const { teamMembers } = useCmsContent();
+  const { teamMembers: cmsTeamMembers } = useCmsContent();
+  const teamMembers = cmsTeamMembers.filter(
+    (member) => !/govind/i.test(member.name),
+  );
   const { eyebrow, title, description } = aboutPage.team;
   const reduced = useReducedMotionSafe();
   const trackRef = React.useRef<HTMLDivElement | null>(null);
@@ -157,13 +165,13 @@ export function AboutTeamSection() {
   return (
     <section className="bg-cream py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div className="flex flex-col items-center gap-6 text-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-muted-ink">{eyebrow}</p>
-            <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-ink">
+            <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-ink">
               {title}
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>
+            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>
           </Reveal>
 
           {maxIndex > 0 ? (

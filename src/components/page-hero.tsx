@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
 import { LinesReveal, Reveal } from "@/components/anim";
+import { BrandButton } from "@/components/brand-button";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { cn } from "@/lib/utils";
 
@@ -54,10 +53,10 @@ export function PageHero({
         </>
       ) : null}
 
-      <div className="relative mx-auto max-w-[1440px] px-5 md:px-10">
+      <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 text-center md:px-10">
         <p
           className={cn(
-            "mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.35em]",
+            "mb-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.35em]",
             hasImage ? "text-white/65" : "text-muted-ink"
           )}
         >
@@ -68,12 +67,18 @@ export function PageHero({
             )}
           />
           {eyebrow}
+          <span
+            className={cn(
+              "h-px w-10",
+              hasImage ? "bg-white/35" : "bg-ink/25"
+            )}
+          />
         </p>
         <LinesReveal
           as="h1"
           lines={title}
           className={cn(
-            "max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[1.05]",
+            "max-w-4xl text-[clamp(2.5rem,6vw,5.5rem)] font-semibold leading-[0.92]",
             titleClassName ?? "font-display",
             hasImage ? "text-white" : "text-ink",
           )}
@@ -82,7 +87,7 @@ export function PageHero({
           <Reveal delay={0.2} className="mt-6 max-w-xl">
             <p
               className={cn(
-                "text-sm leading-relaxed md:text-base",
+                "font-detective text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35]",
                 hasImage ? "text-white/75" : "text-muted-ink"
               )}
             >
@@ -100,35 +105,17 @@ export function PillCta({
   href,
   children,
   className,
+  variant = "black",
 }: {
   to?: string;
   href?: string;
   children: ReactNode;
   className?: string;
+  variant?: "red" | "black";
 }) {
-  const classes = cn(
-    "group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson",
-    className
-  );
-  const icon = (
-    <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
-      <ArrowUpRight className="size-4" />
-    </span>
-  );
-
-  if (to) {
-    return (
-      <Link to={to as "/"} className={classes}>
-        {children}
-        {icon}
-      </Link>
-    );
-  }
-
   return (
-    <a href={href ?? "#"} className={classes}>
+    <BrandButton to={to} href={href} variant={variant} className={className}>
       {children}
-      {icon}
-    </a>
+    </BrandButton>
   );
 }

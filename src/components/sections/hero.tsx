@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
-import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { hero } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, LinesReveal } from "@/components/anim";
 
 export function Hero() {
@@ -53,24 +52,12 @@ export function Hero() {
           transition={{ duration: 0.9, ease: EASE, delay: 1.15 }}
           className="mt-9 flex flex-wrap items-center gap-3"
         >
-          <Link
-            to="/projects"
-            className="group flex items-center gap-2 rounded-md bg-cream py-2 pl-6 pr-2 text-sm text-ink transition-colors hover:bg-white"
-          >
+          <BrandButton to="/projects" variant="cream">
             {hero.primaryCta}
-            <span className="flex size-8 items-center justify-center rounded-md bg-ink text-cream transition-all duration-300 group-hover:rotate-45 group-hover:bg-crimson">
-              <ArrowUpRight className="size-4" />
-            </span>
-          </Link>
-          <Link
-            to="/contact"
-            className="group flex items-center gap-2 rounded-md border border-cream/40 py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-cream/10"
-          >
+          </BrandButton>
+          <BrandButton to="/contact" variant="outline-light">
             {hero.secondaryCta}
-            <span className="flex size-8 items-center justify-center rounded-md border border-cream/40 transition-transform duration-300 group-hover:translate-x-0.5">
-              <ArrowRight className="size-4" />
-            </span>
-          </Link>
+          </BrandButton>
         </motion.div>
       </div>
 

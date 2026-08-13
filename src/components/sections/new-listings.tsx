@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { listings } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, LinesReveal, Reveal, Stagger, StaggerItem } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
@@ -71,15 +72,9 @@ export function NewListings() {
                 </p>
               </Reveal>
               <Reveal delay={0.3}>
-                <Link
-                  to="/projects"
-                  className="group inline-flex shrink-0 items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson"
-                >
+                <BrandButton to="/projects" variant="black">
                   {listings.cta}
-                  <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
-                    <ArrowUpRight className="size-4" />
-                  </span>
-                </Link>
+                </BrandButton>
               </Reveal>
             </div>
           </div>

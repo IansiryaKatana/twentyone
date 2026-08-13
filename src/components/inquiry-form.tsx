@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
 import { contactPage } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import {
   submitFormSubmission,
   type SubmitFormResult,
@@ -224,16 +224,9 @@ export function InquiryForm({
 
       {submitFullWidth ? (
         <div className="flex flex-col gap-3">
-          <button
-            type="submit"
-            disabled={submitting}
-            className="group inline-flex w-full items-center justify-between gap-3 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-black disabled:opacity-60"
-          >
+          <BrandButton type="submit" disabled={submitting} className="w-full">
             {submitting ? "Sending…" : contactPage.form.submit}
-            <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[var(--nh-red)] group-hover:text-white">
-              <ArrowUpRight className="size-4" />
-            </span>
-          </button>
+          </BrandButton>
           {submitErr ? (
             <p className="text-sm text-crimson">{submitErr}</p>
           ) : null}
@@ -257,16 +250,13 @@ export function InquiryForm({
             >
               {contactPage.form.note}
             </p>
-            <button
+            <BrandButton
               type="submit"
               disabled={submitting}
-              className="group inline-flex w-full shrink-0 items-center justify-between gap-2 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-black disabled:opacity-60 sm:w-auto sm:justify-start sm:gap-2"
+              className="w-full sm:w-auto"
             >
               {submitting ? "Sending…" : contactPage.form.submit}
-              <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:rotate-45 group-hover:bg-[var(--nh-red)] group-hover:text-white">
-                <ArrowUpRight className="size-4" />
-              </span>
-            </button>
+            </BrandButton>
           </div>
           {submitErr ? (
             <p className="text-sm text-crimson">{submitErr}</p>

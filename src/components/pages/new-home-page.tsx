@@ -21,7 +21,7 @@ export function NewHomePage() {
         <NhClients />
         <NhTestimonial />
         <NhJournal />
-        <NhContactFooter variant="home" />
+        <NhContactFooter />
       </main>
       <SiteFooter />
     </div>

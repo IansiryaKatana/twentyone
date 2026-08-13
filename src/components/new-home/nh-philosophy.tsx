@@ -1,8 +1,7 @@
 import * as React from "react";
 import { motion, useInView } from "motion/react";
-import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
 import { newHome } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, Reveal } from "@/components/anim";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { useCmsContent } from "@/hooks/useCmsContent";
@@ -28,7 +27,7 @@ function MaskedHeading({
       )}
     >
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden pb-[0.2em]">
+        <span key={i} className="block overflow-hidden">
           <motion.span
             className={cn("block", line.className)}
             initial={{ y: "115%" }}
@@ -66,7 +65,7 @@ function PhilosophyDesktopTitle({
         size,
       )}
     >
-      <span className="block overflow-hidden pb-[0.12em]">
+      <span className="block overflow-hidden">
         <motion.span
           className="block whitespace-nowrap text-[var(--nh-white)]"
           initial={{ y: "115%" }}
@@ -76,7 +75,7 @@ function PhilosophyDesktopTitle({
           {eyebrow}
         </motion.span>
       </span>
-      <span className="-mt-[0.06em] block overflow-hidden pb-[0.12em]">
+      <span className="-mt-[0.06em] block overflow-hidden">
         <motion.span
           className="block whitespace-nowrap"
           initial={{ y: "115%" }}
@@ -196,20 +195,12 @@ export function NhPhilosophy() {
             <AccentBody
               body={philosophy.body}
               accent={accent}
-              className="text-sm leading-relaxed text-white/75 md:text-[15px]"
+              className="font-detective text-sm leading-relaxed text-white/75 md:text-[15px]"
             />
           </Reveal>
 
           <Reveal delay={0.35} className="mt-10">
-            <Link
-              to={philosophy.ctaTo}
-              className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]"
-            >
-              {philosophy.cta}
-              <span className="flex size-9 items-center justify-center rounded-md bg-[var(--nh-red)] text-white transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
+            <BrandButton to={philosophy.ctaTo}>{philosophy.cta}</BrandButton>
           </Reveal>
         </div>
 
@@ -241,7 +232,7 @@ export function NhPhilosophy() {
             <AccentBody
               body={philosophy.body}
               accent={accent}
-              className="text-[12.5px] leading-[1.65] text-white/88 xl:text-[13.5px]"
+              className="font-detective text-[12.5px] leading-[1.65] text-white/88 xl:text-[13.5px]"
             />
           </Reveal>
         </div>

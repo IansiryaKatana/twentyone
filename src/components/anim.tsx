@@ -127,10 +127,10 @@ export function LinesReveal({
       {lines.map((line, i) => (
         <span
           key={i}
-          className="block overflow-hidden pb-[0.12em]"
+          className="block overflow-hidden leading-[0.92]"
         >
           <motion.span
-            className={cn("block", lineClassName)}
+            className={cn("block leading-[0.92]", lineClassName)}
             initial={{ y: "115%" }}
             animate={inView ? { y: "0%" } : { y: "115%" }}
             transition={{
@@ -153,27 +153,37 @@ export function LinesReveal({
 export function CountUp({
   to,
   suffix = "",
-  duration = 2,
+  duration = 2.4,
+  delay = 0,
   className,
 }: {
   to: number;
   suffix?: string;
   duration?: number;
+  delay?: number;
   className?: string;
 }) {
   const ref = React.useRef<HTMLSpanElement | null>(null);
-  const inView = useInView(ref, { once: true, amount: 0.6 });
+  const inView = useInView(ref, { once: true, amount: 0.35 });
+  const reduced = useReducedMotionSafe();
   const [value, setValue] = React.useState(0);
 
   React.useEffect(() => {
     if (!inView) return;
+    if (reduced) {
+      setValue(to);
+      return;
+    }
+    setValue(0);
     const controls = animate(0, to, {
       duration,
-      ease: EASE,
+      delay,
+      // Linear-leaning ease so each tick is visible (editorial expo snaps to the end).
+      ease: [0.12, 0.7, 0.16, 1],
       onUpdate: (v) => setValue(Math.round(v)),
     });
     return () => controls.stop();
-  }, [inView, to, duration]);
+  }, [inView, to, duration, delay, reduced]);
 
   return (
     <span ref={ref} className={className}>

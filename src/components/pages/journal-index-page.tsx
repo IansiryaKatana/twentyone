@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowDown, ArrowUp, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import {
   getFeaturedPost,
   journalPage,
@@ -9,6 +9,7 @@ import {
 } from "@/data/content";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, Reveal, Stagger, StaggerItem } from "@/components/anim";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { cn } from "@/lib/utils";
@@ -153,28 +154,19 @@ export function JournalIndexPage() {
           {rest.length > PAGE_SIZE ? (
             <div className="mt-10 flex flex-wrap gap-3">
               {hasMore ? (
-                <button
-                  type="button"
-                  onClick={showMore}
-                  className="group inline-flex items-center gap-3 rounded-md bg-[var(--nh-red)] py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
-                >
+                <BrandButton type="button" icon="down" onClick={showMore}>
                   Show more
-                  <span className="flex size-8 items-center justify-center rounded-md bg-white text-[var(--nh-red)] transition-all duration-300 group-hover:bg-[var(--nh-red)] group-hover:text-white">
-                    <ArrowDown className="size-4" />
-                  </span>
-                </button>
+                </BrandButton>
               ) : null}
               {isExpanded ? (
-                <button
+                <BrandButton
                   type="button"
+                  variant="outline-dark"
+                  icon="up"
                   onClick={showLess}
-                  className="group inline-flex items-center gap-3 rounded-md border border-ink/25 bg-transparent py-2.5 pl-6 pr-2 text-[11px] font-medium uppercase tracking-[0.22em] text-ink transition-colors hover:border-ink hover:bg-ink hover:text-cream"
                 >
                   Show less
-                  <span className="flex size-8 items-center justify-center rounded-md bg-ink text-cream transition-all duration-300 group-hover:bg-cream group-hover:text-ink">
-                    <ArrowUp className="size-4" />
-                  </span>
-                </button>
+                </BrandButton>
               ) : null}
             </div>
           ) : null}

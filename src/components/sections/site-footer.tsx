@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { footer } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { LinesReveal, Reveal } from "@/components/anim";
 import { submitFormSubmission } from "@/lib/cms/contentAccess";
 import { sendTransactionalEmail } from "@/lib/cms/sendContactThankYou";
@@ -37,7 +38,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
   return (
     <footer id="footer" className="relative overflow-hidden bg-black text-white">
-      <div className="mx-auto max-w-[1440px] px-5 pb-8 pt-20 md:px-10 md:pt-28">
+      <div className="w-full px-5 pb-8 pt-20 md:px-10 md:pt-28 lg:px-[7vw]">
         {showCta && (
           <>
             <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
@@ -61,15 +62,9 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                     </div>
                     <span className="text-xs text-white/70">{footer.cta.members}</span>
                   </div>
-                  <Link
-                    to={footer.cta.buttonTo}
-                    className="group inline-flex w-full items-center justify-between gap-2 rounded-md bg-white py-2 pl-6 pr-2 text-sm text-black transition-colors hover:bg-white/90"
-                  >
+                  <BrandButton to={footer.cta.buttonTo} variant="white" className="w-full">
                     {footer.cta.button}
-                    <span className="flex size-8 items-center justify-center rounded-md bg-black text-white transition-all duration-300 group-hover:rotate-45 group-hover:bg-[var(--nh-red,#e01e26)]">
-                      <ArrowUpRight className="size-4" />
-                    </span>
-                  </Link>
+                  </BrandButton>
                 </div>
               </Reveal>
             </div>
@@ -81,12 +76,20 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
         <div className="grid grid-cols-2 gap-10 md:grid-cols-4 md:gap-8">
           {/* The Hive + Follow Us */}
           <div>
-            <h2 className="font-display mb-6 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-white">
+            <h2 className="font-display mb-3 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-white">
               {footer.hiveTitle}
             </h2>
+            <a
+              href={footer.hiveMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-detective mb-8 inline-block text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.3] text-white/85 transition-colors hover:text-white"
+            >
+              {footer.hiveCta}
+            </a>
             {footer.columns[0] ? (
               <>
-                <h3 className="mb-4 text-xs uppercase tracking-[0.25em] text-white/50">
+                <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
                   {footer.columns[0].title}
                 </h3>
                 <ul className="flex flex-col gap-2.5">
@@ -114,7 +117,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
           {/* Quick Links */}
           {footer.columns.slice(1).map((col) => (
             <div key={col.title}>
-              <h3 className="mb-4 text-xs uppercase tracking-[0.25em] text-white/50">
+              <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
                 {col.title}
               </h3>
               <ul className="flex flex-col gap-2.5">
@@ -127,7 +130,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                           ? { params: link.params as Record<string, string> }
                           : {})}
                         {...("hash" in link && link.hash ? { hash: link.hash } : {})}
-                        className="group inline-flex items-center gap-1.5 text-sm text-white/85 transition-colors hover:text-white"
+                        className="font-detective group inline-flex items-center gap-1.5 text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.3] text-white/85 transition-colors hover:text-white"
                       >
                         {link.label}
                         {"arrow" in col && col.arrow ? (
@@ -137,7 +140,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                     ) : (
                       <a
                         href={"href" in link ? link.href : "#"}
-                        className="group inline-flex items-center gap-1.5 text-sm text-white/85 transition-colors hover:text-white"
+                        className="font-detective group inline-flex items-center gap-1.5 text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.3] text-white/85 transition-colors hover:text-white"
                       >
                         {link.label}
                       </a>
@@ -150,20 +153,20 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
           {/* Location */}
           <div>
-            <h3 className="mb-4 text-xs uppercase tracking-[0.25em] text-white/50">
+            <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
               {footer.location.title}
             </h3>
-            <address className="not-italic text-sm leading-relaxed text-white/85">
+            <address className="font-detective not-italic text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.35] text-white/85">
               {footer.location.lines.map((l) => (
                 <div key={l}>{l}</div>
               ))}
             </address>
-            <h3 className="mb-2 mt-5 text-xs uppercase tracking-[0.25em] text-white/50">
+            <h3 className="font-display mb-2 mt-5 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
               {footer.location.callTitle}
             </h3>
             <a
               href={footer.location.phoneHref}
-              className="text-sm text-white/85 transition-colors hover:text-white"
+              className="font-detective text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.3] text-white/85 transition-colors hover:text-white"
             >
               {footer.location.phone}
             </a>
@@ -171,7 +174,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
           {/* Newsletter */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-display mb-5 text-[clamp(1.5rem,2.4vw,2rem)] font-semibold leading-[1.05] text-white">
+            <h3 className="font-display mb-6 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-white">
               {footer.newsletter.title.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -194,16 +197,14 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                     className="w-full border-0 border-b border-white/35 bg-transparent py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/55 focus:border-[var(--nh-red,#e01e26)]"
                   />
                 </label>
-                <button
+                <BrandButton
                   type="submit"
                   disabled={submitting}
-                  className="group inline-flex w-full items-center justify-between gap-2 rounded-md bg-white py-2 pl-5 pr-2 text-sm text-black transition-colors hover:bg-white/90 disabled:opacity-60"
+                  variant="white"
+                  className="w-full"
                 >
                   {submitting ? "Sending…" : footer.newsletter.cta}
-                  <span className="flex size-8 items-center justify-center rounded-md bg-black text-white transition-all duration-300 group-hover:rotate-45 group-hover:bg-[var(--nh-red,#e01e26)]">
-                    <ArrowUpRight className="size-4" />
-                  </span>
-                </button>
+                </BrandButton>
                 {submitErr ? <p className="text-xs text-red-400">{submitErr}</p> : null}
               </form>
             )}

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { servicesPage, type Project } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { PageShell } from "@/components/page-shell";
 import { InquiryForm } from "@/components/inquiry-form";
 import { ServiceProjectCarousel } from "@/components/services/service-project-carousel";
@@ -12,20 +13,11 @@ import { cn } from "@/lib/utils";
 type Section = (typeof servicesPage.sections)[number];
 
 function ServiceCta({ section }: { section: Section }) {
-  const classes =
-    "group inline-flex items-center gap-2 rounded-md bg-black py-2 pl-6 pr-2 text-sm text-cream transition-colors hover:bg-crimson";
-  const icon = (
-    <span className="flex size-8 items-center justify-center rounded-md bg-cream text-ink transition-transform duration-300 group-hover:rotate-45">
-      <ArrowUpRight className="size-4" />
-    </span>
-  );
-
   if ("ctaHref" in section && section.ctaHref) {
     return (
-      <a href={section.ctaHref} className={classes}>
+      <BrandButton href={section.ctaHref} variant="black">
         {section.cta}
-        {icon}
-      </a>
+      </BrandButton>
     );
   }
 
@@ -35,10 +27,9 @@ function ServiceCta({ section }: { section: Section }) {
       : undefined;
 
   return (
-    <Link to="/projects" search={search} className={classes}>
+    <BrandButton to="/projects" search={search} variant="black">
       {section.cta}
-      {icon}
-    </Link>
+    </BrandButton>
   );
 }
 

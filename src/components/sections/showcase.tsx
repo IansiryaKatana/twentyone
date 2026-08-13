@@ -93,21 +93,21 @@ export function Showcase() {
                   <button
                     aria-label="Previous"
                     onClick={() => go(-1)}
-                    className="flex size-9 items-center justify-center rounded-md border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
+                    className="btn-cut flex size-9 items-center justify-center border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
                     <ArrowLeft className="size-4" />
                   </button>
                   <button
                     aria-label="Next"
                     onClick={() => go(1)}
-                    className="flex size-9 items-center justify-center rounded-md border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
+                    className="btn-cut flex size-9 items-center justify-center border border-ink/20 text-ink transition-colors hover:bg-ink hover:text-cream"
                   >
                     <ArrowRight className="size-4" />
                   </button>
                   <button
                     aria-label={playing ? "Pause" : "Play"}
                     onClick={() => setPlaying((p) => !p)}
-                    className="ml-1 flex size-9 items-center justify-center rounded-md bg-ink text-cream transition-colors hover:bg-crimson"
+                    className="btn-cut ml-1 flex size-9 items-center justify-center bg-ink text-cream transition-colors hover:bg-crimson"
                   >
                     {playing ? (
                       <Pause className="size-3.5" />

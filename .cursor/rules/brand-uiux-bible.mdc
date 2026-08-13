@@ -52,7 +52,7 @@ Use CSS variables — never invent new brand hexes. Red/crimson is accent only (
 ## Components & content
 
 - Page copy and lists live in `src/data/content.ts` (or colocated data), not hardcoded strings scattered in JSX.
-- CTAs: red rounded **Let’s Talk** / clear text links with uppercase tracking; outlined circle prev/next on dark surfaces.
+- CTAs: red cut-corner hex **Let’s Talk** / SHOW MORE (`BrandButton` / `.btn-cut`); no rounded pills. Outlined circle prev/next on dark surfaces.
 - Custom controls over native where brand matters (e.g. project-type select on contact strip).
 - Imagery: real product/place/atmosphere; local assets under `src/Assets/` preferred over random stock when available.
 

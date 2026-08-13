@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import {
@@ -13,6 +13,7 @@ import {
 } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import interiorArchitectureIcon from "@/Assets/interior architechture.png";
 import brandDesignIcon from "@/Assets/brand design.png";
 import designManagementIcon from "@/Assets/design management.png";
@@ -95,11 +96,9 @@ function ServiceCard({
             ))}
           </ul>
 
-          <span className="mt-5 inline-flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--nh-red)] transition-colors duration-300 group-hover:text-black md:mt-6">
+          <span className="btn-cut mt-5 inline-flex items-center justify-center gap-2 bg-[var(--nh-red)] px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:bg-black md:mt-6">
             {item.cta}
-            <span className="flex size-8 items-center justify-center rounded-md border border-[var(--nh-red)] text-[var(--nh-red)] transition-all duration-300 group-hover:bg-[var(--nh-red)] group-hover:text-white">
-              <ArrowRight className="size-3.5 -rotate-45 transition-transform duration-300 group-hover:translate-x-0.5" />
-            </span>
+            <ChevronRight className="size-3.5 shrink-0" strokeWidth={1.75} />
           </span>
         </div>
       </div>
@@ -178,27 +177,9 @@ export function NhServices() {
   return (
     <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] md:py-20">
       <div className="w-full px-5 md:px-[7vw]">
-        <div className="mb-8 flex items-end justify-between gap-4 md:mb-10">
-          <Reveal>
-            <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-[var(--nh-red)]">
-              {section.eyebrow}
-            </p>
-            <h2 className="font-display mt-1 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-[var(--nh-black)]">
-              {section.title}
-            </h2>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <Link
-              to={section.ctaTo}
-              className="group inline-flex shrink-0 self-end items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2 md:text-[10px] md:tracking-[0.24em]"
-            >
-              <span className="md:hidden">View All</span>
-              <span className="hidden md:inline">{section.cta}</span>
-              <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
-        </div>
+        <Reveal className="mb-8 flex justify-center md:mb-10">
+          <NhSectionTitle title={section.title} />
+        </Reveal>
 
         <div className="overflow-hidden lg:hidden">
           <motion.div
@@ -251,6 +232,16 @@ export function NhServices() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <Reveal delay={0.15} className="mt-10 flex justify-center md:mt-14">
+          <Link
+            to={section.ctaTo}
+            className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
+          >
+            {section.cta}
+            <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

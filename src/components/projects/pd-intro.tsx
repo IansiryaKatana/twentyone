@@ -24,7 +24,7 @@ function MaskedHeading({ lines }: { lines: string[] }) {
       className="font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[1.02]"
     >
       {lines.map((line, i) => (
-        <span key={line} className="block overflow-hidden pb-[0.1em]">
+        <span key={line} className="block overflow-hidden">
           <motion.span
             className={cn(
               "block",

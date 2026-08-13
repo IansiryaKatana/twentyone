@@ -65,7 +65,7 @@ Always use CSS variables (`bg-[var(--nh-red)]`, `text-espresso`, etc.). Do not i
 3. **404:** dedicated not-found page; no footer.
 4. Prefer `PageShell` for cream routes so header/footer stay consistent.
 
-Nav pattern: logo left, primary links centered, red rounded **Let’s Talk**, circular menu control + full-screen menu.
+Nav pattern: logo left, primary links centered, red cut-corner hex **Let’s Talk**, circular menu control + full-screen menu.
 
 ---
 
@@ -119,6 +119,7 @@ Reuse these rhythms on new pages rather than inventing new section types.
 - Purple / indigo gradient “AI default” themes  
 - Warm cream + terracotta serif cliché when it fights this system (cream here is brand-specific with Zeuxis, not generic)  
 - Glow effects, heavy multi-layer shadows, pill clusters, emoji UI  
+- Rounded pill CTAs — use `BrandButton` / `.btn-cut` (pointed hex ends) 
 - Inset / rounded hero cards instead of full-bleed heroes on landing surfaces  
 - Mixing `--nh-*` and cream tokens inside one undecided section  
 - Restoring the old cream `SiteHeader` for new work  

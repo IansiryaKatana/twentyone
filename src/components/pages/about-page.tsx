@@ -19,8 +19,11 @@ import {
 
 export function AboutPage() {
   const { milestones } = aboutPage;
-  const { sectionBackgrounds } = useCmsContent();
+  const { sectionBackgrounds, teamMembers } = useCmsContent();
   const bg = sectionBackgrounds.about;
+  const founderImage =
+    teamMembers.find((member) => /govind/i.test(member.name))?.image?.trim() ||
+    ceoPortrait;
 
   return (
     <PageShell headerVariant="overlay">
@@ -34,13 +37,13 @@ export function AboutPage() {
       />
 
       <section id="press" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
-        <div className="grid w-full grid-cols-1 gap-10 px-5 md:grid-cols-12 md:px-10">
+        <div className="grid w-full grid-cols-1 items-stretch gap-10 px-5 md:grid-cols-12 md:px-10">
           <div className="md:col-span-5">
-            <Reveal className="overflow-hidden rounded-md">
+            <Reveal className="h-full overflow-hidden rounded-md">
               <motion.img
-                src={ceoPortrait}
+                src={founderImage}
                 alt="Govind Shepley — Twentyone06"
-                className="aspect-[4/5] w-full object-cover"
+                className="aspect-[4/5] h-full w-full object-cover object-top md:aspect-auto"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.8, ease: EASE }}
               />
@@ -50,18 +53,18 @@ export function AboutPage() {
             <LinesReveal
               as="h2"
               lines={[...aboutPage.storyTitle]}
-              className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
+              className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
             />
             <Reveal delay={0.15} className="mt-8 max-w-xl space-y-4">
               {aboutPage.story.map((para) => (
                 <p
                   key={para}
-                  className="text-sm leading-relaxed text-white/75"
+                  className="font-detective text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/75"
                 >
                   {para}
                 </p>
               ))}
-              <p className="text-sm leading-relaxed text-white/75">
+              <p className="font-detective text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/75">
                 {aboutPage.recognition}
               </p>
               <p className="pt-2 text-[0.65rem] font-light uppercase tracking-[0.14em] text-white/55">
@@ -69,10 +72,7 @@ export function AboutPage() {
               </p>
             </Reveal>
             <Reveal delay={0.25} className="mt-10">
-              <PillCta
-                to="/contact"
-                className="bg-[var(--nh-red)] text-[var(--nh-white)] hover:bg-[var(--nh-white)] hover:text-[var(--nh-black)] [&_span]:bg-[var(--nh-white)] [&_span]:text-[var(--nh-black)] group-hover:[&_span]:bg-[var(--nh-black)] group-hover:[&_span]:text-[var(--nh-white)]"
-              >
+              <PillCta to="/contact" variant="red">
                 {aboutPage.cta}
               </PillCta>
             </Reveal>
@@ -88,16 +88,16 @@ export function AboutPage() {
 
       <section className="bg-[var(--nh-black)] py-20 md:py-28">
         <div className="px-5 md:px-[7vw]">
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-12">
-            <div className="md:col-span-5">
+          <div className="grid grid-cols-1 gap-10 text-center md:gap-12">
+            <div>
               <LinesReveal
                 as="h2"
                 lines={[...milestones.title]}
-                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-[var(--nh-white)]"
+                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
               />
             </div>
-            <Reveal delay={0.12} className="md:col-span-6 md:col-start-7">
-              <p className="max-w-xl text-sm leading-relaxed text-[var(--nh-muted)] md:text-base">
+            <Reveal delay={0.12}>
+              <p className="font-detective mx-auto max-w-xl text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-[var(--nh-muted)]">
                 {milestones.body}
               </p>
 
@@ -105,12 +105,14 @@ export function AboutPage() {
                 stagger={0.1}
                 className="mt-10 grid grid-cols-3 gap-3 border-t border-white/20 pt-8 sm:gap-6"
               >
-                {milestones.stats.map((stat) => (
+                {milestones.stats.map((stat, i) => (
                   <StaggerItem key={stat.label}>
                     <CountUp
                       to={stat.value}
                       suffix={stat.suffix}
-                      className="font-display text-[clamp(1.75rem,5vw,3.25rem)] font-medium leading-none text-[var(--nh-white)]"
+                      delay={0.35 + i * 0.15}
+                      duration={2.4}
+                      className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
                     />
                     <p className="mt-2 text-[10px] uppercase leading-snug tracking-[0.14em] text-white/75 sm:mt-3 sm:text-xs sm:tracking-[0.18em]">
                       {stat.label}

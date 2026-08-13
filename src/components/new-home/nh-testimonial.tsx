@@ -2,7 +2,7 @@ import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
-import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
@@ -47,7 +47,6 @@ export function NhTestimonial() {
   if (!testimonial) return null;
 
   const hasImage = Boolean(testimonial.image?.trim());
-  const { title } = newHome.testimonialSection;
 
   return (
     <section
@@ -56,12 +55,6 @@ export function NhTestimonial() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-16 text-center sm:px-8 md:py-24 lg:max-w-6xl lg:px-10">
-        <Reveal y={20} className="mb-8 md:mb-10 lg:mb-14">
-          <h2 className="font-display text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-[var(--nh-white)]">
-            {title}
-          </h2>
-        </Reveal>
-
         <div className="w-full touch-pan-y" aria-live="polite" {...swipe}>
           <AnimatePresence mode="wait">
             <motion.div
@@ -73,7 +66,7 @@ export function NhTestimonial() {
               className={cn(
                 "flex flex-col items-center",
                 hasImage &&
-                  "lg:grid lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)] lg:items-center lg:gap-12 lg:text-left xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] xl:gap-16",
+                  "lg:grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-stretch lg:gap-12 lg:text-left xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] xl:gap-16",
               )}
             >
               {hasImage ? (
@@ -83,16 +76,16 @@ export function NhTestimonial() {
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="absolute inset-0 h-full w-full object-cover grayscale"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
 
-                  {/* Desktop — 3:4 portrait beside quote */}
-                  <div className="relative hidden aspect-[3/4] w-full overflow-hidden bg-[#2a2a2a] lg:block">
+                  {/* Desktop — portrait stretched to the quote column */}
+                  <div className="relative hidden h-full min-h-[28rem] w-full overflow-hidden bg-[#2a2a2a] lg:block">
                     <img
                       src={testimonial.image}
                       alt={testimonial.name}
-                      className="absolute inset-0 h-full w-full object-cover grayscale"
+                      className="absolute inset-0 h-full w-full object-cover"
                     />
                   </div>
                 </>
@@ -100,23 +93,12 @@ export function NhTestimonial() {
 
               <div
                 className={cn(
-                  "flex flex-col items-center",
+                  "flex w-full flex-col items-center",
                   hasImage && "lg:items-start",
                 )}
               >
-                <span
-                  aria-hidden
-                  className="font-display block text-[clamp(2.5rem,7vw,4.5rem)] leading-none text-[var(--nh-red)]"
-                >
-                  “
-                </span>
-
-                <blockquote className="font-detective -mt-3 max-w-2xl text-[clamp(1.25rem,3.2vw,2rem)] leading-[1.15] tracking-tighter text-[var(--nh-white)] md:-mt-5">
-                  {testimonial.quote}
-                </blockquote>
-
-                <div className="mt-7 md:mt-8">
-                  <p className="text-sm uppercase tracking-[0.28em] text-[var(--nh-red)]">
+                <div>
+                  <p className="font-display text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-[var(--nh-red)]">
                     {testimonial.name}
                   </p>
                   {testimonial.role ? (
@@ -125,6 +107,24 @@ export function NhTestimonial() {
                     </p>
                   ) : null}
                 </div>
+
+                <span
+                  aria-hidden
+                  className="font-display mt-5 block text-[clamp(5.5rem,14vw,10rem)] leading-[0.7] text-[var(--nh-red)] md:mt-6"
+                >
+                  “
+                </span>
+
+                <blockquote className="font-detective -mt-6 max-w-2xl text-[clamp(1.2rem,2.5vw,1.7rem)] leading-[1.2] tracking-tighter text-[var(--nh-white)] md:-mt-10">
+                  {testimonial.quote}
+                </blockquote>
+
+                <span
+                  aria-hidden
+                  className="font-display mt-auto block pt-4 text-[clamp(5.5rem,14vw,10rem)] leading-[0.7] text-[var(--nh-red)] lg:self-end"
+                >
+                  ”
+                </span>
               </div>
             </motion.div>
           </AnimatePresence>

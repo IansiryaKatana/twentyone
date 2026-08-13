@@ -7,6 +7,7 @@ import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, Stagger, StaggerItem, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 
 function JournalCard({ post }: { post: JournalPost }) {
   return (
@@ -19,7 +20,7 @@ function JournalCard({ post }: { post: JournalPost }) {
         <motion.img
           src={post.image}
           alt={post.title}
-          className="aspect-[4/3] w-full object-cover"
+          className="aspect-video w-full object-cover"
           whileHover={{ scale: 1.04 }}
           transition={{ duration: 0.8, ease: EASE }}
         />
@@ -94,24 +95,12 @@ export function NhJournal() {
   return (
     <section className="bg-white py-20 text-[var(--nh-black)] md:py-28">
       <div className="w-full px-5 md:px-10">
-        <div className="mb-10 flex items-end justify-between gap-4 md:mb-14">
-          <Reveal className="max-w-xl">
-            <h2 className="font-display text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-[var(--nh-black)]">
-              {section.title}
-            </h2>
-            <p className="mt-4 text-sm leading-relaxed text-black/55 md:text-base">
+        <div className="relative mb-10 md:mb-14">
+          <Reveal className="mx-auto flex max-w-xl flex-col items-center text-center">
+            <NhSectionTitle title={section.title} />
+            <p className="mt-5 text-sm leading-relaxed text-black/55 md:text-[18px]">
               {section.description}
             </p>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <Link
-              to={section.ctaTo}
-              className="group inline-flex shrink-0 self-end items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
-            >
-              {section.cta}
-              <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
           </Reveal>
         </div>
 
@@ -172,6 +161,16 @@ export function NhJournal() {
             </StaggerItem>
           ))}
         </Stagger>
+
+        <Reveal delay={0.15} className="mt-10 flex justify-center md:mt-14">
+          <Link
+            to={section.ctaTo}
+            className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
+          >
+            {section.cta}
+            <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

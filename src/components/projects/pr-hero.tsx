@@ -19,7 +19,7 @@ function MaskedLine({
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <span ref={ref} className="block overflow-hidden pb-[0.12em]">
+    <span ref={ref} className="block overflow-hidden">
       <motion.span
         className={cn("block", className)}
         initial={{ y: "115%" }}
@@ -79,7 +79,7 @@ export function PrHero() {
           initial={reduced ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 0.85 }}
-          className="mx-auto mt-7 max-w-lg text-sm leading-relaxed text-white/70 md:mt-9 md:text-[15px]"
+          className="font-detective mx-auto mt-7 max-w-lg text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/70 md:mt-9"
         >
           {hero.description}
         </motion.p>

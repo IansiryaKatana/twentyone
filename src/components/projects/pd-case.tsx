@@ -1,7 +1,6 @@
-import { Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
 import type { Project } from "@/data/content";
+import { BrandButton } from "@/components/brand-button";
 import { EASE, LinesReveal, Reveal } from "@/components/anim";
 
 type PdCaseProps = {
@@ -189,15 +188,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
             <BodyCopy>{project.outcome}</BodyCopy>
           </Reveal>
           <Reveal delay={0.32} className="mt-10">
-            <Link
-              to="/contact"
-              className="group inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]"
-            >
-              Start a similar project
-              <span className="flex size-9 items-center justify-center rounded-md bg-[var(--nh-red)] text-white transition-transform duration-300 group-hover:translate-x-1">
-                <ArrowRight className="size-4" />
-              </span>
-            </Link>
+            <BrandButton to="/contact">Start a similar project</BrandButton>
           </Reveal>
         </div>
 

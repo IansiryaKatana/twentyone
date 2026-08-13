@@ -9,10 +9,12 @@ function WhyCard({ item, index }: { item: WhyUsItem; index: number }) {
       <p className="font-display text-[2.1rem] font-bold leading-none text-muted-ink md:text-[clamp(1.5rem,2.5vw,2rem)]">
         {n}
       </p>
-      <h3 className="font-detective mt-3 text-[clamp(1.4rem,2.56vw,1.48rem)] font-medium leading-[1.05] tracking-tighter text-ink normal-case md:text-[clamp(1.75rem,3.2vw,1.85rem)]">
+      <h3 className="font-display mt-3 text-[clamp(1.75rem,3.2vw,1.85rem)] font-medium leading-[0.92] text-ink md:text-[clamp(2.19rem,4vw,2.31rem)]">
         {item.title}
       </h3>
-      <p className="mt-4 text-sm leading-relaxed text-muted-ink">{item.body}</p>
+      <p className="font-detective mt-4 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-muted-ink">
+        {item.body}
+      </p>
     </article>
   );
 }
@@ -27,7 +29,7 @@ export function AboutWhySection() {
     <section className="bg-cream-2 py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
         <Reveal>
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[1.04] text-ink">
+          <h2 className="font-display text-center text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-ink">
             {title}
           </h2>
         </Reveal>

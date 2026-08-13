@@ -243,6 +243,22 @@
   }
 }
 
+/*
+  Pointed hex CTAs — left/right chevron tips, no border-radius.
+  Inset stays in px so the points stay the same size on short and wide buttons.
+*/
+.btn-cut {
+  --btn-cut: 12px;
+  clip-path: polygon(
+    var(--btn-cut) 0,
+    calc(100% - var(--btn-cut)) 0,
+    100% 50%,
+    calc(100% - var(--btn-cut)) 100%,
+    var(--btn-cut) 100%,
+    0 50%
+  );
+}
+
 /* -------------------------------------------------------------------------- */
 /*  /new-home reference page — scoped black / white / red palette             */
 /* -------------------------------------------------------------------------- */

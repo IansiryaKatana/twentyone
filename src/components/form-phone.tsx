@@ -139,7 +139,7 @@ export function FormPhone({
       <span
         className={cn(
           "text-xs uppercase tracking-[0.25em]",
-          dark ? "text-[11px] text-white/70" : "text-ink/65"
+          dark ? "text-[11px] text-white/70" : "text-black"
         )}
       >
         {label}
@@ -160,7 +160,7 @@ export function FormPhone({
               : "border-white/25"
             : focused || open
               ? "border-ink"
-              : "border-line"
+              : "border-black/25"
         )}
       >
         <button
@@ -171,7 +171,7 @@ export function FormPhone({
           onClick={() => setOpen((v) => !v)}
           className={cn(
             "flex shrink-0 items-center gap-2 py-3 pr-3 text-sm outline-none",
-            dark ? "text-white" : "text-ink"
+            dark ? "text-white" : "text-black"
           )}
         >
           <CountryFlag code={country.code} />
@@ -186,7 +186,7 @@ export function FormPhone({
           <ChevronDown
             className={cn(
               "size-3.5 transition-transform duration-300",
-              dark ? "text-white/70" : "text-ink/55",
+              dark ? "text-white/70" : "text-black",
               open && "rotate-180",
               open && (dark ? "text-[var(--nh-red)]" : "text-crimson")
             )}
@@ -209,7 +209,7 @@ export function FormPhone({
             "min-w-0 flex-1 border-0 bg-transparent py-3 text-sm outline-none",
             dark
               ? "text-white placeholder:text-white/55"
-              : "text-ink placeholder:text-ink/45"
+              : "text-black placeholder:text-black"
           )}
         />
       </div>
@@ -251,7 +251,7 @@ export function FormPhone({
                           : "bg-crimson text-white"
                         : dark
                           ? "text-white/70 hover:bg-white/[0.06] hover:text-white"
-                          : "text-ink/70 hover:bg-cream-2 hover:text-ink"
+                          : "text-black hover:bg-cream-2"
                     )}
                   >
                     <CountryFlag code={item.code} />

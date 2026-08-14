@@ -233,7 +233,7 @@ marketingInsert("contact", "Contact", {
 const settings: Record<string, unknown> = {
   brand: {
     name: "Twentyone06",
-    primary: "#e01e26",
+    primary: "#cc0001",
     surface: "#111111",
     background: "#f7f5f2",
     ink: "#1a1a1a",
@@ -265,7 +265,7 @@ const settings: Record<string, unknown> = {
     legal: footer.legal,
   },
   admin_theme: {
-    primary: "#e01e26",
+    primary: "#cc0001",
     surface: "#111111",
     radiusLg: "12px",
   },

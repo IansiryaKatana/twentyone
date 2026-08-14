@@ -6,6 +6,7 @@ import { aboutPage, type TeamMember } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
 
 function SocialBadge({
@@ -168,70 +169,83 @@ export function AboutTeamSection() {
         <div className="flex flex-col items-center gap-6 text-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-muted-ink">{eyebrow}</p>
-            <h2 className="mt-3 font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-ink">
-              {title}
-            </h2>
+            <div className="mt-3 flex justify-center">
+              <NhSectionTitle title={title} />
+            </div>
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>
           </Reveal>
-
-          {maxIndex > 0 ? (
-            <Reveal delay={0.1} className="hidden shrink-0 items-center gap-2 md:flex">
-              <button
-                type="button"
-                onClick={prev}
-                disabled={index === 0}
-                aria-label="Previous team members"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                  index === 0
-                    ? "cursor-not-allowed opacity-30"
-                    : "hover:border-crimson hover:bg-crimson hover:text-white",
-                )}
-              >
-                <ArrowLeft className="size-3.5" />
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                disabled={index >= maxIndex}
-                aria-label="Next team members"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                  index >= maxIndex
-                    ? "cursor-not-allowed opacity-30"
-                    : "hover:border-crimson hover:bg-crimson hover:text-white",
-                )}
-              >
-                <ArrowRight className="size-3.5" />
-              </button>
-            </Reveal>
-          ) : null}
         </div>
 
-        <div className="relative mt-12 md:mt-16">
-          <div className="overflow-hidden">
-            <motion.div
-              ref={trackRef}
-              className="flex touch-pan-y gap-4 md:gap-6"
-              animate={{ x: reduced ? 0 : -(index * step) }}
-              transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
-              {...swipe}
-            >
-              {teamMembers.map((member) => (
-                <div
-                  key={`${member.name}-${member.title}`}
-                  className="shrink-0"
-                  style={{
-                    width:
-                      perView === 1
-                        ? "100%"
-                        : `calc((100% - ${(perView - 1) * gapRem}rem) / ${perView})`,
-                  }}
+        <div className="mt-12 md:mt-16">
+          <div className="flex items-center gap-3 md:gap-5">
+            {maxIndex > 0 ? (
+              <Reveal
+                delay={0.1}
+                className="hidden shrink-0 md:block"
+              >
+                <button
+                  type="button"
+                  onClick={prev}
+                  disabled={index === 0}
+                  aria-label="Previous team members"
+                  className={cn(
+                    "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
+                    index === 0
+                      ? "cursor-not-allowed opacity-30"
+                      : "hover:border-crimson hover:bg-crimson hover:text-white",
+                  )}
                 >
-                  <TeamCard member={member} />
-                </div>
-              ))}
-            </motion.div>
+                  <ArrowLeft className="size-3.5" />
+                </button>
+              </Reveal>
+            ) : null}
+
+            <div className="min-w-0 flex-1 overflow-hidden">
+              <motion.div
+                ref={trackRef}
+                className="flex touch-pan-y gap-4 md:gap-6"
+                animate={{ x: reduced ? 0 : -(index * step) }}
+                transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
+                {...swipe}
+              >
+                {teamMembers.map((member) => (
+                  <div
+                    key={`${member.name}-${member.title}`}
+                    className="shrink-0"
+                    style={{
+                      width:
+                        perView === 1
+                          ? "100%"
+                          : `calc((100% - ${(perView - 1) * gapRem}rem) / ${perView})`,
+                    }}
+                  >
+                    <TeamCard member={member} />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {maxIndex > 0 ? (
+              <Reveal
+                delay={0.1}
+                className="hidden shrink-0 md:block"
+              >
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={index >= maxIndex}
+                  aria-label="Next team members"
+                  className={cn(
+                    "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
+                    index >= maxIndex
+                      ? "cursor-not-allowed opacity-30"
+                      : "hover:border-crimson hover:bg-crimson hover:text-white",
+                  )}
+                >
+                  <ArrowRight className="size-3.5" />
+                </button>
+              </Reveal>
+            ) : null}
           </div>
 
           {pageCount > 1 ? (

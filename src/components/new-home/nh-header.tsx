@@ -31,29 +31,11 @@ export function NhHeader({
   variant?: "overlay" | "solid";
 }) {
   const [open, setOpen] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false);
   const [elevated, setElevated] = React.useState(false);
-  const lastY = React.useRef(0);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   React.useEffect(() => {
-    lastY.current = window.scrollY;
-
-    const update = () => {
-      const y = window.scrollY;
-      const delta = y - lastY.current;
-
-      if (y <= 24) {
-        setHidden(false);
-        setElevated(false);
-      } else {
-        setElevated(true);
-        if (delta > 6) setHidden(true);
-        else if (delta < -6) setHidden(false);
-      }
-
-      lastY.current = y;
-    };
+    const update = () => setElevated(window.scrollY > 24);
 
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -87,10 +69,7 @@ export function NhHeader({
     <>
       <motion.header
         initial={{ y: -28, opacity: 0 }}
-        animate={{
-          y: hidden && !open ? "-100%" : 0,
-          opacity: 1,
-        }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.45, ease: EASE }}
         className={cn(
           "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color] duration-500",
@@ -109,7 +88,7 @@ export function NhHeader({
           </Link>
 
           <nav aria-label="Primary navigation" className="hidden lg:block">
-            <ul className="flex items-center gap-7 xl:gap-9">
+            <ul className="flex items-center gap-5 xl:gap-7">
               {primaryLinks.map((link) => {
                 const active = pathIsActive(pathname, link.to);
                 return (
@@ -118,7 +97,7 @@ export function NhHeader({
                       to={link.to}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative text-[18px] uppercase tracking-[0.24em] transition-colors after:absolute after:-bottom-2 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
+                        "font-display relative text-[32px] uppercase transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
                         active ? "after:w-full font-bold" : "after:w-0 font-medium hover:after:w-full",
                         active
                           ? "text-[var(--nh-red)]"

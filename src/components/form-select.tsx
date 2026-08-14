@@ -43,7 +43,7 @@ export function FormSelect({
         <span
           className={cn(
             "text-xs uppercase tracking-[0.25em]",
-            dark ? "text-[11px] text-white/70" : "text-ink/65"
+            dark ? "text-[11px] text-white/70" : "text-black"
           )}
         >
           {label}
@@ -86,7 +86,7 @@ export function FormSelect({
           "group flex w-full items-center justify-between border-b py-3 text-left text-sm outline-none transition-colors",
           dark
             ? "border-white/25 text-white hover:border-white/50 focus-visible:border-[var(--nh-red)]"
-            : "border-line text-ink hover:border-ink/50 focus-visible:border-ink",
+            : "border-black/25 text-black hover:border-black/50 focus-visible:border-black",
           label && "mt-2"
         )}
       >
@@ -95,10 +95,10 @@ export function FormSelect({
             value
               ? dark
                 ? "text-white"
-                : "text-ink"
+                : "text-black"
               : dark
                 ? "text-white/55"
-                : "text-ink/45"
+                : "text-black"
           )}
         >
           {value || placeholder}
@@ -106,7 +106,7 @@ export function FormSelect({
         <ChevronDown
           className={cn(
             "size-4 shrink-0 transition-transform duration-300",
-            dark ? "text-white/70" : "text-ink/55",
+            dark ? "text-white/70" : "text-black",
             open && (dark ? "rotate-180 text-[var(--nh-red)]" : "rotate-180 text-crimson")
           )}
         />
@@ -148,7 +148,7 @@ export function FormSelect({
                           : "bg-crimson text-white"
                         : dark
                           ? "text-white/70 hover:bg-white/8 hover:text-white"
-                          : "text-ink/70 hover:bg-cream-2 hover:text-ink"
+                          : "text-black hover:bg-cream-2"
                     )}
                   >
                     {option}

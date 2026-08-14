@@ -21,13 +21,18 @@ function ServiceCta({ section }: { section: Section }) {
     );
   }
 
-  const search =
-    "ctaSearch" in section && section.ctaSearch
-      ? section.ctaSearch
-      : undefined;
+  const service =
+    "ctaSearch" in section && section.ctaSearch?.service
+      ? section.ctaSearch.service
+      : section.id;
 
   return (
-    <BrandButton to="/projects" search={search} variant="black">
+    <BrandButton
+      to="/projects"
+      search={{ service }}
+      hash="work"
+      variant="black"
+    >
       {section.cta}
     </BrandButton>
   );
@@ -58,10 +63,11 @@ function ServicesHero() {
           <LinesReveal
             as="h1"
             lines={[...servicesPage.title]}
-            className="font-display max-w-3xl text-[clamp(2.75rem,7vw,5.75rem)] font-semibold leading-[1.04] text-white"
+            lineClassName="whitespace-nowrap"
+            className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]"
           />
           <Reveal delay={0.2} className="mt-6 max-w-xl">
-            <p className="text-sm leading-relaxed text-white/75 md:text-base">
+            <p className="font-detective text-sm leading-relaxed text-white/75 md:text-base">
               {servicesPage.description}
             </p>
           </Reveal>
@@ -69,17 +75,14 @@ function ServicesHero() {
 
         <nav
           aria-label="Services"
-          className="flex flex-col gap-1 border-t border-white/20 pt-6 md:col-span-5 md:border-t-0 md:border-l md:pl-8 md:pt-0 lg:col-span-4 lg:pl-10"
+          className="flex flex-col border-t border-white/20 pt-6 md:col-span-5 md:border-t-0 md:border-l md:pl-8 md:pt-0 lg:col-span-4 lg:pl-10"
         >
           {servicesPage.sections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="group flex items-baseline gap-4 py-3 text-white transition-colors hover:text-[var(--nh-red)] md:py-3.5"
+              className="group py-1 text-white transition-colors hover:text-[var(--nh-red)] md:py-1.5"
             >
-              <span className="text-[11px] tabular-nums tracking-[0.18em] text-white/45 group-hover:text-[var(--nh-red)]">
-                {section.index}
-              </span>
               <span className="font-display text-[clamp(1.35rem,2.6vw,2.35rem)] font-semibold uppercase leading-[1.02]">
                 {section.tabLabel}
                 <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />

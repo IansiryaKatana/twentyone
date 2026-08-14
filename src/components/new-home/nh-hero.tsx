@@ -59,7 +59,7 @@ export function NhHero() {
       </div>
 
       <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-5 text-center md:px-10">
-        <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] xl:text-[clamp(5.1rem,8.64vw,8.7rem)]">
+        <h1 className="font-display nh-hero-title w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
           {hero.titleLines.map((line, i) => (
             <MaskedLine key={i} delay={reduced ? 0 : 0.5 + i * 0.12} className="whitespace-nowrap">
               {line.before}

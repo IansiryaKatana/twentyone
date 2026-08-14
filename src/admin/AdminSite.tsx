@@ -65,7 +65,7 @@ const SETTING_KEYS = [
 
 const DEFAULT_BRAND: BrandSettings = {
   name: "Twentyone06",
-  primary: "#e01e26",
+  primary: "#cc0001",
   surface: "#111111",
   background: "#f7f5f2",
   ink: "#1a1a1a",
@@ -224,7 +224,7 @@ function ColorField({
           value={value}
           onChange={(e) => onChange(e.target.value)}
           disabled={disabled}
-          placeholder="#e01e26"
+          placeholder="#cc0001"
         />
       </div>
     </div>
@@ -363,7 +363,7 @@ export function AdminSite() {
     await refetch();
 
     if (typeof document !== "undefined") {
-      document.documentElement.style.setProperty("--admin-primary", brand.primary || "#e01e26");
+      document.documentElement.style.setProperty("--admin-primary", brand.primary || "#cc0001");
     }
   };
 

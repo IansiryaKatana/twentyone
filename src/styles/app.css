@@ -44,7 +44,7 @@
   /* New-home / sitewide dark UI tokens */
   --nh-black: #000000;
   --nh-white: #ffffff;
-  --nh-red: #e01e26;
+  --nh-red: #cc0001;
   --nh-gray: #f2f2f2;
   --nh-muted: #8a8a8a;
   --nh-panel: #141414;
@@ -280,6 +280,11 @@
   .font-display {
     letter-spacing: 0.02em !important;
     word-spacing: 0.04em !important;
+  }
+
+  /* Giant hero lines — extra word-spacing reads as gaps at this size */
+  .font-display.nh-hero-title {
+    word-spacing: 0 !important;
   }
 
   .font-display.leading-none,

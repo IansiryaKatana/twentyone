@@ -13,7 +13,7 @@ import { EASE } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
 const lightInput =
-  "w-full border-0 border-b border-line bg-transparent py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink/45 focus:border-ink";
+  "w-full border-0 border-b border-black/25 bg-transparent py-3 text-sm text-black outline-none transition-colors placeholder:text-black focus:border-black";
 
 const darkInput =
   "w-full border-0 border-b border-white/35 bg-transparent py-3 text-sm text-white outline-none transition-colors placeholder:text-white/55 focus:border-[var(--nh-red)]";
@@ -144,7 +144,7 @@ export function InquiryForm({
             <span
               className={cn(
                 "text-xs uppercase tracking-[0.25em]",
-                dark ? "text-white/70" : "text-ink/65"
+                dark ? "text-white/70" : "text-black"
               )}
             >
               {field.label}
@@ -206,7 +206,7 @@ export function InquiryForm({
           <span
             className={cn(
               "text-xs uppercase tracking-[0.25em]",
-              dark ? "text-white/70" : "text-ink/65"
+              dark ? "text-white/70" : "text-black"
             )}
           >
             {field.label}
@@ -233,7 +233,7 @@ export function InquiryForm({
           <p
             className={cn(
               "text-xs leading-relaxed",
-              dark ? "text-white/65" : "text-ink/55"
+              dark ? "text-white/65" : "text-black"
             )}
           >
             {contactPage.form.note}
@@ -245,7 +245,7 @@ export function InquiryForm({
             <p
               className={cn(
                 "max-w-sm text-xs leading-relaxed",
-                dark ? "text-white/65" : "text-ink/55"
+                dark ? "text-white/65" : "text-black"
               )}
             >
               {contactPage.form.note}

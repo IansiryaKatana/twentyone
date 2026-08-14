@@ -18,7 +18,7 @@ function SectionEyebrow({ children }: { children: string }) {
 
 function BodyCopy({ children }: { children: string }) {
   return (
-    <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/70 md:text-[15px]">
+    <p className="font-detective mt-5 max-w-xl text-sm leading-relaxed text-white/70 md:text-[15px]">
       {children}
     </p>
   );
@@ -160,7 +160,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
               {project.body.map((para) => (
                 <p
                   key={para}
-                  className="max-w-2xl text-sm leading-relaxed text-white/70 md:text-[15px]"
+                  className="font-detective max-w-2xl text-sm leading-relaxed text-white/70 md:text-[15px]"
                 >
                   {para}
                 </p>

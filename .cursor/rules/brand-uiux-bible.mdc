@@ -18,7 +18,7 @@ Reference implementation: `/new-home` (`src/components/new-home/*`).
 ## Dual palettes — pick one surface language per section
 
 **Cream (warm interior pages):** `--cream`, `--espresso`, `--crimson`, `--ink`, `--sand`.
-**Dark editorial (new-home / high-impact):** `--nh-black`, `--nh-white`, `--nh-red` (`#e01e26`), `--nh-gray`, `--nh-muted`.
+**Dark editorial (new-home / high-impact):** `--nh-black`, `--nh-white`, `--nh-red` (`#cc0001`), `--nh-gray`, `--nh-muted`.
 
 Use CSS variables — never invent new brand hexes. Red/crimson is accent only (CTA, emphasis line), not large fills except intentional CTA blocks.
 

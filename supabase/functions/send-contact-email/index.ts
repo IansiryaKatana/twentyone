@@ -14,7 +14,7 @@ type Body = {
 
 const BRAND = {
   black: "#0a0a0a",
-  red: "#e01e26",
+  red: "#cc0001",
   white: "#ffffff",
   muted: "#b8b8b8",
   panel: "#141414",

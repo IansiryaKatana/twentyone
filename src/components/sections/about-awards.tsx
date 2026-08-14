@@ -4,6 +4,7 @@ import { aboutPage, type Award, type AwardStatus } from "@/data/content";
 import { BrandButton } from "@/components/brand-button";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 
 const PAGE_SIZE = 6;
 
@@ -91,9 +92,7 @@ export function AboutAwardsSection() {
     <section id="awards" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
       <div className="px-5 md:px-[7vw]">
         <Reveal className="text-center">
-          <h2 className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-white">
-            {title}
-          </h2>
+          <NhSectionTitle title={title} tone="dark" />
           <p className="font-detective mx-auto mt-4 max-w-2xl text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-white/75">
             {description}
           </p>

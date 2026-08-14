@@ -21,6 +21,7 @@ type BrandButtonProps = {
   to?: string;
   href?: string;
   search?: object;
+  hash?: string;
   type?: "button" | "submit";
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -65,6 +66,7 @@ export function BrandButton({
   to,
   href,
   search,
+  hash,
   type = "button",
   disabled,
   onClick,
@@ -105,6 +107,7 @@ export function BrandButton({
       <Link
         to={to as "/"}
         {...(search ? { search: search as never } : {})}
+        {...(hash ? { hash } : {})}
         className={classes}
       >
         {inner}

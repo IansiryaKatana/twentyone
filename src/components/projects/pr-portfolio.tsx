@@ -9,6 +9,7 @@ import {
 } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
 
 const SERVICE_FROM_URL: Record<string, string> = {
@@ -235,16 +236,31 @@ export function PrProjectGrid({
   const { projects } = useCmsContent();
   const filtersId = `${idPrefix}-project-filters`;
 
+  const serviceFromUrl =
+    initialService && SERVICE_FROM_URL[initialService]
+      ? SERVICE_FROM_URL[initialService]
+      : "All";
+
   const [filters, setFilters] = React.useState<FilterState>(() => ({
-    service:
-      initialService && SERVICE_FROM_URL[initialService]
-        ? SERVICE_FROM_URL[initialService]
-        : "All",
+    service: serviceFromUrl,
     sector: "All",
     year: "All",
     location: "All",
   }));
-  const [filtersExpanded, setFiltersExpanded] = React.useState(false);
+  const [filtersExpanded, setFiltersExpanded] = React.useState(
+    () => serviceFromUrl !== "All",
+  );
+
+  React.useEffect(() => {
+    const next =
+      initialService && SERVICE_FROM_URL[initialService]
+        ? SERVICE_FROM_URL[initialService]
+        : "All";
+    setFilters((prev) =>
+      prev.service === next ? prev : { ...prev, service: next },
+    );
+    if (next !== "All") setFiltersExpanded(true);
+  }, [initialService]);
 
   const setFilter = (key: FilterKey, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
@@ -349,15 +365,35 @@ export function PrPortfolio() {
   const { portfolio } = projectsPage;
   const { service: serviceParam } = useSearch({ from: "/projects/" });
 
+  React.useEffect(() => {
+    if (!serviceParam) return;
+
+    let cancelled = false;
+    const scrollToWork = () => {
+      if (cancelled) return;
+      document.getElementById("work")?.scrollIntoView({
+        behavior: "instant",
+        block: "start",
+      });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToWork);
+    const retry = window.setTimeout(scrollToWork, 80);
+
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(retry);
+    };
+  }, [serviceParam]);
+
   return (
-    <section className="relative bg-[var(--nh-black)] px-5 pb-24 pt-6 md:px-10 md:pb-32 lg:px-[7vw]">
-      <Reveal>
-        <p className="text-xs uppercase tracking-[0.35em] text-[var(--nh-red)]">
-          {portfolio.eyebrow}
-        </p>
-        <h2 className="font-display mt-3 text-[clamp(2.5rem,6.5vw,5.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
-          {portfolio.title}
-        </h2>
+    <section
+      id="work"
+      className="relative scroll-mt-24 bg-[var(--nh-black)] px-5 pb-24 pt-6 md:px-10 md:pb-32 lg:px-[7vw]"
+    >
+      <Reveal className="mb-8 flex justify-center md:mb-10">
+        <NhSectionTitle title={portfolio.title} tone="dark" />
       </Reveal>
 
       <PrProjectGrid initialService={serviceParam} />

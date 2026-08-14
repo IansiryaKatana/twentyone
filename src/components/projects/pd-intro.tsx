@@ -83,7 +83,7 @@ export function PdIntro({ project }: { project: Project }) {
           </div>
 
           <Reveal delay={0.28} className="mx-auto mt-7 max-w-xl md:mt-9">
-            <p className="text-sm leading-relaxed text-white/70 md:text-[15px]">
+            <p className="font-detective text-sm leading-relaxed text-white/70 md:text-[15px]">
               {project.excerpt}
             </p>
           </Reveal>

@@ -24,7 +24,7 @@ export function ContactPage() {
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-12 md:px-10 lg:gap-16">
           <div className="md:col-span-7">
             <Reveal>
-              <p className="mb-8 hidden max-w-lg text-sm leading-relaxed text-muted-ink md:block">
+              <p className="mb-8 hidden max-w-lg text-sm leading-relaxed text-black md:block">
                 {contactPage.body}
               </p>
               <InquiryForm submitFullWidth />
@@ -38,10 +38,10 @@ export function ContactPage() {
             >
               {contactPage.details.map((block) => (
                 <StaggerItem key={block.label}>
-                  <p className="text-xs uppercase tracking-[0.25em] text-muted-ink">
+                  <p className="text-xs uppercase tracking-[0.25em] text-black">
                     {block.label}
                   </p>
-                  <div className="mt-2 space-y-0.5 text-sm text-ink">
+                  <div className="mt-2 space-y-0.5 text-sm text-black">
                     {block.lines.map((line) =>
                       "href" in block && block.href ? (
                         <a
@@ -60,6 +60,22 @@ export function ContactPage() {
               ))}
             </Stagger>
           </div>
+        </div>
+      </section>
+
+      <section
+        aria-label={contactPage.map.title}
+        className="relative w-full overflow-hidden bg-[var(--nh-gray)]"
+      >
+        <div className="relative h-[min(70vw,720px)] min-h-[320px] w-full md:h-[720px]">
+          <iframe
+            title={contactPage.map.title}
+            src={contactPage.map.embedUrl}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="absolute inset-0 h-full w-full border-0"
+            allowFullScreen
+          />
         </div>
       </section>
     </PageShell>

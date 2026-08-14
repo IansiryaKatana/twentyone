@@ -232,7 +232,7 @@ export function NhPhilosophy() {
             <AccentBody
               body={philosophy.body}
               accent={accent}
-              className="font-detective text-[12.5px] leading-[1.65] text-white/88 xl:text-[13.5px]"
+              className="font-detective text-[12.5px] leading-[1.65] text-white/88 xl:text-[15.5px]"
             />
           </Reveal>
         </div>

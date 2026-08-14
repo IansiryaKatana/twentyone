@@ -1,8 +1,10 @@
 import { motion } from "motion/react";
 import { aboutPage } from "@/data/content";
 import ceoPortrait from "@/Assets/ceo-twentyone06.webp";
+import readyToWorkBg from "@/Assets/ready-to-work-together.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero, PillCta } from "@/components/page-hero";
+import { BrandButton } from "@/components/brand-button";
 import { Partners } from "@/components/sections/partners";
 import { AboutTeamSection } from "@/components/sections/about-team";
 import { AboutWhySection } from "@/components/sections/about-why";
@@ -18,7 +20,7 @@ import {
 } from "@/components/anim";
 
 export function AboutPage() {
-  const { milestones } = aboutPage;
+  const { milestones, workTogether } = aboutPage;
   const { sectionBackgrounds, teamMembers } = useCmsContent();
   const bg = sectionBackgrounds.about;
   const founderImage =
@@ -30,7 +32,6 @@ export function AboutPage() {
       <PageHero
         eyebrow={aboutPage.eyebrow}
         title={[...aboutPage.title]}
-        description={aboutPage.description}
         image={bg.desktop}
         imageTablet={bg.tablet}
         imageMobile={bg.mobile}
@@ -122,6 +123,28 @@ export function AboutPage() {
               </Stagger>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      <section className="relative flex min-h-[70svh] items-center justify-center overflow-hidden bg-[var(--nh-black)] py-20 md:min-h-[826px] md:py-24">
+        <img
+          src={readyToWorkBg}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/55" aria-hidden />
+        <div className="relative z-10 flex flex-col items-center gap-6 px-5 text-center md:gap-7 md:px-[7vw]">
+          <LinesReveal
+            as="h2"
+            lines={[...workTogether.title]}
+            className="font-display text-[clamp(2.75rem,8vw,8rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
+          />
+          <Reveal delay={0.2}>
+            <BrandButton to={workTogether.ctaTo} variant="red">
+              {workTogether.cta}
+            </BrandButton>
+          </Reveal>
         </div>
       </section>
 

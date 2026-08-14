@@ -53,7 +53,7 @@ export function PrHero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/30" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl px-5 text-center md:px-10">
+      <div className="relative z-10 flex w-full flex-col items-center justify-center px-5 text-center md:px-10">
         <motion.p
           initial={reduced ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,12 +63,15 @@ export function PrHero() {
           {hero.eyebrow}
         </motion.p>
 
-        <h1 className="font-display text-[clamp(2.75rem,9vw,7.5rem)] font-medium leading-[1.02] text-[var(--nh-white)]">
+        <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
           {hero.titleLines.map((line, i) => (
             <MaskedLine
               key={line.text}
               delay={reduced ? 0 : 0.35 + i * 0.12}
-              className={line.accent ? "text-[var(--nh-red)]" : undefined}
+              className={cn(
+                "whitespace-nowrap",
+                line.accent && "text-[var(--nh-red)]",
+              )}
             >
               {line.text}
             </MaskedLine>

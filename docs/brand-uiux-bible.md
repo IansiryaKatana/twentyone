@@ -29,7 +29,7 @@ Two complementary languages. Pick one per section; don’t muddy them mid-block.
 |-------|-----|-----|
 | `--nh-black` | `#000000` | Background / footer |
 | `--nh-white` | `#ffffff` | Text on dark |
-| `--nh-red` | `#e01e26` | Accent, CTA, emphasis line |
+| `--nh-red` | `#cc0001` | Accent, CTA, emphasis line |
 | `--nh-gray` | `#f2f2f2` | Light band on dark pages |
 | `--nh-muted` | `#8a8a8a` | Secondary copy |
 | `--nh-panel` | `#141414` | Panels |

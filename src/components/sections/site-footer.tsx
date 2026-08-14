@@ -194,7 +194,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                     name="email"
                     required
                     placeholder={footer.newsletter.emailPlaceholder}
-                    className="w-full border-0 border-b border-white/35 bg-transparent py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/55 focus:border-[var(--nh-red,#e01e26)]"
+                    className="w-full border-0 border-b border-white/35 bg-transparent py-2.5 text-sm text-white outline-none transition-colors placeholder:text-white/55 focus:border-[var(--nh-red,#cc0001)]"
                   />
                 </label>
                 <BrandButton

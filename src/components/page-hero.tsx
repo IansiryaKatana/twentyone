@@ -1,11 +1,18 @@
 import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
 import { LinesReveal, Reveal } from "@/components/anim";
 import { BrandButton } from "@/components/brand-button";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { cn } from "@/lib/utils";
 
+export type PageHeroCrumb = {
+  label: string;
+  to?: string;
+};
+
 export function PageHero({
   eyebrow,
+  breadcrumb,
   title,
   description,
   image,
@@ -14,7 +21,8 @@ export function PageHero({
   className,
   titleClassName,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
+  breadcrumb?: PageHeroCrumb[];
   title: string[];
   description?: string;
   /** Optional full-bleed background — desktop (and fallback). */
@@ -54,26 +62,71 @@ export function PageHero({
       ) : null}
 
       <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 text-center md:px-10">
-        <p
-          className={cn(
-            "mb-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.35em]",
-            hasImage ? "text-white/65" : "text-muted-ink"
-          )}
-        >
-          <span
+        {breadcrumb?.length ? (
+          <nav aria-label="Breadcrumb" className="mb-5">
+            <ol
+              className={cn(
+                "flex items-center justify-center gap-2 text-xs uppercase tracking-[0.22em]",
+                hasImage ? "text-white/65" : "text-muted-ink"
+              )}
+            >
+              {breadcrumb.map((crumb, i) => {
+                const isLast = i === breadcrumb.length - 1;
+                return (
+                  <li key={`${crumb.label}-${i}`} className="flex items-center gap-2">
+                    {i > 0 ? (
+                      <span
+                        aria-hidden
+                        className={hasImage ? "text-white/35" : "text-ink/30"}
+                      >
+                        /
+                      </span>
+                    ) : null}
+                    {crumb.to && !isLast ? (
+                      <Link
+                        to={crumb.to}
+                        className={cn(
+                          "transition-colors",
+                          hasImage ? "hover:text-white" : "hover:text-ink"
+                        )}
+                      >
+                        {crumb.label}
+                      </Link>
+                    ) : (
+                      <span
+                        className={hasImage ? "text-white" : "text-ink"}
+                        aria-current={isLast ? "page" : undefined}
+                      >
+                        {crumb.label}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </nav>
+        ) : eyebrow ? (
+          <p
             className={cn(
-              "h-px w-10",
-              hasImage ? "bg-white/35" : "bg-ink/25"
+              "mb-5 flex items-center justify-center gap-3 text-xs uppercase tracking-[0.35em]",
+              hasImage ? "text-white/65" : "text-muted-ink"
             )}
-          />
-          {eyebrow}
-          <span
-            className={cn(
-              "h-px w-10",
-              hasImage ? "bg-white/35" : "bg-ink/25"
-            )}
-          />
-        </p>
+          >
+            <span
+              className={cn(
+                "h-px w-10",
+                hasImage ? "bg-white/35" : "bg-ink/25"
+              )}
+            />
+            {eyebrow}
+            <span
+              className={cn(
+                "h-px w-10",
+                hasImage ? "bg-white/35" : "bg-ink/25"
+              )}
+            />
+          </p>
+        ) : null}
         <LinesReveal
           as="h1"
           lines={title}

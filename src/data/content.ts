@@ -777,6 +777,13 @@ export const contactPage = {
     "We design spaces for people. Let's start with yours.",
   body:
     "You've seen what we do. Now let's talk about what we can do for you. Whether you have a finished brief or just an idea. Share it with us and we'll take it from there.",
+  map: {
+    title: "TwentyOne06 — Interior Design & Branding",
+    embedUrl:
+      "https://maps.google.com/maps?q=TwentyOne06%20-%20Interior%20Design%20%26%20Branding&t=m&z=16&output=embed&iwloc=near",
+    linkUrl:
+      "https://www.google.com/maps/place/TwentyOne06/@25.113307,55.202634,16z/data=!4m6!3m5!1s0x65e0eb0b9615dd27:0xb05789dd21b237ae!8m2!3d25.1133073!4d55.2026337!16s%2Fg%2F11vjmqd6tl",
+  },
   image: pexels(1571460, 1400),
   /** Shared with the Services page — both submit as form_name "contact". */
   form: {
@@ -1241,9 +1248,7 @@ export function getRelatedProjects(slug: string, limit = 3): Project[] {
 
 export const aboutPage = {
   eyebrow: "The Studio",
-  title: ["A Practice Of", "Quiet Luxury"],
-  description:
-    "Twentyone06 is an interior design studio crafting timeless spaces with elegance, precision, and a deep respect for how people live.",
+  title: ["About Us"],
   seo: {
     title:
       "About TwentyOne06 — Full-Service Interior Design Firm, Dubai",
@@ -1285,6 +1290,11 @@ export const aboutPage = {
       { value: 60, suffix: "+", label: "Clients Served" },
       { value: 38, suffix: "+", label: "Award Nominations" },
     ],
+  },
+  workTogether: {
+    title: ["Ready to Work", "Together?"],
+    cta: "Contact Us",
+    ctaTo: "/contact" as const,
   },
   awardsSection: {
     title: "Awards & Recognition",
@@ -1419,9 +1429,11 @@ export type JournalPost = {
 
 export const journalPage = {
   eyebrow: "Our Blogs",
-  title: ["Notes On Space,", "Material & Living"],
-  description:
-    "Essays and studio notes on modern elegance, sustainable craft, and the details that make a home endure.",
+  title: ["Blogs"],
+  breadcrumb: [
+    { label: "Home", to: "/" as const },
+    { label: "Blogs" },
+  ],
 };
 
 export const journalPosts: JournalPost[] = scrapedJournalPosts;
@@ -1502,9 +1514,9 @@ export const newHome = {
     ],
   },
   philosophy: {
-    eyebrow: "The Twentyone06 Philosophy:",
-    title: ["Designers With", "Teeth"],
-    body: "Anyone can make a pretty space. We make designs that grab you. Designs that make people stop scrolling, start talking, stay longer, come back. Because in hospitality, the experience is the brand. And we don't do “nice.” We do impactful, intentional, emotional, and bold. With story, with strategy, and with service at our core.",
+    eyebrow: "The Twentyone06 Philosophy",
+    title: ["We Design For", "People."],
+    body: "Every space we design starts with a question: what does this need to do for the people using it? Not aesthetically. Commercially. Experientially. Operationally. In hospitality, F&B, and retail, the design is not decoration. It is the reason guests stay longer, come back, and bring others. We design with that understanding at the centre of every brief — bold where it counts, precise where it matters, and always in service of the people the space is built for.",
     /** Word in `body` rendered in brand red on desktop. */
     bodyAccent: "is",
     cta: about.cta,

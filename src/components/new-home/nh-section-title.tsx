@@ -4,6 +4,8 @@ type NhSectionTitleProps = {
   title: string;
   /** `light` = black display on cream/gray; `dark` = white display on black */
   tone?: "light" | "dark";
+  /** Detective overlay color — default brand red */
+  accent?: "red" | "white" | "black";
   className?: string;
 };
 
@@ -14,6 +16,7 @@ type NhSectionTitleProps = {
 export function NhSectionTitle({
   title,
   tone = "light",
+  accent = "red",
   className,
 }: NhSectionTitleProps) {
   return (
@@ -25,7 +28,7 @@ export function NhSectionTitle({
     >
       <span
         className={cn(
-          "font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium uppercase leading-[0.92]",
+          "font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium uppercase leading-[0.92] lg:text-[clamp(3.25rem,7.8vw,7.15rem)]",
           tone === "dark" ? "text-[var(--nh-white)]" : "text-[var(--nh-black)]",
         )}
       >
@@ -33,7 +36,12 @@ export function NhSectionTitle({
       </span>
       <span
         aria-hidden
-        className="pointer-events-none absolute bottom-[0.02em] left-1/2 -translate-x-1/2 font-detective text-[clamp(0.95rem,2vw,1.5rem)] font-normal uppercase leading-none tracking-[0.04em] text-[var(--nh-red)] whitespace-nowrap"
+        className={cn(
+          "pointer-events-none absolute bottom-[0.02em] left-1/2 -translate-x-1/2 font-detective text-[clamp(0.95rem,2vw,1.5rem)] font-normal uppercase leading-none tracking-[0.04em] whitespace-nowrap lg:text-[clamp(1.235rem,2.6vw,1.95rem)]",
+          accent === "white" && "text-white",
+          accent === "black" && "text-[var(--nh-black)]",
+          accent === "red" && "text-[var(--nh-red)]",
+        )}
       >
         {title}
       </span>

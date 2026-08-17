@@ -5,6 +5,7 @@ import { BrandButton } from "@/components/brand-button";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
+import { cn } from "@/lib/utils";
 
 const PAGE_SIZE = 6;
 
@@ -41,6 +42,30 @@ function StatusTag({ status }: { status: AwardStatus }) {
   );
 }
 
+function AwardTitle({ award }: { award: Award }) {
+  const className = cn(
+    "font-detective min-w-0 flex-1 text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-white normal-case",
+    award.href && "transition-colors hover:text-[var(--nh-red)]",
+  );
+
+  if (!award.href) {
+    return <p className={className}>{award.title}</p>;
+  }
+
+  const internal = award.href.startsWith("/");
+  return (
+    <a
+      href={award.href}
+      className={className}
+      {...(internal
+        ? {}
+        : { target: "_blank", rel: "noopener noreferrer" })}
+    >
+      {award.title}
+    </a>
+  );
+}
+
 function AwardRow({
   award,
   index,
@@ -61,9 +86,7 @@ function AwardRow({
       transition={{ duration: 0.75, ease: EASE, delay }}
     >
       <StatusTag status={award.status} />
-      <p className="font-detective min-w-0 flex-1 text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-white normal-case">
-        {award.title}
-      </p>
+      <AwardTitle award={award} />
     </motion.li>
   );
 }

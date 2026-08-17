@@ -461,6 +461,7 @@ export type Database = {
           id: string;
           status: string;
           title: string;
+          href: string | null;
           sort_order: number;
           published: boolean;
           created_at: string;
@@ -470,6 +471,7 @@ export type Database = {
           id?: string;
           status?: string;
           title: string;
+          href?: string | null;
           sort_order?: number;
           published?: boolean;
           created_at?: string;
@@ -479,6 +481,7 @@ export type Database = {
           id?: string;
           status?: string;
           title?: string;
+          href?: string | null;
           sort_order?: number;
           published?: boolean;
           created_at?: string;

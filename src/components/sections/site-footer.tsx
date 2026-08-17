@@ -170,6 +170,12 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
             >
               {footer.location.phone}
             </a>
+            <a
+              href={`mailto:${footer.location.email}`}
+              className="font-detective mt-1.5 block text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.3] text-white/85 transition-colors hover:text-white"
+            >
+              {footer.location.email}
+            </a>
           </div>
 
           {/* Newsletter */}
@@ -212,7 +218,9 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
         </div>
 
         <div className="mt-14 grid grid-cols-1 gap-3 text-xs text-white/50 md:grid-cols-4 md:items-center md:gap-8">
-          <span className="md:col-span-3">{footer.copyright}</span>
+          <span className="md:col-span-3">
+            {footer.tagline} <span aria-hidden>•</span> {footer.copyright}
+          </span>
           <div className="flex items-center gap-5 md:col-start-4 md:justify-self-start">
             {footer.legal.map((item) =>
               "to" in item && item.to ? (

@@ -140,7 +140,12 @@ export function AboutPage() {
             lines={[...workTogether.title]}
             className="font-display text-[clamp(2.75rem,8vw,8rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
           />
-          <Reveal delay={0.2}>
+          <Reveal delay={0.15}>
+            <p className="font-detective max-w-xl text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/75">
+              {workTogether.body}
+            </p>
+          </Reveal>
+          <Reveal delay={0.25}>
             <BrandButton to={workTogether.ctaTo} variant="red">
               {workTogether.cta}
             </BrandButton>

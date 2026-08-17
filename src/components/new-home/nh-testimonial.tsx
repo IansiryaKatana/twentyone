@@ -1,10 +1,31 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
+
+function NavArrow({
+  direction,
+  onClick,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+}) {
+  const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={direction === "prev" ? "Previous testimonial" : "Next testimonial"}
+      className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-colors duration-300 hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] md:size-11"
+    >
+      <Icon className="size-4" strokeWidth={1.75} />
+    </button>
+  );
+}
 
 export function NhTestimonial() {
   const cms = useCmsContent();
@@ -55,7 +76,22 @@ export function NhTestimonial() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-16 text-center sm:px-8 md:py-24 lg:max-w-6xl lg:px-10">
-        <div className="w-full touch-pan-y" aria-live="polite" {...swipe}>
+        <div className="relative w-full touch-pan-y" aria-live="polite" {...swipe}>
+          {testimonials.length > 1 ? (
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center">
+              <div className="pointer-events-auto">
+                <NavArrow direction="prev" onClick={prev} />
+              </div>
+            </div>
+          ) : null}
+          {testimonials.length > 1 ? (
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center">
+              <div className="pointer-events-auto">
+                <NavArrow direction="next" onClick={next} />
+              </div>
+            </div>
+          ) : null}
+
           <AnimatePresence mode="wait">
             <motion.div
               key={index}
@@ -64,9 +100,9 @@ export function NhTestimonial() {
               exit={reduced ? { opacity: 0 } : { opacity: 0, y: -14 }}
               transition={{ duration: reduced ? 0.15 : 0.55, ease: EASE }}
               className={cn(
-                "flex flex-col items-center",
+                "flex flex-col items-center px-12 sm:px-14",
                 hasImage &&
-                  "lg:grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-stretch lg:gap-12 lg:text-left xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] xl:gap-16",
+                  "lg:grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-stretch lg:gap-12 lg:px-16 lg:text-left xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] xl:gap-16",
               )}
             >
               {hasImage ? (
@@ -98,7 +134,7 @@ export function NhTestimonial() {
                 )}
               >
                 <div>
-                  <p className="font-display text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-[var(--nh-red)]">
+                  <p className="font-display text-[clamp(2.22rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-[var(--nh-red)]">
                     {testimonial.name}
                   </p>
                   {testimonial.role ? (

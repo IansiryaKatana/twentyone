@@ -365,7 +365,7 @@ export const footer = {
       arrow: true,
     },
     {
-      title: "Quick Links",
+      title: "Fast Track",
       links: [
         { label: "About Us", to: "/about" },
         { label: "Services", to: "/services" },
@@ -383,7 +383,7 @@ export const footer = {
       "23rd St, Al Barsha First",
       "Al Barsha, Dubai",
     ],
-    callTitle: "Call Us",
+    callTitle: "Reach Us",
     phone: "04 554 8082",
     phoneHref: "tel:+97145548082",
     email: "info@twentyone06.com",
@@ -395,6 +395,7 @@ export const footer = {
     cta: "Count Me In",
     success: "You're in. We'll keep you posted.",
   },
+  tagline: "Design by the people, for the people.",
   copyright: "© 2026 TwentyOne06. All rights reserved.",
   legal: [
     { label: "Privacy Policy", to: "/privacy" as const },
@@ -1292,8 +1293,9 @@ export const aboutPage = {
     ],
   },
   workTogether: {
-    title: ["Ready to Work", "Together?"],
-    cta: "Contact Us",
+    title: ["Got a project", "in mind?"],
+    body: "Tell us about it. We'll take it from there.",
+    cta: "Let's Talk",
     ctaTo: "/contact" as const,
   },
   awardsSection: {
@@ -1343,33 +1345,43 @@ export type AwardStatus = "winner" | "highly_commended" | "shortlisted" | "edito
 export type Award = {
   status: AwardStatus;
   title: string;
+  href?: string;
 };
 
 export const awards: Award[] = [
-  { status: "winner", title: "CID Awards 2024 MENA — Interior Design Concept of the Year, Hotel  ·  Voco Monaco" },
-  { status: "winner", title: "CID Awards 2024 MENA — Design Concept of the Year, Retail, Leisure and Education  ·  ELIX Spa" },
-  { status: "winner", title: "CID Awards 2025 Hospitality — Best Use of Materials  ·  Flaky Pastry, The Galleria" },
-  { status: "winner", title: "CID Awards 2025 MENA — Retail Design of the Year  ·  Cheese Board, Bluewaters Island" },
-  { status: "winner", title: "CID Awards 2025 MENA — Healthcare Project of the Year  ·  Dental Nation" },
-  { status: "winner", title: "Luxuri Magazine 2025 — Best Storytelling-Driven Hospitality Design Studio, Dubai" },
-  { status: "highly_commended", title: "Design Middle East Awards 2024 — Interior Designer of the Year  ·  Govind Shepley" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Casual Restaurant Design  ·  Nama Yoso" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Hotel Design  ·  Voco Monaco" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Spa/Wellness Design  ·  ELIX Spa" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Flaky Pastry" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Design Firm of the Year" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley" },
-  { status: "shortlisted", title: "CID Awards 2024 MENA — Boutique Firm of the Year" },
-  { status: "shortlisted", title: "CID Awards 2024 Hospitality — Best Casual and Best High-End Restaurant  ·  Nama Yoso" },
-  { status: "shortlisted", title: "Design Middle East Awards 2024 — Interior Design Firm of the Year / Boutique Firm of the Year" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Multiple categories" },
-  { status: "shortlisted", title: "CID Awards 2025 MENA — Interior Design of the Year, Health and Wellness  ·  Dental Nation" },
+  { status: "winner", title: "CID Awards 2024 MENA — Interior Design Concept of the Year, Hotel  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "winner", title: "CID Awards 2024 MENA — Design Concept of the Year, Retail, Leisure and Education  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "winner", title: "CID Awards 2025 Hospitality — Best Use of Materials  ·  Flaky Pastry, The Galleria", href: "https://www.commercialinteriordesign.com/news/winners-from-the-cid-awards-2025-hospitality" },
+  { status: "winner", title: "CID Awards 2025 MENA — Retail Design of the Year  ·  Cheese Board, Bluewaters Island", href: "/journal/retail-design-to-young-talent-twentyone06-celebrates-double-victory-at-cid-awards-mena-2025" },
+  { status: "winner", title: "Design Middle East Awards 2025 — Healthcare Project of the Year  ·  Dental Nation", href: "https://design-middleeast.com/design-middle-east-awards-2025-winners-revealed/" },
+  { status: "winner", title: "Luxuri Magazine 2025 — Best Storytelling-Driven Hospitality Design Studio, Dubai", href: "https://www.luxurimag.com/award-winner-2025/twentyone06/" },
+  { status: "highly_commended", title: "Design Middle East Awards 2024 — Interior Designer of the Year  ·  Govind Shepley", href: "https://design-middleeast.com/design-middle-east-awards-2024-winners-revealed/" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Casual Restaurant Design  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Hotel Design  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Spa/Wellness Design  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Design Firm of the Year", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2026 Hospitality — Rising Star of the Year  ·  Sabiha Yusuf", href: "https://www.commercialinteriordesign.com/events/cid-awards/cid-hospitality-awards-2026-winners-highly-commended" },
+  { status: "shortlisted", title: "CID Awards 2024 MENA — Boutique Firm of the Year", href: "https://www.commercialinteriordesign.com/events/cid-awards/revealed-the-cid-awards-2024-mena-shortlist" },
+  { status: "shortlisted", title: "CID Awards 2024 Hospitality — Best Casual and Best High-End Restaurant  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/cid-awards/every-shortlist-for-the-cid-awards-2024-hospitality-revealed" },
+  { status: "shortlisted", title: "Design Middle East Awards 2024 — Interior Design Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
+  { status: "shortlisted", title: "Design Middle East Awards 2024 — Boutique Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry, Abu Dhabi", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best F&B Franchise Design  ·  Flaky Pastry Dubai", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best F&B Design Concept  ·  Cheese Board", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 MENA — Interior Design of the Year, Health and Wellness  ·  Dental Nation", href: "https://www.commercialinteriordesign.com/events/the-shortlist-cid-awards-2025-mena" },
+  { status: "shortlisted", title: "Design Middle East Awards 2025 — Boutique Firm of the Year" },
   { status: "shortlisted", title: "Design Middle East Awards 2025 — Commercial Project of the Year  ·  Knowledge Academy Office" },
-  { status: "editorial", title: "CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2021 and 2022)" },
-  { status: "editorial", title: "Design Middle East Powerlist Creative 30 (2022, 2024, 2025)" },
-  { status: "editorial", title: "Design Middle East Cover Feature, January 2025" },
-  { status: "editorial", title: "The 50 Masters of Design 2026" },
+  { status: "editorial", title: "CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2021)", href: "https://www.commercialinteriordesign.com/news/power-50-of-design-industry" },
+  { status: "editorial", title: "CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2022)", href: "https://www.commercialinteriordesign.com/news/commercial-interior-design-power-50-top-20-designers-of-2022" },
+  { status: "editorial", title: "Design Middle East Powerlist Creative 30 (2022)", href: "https://design-middleeast.com/powerlist-creative-30-2022-govind-shepley-founder-and-creative-director-twentyone06/" },
+  { status: "editorial", title: "Design Middle East Powerlist Creative 30 (2024)", href: "https://design-middleeast.com/powerlist-creative-30-2024-govind-shepley-founder-and-creative-director-twentyone06/" },
+  { status: "editorial", title: "Design Middle East Cover Feature, January 2025", href: "https://design-middleeast.com/twentyone06-a-bold-leap-into-2025/" },
+  { status: "editorial", title: "The 50 Masters of Design 2026", href: "https://www.linkedin.com/feed/update/urn:li:activity:7460946394183389184/" },
 ];
 
 export type TeamMember = {
@@ -1622,6 +1634,20 @@ export const newHome = {
       "Our take on project reveals, award wins, and the design conversations worth the read.",
     cta: "View All Articles",
     ctaTo: "/journal" as const,
+    tabs: [
+      {
+        id: "whats-new" as const,
+        label: "What's New",
+        description:
+          "Studio updates, project features, and news from TwentyOne06.",
+      },
+      {
+        id: "trend-reports" as const,
+        label: "Trend Reports",
+        description:
+          "Industry research and design insights from our team.",
+      },
+    ],
   },
   testimonials: [
     {

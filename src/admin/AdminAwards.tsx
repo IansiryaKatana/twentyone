@@ -58,6 +58,7 @@ function emptyRow(): Row {
     id: crypto.randomUUID(),
     status: "winner",
     title: "",
+    href: "",
     sort_order: 0,
     published: true,
     created_at: now,
@@ -88,7 +89,7 @@ export function AdminAwards() {
 
   const filteredRows = useMemo(() => {
     return rows.filter((row) => {
-      if (!matchesQuery(`${row.title} ${row.status}`, filterState.query)) return false;
+      if (!matchesQuery(`${row.title} ${row.status} ${row.href ?? ""}`, filterState.query)) return false;
       if (filterState.filters.status !== "all" && row.status !== filterState.filters.status) {
         return false;
       }
@@ -166,6 +167,7 @@ export function AdminAwards() {
       {
         ...draft,
         title: draft.title.trim(),
+        href: draft.href?.trim() || null,
         updated_at: new Date().toISOString(),
       },
       { onConflict: "id" },
@@ -306,6 +308,7 @@ export function AdminAwards() {
                 ) : null}
                 <th className={adminTableHeadCell}>Status</th>
                 <th className={adminTableHeadCell}>Award / category / project</th>
+                <th className={adminTableHeadCell}>Link</th>
                 <th className={adminTableHeadCell}>Order</th>
                 <th className={adminTableHeadCell}>Published</th>
                 <th className={adminTableHeadCell}>Actions</th>
@@ -333,6 +336,9 @@ export function AdminAwards() {
                   ) : null}
                   <td className={adminTableCell}>{statusLabel(row.status)}</td>
                   <td className={`${adminTableCell} max-w-xl`}>{row.title}</td>
+                  <td className={`${adminTableCell} max-w-[12rem] truncate`}>
+                    {row.href ? "Yes" : "—"}
+                  </td>
                   <td className={adminTableCell}>{row.sort_order}</td>
                   <td className={adminTableCell}>{row.published ? "Yes" : "No"}</td>
                   <td className={adminTableCell}>
@@ -361,7 +367,7 @@ export function AdminAwards() {
               ))}
               {pagination.pageRows.length === 0 ? (
                 <tr>
-                  <td className={adminTableCell} colSpan={canMutate ? 7 : 5}>
+                  <td className={adminTableCell} colSpan={canMutate ? 8 : 6}>
                     No awards match these filters.
                   </td>
                 </tr>
@@ -419,6 +425,16 @@ export function AdminAwards() {
                 onChange={(e) => setDraft({ ...draft, title: e.target.value })}
                 disabled={!canMutate}
                 placeholder="CID Awards 2024 MENA — …"
+              />
+            </div>
+            <div>
+              <label className={adminLabel}>Source link (optional)</label>
+              <input
+                className={adminInput}
+                value={draft.href ?? ""}
+                onChange={(e) => setDraft({ ...draft, href: e.target.value })}
+                disabled={!canMutate}
+                placeholder="https://… or /journal/…"
               />
             </div>
             <div className="grid grid-cols-2 gap-4">

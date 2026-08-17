@@ -118,7 +118,7 @@ function FilterDropdown({
     <div ref={rootRef} className="relative min-w-0">
       <label
         htmlFor={id}
-        className="text-[10px] uppercase tracking-[0.28em] text-white/80"
+        className="font-detective text-[10px] uppercase tracking-[0.28em] text-white/80"
       >
         {label}
       </label>
@@ -142,7 +142,7 @@ function FilterDropdown({
       >
         <span
           className={cn(
-            "truncate text-sm tracking-wide",
+            "font-detective truncate text-sm tracking-wide",
             isActive ? "text-[var(--nh-white)]" : "text-white/90"
           )}
         >
@@ -181,7 +181,7 @@ function FilterDropdown({
                       setOpen(false);
                     }}
                     className={cn(
-                      "flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-sm transition-colors",
+                      "font-detective flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-sm transition-colors",
                       active
                         ? "bg-[var(--nh-red)] text-white"
                         : "text-white/85 hover:bg-white/[0.06] hover:text-white"
@@ -284,14 +284,14 @@ export function PrProjectGrid({
 
   return (
     <>
-      <Reveal delay={0.1} className="mt-10 md:mt-14">
+      <Reveal delay={0.1} className="font-detective mt-10 md:mt-14">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <button
             type="button"
             onClick={() => setFiltersExpanded((open) => !open)}
             aria-expanded={filtersExpanded}
             aria-controls={filtersId}
-            className="inline-flex items-center gap-2 self-start text-[10px] uppercase tracking-[0.28em] text-white/85 transition-colors hover:text-white md:pointer-events-none md:cursor-default"
+            className="font-detective inline-flex items-center gap-2 self-start text-[10px] uppercase tracking-[0.28em] text-white/85 transition-colors hover:text-white md:pointer-events-none md:cursor-default"
           >
             Refine the work
             <ChevronDown
@@ -305,7 +305,7 @@ export function PrProjectGrid({
             <button
               type="button"
               onClick={clearAll}
-              className="inline-flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.22em] text-[var(--nh-red)] transition-colors hover:text-white sm:self-auto"
+              className="font-detective inline-flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.22em] text-[var(--nh-red)] transition-colors hover:text-white sm:self-auto"
             >
               <X className="size-3" />
               Clear filters

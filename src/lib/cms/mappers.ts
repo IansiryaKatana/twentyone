@@ -226,9 +226,11 @@ function asAwardStatus(value: string): AwardStatus {
 }
 
 export function mapAward(row: AwardRow): Award {
+  const href = row.href?.trim();
   return {
     status: asAwardStatus(row.status),
     title: row.title,
+    ...(href ? { href } : {}),
   };
 }
 

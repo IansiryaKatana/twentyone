@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import {
@@ -176,15 +176,15 @@ export function NhServices() {
 
   return (
     <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] md:py-20">
-      <div className="w-full px-5 md:px-[7vw]">
-        <Reveal className="mb-8 flex justify-center md:mb-10">
-          <NhSectionTitle title={section.title} />
-        </Reveal>
+      <Reveal className="mb-8 flex justify-center px-5 md:mb-10 md:px-[7vw]">
+        <NhSectionTitle title={section.title} />
+      </Reveal>
 
-        <div className="overflow-hidden lg:hidden">
+      <div className="relative px-5 lg:hidden">
+        <div className="overflow-hidden">
           <motion.div
             ref={trackRef}
-            className="flex touch-pan-y gap-2"
+            className="flex touch-pan-y"
             animate={{ x: -(index * step) }}
             transition={
               reduced ? { duration: 0 } : { duration: 0.7, ease: EASE }
@@ -199,50 +199,83 @@ export function NhServices() {
           </motion.div>
         </div>
 
-        <div
-          className="mt-7 flex items-center justify-center gap-1.5 lg:hidden"
-          role="tablist"
-          aria-label="Choose service slide"
-        >
-          {items.map((item, dotIndex) => (
+        {maxIndex > 0 ? (
+          <>
             <button
-              key={item.slug}
               type="button"
-              role="tab"
-              aria-selected={index === dotIndex}
-              aria-label={`Show service ${dotIndex + 1}`}
-              onClick={() => setIndex(dotIndex)}
+              onClick={prev}
+              disabled={index === 0}
+              aria-label="Previous service"
               className={cn(
-                "h-0.5 transition-all duration-300",
-                index === dotIndex
-                  ? "w-7 bg-[var(--nh-red)]"
-                  : "w-3 bg-black/20 hover:bg-black/45"
+                "absolute top-1/2 left-5 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/30 bg-[var(--nh-gray)]/80 text-black backdrop-blur-[2px] transition-colors duration-300",
+                index === 0
+                  ? "cursor-not-allowed opacity-30"
+                  : "hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
               )}
-            />
-          ))}
-        </div>
-
-        <Stagger
-          className="hidden gap-2 lg:grid lg:grid-cols-2 xl:grid-cols-4"
-          stagger={0.1}
-        >
-          {items.map((item, itemIndex) => (
-            <StaggerItem key={item.slug}>
-              <ServiceCard item={item} index={itemIndex} />
-            </StaggerItem>
-          ))}
-        </Stagger>
-
-        <Reveal delay={0.15} className="mt-10 flex justify-center md:mt-14">
-          <Link
-            to={section.ctaTo}
-            className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
-          >
-            {section.cta}
-            <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
-          </Link>
-        </Reveal>
+            >
+              <ChevronLeft className="size-4" strokeWidth={1.75} />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={index === maxIndex}
+              aria-label="Next service"
+              className={cn(
+                "absolute top-1/2 right-5 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/30 bg-[var(--nh-gray)]/80 text-black backdrop-blur-[2px] transition-colors duration-300",
+                index === maxIndex
+                  ? "cursor-not-allowed opacity-30"
+                  : "hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
+              )}
+            >
+              <ChevronRight className="size-4" strokeWidth={1.75} />
+            </button>
+          </>
+        ) : null}
       </div>
+
+      <div
+        className="mt-7 flex items-center justify-center gap-1.5 px-5 lg:hidden"
+        role="tablist"
+        aria-label="Choose service slide"
+      >
+        {items.map((item, dotIndex) => (
+          <button
+            key={item.slug}
+            type="button"
+            role="tab"
+            aria-selected={index === dotIndex}
+            aria-label={`Show service ${dotIndex + 1}`}
+            onClick={() => setIndex(dotIndex)}
+            className={cn(
+              "h-0.5 transition-all duration-300",
+              index === dotIndex
+                ? "w-7 bg-[var(--nh-red)]"
+                : "w-3 bg-black/20 hover:bg-black/45"
+            )}
+          />
+        ))}
+      </div>
+
+      <Stagger
+        className="hidden lg:grid lg:grid-cols-2 xl:grid-cols-4"
+        stagger={0.1}
+      >
+        {items.map((item, itemIndex) => (
+          <StaggerItem key={item.slug}>
+            <ServiceCard item={item} index={itemIndex} />
+          </StaggerItem>
+        ))}
+      </Stagger>
+
+      <Reveal delay={0.15} className="mt-10 flex justify-center px-5 md:mt-14 md:px-[7vw]">
+        <Link
+          to={section.ctaTo}
+          className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
+        >
+          {section.cta}
+          <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
+      </Reveal>
     </section>
   );
 }

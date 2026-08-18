@@ -82,7 +82,7 @@ export function PrHero() {
           initial={reduced ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 0.85 }}
-          className="font-detective mx-auto mt-7 max-w-lg text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/70 md:mt-9"
+          className="font-detective mx-auto mt-7 max-w-3xl text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/70 md:mt-9"
         >
           {hero.description}
         </motion.p>

@@ -72,9 +72,9 @@ export function NhHero() {
           initial={reduced ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: reduced ? 0 : 1 }}
-          className="mt-4 max-w-md md:mt-5 md:max-w-lg"
+          className="mt-4 w-full max-w-none md:mt-5"
         >
-          <p className="font-detective whitespace-pre-line text-sm leading-relaxed normal-case text-white/75 md:text-[18px]">
+          <p className="font-detective whitespace-nowrap text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] normal-case text-white/75">
             {hero.description}
           </p>
           <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 md:text-[11px] xl:text-xs">
@@ -105,7 +105,7 @@ export function NhHero() {
               className="origin-right rotate-180 text-[10px] uppercase tracking-[0.28em] text-white/55 [writing-mode:vertical-rl]"
             >
               <span className="font-bold text-[var(--nh-red)]">{item.value}</span>
-              <span className="mx-2 text-white/25">—</span>
+              <span className="mx-2 text-white/25">·</span>
               {item.label}
             </li>
           ))}

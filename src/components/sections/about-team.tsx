@@ -47,7 +47,7 @@ function TeamCard({ member }: { member: TeamMember }) {
           <img
             src={member.image}
             alt={member.name}
-            className="aspect-[3/4] w-full object-cover"
+            className="aspect-[3/4] w-full object-cover grayscale transition-[filter] duration-500 group-hover:grayscale-0"
             draggable={false}
           />
         ) : (
@@ -58,11 +58,6 @@ function TeamCard({ member }: { member: TeamMember }) {
             Photo soon
           </div>
         )}
-
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-[1] hidden bg-[var(--clay)]/55 transition-opacity duration-500 md:block md:group-hover:opacity-0"
-        />
 
         {(linkedin || instagram) && (
           <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
@@ -88,10 +83,12 @@ function TeamCard({ member }: { member: TeamMember }) {
         )}
       </div>
 
-      <h3 className="mt-4 font-sans text-sm font-medium tracking-wide text-ink md:text-base">
+      <h3 className="font-display mt-4 text-[clamp(1.640625rem,3vw,1.734375rem)] font-medium uppercase leading-[0.92] tracking-[0.02em] text-ink md:text-[clamp(2.053125rem,3.75vw,2.165625rem)]">
         {member.name}
       </h3>
-      <p className="mt-1 text-xs tracking-wide text-crimson md:text-sm">{member.title}</p>
+      <p className="font-detective mt-1 text-xs tracking-wide text-crimson md:text-sm">
+        {member.title}
+      </p>
     </article>
   );
 }
@@ -136,7 +133,7 @@ export function AboutTeamSection() {
     };
   }, [perView, teamMembers.length]);
 
-  const gapRem = perView === 1 ? 1 : 1.5;
+  const gapRem = 0;
   const maxIndex = Math.max(0, teamMembers.length - perView);
 
   React.useEffect(() => {
@@ -175,106 +172,15 @@ export function AboutTeamSection() {
             <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>
           </Reveal>
         </div>
+      </div>
 
-        <div className="mt-12 md:mt-16">
-          <div className="flex items-center gap-3 md:gap-5">
-            {maxIndex > 0 ? (
-              <Reveal
-                delay={0.1}
-                className="hidden shrink-0 md:block"
-              >
-                <button
-                  type="button"
-                  onClick={prev}
-                  disabled={index === 0}
-                  aria-label="Previous team members"
-                  className={cn(
-                    "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                    index === 0
-                      ? "cursor-not-allowed opacity-30"
-                      : "hover:border-crimson hover:bg-crimson hover:text-white",
-                  )}
-                >
-                  <ArrowLeft className="size-3.5" />
-                </button>
-              </Reveal>
-            ) : null}
-
-            <div className="min-w-0 flex-1 overflow-hidden">
-              <motion.div
-                ref={trackRef}
-                className="flex touch-pan-y gap-4 md:gap-6"
-                animate={{ x: reduced ? 0 : -(index * step) }}
-                transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
-                {...swipe}
-              >
-                {teamMembers.map((member) => (
-                  <div
-                    key={`${member.name}-${member.title}`}
-                    className="shrink-0"
-                    style={{
-                      width:
-                        perView === 1
-                          ? "100%"
-                          : `calc((100% - ${(perView - 1) * gapRem}rem) / ${perView})`,
-                    }}
-                  >
-                    <TeamCard member={member} />
-                  </div>
-                ))}
-              </motion.div>
-            </div>
-
-            {maxIndex > 0 ? (
-              <Reveal
-                delay={0.1}
-                className="hidden shrink-0 md:block"
-              >
-                <button
-                  type="button"
-                  onClick={next}
-                  disabled={index >= maxIndex}
-                  aria-label="Next team members"
-                  className={cn(
-                    "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                    index >= maxIndex
-                      ? "cursor-not-allowed opacity-30"
-                      : "hover:border-crimson hover:bg-crimson hover:text-white",
-                  )}
-                >
-                  <ArrowRight className="size-3.5" />
-                </button>
-              </Reveal>
-            ) : null}
-          </div>
-
-          {pageCount > 1 ? (
-            <div
-              className="mt-8 flex items-center justify-center gap-2 md:mt-10"
-              role="tablist"
-              aria-label="Team pages"
-            >
-              {Array.from({ length: pageCount }, (_, dotIndex) => (
-                <button
-                  key={dotIndex}
-                  type="button"
-                  role="tab"
-                  aria-selected={index === dotIndex}
-                  aria-label={`Show team page ${dotIndex + 1}`}
-                  onClick={() => setIndex(dotIndex)}
-                  className={cn(
-                    "h-1.5 rounded-none transition-all duration-300",
-                    index === dotIndex
-                      ? "w-8 bg-crimson"
-                      : "w-4 bg-ink/20 hover:bg-ink/40",
-                  )}
-                />
-              ))}
-            </div>
-          ) : null}
-
+      <div className="mt-12 md:mt-16">
+        <div className="flex items-center gap-3 px-5 md:gap-5 md:px-6 lg:px-10">
           {maxIndex > 0 ? (
-            <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+            <Reveal
+              delay={0.1}
+              className="hidden shrink-0 md:block"
+            >
               <button
                 type="button"
                 onClick={prev}
@@ -289,6 +195,39 @@ export function AboutTeamSection() {
               >
                 <ArrowLeft className="size-3.5" />
               </button>
+            </Reveal>
+          ) : null}
+
+          <div className="min-w-0 flex-1 overflow-hidden">
+            <motion.div
+              ref={trackRef}
+              className="flex touch-pan-y gap-0"
+              animate={{ x: reduced ? 0 : -(index * step) }}
+              transition={reduced ? { duration: 0 } : { duration: 0.75, ease: EASE }}
+              {...swipe}
+            >
+              {teamMembers.map((member) => (
+                <div
+                  key={`${member.name}-${member.title}`}
+                  className="shrink-0"
+                  style={{
+                    width:
+                      perView === 1
+                        ? "100%"
+                        : `calc((100% - ${(perView - 1) * gapRem}rem) / ${perView})`,
+                  }}
+                >
+                  <TeamCard member={member} />
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {maxIndex > 0 ? (
+            <Reveal
+              delay={0.1}
+              className="hidden shrink-0 md:block"
+            >
               <button
                 type="button"
                 onClick={next}
@@ -303,9 +242,67 @@ export function AboutTeamSection() {
               >
                 <ArrowRight className="size-3.5" />
               </button>
-            </div>
+            </Reveal>
           ) : null}
         </div>
+
+        {pageCount > 1 ? (
+          <div
+            className="mt-8 flex items-center justify-center gap-2 px-5 md:mt-10 md:px-[7vw]"
+            role="tablist"
+            aria-label="Team pages"
+          >
+            {Array.from({ length: pageCount }, (_, dotIndex) => (
+              <button
+                key={dotIndex}
+                type="button"
+                role="tab"
+                aria-selected={index === dotIndex}
+                aria-label={`Show team page ${dotIndex + 1}`}
+                onClick={() => setIndex(dotIndex)}
+                className={cn(
+                  "h-1.5 rounded-none transition-all duration-300",
+                  index === dotIndex
+                    ? "w-8 bg-crimson"
+                    : "w-4 bg-ink/20 hover:bg-ink/40",
+                )}
+              />
+            ))}
+          </div>
+        ) : null}
+
+        {maxIndex > 0 ? (
+          <div className="mt-6 flex items-center justify-center gap-2 px-5 md:hidden">
+            <button
+              type="button"
+              onClick={prev}
+              disabled={index === 0}
+              aria-label="Previous team members"
+              className={cn(
+                "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
+                index === 0
+                  ? "cursor-not-allowed opacity-30"
+                  : "hover:border-crimson hover:bg-crimson hover:text-white",
+              )}
+            >
+              <ArrowLeft className="size-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              disabled={index >= maxIndex}
+              aria-label="Next team members"
+              className={cn(
+                "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
+                index >= maxIndex
+                  ? "cursor-not-allowed opacity-30"
+                  : "hover:border-crimson hover:bg-crimson hover:text-white",
+              )}
+            >
+              <ArrowRight className="size-3.5" />
+            </button>
+          </div>
+        ) : null}
       </div>
     </section>
   );

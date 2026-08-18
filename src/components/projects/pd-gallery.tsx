@@ -64,7 +64,7 @@ export function PdGallery({
               >
                 <motion.img
                   src={src}
-                  alt={`${project.title} — ${String(i + 1).padStart(2, "0")}`}
+                  alt={`${project.title}, ${String(i + 1).padStart(2, "0")}`}
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   whileHover={{ scale: 1.03 }}
                   transition={{ duration: 0.7, ease: EASE }}

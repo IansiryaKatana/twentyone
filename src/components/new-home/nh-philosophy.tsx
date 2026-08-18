@@ -140,12 +140,12 @@ export function NhPhilosophy() {
 
           <Reveal
             delay={0.18}
-            className="absolute right-0 bottom-0 z-10 max-w-[min(26rem,86%)] bg-[var(--nh-black)] p-3 sm:max-w-[min(26rem,50%)] sm:p-4 lg:max-w-[min(26rem,36%)] xl:p-6"
+            className="absolute right-0 bottom-0 z-10 max-w-[min(34rem,90%)] bg-[var(--nh-black)] p-3 sm:max-w-[min(34rem,58%)] sm:p-4 lg:max-w-[min(36rem,48%)] xl:max-w-[min(38rem,52%)] xl:p-6"
           >
             <AccentBody
               body={philosophy.body}
               accent={accent}
-              className="font-detective text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-white/88 sm:leading-[1.65]"
+              className="font-detective text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-white/88 sm:leading-[1.65] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]"
             />
           </Reveal>
         </div>

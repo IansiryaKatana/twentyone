@@ -67,7 +67,7 @@ export function NhContactFooter() {
                 Message received
               </h3>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-                Thank you — our studio will be in touch shortly.
+                Thank you. Our studio will be in touch shortly.
               </p>
               <button
                 type="button"

@@ -24,9 +24,12 @@ export function AboutPage() {
   const { milestones, workTogether } = aboutPage;
   const { sectionBackgrounds, teamMembers } = useCmsContent();
   const bg = sectionBackgrounds.about;
-  const founderImage =
-    teamMembers.find((member) => /govind/i.test(member.name))?.image?.trim() ||
-    ceoPortrait;
+  const founder =
+    teamMembers.find((member) => /govind/i.test(member.name)) ?? null;
+  const founderImage = founder?.image?.trim() || ceoPortrait;
+  const founderName = founder?.name?.trim() || "Govind Shepley";
+  const founderTitle =
+    founder?.title?.trim() || "Founder & Creative Director";
 
   return (
     <PageShell headerVariant="overlay">
@@ -41,14 +44,22 @@ export function AboutPage() {
       <section id="press" className="scroll-mt-24 bg-[var(--nh-black)] py-20 md:py-28">
         <div className="grid w-full grid-cols-1 items-stretch gap-10 px-5 md:grid-cols-12 md:px-10">
           <div className="md:col-span-5">
-            <Reveal className="h-full overflow-hidden rounded-md">
+            <Reveal className="relative h-full overflow-hidden rounded-md">
               <motion.img
                 src={founderImage}
-                alt="Govind Shepley — Twentyone06"
+                alt={`${founderName}, ${founderTitle}`}
                 className="aspect-[4/5] h-full w-full object-cover object-top md:aspect-auto"
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.8, ease: EASE }}
               />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-16">
+                <p className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-medium uppercase leading-[1.05] text-[var(--nh-white)]">
+                  {founderName}
+                </p>
+                <p className="font-detective mt-1.5 text-[clamp(1rem,1.6vw,1.2rem)] leading-[1.3] text-white/75">
+                  {founderTitle}
+                </p>
+              </div>
             </Reveal>
           </div>
           <div className="flex flex-col justify-center md:col-span-7 md:pl-8">
@@ -126,6 +137,8 @@ export function AboutPage() {
         </div>
       </section>
 
+      <AboutAwardsSection />
+
       <section className="relative flex min-h-[70svh] items-center justify-center overflow-hidden bg-[var(--nh-black)] py-20 md:min-h-[826px] md:py-24">
         <img
           src={readyToWorkBg}
@@ -152,8 +165,6 @@ export function AboutPage() {
           </Reveal>
         </div>
       </section>
-
-      <AboutAwardsSection />
     </PageShell>
   );
 }

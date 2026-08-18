@@ -89,7 +89,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
             </a>
             {footer.columns[0] ? (
               <>
-                <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
+                <h3 className="font-display mb-4 text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium leading-[1.05] text-white">
                   {footer.columns[0].title}
                 </h3>
                 <ul className="flex flex-col gap-2.5">
@@ -117,7 +117,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
           {/* Quick Links */}
           {footer.columns.slice(1).map((col) => (
             <div key={col.title}>
-              <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
+              <h3 className="font-display mb-4 text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium leading-[1.05] text-white">
                 {col.title}
               </h3>
               <ul className="flex flex-col gap-2.5">
@@ -153,7 +153,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
           {/* Location */}
           <div>
-            <h3 className="font-display mb-4 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
+            <h3 className="font-display mb-4 text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium leading-[1.05] text-white">
               {footer.location.title}
             </h3>
             <address className="font-detective not-italic text-[clamp(1.05rem,1.6vw,1.2rem)] leading-[1.35] text-white/85">
@@ -161,7 +161,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                 <div key={l}>{l}</div>
               ))}
             </address>
-            <h3 className="font-display mb-2 mt-5 text-[clamp(1.85rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-white">
+            <h3 className="font-display mb-2 mt-5 text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium leading-[1.05] text-white">
               {footer.location.callTitle}
             </h3>
             <a
@@ -180,7 +180,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
 
           {/* Newsletter */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-display mb-6 text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.02] text-white">
+            <h3 className="font-display mb-4 text-[clamp(1.75rem,3.2vw,3.25rem)] font-semibold leading-[1.05] text-white">
               {footer.newsletter.title.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -190,7 +190,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
             {sent ? (
               <p className="text-sm text-white/70">{footer.newsletter.success}</p>
             ) : (
-              <form onSubmit={(e) => void onNewsletterSubmit(e)} className="flex flex-col gap-4">
+              <form onSubmit={(e) => void onNewsletterSubmit(e)} className="flex flex-col gap-3">
                 <label className="block">
                   <span className="mb-2 block text-xs uppercase tracking-[0.25em] text-white/75">
                     {footer.newsletter.emailLabel}
@@ -206,7 +206,7 @@ export function SiteFooter({ showCta = false }: { showCta?: boolean }) {
                 <BrandButton
                   type="submit"
                   disabled={submitting}
-                  variant="white"
+                  variant="red"
                   className="w-full"
                 >
                   {submitting ? "Sending…" : footer.newsletter.cta}

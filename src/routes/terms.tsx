@@ -4,7 +4,7 @@ import { TermsPage } from "@/components/pages/terms-page";
 export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
-      { title: "Terms and Conditions — Twentyone06" },
+      { title: "Terms and Conditions, Twentyone06" },
       {
         name: "description",
         content:

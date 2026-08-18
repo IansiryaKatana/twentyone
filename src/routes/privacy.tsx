@@ -4,7 +4,7 @@ import { PrivacyPage } from "@/components/pages/privacy-page";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Twentyone06" },
+      { title: "Privacy Policy, Twentyone06" },
       {
         name: "description",
         content:

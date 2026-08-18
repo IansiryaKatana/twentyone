@@ -57,7 +57,7 @@ const logos = [
 
 function Logo({ src }: { src: string }) {
   return (
-    <span className="relative flex h-11 items-center md:h-[3.75rem]">
+    <span className="relative flex h-14 items-center md:h-20">
       <img
         src={src}
         alt="Partner logo"
@@ -94,7 +94,7 @@ export function Partners() {
     >
       <div className="px-5 md:px-[7vw]">
         <Reveal className="flex justify-center">
-          <NhSectionTitle title={partnersSection.title} tone="dark" accent="black" />
+          <NhSectionTitle title={partnersSection.title} tone="dark" accent="black" lockup={false} />
         </Reveal>
 
         <div className="marquee-strip relative mt-10 overflow-hidden md:hidden">

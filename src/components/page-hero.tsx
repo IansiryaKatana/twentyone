@@ -40,7 +40,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative overflow-hidden pt-28 pb-12 md:pt-36 md:pb-16",
+        "relative overflow-hidden pt-32 pb-16 md:min-h-[52vh] md:pt-40 md:pb-24 min-h-[42vh]",
         hasImage ? "bg-[var(--nh-black,#0a0a0a)]" : "bg-cream",
         className
       )}

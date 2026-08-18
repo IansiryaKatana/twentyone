@@ -87,46 +87,48 @@ export function NhJournal() {
     <section className="bg-white py-20 text-[var(--nh-black)] md:py-28">
       <div className="w-full px-5 md:px-10">
         <div className="relative mb-10 md:mb-14">
-          <Reveal className="mx-auto flex max-w-5xl flex-col items-center text-center">
-            <NhSectionTitle title={section.title} />
-            <div
-              className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"
-              role="tablist"
-              aria-label="Journal topics"
-            >
-              {tabs.map((item) => {
-                const selected = item.id === activeTab?.id;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={selected}
-                    onClick={() => setTab(item.id)}
-                    className={cn(
-                      "relative text-[11px] font-medium uppercase tracking-[0.22em] transition-colors",
-                      selected
-                        ? "text-[var(--nh-red)]"
-                        : "text-black/40 hover:text-[var(--nh-black)]",
-                    )}
-                  >
-                    {item.label}
-                    <span
-                      aria-hidden
+          <Reveal className="flex w-full flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-10">
+            <NhSectionTitle title={section.title} align="left" />
+            <div className="flex w-full flex-col items-start md:max-w-md md:items-end md:text-right">
+              <div
+                className="flex flex-wrap items-center justify-start gap-x-8 gap-y-3 md:justify-end"
+                role="tablist"
+                aria-label="Journal topics"
+              >
+                {tabs.map((item) => {
+                  const selected = item.id === activeTab?.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={selected}
+                      onClick={() => setTab(item.id)}
                       className={cn(
-                        "absolute inset-x-0 -bottom-1.5 h-px bg-[var(--nh-red)] transition-opacity",
-                        selected ? "opacity-100" : "opacity-0",
+                        "font-display relative text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium uppercase leading-[1.05] transition-colors",
+                        selected
+                          ? "text-[var(--nh-red)]"
+                          : "text-black/40 hover:text-[var(--nh-black)]",
                       )}
-                    />
-                  </button>
-                );
-              })}
+                    >
+                      {item.label}
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "absolute inset-x-0 -bottom-1.5 h-px bg-[var(--nh-red)] transition-opacity",
+                          selected ? "opacity-100" : "opacity-0",
+                        )}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+              {activeTab ? (
+                <p className="font-detective mt-5 text-sm leading-relaxed text-black/55 md:text-[18px]">
+                  {activeTab.description}
+                </p>
+              ) : null}
             </div>
-            {activeTab ? (
-              <p className="font-detective mt-5 text-sm leading-relaxed text-black/55 md:text-[18px]">
-                {activeTab.description}
-              </p>
-            ) : null}
           </Reveal>
         </div>
 

@@ -14,7 +14,7 @@ const schema = {
       telephone: "+97145548082",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Pearl Coast — Office 304, 23rd St, Al Barsha First",
+        streetAddress: "Pearl Coast, Office 304, 23rd St, Al Barsha First",
         addressLocality: "Dubai",
         addressCountry: "AE",
       },

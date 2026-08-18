@@ -19,12 +19,12 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
-        title: "Twentyone06 — Design by the People, For the People.",
+        title: "Twentyone06, Design by the People, For the People.",
       },
       {
         name: "description",
         content:
-          "TwentyOne06 is a Dubai-based boutique design studio specializing in interior design and branding for hospitality and F&B — impactful, intentional, and bold.",
+          "TwentyOne06 is a Dubai-based boutique design studio specializing in interior design and branding for hospitality and F&B, impactful, intentional, and bold.",
       },
     ],
     links: [

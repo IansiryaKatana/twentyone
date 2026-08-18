@@ -67,7 +67,7 @@ function ServicesHero() {
             className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]"
           />
           <Reveal delay={0.2} className="mt-6 max-w-xl">
-            <p className="font-detective text-sm leading-relaxed text-white/75 md:text-base">
+            <p className="font-detective text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/75">
               {servicesPage.description}
             </p>
           </Reveal>

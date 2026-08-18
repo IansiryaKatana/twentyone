@@ -92,7 +92,7 @@ export function InquiryForm({
             dark ? "text-white" : "text-ink"
           )}
         >
-          Thank you — we’ll be in touch shortly.
+          Thank you. We’ll be in touch shortly.
         </h2>
         <p
           className={cn(

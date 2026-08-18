@@ -7,6 +7,8 @@ import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
 
+const QUOTE_PREVIEW_CHARS = 220;
+
 function NavArrow({
   direction,
   onClick,
@@ -34,16 +36,21 @@ export function NhTestimonial() {
   const reduced = useReducedMotionSafe();
   const [index, setIndex] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
   const testimonial = testimonials[index] ?? testimonials[0];
 
   React.useEffect(() => {
-    if (paused || reduced || testimonials.length === 0) return;
+    setExpanded(false);
+  }, [index]);
+
+  React.useEffect(() => {
+    if (paused || expanded || reduced || testimonials.length === 0) return;
     const timer = window.setInterval(
       () => setIndex((current) => (current + 1) % testimonials.length),
       7000
     );
     return () => window.clearInterval(timer);
-  }, [paused, reduced, testimonials.length]);
+  }, [paused, expanded, reduced, testimonials.length]);
 
   const prev = React.useCallback(() => {
     setIndex((current) =>
@@ -67,7 +74,12 @@ export function NhTestimonial() {
 
   if (!testimonial) return null;
 
-  const hasImage = Boolean(testimonial.image?.trim());
+  const quote = testimonial.quote.trim();
+  const isLong = quote.length > QUOTE_PREVIEW_CHARS;
+  const displayQuote =
+    !isLong || expanded
+      ? quote
+      : `${quote.slice(0, QUOTE_PREVIEW_CHARS).trimEnd()}…`;
 
   return (
     <section
@@ -99,40 +111,19 @@ export function NhTestimonial() {
               animate={{ opacity: 1, y: 0 }}
               exit={reduced ? { opacity: 0 } : { opacity: 0, y: -14 }}
               transition={{ duration: reduced ? 0.15 : 0.55, ease: EASE }}
-              className={cn(
-                "flex flex-col items-center px-12 sm:px-14",
-                hasImage &&
-                  "lg:grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:items-stretch lg:gap-12 lg:px-16 lg:text-left xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] xl:gap-16",
-              )}
+              className="grid grid-cols-1 items-stretch gap-8 px-12 sm:px-14 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] lg:gap-12 lg:px-16 lg:text-left xl:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] xl:gap-16"
             >
-              {hasImage ? (
-                <>
-                  {/* Mobile / tablet — circular avatar */}
-                  <div className="relative mb-6 size-16 shrink-0 overflow-hidden rounded-full bg-[#2a2a2a] md:size-20 lg:hidden">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[16rem] overflow-hidden bg-[var(--nh-panel)] lg:mx-0 lg:max-w-none lg:min-h-[28rem] lg:aspect-auto">
+                {testimonial.image?.trim() ? (
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                ) : null}
+              </div>
 
-                  {/* Desktop — portrait stretched to the quote column */}
-                  <div className="relative hidden h-full min-h-[28rem] w-full overflow-hidden bg-[#2a2a2a] lg:block">
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
-                </>
-              ) : null}
-
-              <div
-                className={cn(
-                  "flex w-full flex-col items-center",
-                  hasImage && "lg:items-start",
-                )}
-              >
+              <div className="flex w-full flex-col items-center lg:items-start">
                 <div>
                   <p className="font-display text-[clamp(2.22rem,4.2vw,3.5rem)] font-medium leading-[0.92] text-[var(--nh-red)]">
                     {testimonial.name}
@@ -152,8 +143,18 @@ export function NhTestimonial() {
                 </span>
 
                 <blockquote className="font-detective -mt-6 max-w-2xl text-[clamp(1.2rem,2.5vw,1.7rem)] leading-[1.2] tracking-tighter text-[var(--nh-white)] md:-mt-10">
-                  {testimonial.quote}
+                  {displayQuote}
                 </blockquote>
+
+                {isLong ? (
+                  <button
+                    type="button"
+                    onClick={() => setExpanded((value) => !value)}
+                    className="mt-4 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-red)] transition-colors hover:text-white"
+                  >
+                    {expanded ? "Show less" : "Read more"}
+                  </button>
+                ) : null}
 
                 <span
                   aria-hidden

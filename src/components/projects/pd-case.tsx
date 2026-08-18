@@ -64,7 +64,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
         </div>
       </section>
 
-      {imgA ? <FullBleedImage src={imgA} alt={`${project.title} — space`} /> : null}
+      {imgA ? <FullBleedImage src={imgA} alt={`${project.title}, space`} /> : null}
 
       {/* Approach — split */}
       <section className="grid grid-cols-1 overflow-hidden lg:grid-cols-2">
@@ -108,7 +108,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
           <Reveal y={40} amount={0.2} className="relative min-h-[380px] lg:min-h-full">
             <motion.img
               src={imgB}
-              alt={`${project.title} — approach`}
+              alt={`${project.title}, approach`}
               className="absolute inset-0 h-full w-full object-cover"
               initial={{ scale: 1.1 }}
               whileInView={{ scale: 1 }}
@@ -170,7 +170,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
         </section>
       )}
 
-      {imgC ? <FullBleedImage src={imgC} alt={`${project.title} — detail`} /> : null}
+      {imgC ? <FullBleedImage src={imgC} alt={`${project.title}, detail`} /> : null}
 
       {/* Outcome + closing frame */}
       <section className="grid grid-cols-1 overflow-hidden lg:grid-cols-12">
@@ -200,7 +200,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
           >
             <motion.img
               src={imgClose || imgC}
-              alt={`${project.title} — outcome`}
+              alt={`${project.title}, outcome`}
               className="absolute inset-0 h-full w-full object-cover"
               initial={{ scale: 1.08 }}
               whileInView={{ scale: 1 }}

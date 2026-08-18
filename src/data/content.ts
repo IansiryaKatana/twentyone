@@ -1,5 +1,5 @@
 /**
- * Twentyone06 — hardcoded content.
+ * Twentyone06, hardcoded content.
  * All imagery is served directly from Pexels' CDN (verified photo IDs).
  */
 
@@ -102,7 +102,7 @@ export const services = {
           index: "01",
           title: "Hospitality, F&B, and Hotel Interiors",
           description:
-            "Full-service interior design for hospitality, F&B, and hotels across the UAE and GCC — from concept through handover.",
+            "Full-service interior design for hospitality, F&B, and hotels across the UAE and GCC, from concept through handover.",
           image: pexels(1571468, 1000),
         },
         {
@@ -225,7 +225,7 @@ export const services = {
           index: "01",
           title: "Pre-Design Strategic Consultation",
           description:
-            "Strategic consultation before drawing begins — clarifying commercial, experiential, and operational goals.",
+            "Strategic consultation before drawing begins, clarifying commercial, experiential, and operational goals.",
           image: pexels(1866149, 1000),
         },
         {
@@ -379,7 +379,7 @@ export const footer = {
   location: {
     title: "Location",
     lines: [
-      "Pearl Coast — Office 304",
+      "Pearl Coast, Office 304",
       "23rd St, Al Barsha First",
       "Al Barsha, Dubai",
     ],
@@ -429,11 +429,11 @@ export const faqPage = {
   eyebrow: "Help Center",
   title: ["Answers Crafted", "With Clarity"],
   description:
-    "Everything you need to know about working with TwentyOne06 — from who we are and what we design, to services, timelines, and how to get started.",
+    "Everything you need to know about working with TwentyOne06, from who we are and what we design, to services, timelines, and how to get started.",
   seo: {
     title: "FAQs TwentyOne06 | Interior and Branding Design Firm, Dubai",
     description:
-      "Answers to the most common questions about TwentyOne06 — Dubai's multi-award winning interior design and branding studio. Interior Design, Branding, Design Project Management, and Design Strategy across the UAE, Saudi Arabia, and Kuwait.",
+      "Answers to the most common questions about TwentyOne06, Dubai's multi-award winning interior design and branding studio. Interior Design, Branding, Design Project Management, and Design Strategy across the UAE, Saudi Arabia, and Kuwait.",
     keywords: [
       "interior design studio Dubai FAQ",
       "hospitality interior design questions UAE",
@@ -481,19 +481,19 @@ export const faqPage = {
       items: [
         {
           q: "What is included in an interior design project with TwentyOne06?",
-          a: "Our interior design service covers the full arc of a project — from concept development, space planning, and material selection through to technical drawings, visualisations, construction documentation, and on-site supervision. Every scope is tailored to the project, but our commitment is consistent: what was designed is what gets built.",
+          a: "Our interior design service covers the full arc of a project, from concept development, space planning, and material selection through to technical drawings, visualisations, construction documentation, and on-site supervision. Every scope is tailored to the project, but our commitment is consistent: what was designed is what gets built.",
         },
         {
           q: "How long does an interior design project take?",
-          a: "Timelines vary depending on scale and complexity. A restaurant or F&B interior design project typically runs from 3 to 6 months from brief to handover. A hotel renovation or larger commercial project may run from 6 to 18 months. TwentyOne06 is transparent about timelines from the first conversation — and our Design Project Management service ensures those timelines are protected throughout the build.",
+          a: "Timelines vary depending on scale and complexity. A restaurant or F&B interior design project typically runs from 3 to 6 months from brief to handover. A hotel renovation or larger commercial project may run from 6 to 18 months. TwentyOne06 is transparent about timelines from the first conversation, and our Design Project Management service ensures those timelines are protected throughout the build.",
         },
         {
           q: "Can TwentyOne06 manage contractors and consultants during construction?",
-          a: "Yes. Through our Design Project Management service, we work directly with contractors, consultants, and suppliers throughout the build — protecting design intent, managing communication, and ensuring the approved design is executed correctly. We do not hand over drawings and disappear.",
+          a: "Yes. Through our Design Project Management service, we work directly with contractors, consultants, and suppliers throughout the build, protecting design intent, managing communication, and ensuring the approved design is executed correctly. We do not hand over drawings and disappear.",
         },
         {
           q: "Can TwentyOne06 remain involved after the design phase is complete?",
-          a: "Absolutely. Many clients engage TwentyOne06 through construction and fit-out to oversee implementation, coordinate stakeholders, review site progress, and ensure the final result reflects the approved design. Long-term client relationships are a core part of how we work — many of our clients return project after project and refer us to others.",
+          a: "Absolutely. Many clients engage TwentyOne06 through construction and fit-out to oversee implementation, coordinate stakeholders, review site progress, and ensure the final result reflects the approved design. Long-term client relationships are a core part of how we work, many of our clients return project after project and refer us to others.",
         },
       ] satisfies FaqItem[],
     },
@@ -503,15 +503,15 @@ export const faqPage = {
       items: [
         {
           q: "What is included in a branding project with TwentyOne06?",
-          a: "Depending on the scope, branding projects include brand strategy and positioning, naming, visual identity design, signage, environmental graphics, brand guidelines, and wayfinding systems. We work across hospitality, F&B, retail, and commercial sectors in Dubai and the UAE — creating brand identities that work inside the space and beyond it.",
+          a: "Depending on the scope, branding projects include brand strategy and positioning, naming, visual identity design, signage, environmental graphics, brand guidelines, and wayfinding systems. We work across hospitality, F&B, retail, and commercial sectors in Dubai and the UAE, creating brand identities that work inside the space and beyond it.",
         },
         {
           q: "What is the difference between brand strategy and visual identity?",
-          a: "Brand strategy defines how your business is positioned, who it serves, and what makes it different. Visual identity brings that strategy to life — through logos, colour systems, typography, and design frameworks. At TwentyOne06, one always informs the other. We do not design logos without understanding the brand behind them.",
+          a: "Brand strategy defines how your business is positioned, who it serves, and what makes it different. Visual identity brings that strategy to life, through logos, colour systems, typography, and design frameworks. At TwentyOne06, one always informs the other. We do not design logos without understanding the brand behind them.",
         },
         {
           q: "How does TwentyOne06 approach branding for hospitality and F&B businesses?",
-          a: "Your space tells a story before anyone reads a word. TwentyOne06's branding practice makes sure that story is the right one — developing visual identities, naming systems, and environmental graphics that give hospitality and F&B businesses across the UAE and GCC a consistent, distinctive voice across every touchpoint, from the logo on the door to the signage on the wall.",
+          a: "Your space tells a story before anyone reads a word. TwentyOne06's branding practice makes sure that story is the right one, developing visual identities, naming systems, and environmental graphics that give hospitality and F&B businesses across the UAE and GCC a consistent, distinctive voice across every touchpoint, from the logo on the door to the signage on the wall.",
         },
       ] satisfies FaqItem[],
     },
@@ -561,7 +561,7 @@ export const faqPage = {
         },
         {
           q: "How do I start a project with TwentyOne06?",
-          a: "The best first step is a conversation. Share a brief outline of your project — the space, the sector, what you are trying to achieve, and any timeline — and we will come back to you. You can reach us through the Let's Talk form on our website, by emailing info@twentyone06.com, or by calling us directly. We work with clients across Dubai, the UAE, Saudi Arabia, Kuwait, and the wider GCC.",
+          a: "The best first step is a conversation. Share a brief outline of your project, the space, the sector, what you are trying to achieve, and any timeline, and we will come back to you. You can reach us through the Let's Talk form on our website, by emailing info@twentyone06.com, or by calling us directly. We work with clients across Dubai, the UAE, Saudi Arabia, Kuwait, and the wider GCC.",
         },
       ] satisfies FaqItem[],
     },
@@ -587,7 +587,7 @@ export const privacyPage = {
   title: ["Privacy", "Policy"],
   description:
     "How we collect, use, and protect your personal data when you visit our website or engage with TwentyOne06.",
-  /** Set when hero art is ready — PageHero will go full-bleed with overlay text. */
+  /** Set when hero art is ready, PageHero will go full-bleed with overlay text. */
   image: undefined as string | undefined,
   controller: legalController,
   sections: [
@@ -610,7 +610,7 @@ export const privacyPage = {
       id: "what-we-collect",
       title: "What Personal Data We Collect",
       paragraphs: [
-        "We collect personal data when you interact with us. This includes information you provide directly — such as your name, email address, phone number, company name, and project details submitted through our contact forms or by email. When you browse our website, we also collect technical data automatically through cookies and analytics tools, including your IP address, browser type, device information, and pages visited. We may also receive information if you interact with our content on Facebook, Instagram, or LinkedIn. We do not collect sensitive personal data — such as health, biometric, financial, religious, or political information — unless specifically required and with your explicit consent.",
+        "We collect personal data when you interact with us. This includes information you provide directly, such as your name, email address, phone number, company name, and project details submitted through our contact forms or by email. When you browse our website, we also collect technical data automatically through cookies and analytics tools, including your IP address, browser type, device information, and pages visited. We may also receive information if you interact with our content on Facebook, Instagram, or LinkedIn. We do not collect sensitive personal data, such as health, biometric, financial, religious, or political information, unless specifically required and with your explicit consent.",
       ],
     },
     {
@@ -624,7 +624,7 @@ export const privacyPage = {
       id: "who-we-share",
       title: "Who We Share Your Data With",
       paragraphs: [
-        "TwentyOne06 does not sell, rent, or trade your personal data. We may share it with trusted service providers who support our business operations — such as hosting providers, email platforms, and analytics tools — who are bound to process your data only in accordance with our instructions. We may also share data with professional advisors or with law enforcement and regulatory authorities where required by law. In the event of a business transfer, your data may be transferred to the relevant third party under the same obligations as set out in this policy.",
+        "TwentyOne06 does not sell, rent, or trade your personal data. We may share it with trusted service providers who support our business operations, such as hosting providers, email platforms, and analytics tools, who are bound to process your data only in accordance with our instructions. We may also share data with professional advisors or with law enforcement and regulatory authorities where required by law. In the event of a business transfer, your data may be transferred to the relevant third party under the same obligations as set out in this policy.",
       ],
     },
     {
@@ -685,7 +685,7 @@ export const termsPage = {
   title: ["Terms and", "Conditions"],
   description:
     "The terms that govern your use of the TwentyOne06 website and how we engage with enquiries and services.",
-  /** Set when hero art is ready — same treatment as Privacy. */
+  /** Set when hero art is ready, same treatment as Privacy. */
   image: undefined as string | undefined,
   controller: legalController,
   sections: [
@@ -700,7 +700,7 @@ export const termsPage = {
       id: "intellectual-property",
       title: "2. Intellectual Property",
       paragraphs: [
-        "All content published on this Website — including text, project photography, design concepts, graphics, logos, and branding — is the intellectual property of TwentyOne06 or is used with the express permission of the respective rights holders. All such rights are reserved. You may view and print pages from this Website for personal, non-commercial use only, provided that all copyright notices remain intact. Reproduction, distribution, modification, or commercial use of any content without the prior written consent of TwentyOne06 is strictly prohibited.",
+        "All content published on this Website, including text, project photography, design concepts, graphics, logos, and branding, is the intellectual property of TwentyOne06 or is used with the express permission of the respective rights holders. All such rights are reserved. You may view and print pages from this Website for personal, non-commercial use only, provided that all copyright notices remain intact. Reproduction, distribution, modification, or commercial use of any content without the prior written consent of TwentyOne06 is strictly prohibited.",
       ],
     },
     {
@@ -721,7 +721,7 @@ export const termsPage = {
       id: "liability",
       title: "5. Disclaimers and Limitation of Liability",
       paragraphs: [
-        "The content on this Website is provided in good faith and for general information only. TwentyOne06 makes no warranties, express or implied, regarding the accuracy, completeness, or fitness for purpose of any information on this Website. To the fullest extent permitted by applicable UAE law, TWENTYONE ZERO SIX PROJECT MANAGEMENT shall not be liable for any loss or damage — whether direct, indirect, incidental, or consequential — arising from your use of or reliance on this Website or its content, or from your inability to access the Website. We do not warrant that the Website will be uninterrupted, error-free, or free from viruses or other harmful components.",
+        "The content on this Website is provided in good faith and for general information only. TwentyOne06 makes no warranties, express or implied, regarding the accuracy, completeness, or fitness for purpose of any information on this Website. To the fullest extent permitted by applicable UAE law, TWENTYONE ZERO SIX PROJECT MANAGEMENT shall not be liable for any loss or damage, whether direct, indirect, incidental, or consequential, arising from your use of or reliance on this Website or its content, or from your inability to access the Website. We do not warrant that the Website will be uninterrupted, error-free, or free from viruses or other harmful components.",
       ],
     },
     {
@@ -779,14 +779,14 @@ export const contactPage = {
   body:
     "You've seen what we do. Now let's talk about what we can do for you. Whether you have a finished brief or just an idea. Share it with us and we'll take it from there.",
   map: {
-    title: "TwentyOne06 — Interior Design & Branding",
+    title: "TwentyOne06, Interior Design & Branding",
     embedUrl:
       "https://maps.google.com/maps?q=TwentyOne06%20-%20Interior%20Design%20%26%20Branding&t=m&z=16&output=embed&iwloc=near",
     linkUrl:
       "https://www.google.com/maps/place/TwentyOne06/@25.113307,55.202634,16z/data=!4m6!3m5!1s0x65e0eb0b9615dd27:0xb05789dd21b237ae!8m2!3d25.1133073!4d55.2026337!16s%2Fg%2F11vjmqd6tl",
   },
   image: pexels(1571460, 1400),
-  /** Shared with the Services page — both submit as form_name "contact". */
+  /** Shared with the Services page, both submit as form_name "contact". */
   form: {
     fields: [
       {
@@ -887,7 +887,7 @@ export const contactPage = {
     {
       label: "Visit",
       lines: [
-        "Pearl Coast — Office 304",
+        "Pearl Coast, Office 304",
         "23rd St, Al Barsha First",
         "Al Barsha, Dubai",
       ],
@@ -910,7 +910,7 @@ export const contactPage = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*  Catalog pages — projects, services, about, journal                        */
+/*  Catalog pages, projects, services, about, journal                        */
 /* -------------------------------------------------------------------------- */
 
 export const projectsPage = {
@@ -918,7 +918,7 @@ export const projectsPage = {
     title:
       "TwentyOne06 Projects | Full-Service Interior Design Studio, Dubai",
     description:
-      "Explore 40+ interior design and branding projects by TwentyOne06 — Dubai's multi-award winning full-service design studio. Hospitality, F&B, hotels, retail, and commercial spaces across the UAE and GCC.",
+      "Explore 40+ interior design and branding projects by TwentyOne06, Dubai's multi-award winning full-service design studio. Hospitality, F&B, hotels, retail, and commercial spaces across the UAE and GCC.",
     keywords: [
       "interior design projects Dubai",
       "hospitality design portfolio UAE",
@@ -935,7 +935,7 @@ export const projectsPage = {
       { text: "Built For People", accent: true },
     ],
     description:
-      "From Michelin-starred restaurants to international hotel groups — every space designed to perform, not just to impress.",
+      "From Michelin-starred restaurants to international hotel groups, every space designed to perform, not just to impress.",
     image: pexels(1571460, 1920),
   },
   philosophy: {
@@ -1006,9 +1006,9 @@ export type Project = {
   location: string;
   price: string;
   category: "Residential" | "Hospitality" | "Commercial";
-  /** Portfolio sector filter — derived when omitted */
+  /** Portfolio sector filter, derived when omitted */
   sector?: ProjectSector;
-  /** Service slugs this project showcases — used by /projects?service=… */
+  /** Service slugs this project showcases, used by /projects?service=… */
   services: Array<
     | "interior-design"
     | "branding"
@@ -1054,13 +1054,13 @@ export const servicesPage = {
   eyebrow: "Services",
   title: ["Where Vision", "Meets Craft"],
   description:
-    "The studio behind Dubai's most talked-about hospitality and F&B spaces — from the first brief to the final handover, and everything in between.",
+    "The studio behind Dubai's most talked-about hospitality and F&B spaces, from the first brief to the final handover, and everything in between.",
   heroImage: pexels(1571468, 1800),
   seo: {
     title:
       "TwentyOne06 Services | Interior Design, Branding, Design Management & Strategy, Dubai",
     description:
-      "TwentyOne06 offers 4 integrated design services — Interior Design, Branding, Design Management, and Design Strategy and Operations — across hospitality, F&B, hotels, retail, and commercial spaces in Dubai, the UAE, Saudi Arabia, and Kuwait.",
+      "TwentyOne06 offers 4 integrated design services, Interior Design, Branding, Design Management, and Design Strategy and Operations, across hospitality, F&B, hotels, retail, and commercial spaces in Dubai, the UAE, Saudi Arabia, and Kuwait.",
     keywords: [
       "interior design services Dubai",
       "branding studio Dubai",
@@ -1089,11 +1089,11 @@ export const servicesPage = {
       titleLines: ["Interior", "Design"],
       body: [
         "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces.",
-        "40+ projects across Dubai, the UAE, and the GCC — from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.",
+        "40+ projects across Dubai, the UAE, and the GCC, from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.",
       ],
       bullets: [
-        "Hospitality and F&B interior design — Dubai and UAE",
-        "Hotel and resort interior design — GCC",
+        "Hospitality and F&B interior design, Dubai and UAE",
+        "Hotel and resort interior design, GCC",
         "Retail and commercial space design",
         "Restaurant and bar interior design",
         "Concept development and spatial planning",
@@ -1112,7 +1112,7 @@ export const servicesPage = {
       title: "Branding",
       titleLines: ["Branding"],
       body: [
-        "Your space tells a story, and we make sure it tells the right one. We develop branding strategies that extend from logos and signage to environmental graphics and wayfinding systems — giving every touchpoint a consistent, distinctive voice.",
+        "Your space tells a story, and we make sure it tells the right one. We develop branding strategies that extend from logos and signage to environmental graphics and wayfinding systems, giving every touchpoint a consistent, distinctive voice.",
       ],
       bullets: [
         "Brand identity and visual systems",
@@ -1140,7 +1140,7 @@ export const servicesPage = {
         "Material selection and specification",
         "Design coordination and quality control",
         "Value engineering without compromising design intent",
-        "Local market and supplier knowledge — UAE and GCC",
+        "Local market and supplier knowledge, UAE and GCC",
         "Cost and programme alignment",
       ],
       cta: "Let's Manage Your Design",
@@ -1156,10 +1156,10 @@ export const servicesPage = {
       title: "Design Strategy And Operations",
       titleLines: ["Design Strategy", "And Operations"],
       body: [
-        "Before a single line is drawn, the most important decisions are already being made. TwentyOne06's Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve — commercially, experientially, and operationally — before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.",
+        "Before a single line is drawn, the most important decisions are already being made. TwentyOne06's Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve, commercially, experientially, and operationally, before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.",
       ],
       bullets: [
-        "Pre-design strategic consultation — UAE and GCC",
+        "Pre-design strategic consultation, UAE and GCC",
         "Space programming and commercial viability",
         "Guest experience mapping and journey design",
         "Revenue-driven design frameworks",
@@ -1178,12 +1178,12 @@ const serviceIntros: Record<
 > = {
   "interior-design": {
     intro:
-      "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC — from Michelin-starred restaurants to international hotel groups.",
+      "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC, from Michelin-starred restaurants to international hotel groups.",
     heroImage: pexels(1571468, 1600),
   },
   branding: {
     intro:
-      "Your space tells a story, and we make sure it tells the right one. Branding strategies from logos and signage to environmental graphics and wayfinding — every touchpoint with a consistent, distinctive voice.",
+      "Your space tells a story, and we make sure it tells the right one. Branding strategies from logos and signage to environmental graphics and wayfinding, every touchpoint with a consistent, distinctive voice.",
     heroImage: pexels(3184291, 1600),
   },
   "design-management": {
@@ -1256,7 +1256,7 @@ export const aboutPage = {
   title: ["About Us"],
   seo: {
     title:
-      "About TwentyOne06 — Full-Service Interior Design Firm, Dubai",
+      "About TwentyOne06, Full-Service Interior Design Firm, Dubai",
     description:
       "TwentyOne06 is a multi-award winning interior design and branding firm in Dubai. Founded by Govind Shepley, 50 Masters of Design 2026. Serving hospitality, F&B, hotels, retail, and commercial clients across the UAE and GCC.",
     keywords: [
@@ -1272,11 +1272,11 @@ export const aboutPage = {
     "It Hasn't Stopped Since.",
   ],
   story: [
-    "In 2018, Govind Shepley turned apartment 2106 into the starting point for what would become one of the most recognised full-service interior design studios in Dubai and across the UAE. What began with a single project and one clear conviction — that great design starts with people — has since grown into a multi-award winning studio trusted by Michelin-starred chefs, international hotel groups, and leading retail brands across the region.",
-    "TwentyOne06 now operates across four integrated service lines — Interior Design, Branding, Design Project Management, and Design Strategy and Operations — covering the full arc of a project from the very first brief to handover, and in many cases, well beyond it.",
+    "In 2018, Govind Shepley turned apartment 2106 into the starting point for what would become one of the most recognised full-service interior design studios in Dubai and across the UAE. What began with a single project and one clear conviction, that great design starts with people, has since grown into a multi-award winning studio trusted by Michelin-starred chefs, international hotel groups, and leading retail brands across the region.",
+    "TwentyOne06 now operates across four integrated service lines, Interior Design, Branding, Design Project Management, and Design Strategy and Operations, covering the full arc of a project from the very first brief to handover, and in many cases, well beyond it.",
   ],
   recognition:
-    "Govind's recognition among the 50 Masters of Design 2026 is proof that the industry has noticed. Not just for the work, but for how he leads — through trust, authenticity, and an unwavering commitment to raising the standard of design across the Middle East.",
+    "Govind's recognition among the 50 Masters of Design 2026 is proof that the industry has noticed. Not just for the work, but for how he leads, through trust, authenticity, and an unwavering commitment to raising the standard of design across the Middle East.",
   recognitionCredits:
     "50 Masters of Design 2026  ·  CID Power 50 (2021, 2022)  ·  Design Middle East Powerlist Creative 30 (2022, 2024, 2025)  ·  Design Middle East Cover, January 2025",
   imageA: pexels(1080721, 900),
@@ -1289,7 +1289,7 @@ export const aboutPage = {
   },
   milestones: {
     title: ["Milestones We're", "Proud Of."],
-    body: "We have spent 7 years doing the work that earns the numbers — not the other way around. We don't measure success in square metres. We measure it in spaces that open on time, clients who come back, and awards that prove the work speaks for itself.",
+    body: "We have spent 7 years doing the work that earns the numbers, not the other way around. We don't measure success in square metres. We measure it in spaces that open on time, clients who come back, and awards that prove the work speaks for itself.",
     stats: [
       { value: 40, suffix: "+", label: "Successful Projects" },
       { value: 60, suffix: "+", label: "Clients Served" },
@@ -1353,35 +1353,35 @@ export type Award = {
 };
 
 export const awards: Award[] = [
-  { status: "winner", title: "CID Awards 2024 MENA — Interior Design Concept of the Year, Hotel  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
-  { status: "winner", title: "CID Awards 2024 MENA — Design Concept of the Year, Retail, Leisure and Education  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
-  { status: "winner", title: "CID Awards 2025 Hospitality — Best Use of Materials  ·  Flaky Pastry, The Galleria", href: "https://www.commercialinteriordesign.com/news/winners-from-the-cid-awards-2025-hospitality" },
-  { status: "winner", title: "CID Awards 2025 MENA — Retail Design of the Year  ·  Cheese Board, Bluewaters Island", href: "/journal/retail-design-to-young-talent-twentyone06-celebrates-double-victory-at-cid-awards-mena-2025" },
-  { status: "winner", title: "Design Middle East Awards 2025 — Healthcare Project of the Year  ·  Dental Nation", href: "https://design-middleeast.com/design-middle-east-awards-2025-winners-revealed/" },
-  { status: "winner", title: "Luxuri Magazine 2025 — Best Storytelling-Driven Hospitality Design Studio, Dubai", href: "https://www.luxurimag.com/award-winner-2025/twentyone06/" },
-  { status: "highly_commended", title: "Design Middle East Awards 2024 — Interior Designer of the Year  ·  Govind Shepley", href: "https://design-middleeast.com/design-middle-east-awards-2024-winners-revealed/" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Casual Restaurant Design  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Hotel Design  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
-  { status: "highly_commended", title: "CID Awards 2024 MENA — Best Spa/Wellness Design  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Design Firm of the Year", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
-  { status: "highly_commended", title: "CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
-  { status: "highly_commended", title: "CID Awards 2026 Hospitality — Rising Star of the Year  ·  Sabiha Yusuf", href: "https://www.commercialinteriordesign.com/events/cid-awards/cid-hospitality-awards-2026-winners-highly-commended" },
-  { status: "shortlisted", title: "CID Awards 2024 MENA — Boutique Firm of the Year", href: "https://www.commercialinteriordesign.com/events/cid-awards/revealed-the-cid-awards-2024-mena-shortlist" },
-  { status: "shortlisted", title: "CID Awards 2024 Hospitality — Best Casual and Best High-End Restaurant  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/cid-awards/every-shortlist-for-the-cid-awards-2024-hospitality-revealed" },
-  { status: "shortlisted", title: "Design Middle East Awards 2024 — Interior Design Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
-  { status: "shortlisted", title: "Design Middle East Awards 2024 — Boutique Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best Casual Restaurant Design  ·  Flaky Pastry, Abu Dhabi", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best F&B Franchise Design  ·  Flaky Pastry Dubai", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Best F&B Design Concept  ·  Cheese Board", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
-  { status: "shortlisted", title: "CID Awards 2025 Hospitality — Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
-  { status: "shortlisted", title: "CID Awards 2025 MENA — Interior Design of the Year, Health and Wellness  ·  Dental Nation", href: "https://www.commercialinteriordesign.com/events/the-shortlist-cid-awards-2025-mena" },
-  { status: "shortlisted", title: "Design Middle East Awards 2025 — Boutique Firm of the Year" },
-  { status: "shortlisted", title: "Design Middle East Awards 2025 — Commercial Project of the Year  ·  Knowledge Academy Office" },
-  { status: "editorial", title: "CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2021)", href: "https://www.commercialinteriordesign.com/news/power-50-of-design-industry" },
-  { status: "editorial", title: "CID Power 50 — Govind Shepley, Top 20 Designers of the Year (2022)", href: "https://www.commercialinteriordesign.com/news/commercial-interior-design-power-50-top-20-designers-of-2022" },
+  { status: "winner", title: "CID Awards 2024 MENA, Interior Design Concept of the Year, Hotel  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "winner", title: "CID Awards 2024 MENA, Design Concept of the Year, Retail, Leisure and Education  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "winner", title: "CID Awards 2025 Hospitality, Best Use of Materials  ·  Flaky Pastry, The Galleria", href: "https://www.commercialinteriordesign.com/news/winners-from-the-cid-awards-2025-hospitality" },
+  { status: "winner", title: "CID Awards 2025 MENA, Retail Design of the Year  ·  Cheese Board, Bluewaters Island", href: "/journal/retail-design-to-young-talent-twentyone06-celebrates-double-victory-at-cid-awards-mena-2025" },
+  { status: "winner", title: "Design Middle East Awards 2025, Healthcare Project of the Year  ·  Dental Nation", href: "https://design-middleeast.com/design-middle-east-awards-2025-winners-revealed/" },
+  { status: "winner", title: "Luxuri Magazine 2025, Best Storytelling-Driven Hospitality Design Studio, Dubai", href: "https://www.luxurimag.com/award-winner-2025/twentyone06/" },
+  { status: "highly_commended", title: "Design Middle East Awards 2024, Interior Designer of the Year  ·  Govind Shepley", href: "https://design-middleeast.com/design-middle-east-awards-2024-winners-revealed/" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA, Best Casual Restaurant Design  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA, Best Hotel Design  ·  Voco Monaco", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2024 MENA, Best Spa/Wellness Design  ·  ELIX Spa", href: "https://www.commercialinteriordesign.com/events/all-the-winners-from-cid-awards-2024-mena" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality, Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality, Best Casual Restaurant Design  ·  Flaky Pastry", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality, Hospitality Design Firm of the Year", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2025 Hospitality, Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/news/winners-highly-commended-the-cid-awards-2025-hospitality" },
+  { status: "highly_commended", title: "CID Awards 2026 Hospitality, Rising Star of the Year  ·  Sabiha Yusuf", href: "https://www.commercialinteriordesign.com/events/cid-awards/cid-hospitality-awards-2026-winners-highly-commended" },
+  { status: "shortlisted", title: "CID Awards 2024 MENA, Boutique Firm of the Year", href: "https://www.commercialinteriordesign.com/events/cid-awards/revealed-the-cid-awards-2024-mena-shortlist" },
+  { status: "shortlisted", title: "CID Awards 2024 Hospitality, Best Casual and Best High-End Restaurant  ·  Nama Yoso", href: "https://www.commercialinteriordesign.com/events/cid-awards/every-shortlist-for-the-cid-awards-2024-hospitality-revealed" },
+  { status: "shortlisted", title: "Design Middle East Awards 2024, Interior Design Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
+  { status: "shortlisted", title: "Design Middle East Awards 2024, Boutique Firm of the Year", href: "https://design-middleeast.com/shortlist-revealed-design-middle-east-awards-2024/" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality, Best Bar/Lounge Design  ·  Observatory Lounge", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality, Best Casual Restaurant Design  ·  Flaky Pastry, Abu Dhabi", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality, Best F&B Franchise Design  ·  Flaky Pastry Dubai", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality, Best F&B Design Concept  ·  Cheese Board", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 Hospitality, Hospitality Designer of the Year  ·  Govind Shepley", href: "https://www.commercialinteriordesign.com/events/revealed-every-shortlist-in-cid-awards-2025-hospitality" },
+  { status: "shortlisted", title: "CID Awards 2025 MENA, Interior Design of the Year, Health and Wellness  ·  Dental Nation", href: "https://www.commercialinteriordesign.com/events/the-shortlist-cid-awards-2025-mena" },
+  { status: "shortlisted", title: "Design Middle East Awards 2025, Boutique Firm of the Year" },
+  { status: "shortlisted", title: "Design Middle East Awards 2025, Commercial Project of the Year  ·  Knowledge Academy Office" },
+  { status: "editorial", title: "CID Power 50, Govind Shepley, Top 20 Designers of the Year (2021)", href: "https://www.commercialinteriordesign.com/news/power-50-of-design-industry" },
+  { status: "editorial", title: "CID Power 50, Govind Shepley, Top 20 Designers of the Year (2022)", href: "https://www.commercialinteriordesign.com/news/commercial-interior-design-power-50-top-20-designers-of-2022" },
   { status: "editorial", title: "Design Middle East Powerlist Creative 30 (2022)", href: "https://design-middleeast.com/powerlist-creative-30-2022-govind-shepley-founder-and-creative-director-twentyone06/" },
   { status: "editorial", title: "Design Middle East Powerlist Creative 30 (2024)", href: "https://design-middleeast.com/powerlist-creative-30-2024-govind-shepley-founder-and-creative-director-twentyone06/" },
   { status: "editorial", title: "Design Middle East Cover Feature, January 2025", href: "https://design-middleeast.com/twentyone06-a-bold-leap-into-2025/" },
@@ -1463,16 +1463,16 @@ export function getFeaturedPost(): JournalPost {
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Homepage (/) — reference layout using existing brand content               */
+/*  Homepage (/), reference layout using existing brand content               */
 /* -------------------------------------------------------------------------- */
 
 export const newHome = {
   seo: {
-    title: "Twentyone06 — Design by the People, for the People",
+    title: "Twentyone06, Design by the People, for the People",
     description:
-      "Twentyone06 creative design studio — interiors, branding, and bold hospitality experiences across Dubai and the UAE.",
+      "Twentyone06 creative design studio, interiors, branding, and bold hospitality experiences across Dubai and the UAE.",
     keywords: [
-      // Primary — high intent
+      // Primary, high intent
       "interior design company Dubai",
       "interior design studio Dubai",
       "interior design studio Firm",
@@ -1485,20 +1485,20 @@ export const newHome = {
       "retail interior design Dubai",
       "F&B interior design Dubai",
       "branding studio Dubai",
-      // Secondary — service-specific
+      // Secondary, service-specific
       "interior design management Dubai",
       "design strategy consultancy Dubai",
       "brand identity design Dubai",
       "space planning Dubai",
       "concept design hospitality UAE",
       "interior branding agency Dubai",
-      // Long-tail — blog and content SEO
+      // Long-tail, blog and content SEO
       "best interior design studio Dubai",
       "hospitality design firm UAE",
       "luxury hotel interior design Dubai",
       "F&B restaurant design UAE",
       "design firm for developers Dubai",
-      // GCC secondary — Saudi Arabia and Kuwait
+      // GCC secondary, Saudi Arabia and Kuwait
       "interior design company Saudi Arabia",
       "interior design studio Riyadh",
       "hospitality interior design Jeddah",
@@ -1532,7 +1532,7 @@ export const newHome = {
   philosophy: {
     eyebrow: "The Twentyone06 Philosophy",
     title: ["We Design For", "People."],
-    body: "Every space we design starts with a question: what does this need to do for the people using it? Not aesthetically. Commercially. Experientially. Operationally. In hospitality, F&B, and retail, the design is not decoration. It is the reason guests stay longer, come back, and bring others. We design with that understanding at the centre of every brief — bold where it counts, precise where it matters, and always in service of the people the space is built for.",
+    body: "Every space we design starts with a question: what does this need to do for the people using it? Not aesthetically. Commercially. Experientially. Operationally. In hospitality, F&B, and retail, the design is not decoration. It is the reason guests stay longer, come back, and bring others. We design with that understanding at the centre of every brief, bold where it counts, precise where it matters, and always in service of the people the space is built for.",
     /** Word in `body` rendered in brand red on desktop. */
     bodyAccent: "is",
     cta: about.cta,
@@ -1552,10 +1552,10 @@ export const newHome = {
         description:
           "Multi-award winning interior design for hospitality, F&B, hotel, retail, and commercial spaces across Dubai and the GCC.",
         detail:
-          "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC — from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.",
+          "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC, from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.",
         bullets: [
-          "Hospitality and F&B interior design — Dubai and UAE",
-          "Hotel and resort interior design — GCC",
+          "Hospitality and F&B interior design, Dubai and UAE",
+          "Hotel and resort interior design, GCC",
           "Retail and commercial space design",
           "Restaurant and bar interior design",
           "Concept development and spatial planning",
@@ -1569,9 +1569,9 @@ export const newHome = {
         slug: "branding",
         title: "Branding",
         description:
-          "Branding strategies from logos and signage to environmental graphics — every touchpoint with a consistent voice.",
+          "Branding strategies from logos and signage to environmental graphics, every touchpoint with a consistent voice.",
         detail:
-          "Your space tells a story, and we make sure it tells the right one. We develop branding strategies that extend from logos and signage to environmental graphics and wayfinding systems — giving every touchpoint a consistent, distinctive voice.",
+          "Your space tells a story, and we make sure it tells the right one. We develop branding strategies that extend from logos and signage to environmental graphics and wayfinding systems, giving every touchpoint a consistent, distinctive voice.",
         bullets: [
           "Brand identity and visual systems",
           "Logo design and naming strategy",
@@ -1594,7 +1594,7 @@ export const newHome = {
           "Material selection and specification",
           "Design coordination and quality control",
           "Value engineering without compromising design intent",
-          "Local market and supplier knowledge — UAE and GCC",
+          "Local market and supplier knowledge, UAE and GCC",
           "Cost and programme alignment",
         ],
         cta: "Let's Manage Your Design",
@@ -1607,9 +1607,9 @@ export const newHome = {
         description:
           "Define what a space must achieve commercially, experientially, and operationally before a single line is drawn.",
         detail:
-          "Before a single line is drawn, the most important decisions are already being made. TwentyOne06's Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve — commercially, experientially, and operationally — before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.",
+          "Before a single line is drawn, the most important decisions are already being made. TwentyOne06's Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve, commercially, experientially, and operationally, before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.",
         bullets: [
-          "Pre-design strategic consultation — UAE and GCC",
+          "Pre-design strategic consultation, UAE and GCC",
           "Space programming and commercial viability",
           "Guest experience mapping and journey design",
           "Revenue-driven design frameworks",

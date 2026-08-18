@@ -125,10 +125,8 @@ export function NhHeader({
               aria-controls="site-menu"
               aria-label={open ? "Close menu" : "Open menu"}
               className={cn(
-                "btn-cut flex size-10 items-center justify-center border transition-colors hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white lg:hidden",
-                onLight
-                  ? "border-ink/30 text-ink"
-                  : "border-white/35 text-white"
+                "btn-cut flex size-10 items-center justify-center border-2 bg-white text-ink transition-colors hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white lg:hidden",
+                onLight ? "border-ink" : "border-white"
               )}
             >
               {open ? <X className="size-4" /> : <Menu className="size-4" />}

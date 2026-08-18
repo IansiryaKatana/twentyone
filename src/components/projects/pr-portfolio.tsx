@@ -9,8 +9,11 @@ import {
 } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
+import { BrandButton } from "@/components/brand-button";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
+
+const MOBILE_PAGE_SIZE = 4;
 
 const SERVICE_FROM_URL: Record<string, string> = {
   "interior-design": "interior-design",
@@ -250,6 +253,21 @@ export function PrProjectGrid({
   const [filtersExpanded, setFiltersExpanded] = React.useState(
     () => serviceFromUrl !== "All",
   );
+  const [mobileVisibleCount, setMobileVisibleCount] =
+    React.useState(MOBILE_PAGE_SIZE);
+  const [isMobile, setIsMobile] = React.useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(max-width: 767px)").matches
+      : true,
+  );
+
+  React.useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   React.useEffect(() => {
     const next =
@@ -260,13 +278,21 @@ export function PrProjectGrid({
       prev.service === next ? prev : { ...prev, service: next },
     );
     if (next !== "All") setFiltersExpanded(true);
+    setMobileVisibleCount(MOBILE_PAGE_SIZE);
   }, [initialService]);
 
   const setFilter = (key: FilterKey, value: string) => {
     setFilters((prev) => ({ ...prev, [key]: value }));
+    setMobileVisibleCount(MOBILE_PAGE_SIZE);
   };
 
   const filtered = projects.filter((p) => matchesFilters(p, filters));
+  const visibleProjects =
+    isMobile ? filtered.slice(0, mobileVisibleCount) : filtered;
+  const hasMoreMobile = isMobile && mobileVisibleCount < filtered.length;
+  const isExpandedMobile =
+    isMobile && mobileVisibleCount > MOBILE_PAGE_SIZE && filtered.length > MOBILE_PAGE_SIZE;
+
   const hasActive =
     filters.service !== "All" ||
     filters.sector !== "All" ||
@@ -280,6 +306,7 @@ export function PrProjectGrid({
       year: "All",
       location: "All",
     });
+    setMobileVisibleCount(MOBILE_PAGE_SIZE);
   };
 
   return (
@@ -339,10 +366,38 @@ export function PrProjectGrid({
       </p>
 
       <div className="mt-6 columns-1 gap-4 md:columns-2 md:gap-5 xl:columns-3">
-        {filtered.map((project) => (
+        {visibleProjects.map((project) => (
           <ProjectTile key={project.slug} project={project} />
         ))}
       </div>
+
+      {filtered.length > MOBILE_PAGE_SIZE ? (
+        <div className="mt-10 flex flex-wrap justify-center gap-3 md:hidden">
+          {hasMoreMobile ? (
+            <BrandButton
+              type="button"
+              icon="down"
+              onClick={() =>
+                setMobileVisibleCount((count) =>
+                  Math.min(count + MOBILE_PAGE_SIZE, filtered.length),
+                )
+              }
+            >
+              Show more
+            </BrandButton>
+          ) : null}
+          {isExpandedMobile ? (
+            <BrandButton
+              type="button"
+              variant="outline-light"
+              icon="up"
+              onClick={() => setMobileVisibleCount(MOBILE_PAGE_SIZE)}
+            >
+              Show less
+            </BrandButton>
+          ) : null}
+        </div>
+      ) : null}
 
       {filtered.length === 0 ? (
         <p className="mt-12 text-sm text-white/50">

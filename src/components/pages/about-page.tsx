@@ -9,6 +9,7 @@ import { Partners } from "@/components/sections/partners";
 import { AboutTeamSection } from "@/components/sections/about-team";
 import { AboutWhySection } from "@/components/sections/about-why";
 import { AboutAwardsSection } from "@/components/sections/about-awards";
+import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import {
   CountUp,
@@ -90,11 +91,10 @@ export function AboutPage() {
       <section className="bg-[var(--nh-black)] py-20 md:py-28">
         <div className="px-5 md:px-[7vw]">
           <div className="grid grid-cols-1 gap-10 text-center md:gap-12">
-            <div>
-              <LinesReveal
-                as="h2"
-                lines={[...milestones.title]}
-                className="font-display text-[clamp(2.5rem,6vw,5.5rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
+            <div className="flex justify-center">
+              <NhSectionTitle
+                title={milestones.title.join(" ")}
+                tone="dark"
               />
             </div>
             <Reveal delay={0.12}>

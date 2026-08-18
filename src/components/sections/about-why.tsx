@@ -25,9 +25,9 @@ function WhyCard({ item, index }: { item: WhyUsItem; index: number }) {
             className="h-10 w-auto object-contain mix-blend-multiply md:h-12"
           />
         ) : null}
-        <h3 className="font-display mt-3 text-[clamp(1.75rem,3.2vw,1.85rem)] font-medium leading-[0.92] text-ink md:text-[clamp(2.19rem,4vw,2.31rem)]">
-          {item.title}
-        </h3>
+      <h3 className="font-display mt-3 text-[clamp(2.1875rem,4vw,2.3125rem)] font-medium leading-[0.92] text-ink md:text-[clamp(2.7375rem,5vw,2.8875rem)]">
+        {item.title}
+      </h3>
         <p className="font-detective mt-4 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-muted-ink">
           {item.body}
         </p>

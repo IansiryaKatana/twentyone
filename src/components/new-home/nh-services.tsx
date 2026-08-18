@@ -175,8 +175,8 @@ export function NhServices() {
   });
 
   return (
-    <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] md:py-20">
-      <Reveal className="mb-8 flex justify-center px-5 md:mb-10 md:px-[7vw]">
+    <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] lg:py-0">
+      <Reveal className="mb-8 flex justify-center px-5 lg:hidden">
         <NhSectionTitle title={section.title} />
       </Reveal>
 
@@ -267,10 +267,10 @@ export function NhServices() {
         ))}
       </Stagger>
 
-      <Reveal delay={0.15} className="mt-10 flex justify-center px-5 md:mt-14 md:px-[7vw]">
+      <Reveal delay={0.15} className="mt-10 flex justify-center px-5 lg:hidden">
         <Link
           to={section.ctaTo}
-          className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)] md:gap-2"
+          className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)]"
         >
           {section.cta}
           <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />

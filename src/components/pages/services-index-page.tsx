@@ -202,7 +202,7 @@ function ServicesContact() {
             <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase leading-[1.02] text-ink">
               {contact.title}
             </h2>
-            <p className="mt-5 text-[1.05rem] uppercase tracking-[0.22em] text-ink">
+            <p className="font-detective mt-5 text-[1.05rem] leading-relaxed normal-case text-ink">
               {contact.eyebrow}
             </p>
             <p className="font-detective mt-6 max-w-md text-[1.05rem] leading-relaxed text-ink">

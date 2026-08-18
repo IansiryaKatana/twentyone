@@ -101,24 +101,27 @@ export function AboutPage() {
 
       <section className="bg-[var(--nh-black)] py-20 md:py-28">
         <div className="px-5 md:px-[7vw]">
-          <div className="grid grid-cols-1 gap-10 text-center md:gap-12">
+          <div className="grid grid-cols-1 gap-10 md:gap-12">
             <div className="flex justify-center">
               <NhSectionTitle
                 title={milestones.title.join(" ")}
                 tone="dark"
               />
             </div>
-            <Reveal delay={0.12}>
-              <p className="font-detective mx-auto max-w-xl text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-[var(--nh-muted)]">
+            <Reveal
+              delay={0.12}
+              className="grid grid-cols-1 items-center gap-10 md:grid-cols-2 md:gap-12 lg:gap-16"
+            >
+              <p className="font-detective max-w-xl text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.25] text-[var(--nh-muted)] md:text-left">
                 {milestones.body}
               </p>
 
               <Stagger
                 stagger={0.1}
-                className="mt-10 grid grid-cols-3 gap-3 border-t border-white/20 pt-8 sm:gap-6"
+                className="grid grid-cols-3 gap-3 border-t border-white/20 pt-8 sm:gap-6 md:border-t-0 md:border-l md:pt-0 md:pl-10 lg:pl-14"
               >
                 {milestones.stats.map((stat, i) => (
-                  <StaggerItem key={stat.label}>
+                  <StaggerItem key={stat.label} className="text-center md:text-left">
                     <CountUp
                       to={stat.value}
                       suffix={stat.suffix}

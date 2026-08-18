@@ -39,7 +39,7 @@ const FILL: Record<
 > = {
   red: "bg-[var(--nh-red)] text-white hover:bg-white hover:text-black",
   black: "bg-black text-cream hover:bg-[var(--nh-red)] hover:text-white",
-  white: "bg-white text-black hover:bg-white/90",
+  white: "bg-white text-black hover:bg-[var(--nh-red)] hover:text-white",
   cream: "bg-cream text-ink hover:bg-white",
 };
 

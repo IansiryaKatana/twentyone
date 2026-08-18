@@ -56,7 +56,7 @@ const OUTLINE_INNER = {
 } as const;
 
 const LABEL =
-  "inline-flex items-center justify-center gap-2 px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] transition-colors duration-300";
+  "inline-flex items-center justify-center gap-2 px-[1.4rem] py-2.5 text-[16px] font-medium uppercase tracking-[0.22em] transition-colors duration-300";
 
 export function BrandButton({
   children,

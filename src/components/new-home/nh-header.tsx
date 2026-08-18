@@ -78,7 +78,7 @@ export function NhHeader({
             : "border-transparent bg-transparent"
         )}
       >
-        <div className="relative flex h-18 w-full items-center justify-end gap-5 px-5 sm:h-20 md:px-10 lg:justify-between">
+        <div className="relative flex h-24 w-full items-center justify-end gap-5 px-5 sm:h-28 md:px-10 lg:justify-between">
           <Link
             to="/"
             aria-label="Twentyone06 home"
@@ -97,7 +97,7 @@ export function NhHeader({
                       to={link.to}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "font-display relative text-[32px] uppercase transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
+                        "font-display relative text-[45px] uppercase transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:bg-[var(--nh-red)] after:transition-all",
                         active ? "after:w-full font-bold" : "after:w-0 font-medium hover:after:w-full",
                         active
                           ? "text-[var(--nh-red)]"

@@ -1,5 +1,5 @@
 import logoLight from "@/Assets/light bg logo.png";
-import logoDark from "@/Assets/Dark  bg logo.png";
+import logoDark from "@/Assets/logo white.png";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
@@ -15,7 +15,7 @@ export function BrandLogo({ surface, className }: BrandLogoProps) {
       alt="Twentyone06"
       width={979}
       height={198}
-      className={cn("h-7 w-auto object-contain object-left sm:h-8 md:h-9", className)}
+      className={cn("h-18 w-auto object-contain object-left", className)}
       decoding="async"
     />
   );

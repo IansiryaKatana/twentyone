@@ -87,7 +87,7 @@ export function NhJournal() {
     <section className="bg-white py-20 text-[var(--nh-black)] md:py-28">
       <div className="w-full px-5 md:px-10">
         <div className="relative mb-10 md:mb-14">
-          <Reveal className="mx-auto flex max-w-xl flex-col items-center text-center">
+          <Reveal className="mx-auto flex max-w-5xl flex-col items-center text-center">
             <NhSectionTitle title={section.title} />
             <div
               className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-3"

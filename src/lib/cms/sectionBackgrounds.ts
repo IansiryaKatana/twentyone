@@ -2,7 +2,6 @@ import aboutHeroDesktop from "@/Assets/about-us-desktop.webp";
 import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import servicesHeroImage from "@/Assets/projects-twentyone06.jpg";
 import projectsHeroImage from "@/Assets/background.webp";
-import newHomeHeroImage from "@/Assets/silhouettes-no-face.png";
 import philosophyImage from "@/Assets/we-design-for-twentyone06.webp";
 
 export const SECTION_BACKGROUND_SETTING_KEY = "section_backgrounds";
@@ -108,9 +107,9 @@ export const SECTION_BACKGROUND_DEFAULTS: SectionBackgroundConfig = {
     mobile: projectsHeroImage,
   },
   newHomeHero: {
-    desktop: newHomeHeroImage,
-    tablet: newHomeHeroImage,
-    mobile: newHomeHeroImage,
+    desktop: "",
+    tablet: "",
+    mobile: "",
   },
   newHomePhilosophy: {
     desktop: philosophyImage,

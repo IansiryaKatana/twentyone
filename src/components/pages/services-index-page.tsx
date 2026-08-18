@@ -75,7 +75,7 @@ function ServicesHero() {
 
         <nav
           aria-label="Services"
-          className="flex flex-col border-t border-white/20 pt-6 md:col-span-5 md:border-t-0 md:border-l md:pl-8 md:pt-0 lg:col-span-4 lg:pl-10"
+          className="flex flex-col border-t border-white/20 pt-6 md:col-span-5 md:border-t-0 md:border-l md:pl-4 md:pt-0 lg:col-span-4 lg:pl-5"
         >
           {servicesPage.sections.map((section) => (
             <a
@@ -83,7 +83,7 @@ function ServicesHero() {
               href={`#${section.id}`}
               className="group py-1 text-white transition-colors hover:text-[var(--nh-red)] md:py-1.5"
             >
-              <span className="font-display text-[clamp(1.35rem,2.6vw,2.35rem)] font-semibold uppercase leading-[1.02]">
+              <span className="font-display text-[clamp(1.75rem,3.8vw,2.8125rem)] font-medium uppercase leading-[1.02]">
                 {section.tabLabel}
                 <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
@@ -152,8 +152,12 @@ function ServiceSection({
               </span>
               {section.serviceLabel}
             </p>
-            <h2 className="font-display mt-3 text-[clamp(2rem,4.2vw,3.75rem)] font-semibold uppercase leading-[1.02] text-ink md:mt-4">
-              {section.title}
+            <h2 className="font-display mt-3 text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] font-medium uppercase leading-[0.95] text-ink md:mt-4 lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
+              {section.titleLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
             </h2>
           </Reveal>
 

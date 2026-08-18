@@ -71,7 +71,7 @@ function ProjectTile({ project }: { project: Project }) {
           <p className="text-xs font-medium tracking-wide text-[var(--nh-white)] md:text-[13px]">
             {serviceLabel}
           </p>
-          <h3 className="font-display mt-1.5 text-[clamp(1.75rem,3.5vw,2.8125rem)] font-medium uppercase leading-[1.05] text-[var(--nh-white)] transition-colors duration-300 group-hover:text-[var(--nh-red)]">
+          <h3 className="font-display mt-1.5 text-[2.275rem] font-medium uppercase leading-[1.05] text-[var(--nh-white)] transition-colors duration-300 group-hover:text-[var(--nh-red)] md:text-[clamp(1.75rem,3.5vw,2.8125rem)]">
             {project.title}
           </h3>
           <p className="mt-2 text-[11px] tracking-wide text-white/55 md:text-xs">

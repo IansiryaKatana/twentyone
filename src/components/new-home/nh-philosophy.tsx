@@ -157,7 +157,7 @@ export function NhPhilosophy() {
             delay={0.18}
             className="absolute right-0 bottom-0 z-10 max-w-[min(40.8rem,100%)] bg-[var(--nh-black)] p-3 sm:max-w-[min(40.8rem,69.6%)] sm:p-4 lg:max-w-[min(43.2rem,57.6%)] xl:max-w-[min(45.6rem,62.4%)] xl:p-6"
           >
-            <p className="font-detective text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white">
+            <p className="font-detective text-[clamp(0.9rem,3.8vw,1.1rem)] font-medium leading-[1.45] text-white md:text-[clamp(1.35rem,2vw,1.75rem)] md:leading-[1.15]">
               {philosophy.body}
             </p>
           </Reveal>

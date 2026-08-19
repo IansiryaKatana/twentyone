@@ -63,7 +63,7 @@ function ServicesHero() {
           <LinesReveal
             as="h1"
             lines={[...servicesPage.title]}
-            lineClassName="whitespace-nowrap"
+            lineClassName="whitespace-normal md:whitespace-nowrap"
             className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]"
           />
           <Reveal delay={0.2} className="mt-6 max-w-xl">
@@ -83,7 +83,7 @@ function ServicesHero() {
               href={`#${section.id}`}
               className="group py-1 text-white transition-colors hover:text-[var(--nh-red)] md:py-1.5"
             >
-              <span className="font-display text-[clamp(1.75rem,3.8vw,2.8125rem)] font-medium uppercase leading-[1.02]">
+              <span className="font-display text-[clamp(2.1rem,4.56vw,3.375rem)] font-medium uppercase leading-[1.02] md:text-[clamp(1.75rem,3.8vw,2.8125rem)]">
                 {section.tabLabel}
                 <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
@@ -152,7 +152,7 @@ function ServiceSection({
               </span>
               {section.serviceLabel}
             </p>
-            <h2 className="font-display mt-3 text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] font-medium uppercase leading-[0.95] text-ink md:mt-4 lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
+            <h2 className="font-display mt-3 text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-medium uppercase leading-[0.95] text-ink md:mt-4 md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
               {section.titleLines.map((line) => (
                 <span key={line} className="block">
                   {line}

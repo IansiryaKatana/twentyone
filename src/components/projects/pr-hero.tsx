@@ -6,7 +6,7 @@ import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { cn } from "@/lib/utils";
 
-function MaskedLine({
+function FittedMaskedLine({
   children,
   delay,
   className,
@@ -15,18 +15,69 @@ function MaskedLine({
   delay: number;
   className?: string;
 }) {
-  const ref = React.useRef<HTMLSpanElement | null>(null);
-  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const maskRef = React.useRef<HTMLSpanElement | null>(null);
+  const textRef = React.useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(maskRef, { once: true, amount: 0.4 });
+  const [scale, setScale] = React.useState(1);
+
+  React.useLayoutEffect(() => {
+    const mask = maskRef.current;
+    const text = textRef.current;
+    if (!mask || !text) return;
+
+    let frame = 0;
+    const fit = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (window.matchMedia("(min-width: 768px)").matches) {
+          setScale(1);
+          return;
+        }
+        const target = mask.clientWidth;
+        const natural = text.scrollWidth;
+        if (target <= 0 || natural <= 0) return;
+        const next = target / natural;
+        setScale((prev) => (Math.abs(prev - next) < 0.002 ? prev : next));
+      });
+    };
+
+    fit();
+    void document.fonts?.ready.then(fit);
+    document.fonts?.addEventListener("loadingdone", fit);
+    const observer = new ResizeObserver(fit);
+    observer.observe(mask);
+    window.addEventListener("resize", fit);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", fit);
+      document.fonts?.removeEventListener("loadingdone", fit);
+    };
+  }, [children]);
 
   return (
-    <span ref={ref} className="block overflow-hidden">
+    <span
+      ref={maskRef}
+      className="block overflow-hidden"
+      style={scale === 1 ? undefined : { height: `${scale * 0.95}em` }}
+    >
       <motion.span
-        className={cn("block", className)}
+        className="block"
         initial={{ y: "115%" }}
         animate={inView ? { y: "0%" } : { y: "115%" }}
         transition={{ duration: 0.95, ease: EASE, delay }}
       >
-        {children}
+        <span
+          ref={textRef}
+          className={cn(
+            "inline-block origin-top whitespace-nowrap will-change-transform",
+            className,
+          )}
+          style={{ transform: `scale(${scale})` }}
+        >
+          {children}
+        </span>
       </motion.span>
     </span>
   );
@@ -65,16 +116,13 @@ export function PrHero() {
 
         <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
           {hero.titleLines.map((line, i) => (
-            <MaskedLine
+            <FittedMaskedLine
               key={line.text}
               delay={reduced ? 0 : 0.35 + i * 0.12}
-              className={cn(
-                "whitespace-nowrap",
-                line.accent && "text-[var(--nh-red)]",
-              )}
+              className={line.accent ? "text-[var(--nh-red)]" : undefined}
             >
               {line.text}
-            </MaskedLine>
+            </FittedMaskedLine>
           ))}
         </h1>
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import {
@@ -43,12 +43,18 @@ function ServiceCard({
   index: number;
 }) {
   const icon = icons[index] ?? interiorArchitectureIcon;
+  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <Link
       to="/services"
       hash={item.slug}
-      className="group relative block aspect-[0.78] min-h-[460px] overflow-hidden bg-[#ddd] md:min-h-0 lg:aspect-[0.72]"
+      className={cn(
+        "group relative block overflow-hidden bg-[#ddd] md:min-h-0 lg:aspect-[0.72]",
+        expanded
+          ? "min-h-[460px] md:aspect-[0.78]"
+          : "aspect-[0.78] min-h-[460px]",
+      )}
     >
       {item.image ? (
         <motion.img
@@ -66,7 +72,7 @@ function ServiceCard({
       <div className="absolute inset-0 bg-gradient-to-r from-white/65 via-white/18 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-white/70 via-transparent to-white/15" />
 
-      <div className="relative z-10 flex h-full flex-col p-4 md:p-[clamp(1rem,1.6vw,1.75rem)]">
+      <div className="relative z-10 flex min-h-full flex-col p-4 md:p-[clamp(1rem,1.6vw,1.75rem)]">
         <div className="flex flex-col items-start gap-3 md:gap-4">
           <span className="text-sm font-medium tracking-[0.18em] text-black/70 md:text-base">
             {item.index}
@@ -80,14 +86,40 @@ function ServiceCard({
         </div>
 
         <div className="mt-auto md:max-w-none">
-          <h3 className="font-display max-w-[95%] text-[clamp(1.35rem,5.4vw,4rem)] font-medium leading-[1.05] text-black">
+          <h3 className="font-display max-w-[95%] text-[3.07125rem] font-medium leading-[1.05] text-black md:text-[clamp(1.35rem,5.4vw,4rem)]">
             {item.title}
           </h3>
-          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-black/65 sm:leading-[1.65] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
+          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.55] text-black/65 sm:leading-[1.65] md:text-[clamp(0.8rem,1.8vw,15.5px)] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
             {item.description}
           </p>
 
-          <ul className="font-detective mt-3 hidden space-y-1.5 text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-black/70 sm:leading-[1.65] md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
+          <button
+            type="button"
+            aria-expanded={expanded}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              setExpanded((open) => !open);
+            }}
+            className="font-detective mt-4 flex min-h-10 items-center gap-1.5 text-[clamp(1.08rem,2.43vw,20.925px)] font-medium uppercase tracking-[0.18em] text-black md:hidden"
+          >
+            {expanded ? "Show less" : "Show more"}
+            <ChevronDown
+              className={cn(
+                "size-4 shrink-0 transition-transform duration-300",
+                expanded && "rotate-180",
+              )}
+              strokeWidth={1.75}
+            />
+          </button>
+
+          <ul
+            className={cn(
+              "font-detective mt-3 space-y-1.5 text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.55] text-black/70 sm:leading-[1.65] md:text-[clamp(0.8rem,1.8vw,15.5px)] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]",
+              expanded ? "block" : "hidden",
+              "md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100",
+            )}
+          >
             {item.bullets.map((bullet) => (
               <li key={bullet} className="flex gap-2">
                 <span className="mt-[0.35em] size-1 shrink-0 rounded-full bg-[var(--nh-red)]" />
@@ -96,7 +128,7 @@ function ServiceCard({
             ))}
           </ul>
 
-          <span className="btn-cut mt-5 inline-flex items-center justify-center gap-2 bg-[var(--nh-red)] px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:bg-black md:mt-6">
+          <span className="btn-cut mt-4 inline-flex items-center justify-center gap-2 bg-[var(--nh-red)] px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:bg-black md:mt-6">
             {item.cta}
             <ChevronRight className="size-3.5 shrink-0" strokeWidth={1.75} />
           </span>

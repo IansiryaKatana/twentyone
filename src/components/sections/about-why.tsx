@@ -22,13 +22,13 @@ function WhyCard({ item, index }: { item: WhyUsItem; index: number }) {
             src={icon}
             alt=""
             aria-hidden
-            className="h-10 w-auto object-contain mix-blend-multiply md:h-12"
+            className="h-[3.125rem] w-auto object-contain mix-blend-multiply md:h-[3.75rem]"
           />
         ) : null}
       <h3 className="font-display mt-3 text-[clamp(2.1875rem,4vw,2.3125rem)] font-medium leading-[0.92] text-ink md:text-[clamp(2.7375rem,5vw,2.8875rem)]">
         {item.title}
       </h3>
-        <p className="font-detective mt-4 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-muted-ink">
+        <p className="font-detective mt-4 text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-ink">
           {item.body}
         </p>
       </article>

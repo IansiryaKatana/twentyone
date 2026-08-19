@@ -1,9 +1,9 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRouterState } from "@tanstack/react-router";
-import { ArrowUp } from "lucide-react";
-import { EASE } from "@/components/anim";
-import { cn } from "@/lib/utils";
+import { ChevronDown, ChevronUp } from "lucide-react";
+import { EASE, useReducedMotionSafe } from "@/components/anim";
+import { HexIconButton } from "@/components/hex-icon-button";
 
 /** Studio landline as WhatsApp deep link (UAE). */
 const WHATSAPP_URL = "https://wa.me/97145548082";
@@ -21,20 +21,59 @@ function WhatsAppIcon({ className }: { className?: string }) {
   );
 }
 
+function useScrollChrome() {
+  const [atTop, setAtTop] = React.useState(true);
+  const [atBottom, setAtBottom] = React.useState(false);
+  const [direction, setDirection] = React.useState<"up" | "down">("down");
+  const lastY = React.useRef(0);
+
+  React.useEffect(() => {
+    lastY.current = window.scrollY;
+
+    const update = () => {
+      const y = window.scrollY;
+      const max = Math.max(
+        0,
+        document.documentElement.scrollHeight - window.innerHeight,
+      );
+      setAtTop(y < 24);
+      setAtBottom(y >= max - 24);
+
+      const delta = y - lastY.current;
+      if (Math.abs(delta) >= 6) {
+        setDirection(delta > 0 ? "down" : "up");
+        lastY.current = y;
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  return { atTop, atBottom, direction };
+}
+
 export function ScrollToTop() {
-  const [visible, setVisible] = React.useState(false);
+  const [footerVisible, setFooterVisible] = React.useState(false);
+  const { atTop, atBottom, direction } = useScrollChrome();
+  const reduced = useReducedMotionSafe();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isAdmin = pathname.startsWith("/admin");
 
   React.useEffect(() => {
     const footer = document.getElementById("footer");
     if (!footer) {
-      setVisible(false);
+      setFooterVisible(false);
       return;
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+      ([entry]) => setFooterVisible(entry.isIntersecting),
       { root: null, threshold: 0.05 },
     );
 
@@ -42,42 +81,66 @@ export function ScrollToTop() {
     return () => observer.disconnect();
   }, [pathname]);
 
+  const scrollByPage = (direction: 1 | -1) => {
+    const behavior = reduced ? "auto" : "smooth";
+    window.scrollBy({
+      top: direction * window.innerHeight * 0.9,
+      behavior,
+    });
+  };
+
   if (isAdmin) return null;
 
+  const showUp = !atTop && (atBottom || direction === "up");
+  const showDown = !atBottom && (atTop || direction === "down");
+
   return (
-    <div className="fixed bottom-6 right-5 z-50 flex flex-col items-center gap-3 md:bottom-8 md:right-8">
-      <AnimatePresence>
-        {visible ? (
+    <div className="fixed right-5 bottom-6 z-50 flex flex-col items-center gap-3 md:right-8 md:bottom-8">
+      <AnimatePresence mode="wait">
+        {showUp ? (
           <motion.div
-            key="footer-fab"
+            key="scroll-up"
+            initial={{ opacity: 0, y: 8, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.92 }}
+            transition={{ duration: 0.22, ease: EASE }}
+          >
+            <HexIconButton label="Scroll up" onClick={() => scrollByPage(-1)}>
+              <ChevronUp className="size-5" strokeWidth={2.5} />
+            </HexIconButton>
+          </motion.div>
+        ) : showDown ? (
+          <motion.div
+            key="scroll-down"
+            initial={{ opacity: 0, y: 8, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.92 }}
+            transition={{ duration: 0.22, ease: EASE }}
+          >
+            <HexIconButton label="Scroll down" onClick={() => scrollByPage(1)}>
+              <ChevronDown className="size-5" strokeWidth={2.5} />
+            </HexIconButton>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {footerVisible ? (
+          <motion.a
+            key="whatsapp-fab"
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Chat on WhatsApp"
             initial={{ opacity: 0, y: 16, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.92 }}
             transition={{ duration: 0.35, ease: EASE }}
-            className="flex flex-col items-center gap-3"
+            className="whatsapp-pulse relative flex size-11 items-center justify-center rounded-full bg-[#25D366] text-white md:size-12"
           >
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-              className="whatsapp-pulse relative flex size-11 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg shadow-black/30 transition-transform hover:scale-105 md:size-12"
-            >
-              <span className="whatsapp-pulse-ring" aria-hidden />
-              <WhatsAppIcon className="relative z-10 size-5 md:size-6" />
-            </a>
-
-            <button
-              type="button"
-              aria-label="Scroll to top"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className={cn(
-                "flex size-11 items-center justify-center rounded-full border border-white/20 bg-[var(--nh-black)] text-white shadow-lg shadow-black/30 transition-colors hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] md:size-12",
-              )}
-            >
-              <ArrowUp className="size-5" strokeWidth={1.75} />
-            </button>
-          </motion.div>
+            <span className="whatsapp-pulse-ring" aria-hidden />
+            <WhatsAppIcon className="relative z-10 size-5 md:size-6" />
+          </motion.a>
         ) : null}
       </AnimatePresence>
     </div>

@@ -16,7 +16,7 @@ export function PrPhilosophy() {
 
       <div className="mx-auto mt-12 grid w-full max-w-5xl grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:items-start md:gap-10 lg:gap-14">
         <Reveal>
-          <p className="font-display text-center text-[clamp(2.45rem,4.48vw,3.85rem)] font-medium leading-[1.05] text-[var(--nh-white)] md:text-left">
+          <p className="font-display text-center text-[clamp(3.3075rem,6.048vw,5.1975rem)] font-medium leading-[1.05] text-[var(--nh-white)] md:text-left">
             {philosophy.quote}
           </p>
         </Reveal>

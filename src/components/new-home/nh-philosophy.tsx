@@ -15,12 +15,50 @@ function PhilosophyTitle({
   title: [string, string];
 }) {
   const ref = React.useRef<HTMLHeadingElement | null>(null);
+  const firstRef = React.useRef<HTMLSpanElement | null>(null);
+  const secondRef = React.useRef<HTMLSpanElement | null>(null);
+  const [scale, setScale] = React.useState(1);
   const inView = useInView(ref, { once: true, amount: 0.4 });
+
+  React.useLayoutEffect(() => {
+    const first = firstRef.current;
+    const second = secondRef.current;
+    if (!first || !second) return;
+
+    let frame = 0;
+
+    const fit = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const target = first.scrollWidth;
+        const natural = second.scrollWidth;
+        if (target <= 0 || natural <= 0) return;
+        const next = target / natural;
+        setScale((prev) => (Math.abs(prev - next) < 0.002 ? prev : next));
+      });
+    };
+
+    fit();
+    void document.fonts?.ready.then(fit);
+    document.fonts?.addEventListener("loadingdone", fit);
+
+    const observer = new ResizeObserver(fit);
+    observer.observe(first);
+    if (ref.current) observer.observe(ref.current);
+    window.addEventListener("resize", fit);
+
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener("resize", fit);
+      document.fonts?.removeEventListener("loadingdone", fit);
+    };
+  }, [eyebrow, title]);
 
   return (
     <h2
       ref={ref}
-      className="font-display text-[clamp(1.35rem,5.4vw,4rem)] font-medium leading-[1.05]"
+      className="font-display w-max max-w-full text-[clamp(1.35rem,5.4vw,4rem)] font-medium leading-[1.05]"
     >
       <span className="block overflow-hidden">
         <motion.span
@@ -29,18 +67,29 @@ function PhilosophyTitle({
           animate={inView ? { y: "0%" } : { y: "115%" }}
           transition={{ duration: 0.95, ease: EASE, delay: 0.08 }}
         >
-          {eyebrow}
+          <span ref={firstRef} className="inline-block whitespace-nowrap">
+            {eyebrow}
+          </span>
         </motion.span>
       </span>
-      <span className="-mt-[0.06em] block overflow-hidden">
+      <span
+        className="block overflow-hidden"
+        style={{ height: `${scale * 1.05}em` }}
+      >
         <motion.span
           className="block"
           initial={{ y: "115%" }}
           animate={inView ? { y: "0%" } : { y: "115%" }}
           transition={{ duration: 0.95, ease: EASE, delay: 0.2 }}
         >
-          <span className="text-[var(--nh-white)]">{title[0]} </span>
-          <span className="text-[var(--nh-red)]">{title[1]}</span>
+          <span
+            ref={secondRef}
+            className="inline-block origin-top-left whitespace-nowrap will-change-transform"
+            style={{ transform: `scale(${scale})` }}
+          >
+            <span className="text-[var(--nh-white)]">{title[0]} </span>
+            <span className="text-[var(--nh-red)]">{title[1]}</span>
+          </span>
         </motion.span>
       </span>
     </h2>

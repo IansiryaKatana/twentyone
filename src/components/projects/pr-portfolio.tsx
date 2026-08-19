@@ -145,7 +145,7 @@ function FilterDropdown({
       >
         <span
           className={cn(
-            "font-detective truncate text-sm tracking-wide",
+            "font-detective truncate text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] tracking-wide",
             isActive ? "text-[var(--nh-white)]" : "text-white/90"
           )}
         >
@@ -184,7 +184,7 @@ function FilterDropdown({
                       setOpen(false);
                     }}
                     className={cn(
-                      "font-detective flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-sm transition-colors",
+                      "font-detective flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] transition-colors",
                       active
                         ? "bg-[var(--nh-red)] text-white"
                         : "text-white/85 hover:bg-white/[0.06] hover:text-white"
@@ -241,7 +241,6 @@ export function PrProjectGrid({
 }) {
   const { filterGroups } = projectsPage;
   const { projects } = useCmsContent();
-  const filtersId = `${idPrefix}-project-filters`;
 
   const serviceFromUrl =
     initialService && SERVICE_FROM_URL[initialService]
@@ -254,9 +253,6 @@ export function PrProjectGrid({
     year: "All",
     location: "All",
   }));
-  const [filtersExpanded, setFiltersExpanded] = React.useState(
-    () => serviceFromUrl !== "All",
-  );
   const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
 
   React.useEffect(() => {
@@ -267,7 +263,6 @@ export function PrProjectGrid({
     setFilters((prev) =>
       prev.service === next ? prev : { ...prev, service: next },
     );
-    if (next !== "All") setFiltersExpanded(true);
     setVisibleCount(PAGE_SIZE);
   }, [initialService]);
 
@@ -304,42 +299,20 @@ export function PrProjectGrid({
     <>
       {showFilters ? (
         <Reveal delay={0.1} className="font-detective mt-10 md:mt-14">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <button
-              type="button"
-              onClick={() => setFiltersExpanded((open) => !open)}
-              aria-expanded={filtersExpanded}
-              aria-controls={filtersId}
-              className="font-detective inline-flex items-center gap-2 self-start text-[10px] uppercase tracking-[0.28em] text-white/85 transition-colors hover:text-white md:pointer-events-none md:cursor-default"
-            >
-              Refine the work
-              <ChevronDown
-                className={cn(
-                  "size-3.5 text-white/70 transition-transform duration-300 md:hidden",
-                  filtersExpanded && "rotate-180"
-                )}
-              />
-            </button>
-            {hasActive ? (
+          {hasActive ? (
+            <div className="mb-4 flex justify-end">
               <button
                 type="button"
                 onClick={clearAll}
-                className="font-detective inline-flex items-center gap-1.5 self-start text-[10px] uppercase tracking-[0.22em] text-[var(--nh-red)] transition-colors hover:text-white sm:self-auto"
+                className="btn-cut font-detective inline-flex items-center gap-2 bg-[var(--nh-red)] px-4 py-2.5 text-[16px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
               >
-                <X className="size-3" />
+                <X className="size-4" strokeWidth={2} />
                 Clear filters
               </button>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
 
-          <div
-            id={filtersId}
-            className={cn(
-              "mt-5 grid grid-cols-1 gap-x-6 gap-y-6 border-t border-white/20 pt-6 sm:grid-cols-2 lg:grid-cols-4",
-              filtersExpanded ? "grid" : "hidden",
-              "md:grid"
-            )}
-          >
+          <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
             {(Object.keys(filterGroups) as FilterKey[]).map((key) => (
               <FilterDropdown
                 key={key}

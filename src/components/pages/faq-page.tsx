@@ -100,6 +100,7 @@ export function FaqPage() {
         eyebrow={faqPage.eyebrow}
         title={faqPage.title}
         description={faqPage.description}
+        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15]"
         image={bg.desktop}
         imageTablet={bg.tablet}
         imageMobile={bg.mobile}

@@ -1,40 +1,13 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { ArrowLeft, ArrowRight, Instagram, Linkedin } from "lucide-react";
-import type { ReactNode } from "react";
 import { aboutPage, type TeamMember } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, Reveal, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
+import { HexIconButton } from "@/components/hex-icon-button";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
-
-function SocialBadge({
-  href,
-  label,
-  children,
-  className,
-}: {
-  href: string;
-  label: string;
-  children: ReactNode;
-  className: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={label}
-      className={cn(
-        "inline-flex size-8 items-center justify-center rounded-md text-white shadow-sm transition hover:opacity-90",
-        className,
-      )}
-    >
-      {children}
-    </a>
-  );
-}
 
 function TeamCard({ member }: { member: TeamMember }) {
   const linkedin = member.linkedin?.trim();
@@ -62,22 +35,24 @@ function TeamCard({ member }: { member: TeamMember }) {
         {(linkedin || instagram) && (
           <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
             {linkedin ? (
-              <SocialBadge
+              <HexIconButton
                 href={linkedin}
                 label={`${member.name} on LinkedIn`}
-                className="bg-[#0A66C2]"
+                size="sm"
+                tone="linkedin"
               >
                 <Linkedin className="size-3.5 fill-current" strokeWidth={0} />
-              </SocialBadge>
+              </HexIconButton>
             ) : null}
             {instagram ? (
-              <SocialBadge
+              <HexIconButton
                 href={instagram}
                 label={`${member.name} on Instagram`}
-                className="bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af]"
+                size="sm"
+                tone="instagram"
               >
                 <Instagram className="size-3.5" strokeWidth={2} />
-              </SocialBadge>
+              </HexIconButton>
             ) : null}
           </div>
         )}

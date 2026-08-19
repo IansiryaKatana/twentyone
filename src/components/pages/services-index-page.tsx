@@ -1,12 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { motion, useInView } from "motion/react";
+import * as React from "react";
 import { servicesPage } from "@/data/content";
 import { BrandButton } from "@/components/brand-button";
 import { PageShell } from "@/components/page-shell";
 import { InquiryForm } from "@/components/inquiry-form";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
-import { LinesReveal, Reveal, Stagger, StaggerItem } from "@/components/anim";
+import { EASE, Reveal, Stagger, StaggerItem, useReducedMotionSafe } from "@/components/anim";
 import { cn } from "@/lib/utils";
 
 type Section = (typeof servicesPage.sections)[number];
@@ -37,9 +39,35 @@ function ServiceCta({ section }: { section: Section }) {
   );
 }
 
+function HeroMaskedLine({
+  children,
+  delay,
+}: {
+  children: React.ReactNode;
+  delay: number;
+}) {
+  const ref = React.useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(ref, { once: true, amount: 0.4 });
+  const reduced = useReducedMotionSafe();
+
+  return (
+    <span ref={ref} className="block overflow-hidden leading-[0.95]">
+      <motion.span
+        className="block leading-[0.95]"
+        initial={reduced ? false : { y: "115%" }}
+        animate={inView ? { y: "0%" } : { y: "115%" }}
+        transition={{ duration: 0.95, ease: EASE, delay }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
+
 function ServicesHero() {
   const { sectionBackgrounds } = useCmsContent();
   const bg = sectionBackgrounds.services;
+  const reduced = useReducedMotionSafe();
 
   return (
     <section className="relative min-h-[85svh] overflow-hidden bg-[var(--nh-black)] pt-28 md:min-h-[90svh] md:pt-32">
@@ -53,18 +81,19 @@ function ServicesHero() {
         aria-hidden
       />
 
-      <div className="relative z-10 grid min-h-[calc(85svh-7rem)] w-full grid-cols-1 items-end gap-12 px-5 pb-14 md:min-h-[calc(90svh-8rem)] md:grid-cols-12 md:px-10 md:pb-20">
-        <div className="md:col-span-7 lg:col-span-8">
+      <div className="relative z-10 grid min-h-[calc(85svh-7rem)] w-full grid-cols-1 items-end gap-10 px-5 pb-14 md:min-h-[calc(90svh-8rem)] md:grid-cols-12 md:items-center md:gap-8 md:px-10 md:pb-20">
+        <div className="md:col-span-6 lg:col-span-6">
           <p className="mb-5 flex items-center gap-3 text-xs uppercase tracking-[0.35em] text-white/65">
             <span className="h-px w-10 bg-white/35" />
             {servicesPage.eyebrow}
           </p>
-          <LinesReveal
-            as="h1"
-            lines={[...servicesPage.title]}
-            lineClassName="whitespace-normal md:whitespace-nowrap"
-            className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]"
-          />
+          <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium uppercase leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
+            <HeroMaskedLine delay={reduced ? 0 : 0.35}>
+              Where{" "}
+              <span className="text-[var(--nh-red)]">Vision</span>
+            </HeroMaskedLine>
+            <HeroMaskedLine delay={reduced ? 0 : 0.47}>Meets Craft</HeroMaskedLine>
+          </h1>
           <Reveal delay={0.2} className="mt-6 max-w-xl">
             <p className="font-detective text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] text-white/75">
               {servicesPage.description}
@@ -74,18 +103,28 @@ function ServicesHero() {
 
         <nav
           aria-label="Services"
-          className="flex flex-col border-t border-white/20 pt-6 md:col-span-5 md:border-t-0 md:border-l md:pl-4 md:pt-0 lg:col-span-4 lg:pl-5"
+          className="md:col-span-6 lg:col-span-6"
         >
-          {servicesPage.sections.map((section) => (
+          {servicesPage.sections.map((section, index) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="group py-1 text-white transition-colors hover:text-[var(--nh-red)] md:py-1.5"
+              className={cn(
+                "group flex items-center gap-4 py-3.5 text-white transition-colors hover:text-[var(--nh-red)] md:gap-5 md:py-4",
+                index < servicesPage.sections.length - 1 && "border-b border-white/20",
+              )}
             >
-              <span className="font-display text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-medium uppercase leading-[0.95] md:text-[clamp(1.75rem,3.8vw,2.8125rem)] md:leading-[1.02]">
-                {section.tabLabel}
-                <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <span className="font-display shrink-0 text-[clamp(2.75rem,5.4vw,4.25rem)] font-medium leading-[0.85] text-white/25 md:text-[clamp(1.987rem,calc(0.841rem+4.434vw),5.542rem)] lg:text-[clamp(2.484rem,calc(1.051rem+5.542vw),6.927rem)] xl:text-[clamp(4.061rem,6.88vw,6.927rem)]">
+                {section.index}
               </span>
+              <span className="font-display min-w-0 flex-1 text-[clamp(1.35rem,2.5vw,1.85rem)] font-medium uppercase leading-[1.02] md:text-[clamp(1.4196rem,calc(0.6006rem+3.1668vw),3.9585rem)] md:leading-[0.95] lg:text-[clamp(1.7745rem,calc(0.75075rem+3.9585vw),4.948125rem)] xl:text-[clamp(2.900625rem,4.914vw,4.948125rem)]">
+                {section.tabLabel}
+              </span>
+              <ChevronRight
+                aria-hidden
+                className="size-4 shrink-0 text-white transition-transform duration-300 group-hover:translate-x-0.5 md:size-5"
+                strokeWidth={1.75}
+              />
             </a>
           ))}
         </nav>

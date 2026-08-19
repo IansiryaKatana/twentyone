@@ -67,7 +67,7 @@ export function AboutPage() {
             <LinesReveal
               as="h2"
               lines={[...aboutPage.storyTitle]}
-              className="font-display text-[clamp(5rem,12vw,8.8rem)] font-medium leading-[0.92] text-[var(--nh-white)] md:text-[clamp(2.5rem,6vw,5.5rem)]"
+              className="font-display text-[clamp(3.25rem,7.8vw,5.72rem)] font-medium leading-[0.92] text-[var(--nh-white)] md:text-[clamp(2.5rem,6vw,5.5rem)]"
             />
             <Reveal delay={0.15} className="mt-8 max-w-xl space-y-4">
               {aboutPage.story.map((para) => (

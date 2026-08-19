@@ -199,7 +199,7 @@ function ServicesContact() {
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-12 md:px-10 lg:gap-16">
         <div className="md:col-span-5">
           <Reveal>
-            <h2 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-semibold uppercase leading-[1.02] text-ink">
+            <h2 className="font-display text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-semibold uppercase leading-[0.95] text-ink md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
               {contact.title}
             </h2>
             <p className="font-detective mt-5 text-[1.05rem] leading-relaxed normal-case text-ink">

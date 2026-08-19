@@ -96,39 +96,6 @@ function PhilosophyTitle({
   );
 }
 
-function AccentBody({
-  body,
-  accent,
-  className,
-}: {
-  body: string;
-  accent?: string;
-  className?: string;
-}) {
-  if (!accent) {
-    return <p className={className}>{body}</p>;
-  }
-
-  const parts = body.split(new RegExp(`\\b(${accent})\\b`, "i"));
-  let used = false;
-
-  return (
-    <p className={className}>
-      {parts.map((part, i) => {
-        if (!used && part.toLowerCase() === accent.toLowerCase()) {
-          used = true;
-          return (
-            <span key={i} className="text-[var(--nh-red)]">
-              {part}
-            </span>
-          );
-        }
-        return <React.Fragment key={i}>{part}</React.Fragment>;
-      })}
-    </p>
-  );
-}
-
 function PhilosophyArt({
   bg,
   className,
@@ -168,7 +135,6 @@ function PhilosophyArt({
 
 export function NhPhilosophy() {
   const { philosophy } = newHome;
-  const accent = philosophy.bodyAccent;
   const { sectionBackgrounds } = useCmsContent();
   const bg = sectionBackgrounds.newHomePhilosophy;
 
@@ -189,13 +155,11 @@ export function NhPhilosophy() {
 
           <Reveal
             delay={0.18}
-            className="absolute right-0 bottom-0 z-10 max-w-[min(34rem,90%)] bg-[var(--nh-black)] p-3 sm:max-w-[min(34rem,58%)] sm:p-4 lg:max-w-[min(36rem,48%)] xl:max-w-[min(38rem,52%)] xl:p-6"
+            className="absolute right-0 bottom-0 z-10 max-w-[min(40.8rem,100%)] bg-[var(--nh-black)] p-3 sm:max-w-[min(40.8rem,69.6%)] sm:p-4 lg:max-w-[min(43.2rem,57.6%)] xl:max-w-[min(45.6rem,62.4%)] xl:p-6"
           >
-            <AccentBody
-              body={philosophy.body}
-              accent={accent}
-              className="font-detective text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-white/88 sm:leading-[1.65] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]"
-            />
+            <p className="font-detective text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white">
+              {philosophy.body}
+            </p>
           </Reveal>
         </div>
       </div>

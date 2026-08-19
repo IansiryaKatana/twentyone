@@ -39,10 +39,10 @@ export function ContactPage() {
             >
               {contactPage.details.map((block) => (
                 <StaggerItem key={block.label}>
-                  <p className="text-xs uppercase tracking-[0.25em] text-black">
+                  <p className="text-[18px] uppercase tracking-[0.25em] text-crimson">
                     {block.label}
                   </p>
-                  <div className="mt-2 space-y-0.5 text-sm text-black">
+                  <div className="font-detective mt-2 space-y-0.5 text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-black">
                     {block.lines.map((line) =>
                       "href" in block && block.href ? (
                         <a

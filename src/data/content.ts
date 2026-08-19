@@ -685,7 +685,7 @@ export const termsPage = {
   title: ["Terms and", "Conditions"],
   description:
     "The terms that govern your use of the TwentyOne06 website and how we engage with enquiries and services.",
-  /** Set when hero art is ready, same treatment as Privacy. */
+  /** Full-bleed hero with overlay text, same treatment as Privacy. */
   image: undefined as string | undefined,
   controller: legalController,
   sections: [

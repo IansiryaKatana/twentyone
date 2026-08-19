@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/page-shell";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/anim";
+import legalHero from "@/Assets/abstract-black-white-image-tree39s-branches-forming-pattern-interconnected-shapes.jpg";
 
 export type LegalController = {
   name: string;
@@ -109,11 +110,9 @@ export function resolveLegalDoc(
       : fallback.title,
     description: typeof c.description === "string" ? c.description : fallback.description,
     image:
-      typeof c.image === "string"
+      typeof c.image === "string" && c.image.trim()
         ? c.image
-        : c.image === null
-          ? undefined
-          : fallback.image,
+        : fallback.image,
     controller,
     sections: fallback.sections,
   };
@@ -208,19 +207,20 @@ function SectionBody({ section }: { section: LegalSection }) {
 }
 
 const legalProseClass =
-  "prose prose-sm max-w-none space-y-4 [&_h2]:font-display [&_h2]:text-[clamp(1.5rem,2.8vw,2rem)] [&_h2]:font-medium [&_h2]:uppercase [&_h2]:leading-[1.05] [&_h2]:[&_h2]:text-ink [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-medium [&_h3]:uppercase [&_h3]:[&_h3]:text-ink [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-muted-ink [&_p]:md:text-[15px] [&_a]:text-ink [&_a]:underline [&_a]:decoration-ink/25 [&_a]:underline-offset-4 [&_ul]:text-sm [&_ul]:text-muted-ink [&_ol]:text-sm [&_ol]:text-muted-ink";
+  "prose prose-sm max-w-none space-y-4 [&_h2]:font-display [&_h2]:text-[clamp(2.025rem,3.78vw,2.7rem)] [&_h2]:font-medium [&_h2]:uppercase [&_h2]:leading-[1.05] [&_h2]:[&_h2]:text-ink [&_h3]:font-display [&_h3]:text-lg [&_h3]:font-medium [&_h3]:uppercase [&_h3]:[&_h3]:text-ink [&_p]:text-sm [&_p]:leading-relaxed [&_p]:text-muted-ink [&_p]:md:text-[15px] [&_a]:text-ink [&_a]:underline [&_a]:decoration-ink/25 [&_a]:underline-offset-4 [&_ul]:text-sm [&_ul]:text-muted-ink [&_ol]:text-sm [&_ol]:text-muted-ink";
 
 export function LegalDocumentPage({ doc }: { doc: LegalDoc }) {
   const bodyHtml = doc.body_html?.trim();
   const sections = doc.sections ?? [];
 
   return (
-    <PageShell headerVariant={doc.image ? "overlay" : "solid"}>
+    <PageShell headerVariant="overlay">
       <PageHero
         eyebrow={doc.eyebrow}
         title={doc.title}
         description={doc.description}
-        image={doc.image}
+        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15]"
+        image={doc.image || legalHero}
       />
 
       <section className="bg-white py-16 md:py-24">
@@ -241,7 +241,7 @@ export function LegalDocumentPage({ doc }: { doc: LegalDoc }) {
             sections.map((section, i) => (
               <Reveal key={section.id} delay={Math.min(i * 0.04, 0.2)}>
                 <article id={section.id}>
-                  <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-medium uppercase leading-[1.05] text-ink">
+                  <h2 className="font-display text-[clamp(2.025rem,3.78vw,2.7rem)] font-medium uppercase leading-[1.05] text-ink">
                     {section.title}
                   </h2>
                   <SectionBody section={section} />

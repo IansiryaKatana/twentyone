@@ -165,7 +165,7 @@ function ServiceSection({
             {section.body.map((para) => (
               <p
                 key={para}
-                className="font-detective text-[1.05rem] leading-relaxed text-muted-ink md:text-[1.11rem]"
+                className="font-detective text-[1.3125rem] leading-relaxed text-ink md:text-[1.3875rem]"
               >
                 {para}
               </p>
@@ -205,7 +205,7 @@ function ServicesContact() {
             <p className="font-detective mt-5 text-[1.05rem] leading-relaxed normal-case text-ink">
               {contact.eyebrow}
             </p>
-            <p className="font-detective mt-6 max-w-md text-[clamp(1.35rem,2vw,1.75rem)] leading-relaxed text-ink">
+            <p className="font-detective mt-6 max-w-md text-[clamp(1.0125rem,1.5vw,1.3125rem)] leading-relaxed text-ink">
               {contact.body}
             </p>
           </Reveal>

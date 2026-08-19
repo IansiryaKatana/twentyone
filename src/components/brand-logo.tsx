@@ -15,7 +15,7 @@ export function BrandLogo({ surface, className }: BrandLogoProps) {
       alt="Twentyone06"
       width={979}
       height={198}
-      className={cn("h-18 w-auto object-contain object-left", className)}
+      className={cn("h-[3.6rem] w-auto object-contain object-left", className)}
       decoding="async"
     />
   );

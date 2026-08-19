@@ -6,6 +6,7 @@ import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
+import woodBg from "@/Assets/wood-01.jpg";
 
 const QUOTE_PREVIEW_CHARS = 220;
 
@@ -83,11 +84,21 @@ export function NhTestimonial() {
 
   return (
     <section
-      className="bg-[var(--nh-black)]"
+      className="relative overflow-hidden bg-[var(--nh-black)]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-16 text-center sm:px-8 md:py-24 lg:max-w-6xl lg:px-10">
+      <img
+        src={woodBg}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-[var(--nh-black)]/55"
+      />
+      <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-16 text-center sm:px-8 md:py-24 lg:max-w-6xl lg:px-10">
         <div className="relative w-full touch-pan-y" aria-live="polite" {...swipe}>
           {testimonials.length > 1 ? (
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center">

@@ -80,14 +80,14 @@ function ServiceCard({
         </div>
 
         <div className="mt-auto md:max-w-none">
-          <h3 className="font-detective max-w-[95%] text-[clamp(1.9rem,6.5vw,2.5rem)] font-semibold leading-[1.02] normal-case text-black lg:text-[clamp(1.7rem,2.2vw,2.35rem)] xl:text-[clamp(1.65rem,1.4vw,2.15rem)]">
+          <h3 className="font-display max-w-[95%] text-[clamp(1.35rem,5.4vw,4rem)] font-medium leading-[1.05] text-black">
             {item.title}
           </h3>
-          <p className="mt-3 max-w-[18rem] text-[11px] leading-relaxed text-black/65 md:text-xs md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0">
+          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-black/65 sm:leading-[1.65] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
             {item.description}
           </p>
 
-          <ul className="mt-3 hidden space-y-1.5 text-[11px] leading-snug text-black/70 md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100">
+          <ul className="font-detective mt-3 hidden space-y-1.5 text-[clamp(0.8rem,1.8vw,15.5px)] leading-[1.55] text-black/70 sm:leading-[1.65] md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
             {item.bullets.map((bullet) => (
               <li key={bullet} className="flex gap-2">
                 <span className="mt-[0.35em] size-1 shrink-0 rounded-full bg-[var(--nh-red)]" />

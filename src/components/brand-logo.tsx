@@ -1,22 +1,22 @@
-import logoLight from "@/Assets/light bg logo.png";
-import logoDark from "@/Assets/logo white.png";
+import { nav } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
-  /** Background behind the logo — picks the matching asset. */
+  /** Background behind the wordmark — picks matching type color. */
   surface: "light" | "dark";
   className?: string;
 };
 
 export function BrandLogo({ surface, className }: BrandLogoProps) {
   return (
-    <img
-      src={surface === "light" ? logoLight : logoDark}
-      alt="Twentyone06"
-      width={979}
-      height={198}
-      className={cn("h-[2.952rem] w-auto object-contain object-left", className)}
-      decoding="async"
-    />
+    <span
+      className={cn(
+        "font-display inline-block whitespace-nowrap text-[clamp(1.75rem,8vw,45px)] font-medium uppercase leading-none sm:text-[45px]",
+        surface === "light" ? "text-ink" : "text-white",
+        className
+      )}
+    >
+      {nav.brand}
+    </span>
   );
 }

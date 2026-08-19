@@ -64,7 +64,7 @@ export function SiteHeader({ variant = "overlay" }: { variant?: HeaderVariant })
         >
           <BrandLogo
             surface={dark ? "light" : "dark"}
-            className="mx-auto h-6 sm:h-7 md:h-8"
+            className="mx-auto"
           />
         </Link>
 

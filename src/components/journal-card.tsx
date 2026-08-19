@@ -25,7 +25,7 @@ export function JournalCard({ post }: { post: JournalPost }) {
           <span className="mx-2 text-black/20">/</span>
           {post.date}
         </p>
-        <h3 className="font-detective mt-2 text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-[var(--nh-black)] normal-case transition-colors duration-300 group-hover:text-[var(--nh-red)] md:text-[clamp(1.0125rem,1.5vw,1.3125rem)]">
+        <h3 className="font-detective mt-2 text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] text-[var(--nh-black)] normal-case transition-colors duration-300 group-hover:text-[var(--nh-red)] md:text-[clamp(1.0125rem,1.5vw,1.3125rem)]">
           {post.title}
         </h3>
         <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-black/55">

@@ -145,7 +145,7 @@ function FilterDropdown({
       >
         <span
           className={cn(
-            "font-detective truncate text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] tracking-wide",
+            "font-detective truncate text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] tracking-wide",
             isActive ? "text-[var(--nh-white)]" : "text-white/90"
           )}
         >
@@ -184,7 +184,7 @@ function FilterDropdown({
                       setOpen(false);
                     }}
                     className={cn(
-                      "font-detective flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] transition-colors",
+                      "font-detective flex w-full items-center justify-between gap-3 rounded-sm px-3.5 py-2.5 text-left text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] transition-colors",
                       active
                         ? "bg-[var(--nh-red)] text-white"
                         : "text-white/85 hover:bg-white/[0.06] hover:text-white"

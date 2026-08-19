@@ -75,7 +75,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const sidebar = (
     <aside className={`${adminSidebar} h-full w-64 shrink-0 overflow-hidden`}>
       <div className="shrink-0 border-b border-white/5 px-5 py-5">
-        <BrandLogo surface="dark" className="h-7 sm:h-8" />
+        <BrandLogo surface="dark" />
         <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/50">Admin Portal</p>
       </div>
 

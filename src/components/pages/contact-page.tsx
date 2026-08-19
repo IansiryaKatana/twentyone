@@ -15,7 +15,7 @@ export function ContactPage() {
         eyebrow={contactPage.eyebrow}
         title={[...contactPage.title]}
         description={contactPage.description}
-        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)]"
+        descriptionClassName="text-[clamp(0.945rem,1.4vw,1.225rem)]"
         image={bg.desktop}
         imageTablet={bg.tablet}
         imageMobile={bg.mobile}
@@ -42,7 +42,7 @@ export function ContactPage() {
                   <p className="text-[18px] uppercase tracking-[0.25em] text-crimson">
                     {block.label}
                   </p>
-                  <div className="font-detective mt-2 space-y-0.5 text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-black">
+                  <div className="font-detective mt-2 space-y-0.5 text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] text-black">
                     {block.lines.map((line) =>
                       "href" in block && block.href ? (
                         <a

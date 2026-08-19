@@ -1086,7 +1086,7 @@ export const servicesPage = {
       serviceLabel: "Service 1",
       tabLabel: "Interior Design",
       title: "Interior Design",
-      titleLines: ["Interior", "Design"],
+      titleLines: ["Interior Design"],
       body: [
         "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces.",
         "40+ projects across Dubai, the UAE, and the GCC, from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.",
@@ -1132,7 +1132,7 @@ export const servicesPage = {
       serviceLabel: "Service 3",
       tabLabel: "Design Management",
       title: "Design Management",
-      titleLines: ["Design", "Management"],
+      titleLines: ["Design Management"],
       body: [
         "Excellence in execution requires meticulous oversight. We add local market expertise to your team, connecting client, designer, and contractor under one clear direction, and bringing the leadership and accountability your project needs to be delivered without compromising on quality or creativity.",
       ],
@@ -1153,8 +1153,8 @@ export const servicesPage = {
       index: "04",
       serviceLabel: "Service 4",
       tabLabel: "Design Strategy & Operations",
-      title: "Design Strategy And Operations",
-      titleLines: ["Design Strategy", "And Operations"],
+      title: "Design Strategy & Operations",
+      titleLines: ["Design Strategy & Operations"],
       body: [
         "Before a single line is drawn, the most important decisions are already being made. TwentyOne06's Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve, commercially, experientially, and operationally, before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.",
       ],

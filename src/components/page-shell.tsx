@@ -10,7 +10,7 @@ export function PageShell({
   headerVariant?: "overlay" | "solid";
 }) {
   return (
-    <div className="relative min-h-screen bg-cream">
+    <div className="relative min-h-screen overflow-x-hidden bg-cream">
       <NhHeader variant={headerVariant} />
       <main>{children}</main>
       <SiteFooter />

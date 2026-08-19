@@ -1,10 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { servicesPage, type Project } from "@/data/content";
+import { servicesPage } from "@/data/content";
 import { BrandButton } from "@/components/brand-button";
 import { PageShell } from "@/components/page-shell";
 import { InquiryForm } from "@/components/inquiry-form";
-import { ServiceProjectCarousel } from "@/components/services/service-project-carousel";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { LinesReveal, Reveal, Stagger, StaggerItem } from "@/components/anim";
@@ -67,7 +66,7 @@ function ServicesHero() {
             className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]"
           />
           <Reveal delay={0.2} className="mt-6 max-w-xl">
-            <p className="font-detective text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/75">
+            <p className="font-detective text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] text-white/75">
               {servicesPage.description}
             </p>
           </Reveal>
@@ -83,7 +82,7 @@ function ServicesHero() {
               href={`#${section.id}`}
               className="group py-1 text-white transition-colors hover:text-[var(--nh-red)] md:py-1.5"
             >
-              <span className="font-display text-[clamp(2.1rem,4.56vw,3.375rem)] font-medium uppercase leading-[1.02] md:text-[clamp(1.75rem,3.8vw,2.8125rem)]">
+              <span className="font-display text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-medium uppercase leading-[0.95] md:text-[clamp(1.75rem,3.8vw,2.8125rem)] md:leading-[1.02]">
                 {section.tabLabel}
                 <ArrowUpRight className="ml-2 inline-block size-[0.45em] shrink-0 text-[var(--nh-red)] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </span>
@@ -99,19 +98,13 @@ function ServiceSection({
   section,
   reverse,
   stackIndex,
-  projects,
+  image,
 }: {
   section: Section;
   reverse: boolean;
   stackIndex: number;
-  projects: Project[];
+  image: string;
 }) {
-  const serviceProjects = projects.filter((project) =>
-    project.services.includes(
-      section.id as Project["services"][number],
-    ),
-  );
-
   return (
     <section
       id={section.id}
@@ -131,11 +124,15 @@ function ServiceSection({
           )}
         >
           <Reveal className="h-full">
-            <ServiceProjectCarousel
-              projects={serviceProjects}
-              fallbackImage={section.image}
-              fallbackAlt={section.title}
-            />
+            {image ? (
+              <div className="relative aspect-[4/5] h-full overflow-hidden rounded-md md:aspect-auto md:rounded-none">
+                <img
+                  src={image}
+                  alt={section.title}
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </div>
+            ) : null}
           </Reveal>
         </div>
 
@@ -152,12 +149,8 @@ function ServiceSection({
               </span>
               {section.serviceLabel}
             </p>
-            <h2 className="font-display mt-3 text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-medium uppercase leading-[0.95] text-ink md:mt-4 md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
-              {section.titleLines.map((line) => (
-                <span key={line} className="block">
-                  {line}
-                </span>
-              ))}
+            <h2 className="font-display mt-3 whitespace-normal text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-medium uppercase leading-[0.95] text-ink md:mt-4 md:whitespace-nowrap md:text-[clamp(1.4196rem,calc(0.6006rem+3.1668vw),3.9585rem)] lg:text-[clamp(1.7745rem,calc(0.75075rem+3.9585vw),4.948125rem)] xl:text-[clamp(2.900625rem,4.914vw,4.948125rem)]">
+              {section.title}
             </h2>
           </Reveal>
 
@@ -165,19 +158,19 @@ function ServiceSection({
             {section.body.map((para) => (
               <p
                 key={para}
-                className="font-detective text-[1.3125rem] leading-relaxed text-ink md:text-[1.3875rem]"
+                className="font-detective text-[1.3125rem] font-medium leading-[1.15] text-ink md:text-[1.3875rem]"
               >
                 {para}
               </p>
             ))}
           </Reveal>
 
-          <Stagger stagger={0.05} className="mt-6 space-y-2 md:mt-7">
+          <Stagger stagger={0.05} className="mt-6 space-y-0.5 md:mt-7">
             {section.bullets.map((bullet) => (
               <StaggerItem key={bullet}>
                 <div className="flex gap-3 text-sm text-ink">
                   <span className="mt-[0.45em] size-1.5 shrink-0 rounded-full bg-crimson" />
-                  <span className="leading-relaxed">{bullet}</span>
+                  <span className="leading-[1.15]">{bullet}</span>
                 </div>
               </StaggerItem>
             ))}
@@ -202,10 +195,10 @@ function ServicesContact() {
             <h2 className="font-display text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-semibold uppercase leading-[0.95] text-ink md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
               {contact.title}
             </h2>
-            <p className="font-detective mt-5 text-[1.05rem] leading-relaxed normal-case text-ink">
+            <p className="font-detective mt-5 text-[1.05rem] font-medium leading-[1.15] normal-case text-ink">
               {contact.eyebrow}
             </p>
-            <p className="font-detective mt-6 max-w-md text-[clamp(1.0125rem,1.5vw,1.3125rem)] leading-relaxed text-ink">
+            <p className="font-detective mt-6 max-w-md text-[clamp(1.0125rem,1.5vw,1.3125rem)] font-medium leading-[1.15] text-ink">
               {contact.body}
             </p>
           </Reveal>
@@ -228,15 +221,18 @@ export function ServicesIndexPage() {
       <ServicesHero />
       {/* Sticky stack: each service pins at 100vh; next slides over; contact releases */}
       <div className="relative">
-        {servicesPage.sections.map((section, i) => (
-          <ServiceSection
-            key={section.id}
-            section={section}
-            reverse={i % 2 === 1}
-            stackIndex={i + 1}
-            projects={cms.projects}
-          />
-        ))}
+        {servicesPage.sections.map((section, i) => {
+          const live = cms.services.find((service) => service.slug === section.id);
+          return (
+            <ServiceSection
+              key={section.id}
+              section={section}
+              reverse={i % 2 === 1}
+              stackIndex={i + 1}
+              image={live?.heroImage || live?.image || section.image}
+            />
+          );
+        })}
       </div>
       <div className="relative z-20">
         <ServicesContact />

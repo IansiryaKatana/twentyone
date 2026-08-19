@@ -1,19 +1,18 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import {
   EASE,
-  Reveal,
   Stagger,
   StaggerItem,
   useReducedMotionSafe,
 } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { cn } from "@/lib/utils";
-import { NhSectionTitle } from "@/components/new-home/nh-section-title";
+import { HexIconButton } from "@/components/hex-icon-button";
 import interiorArchitectureIcon from "@/Assets/interior architechture.png";
 import brandDesignIcon from "@/Assets/brand design.png";
 import designManagementIcon from "@/Assets/design management.png";
@@ -49,12 +48,7 @@ function ServiceCard({
     <Link
       to="/services"
       hash={item.slug}
-      className={cn(
-        "group relative block overflow-hidden bg-[#ddd] md:min-h-0 lg:aspect-[0.72]",
-        expanded
-          ? "min-h-[460px] md:aspect-[0.78]"
-          : "aspect-[0.78] min-h-[460px]",
-      )}
+      className="group relative block h-svh overflow-hidden bg-[#ddd] lg:h-auto lg:min-h-0 lg:aspect-[0.72]"
     >
       {item.image ? (
         <motion.img
@@ -81,7 +75,7 @@ function ServiceCard({
             src={icon}
             alt=""
             aria-hidden
-            className="size-10 object-contain md:size-12"
+            className="size-14 object-contain md:size-12"
           />
         </div>
 
@@ -89,33 +83,13 @@ function ServiceCard({
           <h3 className="font-display max-w-[95%] text-[3.07125rem] font-medium leading-[1.05] text-black md:text-[clamp(1.35rem,5.4vw,4rem)]">
             {item.title}
           </h3>
-          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.55] text-black/65 sm:leading-[1.65] md:text-[clamp(0.8rem,1.8vw,15.5px)] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
+          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/65 md:text-[clamp(0.8rem,1.8vw,15.5px)] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
             {item.description}
           </p>
 
-          <button
-            type="button"
-            aria-expanded={expanded}
-            onClick={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              setExpanded((open) => !open);
-            }}
-            className="font-detective mt-4 flex min-h-10 items-center gap-1.5 text-[clamp(1.08rem,2.43vw,20.925px)] font-medium uppercase tracking-[0.18em] text-black md:hidden"
-          >
-            {expanded ? "Show less" : "Show more"}
-            <ChevronDown
-              className={cn(
-                "size-4 shrink-0 transition-transform duration-300",
-                expanded && "rotate-180",
-              )}
-              strokeWidth={1.75}
-            />
-          </button>
-
           <ul
             className={cn(
-              "font-detective mt-3 space-y-1.5 text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.55] text-black/70 sm:leading-[1.65] md:text-[clamp(0.8rem,1.8vw,15.5px)] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]",
+              "font-detective mt-3 space-y-0.5 text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/70 md:text-[clamp(0.8rem,1.8vw,15.5px)] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]",
               expanded ? "block" : "hidden",
               "md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100",
             )}
@@ -128,10 +102,31 @@ function ServiceCard({
             ))}
           </ul>
 
-          <span className="btn-cut mt-4 inline-flex items-center justify-center gap-2 bg-[var(--nh-red)] px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:bg-black md:mt-6">
-            {item.cta}
-            <ChevronRight className="size-3.5 shrink-0" strokeWidth={1.75} />
-          </span>
+          <div className="mt-4 flex flex-wrap items-center gap-2.5 md:mt-6">
+            <button
+              type="button"
+              aria-expanded={expanded}
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                setExpanded((open) => !open);
+              }}
+              className="inline-flex min-h-[37px] items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-black md:hidden"
+            >
+              {expanded ? "Show less" : "Show more"}
+              <ChevronDown
+                className={cn(
+                  "size-3.5 shrink-0 transition-transform duration-300",
+                  expanded && "rotate-180",
+                )}
+                strokeWidth={1.75}
+              />
+            </button>
+            <span className="btn-cut inline-flex items-center justify-center gap-2 bg-[var(--nh-red)] px-[1.4rem] py-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:bg-black">
+              {item.cta}
+              <ChevronRight className="size-3.5 shrink-0" strokeWidth={1.75} />
+            </span>
+          </div>
         </div>
       </div>
     </Link>
@@ -140,7 +135,6 @@ function ServiceCard({
 
 export function NhServices() {
   const cms = useCmsContent();
-  const section = cms.newHome.services ?? newHome.services;
   const reduced = useReducedMotionSafe();
   const trackRef = React.useRef<HTMLDivElement | null>(null);
   const [index, setIndex] = React.useState(0);
@@ -207,12 +201,8 @@ export function NhServices() {
   });
 
   return (
-    <section className="bg-[var(--nh-gray)] py-14 text-[var(--nh-black)] lg:py-0">
-      <Reveal className="mb-8 flex justify-center px-5 lg:hidden">
-        <NhSectionTitle title={section.title} />
-      </Reveal>
-
-      <div className="relative px-5 lg:hidden">
+    <section className="bg-[var(--nh-gray)] text-[var(--nh-black)]">
+      <div className="relative lg:hidden">
         <div className="overflow-hidden">
           <motion.div
             ref={trackRef}
@@ -233,59 +223,51 @@ export function NhServices() {
 
         {maxIndex > 0 ? (
           <>
-            <button
-              type="button"
-              onClick={prev}
+            <HexIconButton
+              label="Previous service"
+              size="sm"
+              tone="light"
               disabled={index === 0}
-              aria-label="Previous service"
-              className={cn(
-                "absolute top-1/2 left-5 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/30 bg-[var(--nh-gray)]/80 text-black backdrop-blur-[2px] transition-colors duration-300",
-                index === 0
-                  ? "cursor-not-allowed opacity-30"
-                  : "hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
-              )}
+              onClick={prev}
+              className="absolute top-1/2 left-5 z-10 size-10 -translate-y-1/2 [--btn-cut:10px]"
             >
               <ChevronLeft className="size-4" strokeWidth={1.75} />
-            </button>
-            <button
-              type="button"
-              onClick={next}
+            </HexIconButton>
+            <HexIconButton
+              label="Next service"
+              size="sm"
+              tone="light"
               disabled={index === maxIndex}
-              aria-label="Next service"
-              className={cn(
-                "absolute top-1/2 right-5 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full border border-black/30 bg-[var(--nh-gray)]/80 text-black backdrop-blur-[2px] transition-colors duration-300",
-                index === maxIndex
-                  ? "cursor-not-allowed opacity-30"
-                  : "hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
-              )}
+              onClick={next}
+              className="absolute top-1/2 right-5 z-10 size-10 -translate-y-1/2 [--btn-cut:10px]"
             >
               <ChevronRight className="size-4" strokeWidth={1.75} />
-            </button>
+            </HexIconButton>
           </>
         ) : null}
-      </div>
 
-      <div
-        className="mt-7 flex items-center justify-center gap-1.5 px-5 lg:hidden"
-        role="tablist"
-        aria-label="Choose service slide"
-      >
-        {items.map((item, dotIndex) => (
-          <button
-            key={item.slug}
-            type="button"
-            role="tab"
-            aria-selected={index === dotIndex}
-            aria-label={`Show service ${dotIndex + 1}`}
-            onClick={() => setIndex(dotIndex)}
-            className={cn(
-              "h-0.5 transition-all duration-300",
-              index === dotIndex
-                ? "w-7 bg-[var(--nh-red)]"
-                : "w-3 bg-black/20 hover:bg-black/45"
-            )}
-          />
-        ))}
+        <div
+          className="absolute inset-x-0 bottom-6 z-10 flex items-center justify-center gap-1.5"
+          role="tablist"
+          aria-label="Choose service slide"
+        >
+          {items.map((item, dotIndex) => (
+            <button
+              key={item.slug}
+              type="button"
+              role="tab"
+              aria-selected={index === dotIndex}
+              aria-label={`Show service ${dotIndex + 1}`}
+              onClick={() => setIndex(dotIndex)}
+              className={cn(
+                "h-0.5 transition-all duration-300",
+                index === dotIndex
+                  ? "w-7 bg-[var(--nh-red)]"
+                  : "w-3 bg-black/20 hover:bg-black/45"
+              )}
+            />
+          ))}
+        </div>
       </div>
 
       <Stagger
@@ -298,16 +280,6 @@ export function NhServices() {
           </StaggerItem>
         ))}
       </Stagger>
-
-      <Reveal delay={0.15} className="mt-10 flex justify-center px-5 lg:hidden">
-        <Link
-          to={section.ctaTo}
-          className="group inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--nh-black)]"
-        >
-          {section.cta}
-          <ArrowRight className="size-4 rotate-[-45deg] text-[var(--nh-red)] transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
-      </Reveal>
     </section>
   );
 }

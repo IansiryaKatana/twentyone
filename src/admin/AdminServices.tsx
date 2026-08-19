@@ -1322,7 +1322,7 @@ export function AdminServices() {
 
               <ImageUploadField
 
-                label="Hero image"
+                label="Featured image (services page)"
 
                 value={serviceDraft.hero_image}
 

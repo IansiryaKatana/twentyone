@@ -122,6 +122,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
 
   body {
@@ -130,6 +131,7 @@
     font-family: var(--font-sans);
     font-weight: 300; /* Inter Tight capped at light 300 */
     letter-spacing: 0.01em;
+    overflow-x: hidden;
   }
 
   /* Titles use Zeuxis — condensed face; slight open tracking, normal words */
@@ -285,6 +287,7 @@
   /* Giant hero lines — extra word-spacing reads as gaps at this size */
   .font-display.nh-hero-title {
     word-spacing: 0 !important;
+    line-height: 0.8;
   }
 
   .font-display.leading-none,

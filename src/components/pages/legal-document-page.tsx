@@ -219,7 +219,7 @@ export function LegalDocumentPage({ doc }: { doc: LegalDoc }) {
         eyebrow={doc.eyebrow}
         title={doc.title}
         description={doc.description}
-        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15]"
+        descriptionClassName="text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15]"
         image={doc.image || legalHero}
       />
 

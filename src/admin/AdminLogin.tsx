@@ -50,7 +50,7 @@ export function AdminLogin() {
       </div>
 
       <div className={`${adminCard} relative z-10 w-full max-w-md shadow-xl`}>
-        <BrandLogo surface="light" className="h-8 sm:h-9 md:h-10" />
+        <BrandLogo surface="light" />
         <h1 className={`${adminPageTitle} mt-5`}>Admin sign in</h1>
         <p className="mt-2 text-sm text-[var(--admin-muted)]">
           Manage site content, media, and inbound messages.

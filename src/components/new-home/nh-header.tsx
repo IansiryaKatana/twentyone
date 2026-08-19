@@ -78,7 +78,7 @@ export function NhHeader({
             : "border-transparent bg-transparent"
         )}
       >
-        <div className="relative flex h-24 w-full items-center justify-end gap-5 px-5 sm:h-28 md:px-10 lg:justify-between">
+        <div className="relative flex h-16 w-full items-center justify-end gap-5 px-5 sm:h-[4.5rem] md:px-10 lg:justify-between">
           <Link
             to="/"
             aria-label="Twentyone06 home"
@@ -143,7 +143,7 @@ export function NhHeader({
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.65, ease: EASE }}
-            className="fixed inset-0 z-40 flex bg-black px-5 pb-12 pt-28 md:px-10 md:pt-32"
+            className="fixed inset-0 z-40 flex bg-black px-5 pb-12 pt-16 md:px-10 md:pt-20"
           >
             <nav className="relative z-10 flex w-full flex-col justify-between overflow-y-auto" aria-label="Menu">
               <ul>

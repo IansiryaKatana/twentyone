@@ -10,7 +10,7 @@ import { SiteFooter } from "@/components/sections/site-footer";
 
 export function NewHomePage() {
   return (
-    <div className="new-home relative min-h-screen">
+    <div className="new-home relative min-h-screen overflow-x-hidden">
       <NhHeader />
       <main>
         <NhHero />

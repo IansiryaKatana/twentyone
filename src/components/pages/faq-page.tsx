@@ -57,7 +57,7 @@ function FaqAccordion({ items }: { items: FaqItem[] }) {
                   className="overflow-hidden"
                 >
                   <div className="max-w-2xl space-y-3 pb-5 pl-9 md:pl-11">
-                    <p className="whitespace-pre-line text-sm leading-relaxed text-white/80 md:text-[15px]">
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-white/80 md:text-[18px]">
                       {item.a}
                     </p>
                     {item.link ? (
@@ -100,7 +100,7 @@ export function FaqPage() {
         eyebrow={faqPage.eyebrow}
         title={faqPage.title}
         description={faqPage.description}
-        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15]"
+        descriptionClassName="text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15]"
         image={bg.desktop}
         imageTablet={bg.tablet}
         imageMobile={bg.mobile}
@@ -116,7 +116,7 @@ export function FaqPage() {
                     type="button"
                     onClick={() => setCategory(i)}
                     className={cn(
-                      "group relative w-fit py-2 text-left font-sans text-[clamp(1rem,1.8vw,1.25rem)] font-light leading-[1.3] tracking-normal transition-colors",
+                      "group relative w-fit py-2 text-left font-detective text-[clamp(1rem,2.24vw,1.88rem)] font-medium leading-[1.12] tracking-tighter normal-case transition-colors",
                       i === category
                         ? "text-white"
                         : "text-white/55 hover:text-white"

@@ -86,11 +86,11 @@ export function PdCase({ project, featured }: PdCaseProps) {
               <p className="text-[10px] uppercase tracking-[0.28em] text-[var(--nh-muted)]">
                 Scope
               </p>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-4 space-y-0.5">
                 {project.scope.slice(0, 5).map((item) => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 text-sm text-white/75"
+                    className="flex items-start gap-3 text-sm leading-[1.15] text-white/75"
                   >
                     <span
                       aria-hidden

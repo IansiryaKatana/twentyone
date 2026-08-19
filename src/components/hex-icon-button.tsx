@@ -8,6 +8,8 @@ const SIZE = {
 
 const TONE = {
   red: "bg-[var(--nh-red)] hover:bg-white hover:text-black",
+  light:
+    "border border-black/30 bg-[var(--nh-gray)]/80 text-black hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
   linkedin: "bg-[#0A66C2] hover:opacity-90",
   instagram:
     "bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] hover:opacity-90",
@@ -33,7 +35,8 @@ export function HexIconButton({
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   const classes = cn(
-    "btn-cut inline-flex items-center justify-center text-white transition-colors duration-300 disabled:pointer-events-none disabled:opacity-35",
+    "btn-cut inline-flex items-center justify-center transition-colors duration-300 disabled:pointer-events-none disabled:opacity-35",
+    tone === "light" ? "" : "text-white",
     SIZE[size],
     TONE[tone],
     className,

@@ -105,7 +105,7 @@ export function AboutPage() {
           <div className="grid grid-cols-1 gap-10 md:gap-12">
             <div className="flex justify-center">
               <NhSectionTitle
-                title={milestones.title.join(" ")}
+                title={milestones.title}
                 tone="dark"
               />
             </div>
@@ -155,10 +155,11 @@ export function AboutPage() {
           <LinesReveal
             as="h2"
             lines={[...workTogether.title]}
-            className="font-display text-[clamp(5rem,12vw,8.8rem)] font-medium leading-[0.92] text-[var(--nh-white)] lg:text-[clamp(5.2rem,12.48vw,11.44rem)]"
+            className="font-display w-full max-w-full text-[clamp(5rem,12vw,8.8rem)] font-medium leading-[0.92] text-[var(--nh-white)] lg:text-[clamp(5.2rem,12.48vw,11.44rem)]"
+            lineClassName="whitespace-normal md:whitespace-nowrap"
           />
           <Reveal delay={0.15}>
-            <p className="font-detective max-w-3xl text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/70">
+            <p className="font-detective max-w-3xl text-[clamp(0.945rem,1.4vw,1.225rem)] font-medium leading-[1.15] text-white/70">
               {workTogether.body}
             </p>
           </Reveal>

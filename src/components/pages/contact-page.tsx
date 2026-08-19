@@ -15,6 +15,7 @@ export function ContactPage() {
         eyebrow={contactPage.eyebrow}
         title={[...contactPage.title]}
         description={contactPage.description}
+        descriptionClassName="text-[clamp(1.35rem,2vw,1.75rem)]"
         image={bg.desktop}
         imageTablet={bg.tablet}
         imageMobile={bg.mobile}

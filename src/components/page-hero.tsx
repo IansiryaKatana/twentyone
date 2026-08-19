@@ -20,6 +20,7 @@ export function PageHero({
   imageMobile,
   className,
   titleClassName,
+  descriptionClassName,
 }: {
   eyebrow?: string;
   breadcrumb?: PageHeroCrumb[];
@@ -34,13 +35,15 @@ export function PageHero({
   className?: string;
   /** Optional override for the display title (e.g. `font-detective`). */
   titleClassName?: string;
+  /** Optional override for the detective description size/weight. */
+  descriptionClassName?: string;
 }) {
   const hasImage = Boolean(image || imageTablet || imageMobile);
 
   return (
     <section
       className={cn(
-        "relative overflow-hidden pt-32 pb-16 md:min-h-[52vh] md:pt-40 md:pb-24 min-h-[42vh]",
+        "relative flex min-h-[42vh] items-center overflow-hidden md:min-h-[52vh]",
         hasImage ? "bg-[var(--nh-black,#0a0a0a)]" : "bg-cream",
         className
       )}
@@ -61,7 +64,7 @@ export function PageHero({
         </>
       ) : null}
 
-      <div className="relative mx-auto flex max-w-[1440px] flex-col items-center px-5 text-center md:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col items-center justify-center px-5 py-32 text-center md:px-10 md:py-40">
         {breadcrumb?.length ? (
           <nav aria-label="Breadcrumb" className="mb-5">
             <ol
@@ -141,10 +144,16 @@ export function PageHero({
             <p
               className={cn(
                 "font-detective text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35]",
-                hasImage ? "text-white/75" : "text-muted-ink"
+                hasImage ? "text-white/75" : "text-muted-ink",
+                descriptionClassName
               )}
             >
-              {description}
+              {description.split("\n").map((line, i) => (
+                <span key={`${line}-${i}`}>
+                  {i > 0 ? <br /> : null}
+                  {line}
+                </span>
+              ))}
             </p>
           </Reveal>
         )}

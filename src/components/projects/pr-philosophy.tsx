@@ -22,7 +22,7 @@ export function PrPhilosophy() {
         </Reveal>
 
         <Reveal delay={0.12}>
-          <p className="font-detective text-center text-[clamp(1.05rem,1.6vw,1.35rem)] leading-relaxed text-white/65 md:text-left">
+          <p className="font-detective text-center text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/70 md:text-left">
             {philosophy.body}
           </p>
         </Reveal>

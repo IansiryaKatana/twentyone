@@ -775,7 +775,7 @@ export const contactPage = {
   eyebrow: "Get in Touch",
   title: ["Let’s Talk!"],
   description:
-    "We design spaces for people. Let's start with yours.",
+    "We design spaces for people.\nLet's start with yours.",
   body:
     "You've seen what we do. Now let's talk about what we can do for you. Whether you have a finished brief or just an idea. Share it with us and we'll take it from there.",
   map: {

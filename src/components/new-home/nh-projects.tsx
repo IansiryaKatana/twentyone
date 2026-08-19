@@ -11,7 +11,7 @@ export function NhProjects() {
       <Reveal className="flex justify-center">
         <NhSectionTitle title={section.title} tone="dark" />
       </Reveal>
-      <PrProjectGrid idPrefix="home-filter" />
+      <PrProjectGrid />
     </section>
   );
 }

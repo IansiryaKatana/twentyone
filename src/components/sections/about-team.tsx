@@ -86,7 +86,7 @@ function TeamCard({ member }: { member: TeamMember }) {
       <h3 className="font-display mt-4 text-[clamp(1.640625rem,3vw,1.734375rem)] font-medium uppercase leading-[0.92] tracking-[0.02em] text-ink md:text-[clamp(2.053125rem,3.75vw,2.165625rem)]">
         {member.name}
       </h3>
-      <p className="font-detective mt-1 text-xs tracking-wide text-crimson md:text-sm">
+      <p className="font-detective mt-1 text-[0.9375rem] tracking-wide text-crimson md:text-[1.09375rem]">
         {member.title}
       </p>
     </article>

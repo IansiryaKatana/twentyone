@@ -154,10 +154,10 @@ export function AboutPage() {
           <LinesReveal
             as="h2"
             lines={[...workTogether.title]}
-            className="font-display text-[clamp(2.75rem,8vw,8rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
+            className="font-display text-[clamp(2.45rem,4.48vw,3.85rem)] font-medium leading-[0.92] text-[var(--nh-white)]"
           />
           <Reveal delay={0.15}>
-            <p className="font-detective max-w-xl text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/75">
+            <p className="font-detective max-w-3xl text-[clamp(1.35rem,2vw,1.75rem)] font-medium leading-[1.15] text-white/70">
               {workTogether.body}
             </p>
           </Reveal>

@@ -205,7 +205,7 @@ function ServicesContact() {
             <p className="font-detective mt-5 text-[1.05rem] leading-relaxed normal-case text-ink">
               {contact.eyebrow}
             </p>
-            <p className="font-detective mt-6 max-w-md text-[1.05rem] leading-relaxed text-ink">
+            <p className="font-detective mt-6 max-w-md text-[clamp(1.35rem,2vw,1.75rem)] leading-relaxed text-ink">
               {contact.body}
             </p>
           </Reveal>

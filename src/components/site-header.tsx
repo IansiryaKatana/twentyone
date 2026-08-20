@@ -46,7 +46,7 @@ export function SiteHeader({ variant = "overlay" }: { variant?: HeaderVariant })
         >
           <span
             className={cn(
-              "flex size-9 items-center justify-center rounded-full border transition-colors",
+              "btn-cut flex size-9 items-center justify-center border [--btn-cut:9px] transition-colors",
               dark
                 ? "border-ink/25 group-hover:bg-ink group-hover:text-cream"
                 : "border-cream/40 group-hover:bg-cream group-hover:text-ink"

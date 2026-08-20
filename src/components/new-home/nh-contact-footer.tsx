@@ -48,6 +48,9 @@ export function NhContactFooter() {
             className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20"
             aria-hidden
           />
+          <h2 className="font-display absolute top-5 left-5 z-10 text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-semibold uppercase leading-[0.95] text-white md:top-8 md:left-8 md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:left-10 lg:top-10 lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
+            {contact.title}
+          </h2>
         </div>
 
         <div className="flex flex-col bg-[var(--nh-panel)] px-5 py-14 md:col-span-5 md:min-h-full md:px-10 md:py-16 lg:px-12">

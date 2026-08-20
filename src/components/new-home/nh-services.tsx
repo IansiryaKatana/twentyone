@@ -48,7 +48,7 @@ function ServiceCard({
     <Link
       to="/services"
       hash={item.slug}
-      className="group relative block h-svh overflow-hidden bg-[#ddd] lg:h-auto lg:min-h-0 lg:aspect-[0.72]"
+      className="group relative block h-svh overflow-hidden bg-[#ddd] lg:aspect-auto lg:h-[90vh] lg:min-h-0"
     >
       {item.image ? (
         <motion.img

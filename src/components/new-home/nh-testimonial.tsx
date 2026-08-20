@@ -5,30 +5,11 @@ import { newHome } from "@/data/content";
 import { useCmsContent } from "@/hooks/useCmsContent";
 import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
+import { HexIconButton } from "@/components/hex-icon-button";
 import { cn } from "@/lib/utils";
-import woodBg from "@/Assets/wood-01.jpg";
+import testiBg from "@/Assets/testi-bg.jpg";
 
 const QUOTE_PREVIEW_CHARS = 220;
-
-function NavArrow({
-  direction,
-  onClick,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-}) {
-  const Icon = direction === "prev" ? ChevronLeft : ChevronRight;
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={direction === "prev" ? "Previous testimonial" : "Next testimonial"}
-      className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/40 text-white transition-colors duration-300 hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] md:size-11"
-    >
-      <Icon className="size-4" strokeWidth={1.75} />
-    </button>
-  );
-}
 
 export function NhTestimonial() {
   const cms = useCmsContent();
@@ -88,11 +69,10 @@ export function NhTestimonial() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <img
-        src={woodBg}
-        alt=""
+      <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${testiBg})` }}
       />
       <div
         aria-hidden
@@ -103,14 +83,30 @@ export function NhTestimonial() {
           {testimonials.length > 1 ? (
             <div className="pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center">
               <div className="pointer-events-auto">
-                <NavArrow direction="prev" onClick={prev} />
+                <HexIconButton
+                  label="Previous testimonial"
+                  size="sm"
+                  tone="dark"
+                  onClick={prev}
+                  className="size-10 [--btn-cut:10px] md:size-11 md:[--btn-cut:11px]"
+                >
+                  <ChevronLeft className="size-4" strokeWidth={1.75} />
+                </HexIconButton>
               </div>
             </div>
           ) : null}
           {testimonials.length > 1 ? (
             <div className="pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center">
               <div className="pointer-events-auto">
-                <NavArrow direction="next" onClick={next} />
+                <HexIconButton
+                  label="Next testimonial"
+                  size="sm"
+                  tone="dark"
+                  onClick={next}
+                  className="size-10 [--btn-cut:10px] md:size-11 md:[--btn-cut:11px]"
+                >
+                  <ChevronRight className="size-4" strokeWidth={1.75} />
+                </HexIconButton>
               </div>
             </div>
           ) : null}

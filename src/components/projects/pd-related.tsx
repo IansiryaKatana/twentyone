@@ -41,7 +41,7 @@ export function PdRelated({
               </h2>
               <span className="inline-flex items-center gap-3 text-sm uppercase tracking-[0.22em] text-[var(--nh-white)]">
                 View
-                <span className="flex size-10 items-center justify-center rounded-full border border-white/40 transition-colors duration-300 group-hover:border-[var(--nh-red)] group-hover:bg-[var(--nh-red)]">
+                <span className="btn-cut flex size-10 items-center justify-center border border-white/40 [--btn-cut:10px] transition-colors duration-300 group-hover:border-[var(--nh-red)] group-hover:bg-[var(--nh-red)]">
                   <ArrowRight className="size-4" />
                 </span>
               </span>
@@ -94,7 +94,7 @@ export function PdRelated({
                       transition={{ duration: 0.7, ease: EASE }}
                     />
                   </div>
-                  <h3 className="font-display mt-4 text-lg font-medium uppercase leading-tight tracking-tight text-[var(--nh-white)] transition-colors group-hover:text-[var(--nh-red)] md:text-xl">
+                  <h3 className="font-display mt-4 text-[clamp(1.75rem,3.2vw,3.25rem)] font-medium uppercase leading-[1.05] text-[var(--nh-white)] transition-colors group-hover:text-[var(--nh-red)]">
                     {p.title}
                   </h3>
                   <p className="mt-1.5 text-xs uppercase tracking-[0.2em] text-[var(--nh-muted)]">

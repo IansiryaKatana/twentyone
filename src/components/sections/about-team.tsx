@@ -156,20 +156,16 @@ export function AboutTeamSection() {
               delay={0.1}
               className="hidden shrink-0 md:block"
             >
-              <button
-                type="button"
-                onClick={prev}
+              <HexIconButton
+                label="Previous team members"
+                size="sm"
+                tone="light"
                 disabled={index === 0}
-                aria-label="Previous team members"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                  index === 0
-                    ? "cursor-not-allowed opacity-30"
-                    : "hover:border-crimson hover:bg-crimson hover:text-white",
-                )}
+                onClick={prev}
+                className="size-10 bg-transparent [--btn-cut:10px]"
               >
                 <ArrowLeft className="size-3.5" />
-              </button>
+              </HexIconButton>
             </Reveal>
           ) : null}
 
@@ -203,20 +199,16 @@ export function AboutTeamSection() {
               delay={0.1}
               className="hidden shrink-0 md:block"
             >
-              <button
-                type="button"
-                onClick={next}
+              <HexIconButton
+                label="Next team members"
+                size="sm"
+                tone="light"
                 disabled={index >= maxIndex}
-                aria-label="Next team members"
-                className={cn(
-                  "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                  index >= maxIndex
-                    ? "cursor-not-allowed opacity-30"
-                    : "hover:border-crimson hover:bg-crimson hover:text-white",
-                )}
+                onClick={next}
+                className="size-10 bg-transparent [--btn-cut:10px]"
               >
                 <ArrowRight className="size-3.5" />
-              </button>
+              </HexIconButton>
             </Reveal>
           ) : null}
         </div>
@@ -248,34 +240,26 @@ export function AboutTeamSection() {
 
         {maxIndex > 0 ? (
           <div className="mt-6 flex items-center justify-center gap-2 px-5 md:hidden">
-            <button
-              type="button"
-              onClick={prev}
+            <HexIconButton
+              label="Previous team members"
+              size="sm"
+              tone="light"
               disabled={index === 0}
-              aria-label="Previous team members"
-              className={cn(
-                "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                index === 0
-                  ? "cursor-not-allowed opacity-30"
-                  : "hover:border-crimson hover:bg-crimson hover:text-white",
-              )}
+              onClick={prev}
+              className="size-10 bg-transparent [--btn-cut:10px]"
             >
               <ArrowLeft className="size-3.5" />
-            </button>
-            <button
-              type="button"
-              onClick={next}
+            </HexIconButton>
+            <HexIconButton
+              label="Next team members"
+              size="sm"
+              tone="light"
               disabled={index >= maxIndex}
-              aria-label="Next team members"
-              className={cn(
-                "flex size-10 items-center justify-center rounded-md border border-ink/25 text-ink transition-all duration-300",
-                index >= maxIndex
-                  ? "cursor-not-allowed opacity-30"
-                  : "hover:border-crimson hover:bg-crimson hover:text-white",
-              )}
+              onClick={next}
+              className="size-10 bg-transparent [--btn-cut:10px]"
             >
               <ArrowRight className="size-3.5" />
-            </button>
+            </HexIconButton>
           </div>
         ) : null}
       </div>

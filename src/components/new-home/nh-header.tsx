@@ -8,6 +8,7 @@ import { BrandButton } from "@/components/brand-button";
 import { BrandLogo } from "@/components/brand-logo";
 import { cn } from "@/lib/utils";
 import flyGraphic from "@/Assets/fly.png";
+import whiteBee from "@/Assets/White-bee.png";
 
 const NAV_ORDER = ["Home", "About", "Projects", "Services"] as const;
 
@@ -118,6 +119,15 @@ export function NhHeader({
             <BrandButton to="/contact" className="hidden sm:inline-flex">
               Let&apos;s Talk
             </BrandButton>
+            <img
+              src={whiteBee}
+              alt=""
+              aria-hidden
+              className={cn(
+                "hidden h-10 w-auto object-contain lg:block",
+                onLight && "invert",
+              )}
+            />
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}

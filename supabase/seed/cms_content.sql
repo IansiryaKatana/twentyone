@@ -317,8 +317,8 @@ INSERT INTO public.services (
   'TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC — from Michelin-starred restaurants to international hotel groups. We cover every stage, every sector, and every detail from the first brief to the final handover.',
   '["Hospitality and F&B interior design — Dubai and UAE","Hotel and resort interior design — GCC","Retail and commercial space design","Restaurant and bar interior design","Concept development and spatial planning","Construction documentation and on-site supervision"]'::jsonb,
   'Let''s Design Your Space',
-  'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
-  'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
+  '/projects/burger-bliss-uae-by-grandiose-brand-identity-design-burger-bliss-uae-brand-identity-design-by-twentyone06-scaled-1-b400306b.png',
+  '/projects/burger-bliss-uae-by-grandiose-brand-identity-design-burger-bliss-uae-brand-identity-design-by-twentyone06-scaled-1-b400306b.png',
   0, true
 );
 INSERT INTO public.service_capabilities (
@@ -387,8 +387,8 @@ INSERT INTO public.services (
   'Your space tells a story, and we make sure it tells the right one. We develop branding strategies that extend from logos and signage to environmental graphics and wayfinding systems — giving every touchpoint a consistent, distinctive voice.',
   '["Brand identity and visual systems","Logo design and naming strategy","Signage and environmental graphics","Brand guidelines and asset libraries","Brand refresh and repositioning"]'::jsonb,
   'Let''s Build Your Brand',
-  'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
-  'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
+  '/projects/cheese-board-by-grandiose-cheese-board-by-twentyone06-3-1-05ccbf6c.png',
+  '/projects/cheese-board-by-grandiose-cheese-board-by-twentyone06-3-1-05ccbf6c.png',
   1, true
 );
 INSERT INTO public.service_capabilities (
@@ -457,8 +457,8 @@ INSERT INTO public.services (
   'Excellence in execution requires meticulous oversight. We add local market expertise to your team, connecting client, designer, and contractor under one clear direction, and bringing the leadership and accountability your project needs to be delivered without compromising on quality or creativity.',
   '["Material selection and specification","Design coordination and quality control","Value engineering without compromising design intent","Local market and supplier knowledge — UAE and GCC","Cost and programme alignment"]'::jsonb,
   'Let''s Manage Your Design',
-  'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
-  'https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
+  '/projects/tokyo-arabia-tokyo-arabia-alurubah-branch-21-scaled-4ecf8607.jpg',
+  '/projects/tokyo-arabia-tokyo-arabia-alurubah-branch-21-scaled-4ecf8607.jpg',
   2, true
 );
 INSERT INTO public.service_capabilities (
@@ -527,8 +527,8 @@ INSERT INTO public.services (
   'Before a single line is drawn, the most important decisions are already being made. TwentyOne06''s Design Strategy and Operations service helps hospitality and F&B operators across Dubai, the UAE, and the GCC, define what their space needs to achieve — commercially, experientially, and operationally — before the design process begins. From space programming and guest experience mapping to revenue-driven design frameworks, we ensure creative ambition and business reality stay aligned from day one.',
   '["Pre-design strategic consultation — UAE and GCC","Space programming and commercial viability","Guest experience mapping and journey design","Revenue-driven design frameworks","Post-occupancy review and optimisation"]'::jsonb,
   'Plan With Us',
-  'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
-  'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=900',
+  '/services/design-strategy.jpg',
+  '/services/design-strategy.jpg',
   3, true
 );
 INSERT INTO public.service_capabilities (

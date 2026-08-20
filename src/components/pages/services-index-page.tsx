@@ -10,6 +10,7 @@ import { useCmsContent } from "@/hooks/useCmsContent";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { EASE, Reveal, Stagger, StaggerItem, useReducedMotionSafe } from "@/components/anim";
 import { cn } from "@/lib/utils";
+import contactBg from "@/Assets/contbg.jpg";
 
 type Section = (typeof servicesPage.sections)[number];
 
@@ -227,10 +228,20 @@ function ServiceSection({
 function ServicesContact() {
   const { contact } = servicesPage;
   return (
-    <section id="lets-talk" className="scroll-mt-24 bg-white py-20 md:py-28">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-12 md:px-10 lg:gap-16">
-        <div className="md:col-span-5">
-          <Reveal>
+    <section id="lets-talk" className="scroll-mt-24 bg-cream">
+      <div className="grid w-full grid-cols-1 md:grid-cols-12 md:items-stretch">
+        <div className="relative overflow-hidden px-5 py-20 md:col-span-5 md:min-h-[36rem] md:px-10 md:py-28 lg:px-[7vw]">
+          <img
+            src={contactBg}
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-center"
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-cream/70 via-cream/25 to-transparent"
+            aria-hidden
+          />
+          <Reveal className="relative z-10 max-w-xl">
             <h2 className="font-display text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] font-semibold uppercase leading-[0.95] text-ink md:text-[clamp(2.184rem,calc(0.924rem+4.872vw),6.09rem)] lg:text-[clamp(2.73rem,calc(1.155rem+6.09vw),7.6125rem)] xl:text-[clamp(4.4625rem,7.56vw,7.6125rem)]">
               {contact.title}
             </h2>
@@ -242,7 +253,7 @@ function ServicesContact() {
             </p>
           </Reveal>
         </div>
-        <div className="md:col-span-7">
+        <div className="flex flex-col justify-center bg-cream px-5 py-16 md:col-span-7 md:px-10 md:py-28 lg:px-14">
           <Reveal delay={0.1}>
             <InquiryForm submitFullWidth />
           </Reveal>

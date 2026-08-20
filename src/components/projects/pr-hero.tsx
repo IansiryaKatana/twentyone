@@ -59,7 +59,7 @@ function FittedMaskedLine({
   return (
     <span
       ref={maskRef}
-      className="block overflow-hidden"
+      className="block overflow-hidden text-center"
       style={scale === 1 ? undefined : { height: `${scale * 0.95}em` }}
     >
       <motion.span
@@ -114,7 +114,7 @@ export function PrHero() {
           {hero.eyebrow}
         </motion.p>
 
-        <h1 className="font-display w-full text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] font-medium leading-[0.95] text-[var(--nh-white)] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
+        <h1 className="font-display w-full text-[clamp(5rem,12vw,8.8rem)] font-medium leading-[0.92] text-[var(--nh-white)] md:text-[clamp(3.12rem,calc(1.32rem+6.96vw),8.7rem)] md:leading-[0.95] lg:text-[clamp(3.9rem,calc(1.65rem+8.7vw),10.875rem)] xl:text-[clamp(6.375rem,10.8vw,10.875rem)]">
           {hero.titleLines.map((line, i) => (
             <FittedMaskedLine
               key={line.text}

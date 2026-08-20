@@ -83,7 +83,7 @@ export function PdIntro({ project }: { project: Project }) {
           </div>
 
           <Reveal delay={0.28} className="mx-auto mt-7 max-w-xl md:mt-9">
-            <p className="font-detective text-sm leading-relaxed text-white/70 md:text-[15px]">
+            <p className="font-detective text-[1.3125rem] font-medium leading-[1.15] text-white/70 md:text-[1.3875rem]">
               {project.excerpt}
             </p>
           </Reveal>
@@ -93,10 +93,10 @@ export function PdIntro({ project }: { project: Project }) {
           <dl className="grid grid-cols-2 gap-x-6 gap-y-8 py-8 sm:grid-cols-3 md:grid-cols-5 md:gap-8 md:py-10">
             {facts.map((f) => (
               <div key={f.label} className="min-w-0 text-left sm:text-center md:text-left">
-                <dt className="text-[10px] uppercase tracking-[0.28em] text-[var(--nh-red)]">
+                <dt className="font-display text-[clamp(2rem,5vw,3.75rem)] font-medium uppercase leading-[0.92] text-[var(--nh-red)]">
                   {f.label}
                 </dt>
-                <dd className="mt-2 truncate text-sm text-[var(--nh-white)] md:text-[15px]">
+                <dd className="font-detective mt-2 text-sm text-[var(--nh-white)] md:text-[15px]">
                   {f.value}
                 </dd>
               </div>

@@ -11,6 +11,7 @@ import { AdminFilters } from "@/admin/components/AdminFilters";
 import { AdminBulkBar } from "@/admin/components/AdminBulkBar";
 import { EntityDetailSheet } from "@/admin/components/EntityDetailSheet";
 import { ImageUploadField } from "@/admin/components/ImageUploadField";
+import { ImageGalleryField } from "@/admin/components/ImageGalleryField";
 import { useAdminTablePagination, validateSlug } from "@/admin/useAdminTablePagination";
 import { useAdminSelection } from "@/admin/useAdminSelection";
 import { useAdminReorder } from "@/admin/useAdminReorder";
@@ -549,13 +550,11 @@ export function AdminProjects() {
               />
             </div>
             <div className="md:col-span-2">
-              <label className={adminLabel}>Gallery URLs (one per line)</label>
-              <textarea
-                className={adminTextarea}
-                value={arrayToLines(draft.gallery)}
-                onChange={(e) =>
-                  setDraft({ ...draft, gallery: linesToArray(e.target.value) })
-                }
+              <ImageGalleryField
+                label="Gallery"
+                value={draft.gallery}
+                onChange={(gallery) => setDraft({ ...draft, gallery })}
+                folder="projects"
               />
             </div>
             <div className="md:col-span-2">

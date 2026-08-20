@@ -10,6 +10,17 @@ export function pexels(id: number, w = 1200): string {
   return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=${w}`;
 }
 
+export const interiorDesignImage =
+  "/projects/burger-bliss-uae-by-grandiose-brand-identity-design-burger-bliss-uae-brand-identity-design-by-twentyone06-scaled-1-b400306b.png";
+
+export const brandingImage =
+  "/projects/cheese-board-by-grandiose-cheese-board-by-twentyone06-3-1-05ccbf6c.png";
+
+export const designManagementImage =
+  "/projects/tokyo-arabia-tokyo-arabia-alurubah-branch-21-scaled-4ecf8607.jpg";
+
+export const designStrategyImage = "/services/design-strategy.jpg";
+
 export const nav = {
   brand: "Twentyone06",
   links: [
@@ -1102,7 +1113,7 @@ export const servicesPage = {
       cta: "Let's Design Your Space",
       ctaTo: "/projects" as const,
       ctaSearch: { service: "interior-design" },
-      image: pexels(1571468, 1400),
+      image: interiorDesignImage,
     },
     {
       id: "branding",
@@ -1124,7 +1135,7 @@ export const servicesPage = {
       cta: "Let's Build Your Brand",
       ctaTo: "/projects" as const,
       ctaSearch: { service: "branding" },
-      image: pexels(3184291, 1400),
+      image: brandingImage,
     },
     {
       id: "design-management",
@@ -1146,7 +1157,7 @@ export const servicesPage = {
       cta: "Let's Manage Your Design",
       ctaTo: "/projects" as const,
       ctaSearch: { service: "design-management" },
-      image: pexels(271624, 1400),
+      image: designManagementImage,
     },
     {
       id: "design-strategy",
@@ -1167,7 +1178,7 @@ export const servicesPage = {
       ],
       cta: "Plan With Us",
       ctaHref: "#lets-talk",
-      image: pexels(1866149, 1400),
+      image: designStrategyImage,
     },
   ],
 };
@@ -1179,22 +1190,22 @@ const serviceIntros: Record<
   "interior-design": {
     intro:
       "TwentyOne06 is a multi-award winning interior design firm in Dubai, specialising in hospitality, F&B, hotel, retail, and commercial spaces. 40+ projects across Dubai, the UAE, and the GCC, from Michelin-starred restaurants to international hotel groups.",
-    heroImage: pexels(1571468, 1600),
+    heroImage: interiorDesignImage,
   },
   branding: {
     intro:
       "Your space tells a story, and we make sure it tells the right one. Branding strategies from logos and signage to environmental graphics and wayfinding, every touchpoint with a consistent, distinctive voice.",
-    heroImage: pexels(3184291, 1600),
+    heroImage: brandingImage,
   },
   "design-management": {
     intro:
       "Excellence in execution requires meticulous oversight. We add local market expertise to your team, connecting client, designer, and contractor under one clear direction across Dubai, the UAE, and the GCC.",
-    heroImage: pexels(271624, 1600),
+    heroImage: designManagementImage,
   },
   "design-strategy": {
     intro:
       "Before a single line is drawn, the most important decisions are already being made. Design Strategy and Operations helps hospitality and F&B operators define commercial, experiential, and operational outcomes before design begins.",
-    heroImage: pexels(1866149, 1600),
+    heroImage: designStrategyImage,
   },
 };
 
@@ -1560,7 +1571,7 @@ export const newHome = {
           "Construction documentation and on-site supervision",
         ],
         cta: "Let's Design Your Space",
-        image: pexels(1571468, 900),
+        image: interiorDesignImage,
       },
       {
         index: "02",
@@ -1578,7 +1589,7 @@ export const newHome = {
           "Brand refresh and repositioning",
         ],
         cta: "Let's Build Your Brand",
-        image: pexels(3184291, 900),
+        image: brandingImage,
       },
       {
         index: "03",
@@ -1596,7 +1607,7 @@ export const newHome = {
           "Cost and programme alignment",
         ],
         cta: "Let's Manage Your Design",
-        image: pexels(271624, 900),
+        image: designManagementImage,
       },
       {
         index: "04",
@@ -1614,7 +1625,7 @@ export const newHome = {
           "Post-occupancy review and optimisation",
         ],
         cta: "Plan With Us",
-        image: pexels(1866149, 900),
+        image: designStrategyImage,
       },
     ],
   },
@@ -1738,6 +1749,7 @@ export const newHome = {
     },
   ],
   contact: {
+    title: "Let’s Talk!",
     ctaTitle: ["Let’s Create Something", "Extraordinary."],
     ctaButton: "Start a Project",
     ctaTo: "/contact" as const,

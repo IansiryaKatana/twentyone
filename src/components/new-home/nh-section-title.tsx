@@ -101,7 +101,6 @@ export function NhSectionTitle({
   className,
 }: NhSectionTitleProps) {
   const lines = (Array.isArray(title) ? title : [title]).filter(Boolean);
-  const lockupText = lines[lines.length - 1] ?? "";
 
   return (
     <h2
@@ -120,25 +119,24 @@ export function NhSectionTitle({
         )}
       >
         {lines.map((line) => (
-          <FittedTitleLine key={line} align={align}>
-            {line}
-          </FittedTitleLine>
+          <span key={line} className="relative block w-full max-w-full">
+            <FittedTitleLine align={align}>{line}</FittedTitleLine>
+            {lockup ? (
+              <span
+                aria-hidden
+                className={cn(
+                  "pointer-events-none absolute bottom-[0.02em] left-0 z-[1] w-full max-w-full overflow-hidden font-detective text-[clamp(1.9rem,4vw,2.4rem)] font-normal uppercase leading-none tracking-[0.04em] lg:text-[clamp(1.976rem,4.16vw,3.12rem)]",
+                  accent === "white" && "text-white",
+                  accent === "black" && "text-[var(--nh-black)]",
+                  accent === "red" && "text-[var(--nh-red)]",
+                )}
+              >
+                <FittedTitleLine align={align}>{line}</FittedTitleLine>
+              </span>
+            ) : null}
+          </span>
         ))}
       </span>
-      {lockup ? (
-        <span
-          aria-hidden
-          className={cn(
-            "pointer-events-none absolute bottom-[0.02em] w-full max-w-full overflow-hidden font-detective text-[clamp(1.9rem,4vw,2.4rem)] font-normal uppercase leading-none tracking-[0.04em] lg:text-[clamp(1.976rem,4.16vw,3.12rem)]",
-            align === "center" ? "left-0" : "left-0",
-            accent === "white" && "text-white",
-            accent === "black" && "text-[var(--nh-black)]",
-            accent === "red" && "text-[var(--nh-red)]",
-          )}
-        >
-          <FittedTitleLine align={align}>{lockupText}</FittedTitleLine>
-        </span>
-      ) : null}
     </h2>
   );
 }

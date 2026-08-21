@@ -229,8 +229,8 @@ function ServicesContact() {
   const { contact } = servicesPage;
   return (
     <section id="lets-talk" className="scroll-mt-24 bg-cream">
-      <div className="grid w-full grid-cols-1 md:grid-cols-12 md:items-stretch">
-        <div className="relative overflow-hidden px-5 py-20 md:col-span-5 md:min-h-[36rem] md:px-10 md:py-28 lg:px-[7vw]">
+      <div className="grid w-full grid-cols-1 md:grid-cols-2 md:items-stretch">
+        <div className="relative overflow-hidden px-5 py-20 md:min-h-[36rem] md:px-10 md:py-28 lg:px-14">
           <img
             src={contactBg}
             alt=""
@@ -238,7 +238,11 @@ function ServicesContact() {
             className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-center"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-r from-cream/70 via-cream/25 to-transparent"
+            className="absolute inset-0 bg-gradient-to-r from-cream/80 via-cream/50 to-cream/35"
+            aria-hidden
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-cream/55 via-transparent to-cream/25"
             aria-hidden
           />
           <Reveal className="relative z-10 max-w-xl">
@@ -253,7 +257,7 @@ function ServicesContact() {
             </p>
           </Reveal>
         </div>
-        <div className="flex flex-col justify-center bg-cream px-5 py-16 md:col-span-7 md:px-10 md:py-28 lg:px-14">
+        <div className="flex flex-col justify-center bg-cream px-5 py-16 md:px-10 md:py-28 lg:px-14">
           <Reveal delay={0.1}>
             <InquiryForm submitFullWidth />
           </Reveal>

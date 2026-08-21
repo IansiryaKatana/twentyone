@@ -8,6 +8,8 @@ import { PdIntro } from "@/components/projects/pd-intro";
 import { PdCase } from "@/components/projects/pd-case";
 import { PdGallery } from "@/components/projects/pd-gallery";
 import { PdRelated } from "@/components/projects/pd-related";
+import { ProjectCaseView } from "@/components/projects/project-case";
+import { getProjectCase } from "@/data/cases.generated";
 
 function pickGallery(project: Project) {
   const unique = Array.from(new Set([project.hero, ...project.gallery])).filter(
@@ -76,14 +78,21 @@ export function ProjectDetailPage({ project: projectProp }: { project: Project }
   const related = getRelated(project.slug, 4);
   const next = nextProject(allProjects, project.slug);
   const { featured, galleryImages } = pickGallery(project);
+  const study = getProjectCase(project.slug);
 
   return (
     <div className="relative min-h-screen bg-[var(--nh-black)]">
       <NhHeader variant="overlay" />
       <main>
-        <PdIntro project={project} />
-        <PdCase project={project} featured={featured} />
-        <PdGallery project={project} images={galleryImages} />
+        {study ? (
+          <ProjectCaseView study={study} />
+        ) : (
+          <>
+            <PdIntro project={project} />
+            <PdCase project={project} featured={featured} />
+            <PdGallery project={project} images={galleryImages} />
+          </>
+        )}
         <PdRelated next={next} related={related} />
       </main>
       <SiteFooter />

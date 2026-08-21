@@ -8,14 +8,14 @@ export const Route = createFileRoute("/projects/$slug")({
     if (!project) throw notFound();
     return { project };
   },
-  head: ({ params }) => ({
+  head: ({ loaderData }) => ({
     meta: [
       {
-        title: `${params.slug}, Twentyone06`,
+        title: `${loaderData?.project.title ?? "Project"} – Twentyone06`,
       },
       {
         name: "description",
-        content: "Twentyone06 project detail.",
+        content: loaderData?.project.excerpt ?? "Twentyone06 project detail.",
       },
     ],
   }),

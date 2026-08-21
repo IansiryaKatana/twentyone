@@ -17,26 +17,23 @@ const HERO_DISPLAY =
 function MaskedHeroTitle({ lines }: { lines: readonly string[] }) {
   const ref = React.useRef<HTMLHeadingElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.35 });
+  const words = lines.join(" ").trim().split(/\s+/).filter(Boolean);
+  const last = words.at(-1) ?? "";
+  const lead = words.slice(0, -1).join(" ");
 
   return (
     <h1 ref={ref} className={HERO_DISPLAY}>
-      {lines.map((line, i) => (
-        <span key={line} className="block overflow-hidden">
-          <motion.span
-            className={cn(
-              "block",
-              i === lines.length - 1 && lines.length > 1
-                ? "text-[var(--nh-red)]"
-                : "text-[var(--nh-white)]",
-            )}
-            initial={{ y: "115%" }}
-            animate={inView ? { y: "0%" } : { y: "115%" }}
-            transition={{ duration: 0.95, ease: EASE, delay: 0.12 + i * 0.1 }}
-          >
-            {line}
-          </motion.span>
-        </span>
-      ))}
+      <span className="block overflow-hidden">
+        <motion.span
+          className="block text-[var(--nh-white)]"
+          initial={{ y: "115%" }}
+          animate={inView ? { y: "0%" } : { y: "115%" }}
+          transition={{ duration: 0.95, ease: EASE, delay: 0.12 }}
+        >
+          {lead ? `${lead} ` : null}
+          <span className="text-[var(--nh-red)]">{last}</span>
+        </motion.span>
+      </span>
     </h1>
   );
 }
@@ -147,9 +144,9 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
             return (
               <section
                 key={key}
-                className="bg-[var(--nh-black)] px-5 py-16 md:px-10 md:py-24 lg:px-[7vw]"
+                className="bg-[var(--nh-black)] py-16 md:py-24"
               >
-                <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-16">
+                <div className="grid w-full grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-0">
                   <Stagger
                     stagger={0.1}
                     className={cn(
@@ -163,7 +160,7 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
                       </StaggerItem>
                     ))}
                   </Stagger>
-                  <div className="lg:col-span-7">
+                  <div className="px-5 md:px-10 lg:col-span-7 lg:px-14">
                     <CopyHeader eyebrow={block.eyebrow} title={block.title} />
                     <Reveal delay={0.2} className="mt-6">
                       <CopyBlock paragraphs={block.paragraphs} />
@@ -199,9 +196,9 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
           return (
             <section
               key={key}
-              className="bg-[var(--nh-black)] px-5 py-16 md:px-10 md:py-24 lg:px-[7vw]"
+              className="bg-[var(--nh-black)] py-16 md:py-24"
             >
-              <div className="mx-auto max-w-3xl">
+              <div className="px-5 md:px-10">
                 <CopyHeader eyebrow={block.eyebrow} title={block.title} />
                 <Reveal delay={0.2} className="mt-6">
                   <CopyBlock paragraphs={block.paragraphs} />
@@ -211,7 +208,7 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
                 <Stagger
                   stagger={0.1}
                   className={cn(
-                    "mt-12 grid grid-cols-1 gap-3 md:gap-4",
+                    "mt-12 grid w-full grid-cols-1 gap-3 md:gap-4",
                     images.length === 1 ? "lg:grid-cols-1" : "sm:grid-cols-2",
                   )}
                 >
@@ -230,12 +227,12 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
           return (
             <section
               key={key}
-              className="bg-[var(--nh-black)] px-5 pb-16 md:px-10 md:pb-24 lg:px-[7vw]"
+              className="bg-[var(--nh-black)] pb-16 md:pb-24"
             >
               <Stagger
                 stagger={0.1}
                 className={cn(
-                  "grid grid-cols-1 gap-3 md:gap-4",
+                  "grid w-full grid-cols-1 gap-3 md:gap-4",
                   cols === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2",
                 )}
               >
@@ -263,16 +260,16 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
           return (
             <section
               key={key}
-              className="bg-[var(--nh-black)] px-5 py-14 md:px-10 md:py-16 lg:px-[7vw]"
+              className="bg-[var(--nh-black)] py-14 md:py-16"
             >
               <Stagger
                 stagger={0.1}
-                className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-5"
+                className="grid w-full grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-5"
               >
                 {block.items.map((item) => (
                   <StaggerItem key={item.label + item.src}>
                     <img src={item.src} alt={item.label} className="aspect-[4/5] w-full object-cover" />
-                    <p className="mt-4 text-xs uppercase tracking-[0.22em] text-[var(--nh-white)]">
+                    <p className="mt-4 px-5 text-xs uppercase tracking-[0.22em] text-[var(--nh-white)] md:px-6">
                       {item.label}
                     </p>
                   </StaggerItem>
@@ -285,19 +282,19 @@ function CaseBlocks({ blocks }: { blocks: readonly CaseBlock[] }) {
           return (
             <section
               key={key}
-              className="bg-[var(--nh-black)] px-5 py-16 md:px-10 md:py-24 lg:px-[7vw]"
+              className="bg-[var(--nh-black)] py-16 md:py-24"
             >
-              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+              <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-0">
                 {block.image ? (
                   <Reveal y={36} className="lg:col-span-5">
                     <img
                       src={block.image}
                       alt={block.name}
-                      className="mx-auto aspect-square w-full max-w-md object-cover lg:max-w-none"
+                      className="aspect-square w-full object-cover"
                     />
                   </Reveal>
                 ) : null}
-                <div className={block.image ? "lg:col-span-7" : "lg:col-span-12"}>
+                <div className={block.image ? "px-5 md:px-10 lg:col-span-7 lg:px-14" : "px-5 md:px-10 lg:col-span-12"}>
                   <Reveal>
                     <p className={EYEBROW}>Client Review</p>
                   </Reveal>

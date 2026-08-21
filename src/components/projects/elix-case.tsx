@@ -15,27 +15,26 @@ const DISPLAY =
 function MaskedHeroTitle({ lines }: { lines: readonly string[] }) {
   const ref = React.useRef<HTMLHeadingElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.35 });
+  const words = lines.join(" ").trim().split(/\s+/).filter(Boolean);
+  const last = words.at(-1) ?? "";
+  const lead = words.slice(0, -1).join(" ");
 
   return (
     <h1
       ref={ref}
       className="font-display text-[clamp(2.75rem,8vw,6.5rem)] font-medium leading-[1.02]"
     >
-      {lines.map((line, i) => (
-        <span key={line} className="block overflow-hidden">
-          <motion.span
-            className={cn(
-              "block",
-              i === lines.length - 1 ? "text-[var(--nh-red)]" : "text-[var(--nh-white)]",
-            )}
-            initial={{ y: "115%" }}
-            animate={inView ? { y: "0%" } : { y: "115%" }}
-            transition={{ duration: 0.95, ease: EASE, delay: 0.12 + i * 0.1 }}
-          >
-            {line}
-          </motion.span>
-        </span>
-      ))}
+      <span className="block overflow-hidden">
+        <motion.span
+          className="block text-[var(--nh-white)]"
+          initial={{ y: "115%" }}
+          animate={inView ? { y: "0%" } : { y: "115%" }}
+          transition={{ duration: 0.95, ease: EASE, delay: 0.12 }}
+        >
+          {lead ? `${lead} ` : null}
+          <span className="text-[var(--nh-red)]">{last}</span>
+        </motion.span>
+      </span>
     </h1>
   );
 }

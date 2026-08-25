@@ -8,11 +8,11 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
-/* Shared easing — a soft, editorial cubic-bezier used across the site. */
+/* Shared easing - a soft, editorial cubic-bezier used across the site. */
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
 /* -------------------------------------------------------------------------- */
-/*  Reveal — fade + rise as the element scrolls into view                     */
+/*  Reveal - fade + rise as the element scrolls into view                     */
 /* -------------------------------------------------------------------------- */
 type RevealProps = HTMLMotionProps<"div"> & {
   delay?: number;
@@ -45,7 +45,7 @@ export function Reveal({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Stagger — parent/child orchestration                                      */
+/*  Stagger - parent/child orchestration                                      */
 /* -------------------------------------------------------------------------- */
 export function Stagger({
   children,
@@ -99,7 +99,7 @@ export function StaggerItem({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  LinesReveal — headline lines wiping up from behind a mask                 */
+/*  LinesReveal - headline lines wiping up from behind a mask                 */
 /* -------------------------------------------------------------------------- */
 export function LinesReveal({
   lines,
@@ -148,7 +148,7 @@ export function LinesReveal({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  CountUp — animate a number when it enters the viewport                    */
+/*  CountUp - animate a number when it enters the viewport                    */
 /* -------------------------------------------------------------------------- */
 export function CountUp({
   to,
@@ -194,7 +194,7 @@ export function CountUp({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  Parallax image — subtle depth on scroll (used in cards / hero)            */
+/*  Parallax image - subtle depth on scroll (used in cards / hero)            */
 /* -------------------------------------------------------------------------- */
 export function useReducedMotionSafe() {
   const [reduced, setReduced] = React.useState(false);

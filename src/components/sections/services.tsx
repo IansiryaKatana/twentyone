@@ -18,7 +18,7 @@ export function Services() {
   return (
     <section id="services" className="scroll-mt-24 bg-cream-2 py-20 md:py-28">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 md:grid-cols-2 md:px-10 lg:gap-20">
-        {/* Left — title + vertical tabs */}
+        {/* Left - title + vertical tabs */}
         <div className="flex flex-col">
           <LinesReveal
             as="h2"
@@ -56,7 +56,7 @@ export function Services() {
           </Reveal>
         </div>
 
-        {/* Right — accordion list */}
+        {/* Right - accordion list */}
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab.id}

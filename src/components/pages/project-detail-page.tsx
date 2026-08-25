@@ -28,7 +28,7 @@ function pickGallery(project: Project) {
 
   const used = new Set(featured);
   const grid = pool.filter((src) => !used.has(src));
-  // Ensure the grid still feels rich — re-include mid frames if needed
+  // Ensure the grid still feels rich - re-include mid frames if needed
   const galleryImages =
     grid.length >= 3
       ? grid

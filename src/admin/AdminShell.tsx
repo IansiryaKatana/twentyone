@@ -102,7 +102,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
       <div className="shrink-0 border-t border-white/5 px-5 py-4">
         <p className="truncate text-sm text-white">{adminUser?.display_name ?? adminUser?.email}</p>
-        <p className="text-xs uppercase tracking-[0.14em] text-white/45">{role ?? "—"}</p>
+        <p className="text-xs uppercase tracking-[0.14em] text-white/45">{role ?? "-"}</p>
         <button
           type="button"
           onClick={() => void signOut()}

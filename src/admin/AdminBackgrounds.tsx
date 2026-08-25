@@ -144,7 +144,7 @@ export function AdminBackgrounds() {
     <div>
       <AdminPageHeading
         title="Section backgrounds"
-        description="Homepage hero is under “New home — Hero”. Empty slots show the live built-in fallback; uploads save automatically."
+        description="Homepage hero is under “New home - Hero”. Empty slots show the live built-in fallback; uploads save automatically."
         actions={
           canMutate ? (
             <button
@@ -211,7 +211,7 @@ export function AdminBackgrounds() {
                         />
                         {usingFallback ? (
                           <p className={`${adminMuted} mt-2 text-[11px]`}>
-                            Showing built-in fallback — upload to replace
+                            Showing built-in fallback - upload to replace
                           </p>
                         ) : null}
                       </div>

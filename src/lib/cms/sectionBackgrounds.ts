@@ -60,15 +60,15 @@ export const SECTION_BACKGROUND_META: Record<
     description: "Projects page full-bleed hero background",
   },
   newHomeHero: {
-    label: "New home — Hero",
+    label: "New home - Hero",
     description: "Homepage hero atmosphere image",
   },
   newHomePhilosophy: {
-    label: "New home — Philosophy",
+    label: "New home - Philosophy",
     description: "Philosophy section art panel",
   },
   newHomeContact: {
-    label: "New home — Contact panel",
+    label: "New home - Contact panel",
     description:
       "Desktop right-side image beside the homepage contact form (~60% width)",
   },

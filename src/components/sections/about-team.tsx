@@ -8,6 +8,7 @@ import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { HexIconButton } from "@/components/hex-icon-button";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
+import teamBg from "@/Assets/team-image-bg.jpg";
 
 function TeamCard({ member }: { member: TeamMember }) {
   const linkedin = member.linkedin?.trim();
@@ -136,8 +137,17 @@ export function AboutTeamSection() {
   const pageCount = maxIndex + 1;
 
   return (
-    <section className="bg-cream py-20 md:py-28">
-      <div className="px-5 md:px-[7vw]">
+    <section className="relative overflow-hidden bg-cream py-20 md:py-28">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${teamBg})` }}
+      />
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-b from-cream/80 via-cream/60 to-cream/75"
+      />
+      <div className="relative px-5 md:px-[7vw]">
         <div className="flex flex-col items-center gap-6 text-center">
           <Reveal>
             <p className="text-xs uppercase tracking-[0.22em] text-muted-ink">{eyebrow}</p>
@@ -149,7 +159,7 @@ export function AboutTeamSection() {
         </div>
       </div>
 
-      <div className="mt-12 md:mt-16">
+      <div className="relative mt-12 md:mt-16">
         <div className="flex items-center gap-3 px-5 md:gap-5 md:px-6 lg:px-10">
           {maxIndex > 0 ? (
             <Reveal

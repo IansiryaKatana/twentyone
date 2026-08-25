@@ -34,7 +34,7 @@ export const adminCard =
 export const adminPageTitle =
   "font-display text-2xl font-medium uppercase tracking-tight text-[var(--admin-ink)]";
 
-/** Same weight/size as page titles — use for in-page section heads (e.g. dashboard blocks). */
+/** Same weight/size as page titles - use for in-page section heads (e.g. dashboard blocks). */
 export const adminSectionTitle = adminPageTitle;
 
 export const adminMuted =

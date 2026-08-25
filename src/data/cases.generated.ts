@@ -325,7 +325,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
       "CHEESE",
       "BOARD"
     ],
-    "intro": "Cheese Board’s new flagship on Bluewaters Island is not a grocery store wearing theatrical lights. It’s a stage. Commissioned by Grandiose and reimagined by TwentyOne06, the 1,126 sq ft (104.6 sq m) interior translates cheesemaking into a rebranded architecture, materiality, and choreography – reframing product, pedagogy and retail into a single, sensory performance. Not just a rebrand, it’s a supermarket-born concept transformed into a standalone cultural destination.",
+    "intro": "Cheese Board’s new flagship on Bluewaters Island is not a grocery store wearing theatrical lights. It’s a stage. Commissioned by Grandiose and reimagined by TwentyOne06, the 1,126 sq ft (104.6 sq m) interior translates cheesemaking into a rebranded architecture, materiality, and choreography - reframing product, pedagogy and retail into a single, sensory performance. Not just a rebrand, it’s a supermarket-born concept transformed into a standalone cultural destination.",
     "facts": [
       {
         "label": "Client",
@@ -358,7 +358,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Concept"
         ],
         "paragraphs": [
-          "Cheese Board is about creating a masterpiece on a charcuterie board. Cheese making is an age-old craft through which we aim to tell a story with every selection. This is where cheese making meets fine art, where it meets history and tradition, where each flavor is a note, each pairing of cheeses – a chord, each tasting event – a performance. Our artisans are like painters with their palettes or composers with their symphonies."
+          "Cheese Board is about creating a masterpiece on a charcuterie board. Cheese making is an age-old craft through which we aim to tell a story with every selection. This is where cheese making meets fine art, where it meets history and tradition, where each flavor is a note, each pairing of cheeses - a chord, each tasting event - a performance. Our artisans are like painters with their palettes or composers with their symphonies."
         ],
         "images": [
           "/projects/cheese-board-by-grandiose/Screenshot-2025-09-15-145552.png",
@@ -380,7 +380,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Direction"
         ],
         "paragraphs": [
-          "It is Cheese Board’s first independent store outside the Grandiose supermarket network, designed to stand alone as a premium destination on Bluewaters Island. The ambition demanded more than identity work — it required an environment sophisticated enough for Dubai’s most cosmopolitan visitors, while still retaining accessibility and approachability. This is a design-first project that treats cheese as the protagonist, design as the stagecraft, and the guest as an intentional audience. The outcome is a premium, approachable “Gallery of Taste” where rare wheels and humble wedges are displayed, explained and celebrated as cultural artifacts."
+          "It is Cheese Board’s first independent store outside the Grandiose supermarket network, designed to stand alone as a premium destination on Bluewaters Island. The ambition demanded more than identity work - it required an environment sophisticated enough for Dubai’s most cosmopolitan visitors, while still retaining accessibility and approachability. This is a design-first project that treats cheese as the protagonist, design as the stagecraft, and the guest as an intentional audience. The outcome is a premium, approachable “Gallery of Taste” where rare wheels and humble wedges are displayed, explained and celebrated as cultural artifacts."
         ],
         "images": [
           "/projects/cheese-board-by-grandiose/Cheeseboard-5.jpg"
@@ -395,7 +395,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Design"
         ],
         "paragraphs": [
-          "This logo concept is vaguely inspired by classic crest-style designs, but in a more modern way. It includes hand-sketched images of a wooden board and the King of cheese – Parmesan, to accentuate the idea of Art, with clean serif fonts."
+          "This logo concept is vaguely inspired by classic crest-style designs, but in a more modern way. It includes hand-sketched images of a wooden board and the King of cheese - Parmesan, to accentuate the idea of Art, with clean serif fonts."
         ],
         "images": [
           "/projects/cheese-board-by-grandiose/cheese-board-by-twentyone06.png",
@@ -478,11 +478,11 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         "type": "copy",
         "eyebrow": "Chapter",
         "title": [
-          "Cheese Board –",
+          "Cheese Board -",
           "Bluewaters Island"
         ],
         "paragraphs": [
-          "We transformed Cheese Board from a simple supermarket counter into its first standalone destination. Designed as a premium yet inviting space, the store blends retail with experience—curated displays, tasting workshops, and community events all centered around cheese culture. More than a shop, Cheese Board is a vibrant brand identity and lifestyle destination built to last."
+          "We transformed Cheese Board from a simple supermarket counter into its first standalone destination. Designed as a premium yet inviting space, the store blends retail with experience-curated displays, tasting workshops, and community events all centered around cheese culture. More than a shop, Cheese Board is a vibrant brand identity and lifestyle destination built to last."
         ],
         "images": [
           "/projects/cheese-board-by-grandiose/Screenshot-2025-09-15-154327.png"
@@ -645,8 +645,8 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         ],
         "paragraphs": [
           "The renovation of Dental Nation successfully elevated the brand’s perception, reinforcing its identity as a specialized dental clinic that prioritizes patient comfort, high-end service, and aesthetic excellence.",
-          "– Improved client retention by enhancing the environment for returning patients.",
-          "– Strengthened the brand identity, positioning Dental Nation as a leader in modern, luxurious dental care."
+          "- Improved client retention by enhancing the environment for returning patients.",
+          "- Strengthened the brand identity, positioning Dental Nation as a leader in modern, luxurious dental care."
         ],
         "images": [
           "/projects/dental-nation-acacia-clinic/Acacia-Clinic-Dental-Nation-by-TwentyOne06-1.jpg"
@@ -730,7 +730,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Flaky Pastry"
         ],
         "paragraphs": [
-          "Flaky Pastry was recognised at the Commercial Interior Design Awards 2025 – Hospitality with a double honour — winning Best Use of Materials and receiving a Highly Commended for Best Casual Restaurant Design .",
+          "Flaky Pastry was recognised at the Commercial Interior Design Awards 2025 - Hospitality with a double honour - winning Best Use of Materials and receiving a Highly Commended for Best Casual Restaurant Design .",
           "This project celebrates our obsessive attention to detail, where materiality, mood, and narrative come together to create an experience that feels both elevated and effortless. A true showcase of our storytelling-led design approach."
         ],
         "images": [
@@ -1061,7 +1061,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         "items": [
           {
             "src": "/projects/mari-vanna-dubai/Screenshot-2025-02-18-160533.png",
-            "label": "Patterned upholstery – dining seating"
+            "label": "Patterned upholstery - dining seating"
           },
           {
             "src": "/projects/mari-vanna-dubai/Screenshot-2025-02-18-160521.png",
@@ -1377,7 +1377,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           },
           {
             "src": "/projects/tokyo-arabia/Tokyo-Arabia-AlUrubah-branch-3.jpg",
-            "label": "Teppanyaki – Live cooking and dining area"
+            "label": "Teppanyaki - Live cooking and dining area"
           }
         ]
       },
@@ -1627,7 +1627,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         "paragraphs": [
           "The project’s design philosophy centers on craftsmanship, materiality, and longevity. The office is designed not only to exude exclusivity but also to maintain durability and efficiency in a high-traffic work environment.",
           "By utilizing natural, high-quality materials, such as Glazesupplied natural marble and warm beige wood, the space embodies timeless elegance while ensuring resilience against daily wear and tear. Each material was chosen to enhance the sensory experience, from the tactile richness of wood grain to the cool sophistication of polished marble surfaces.",
-          "This design direction ensures that The Knowledge Academy’s office stands as a benchmark for resimercial workspace interiors—both aesthetically compelling and functionally superior. 360-"
+          "This design direction ensures that The Knowledge Academy’s office stands as a benchmark for resimercial workspace interiors-both aesthetically compelling and functionally superior. 360-"
         ],
         "images": [
           "/projects/the-knowledge-academy/The-Knowledge-Academy-Identity-Awards-2024-13.jpg"
@@ -1755,7 +1755,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Concept"
         ],
         "paragraphs": [
-          "The design DNA is built around three core elements: 1. Energy – A bright and inviting ambiance shaped by pastel tones, natural wood textures, and abundant greenery, fostering motivation and productivity. 2. Craft – Every detail is designed to stimulate creativity and meaningful conversations, from the unique seating arrangements to the tactile materials. 3. Sustainability – The integration of ecoconscious materials, microgreen farming, and waste-reducing features aligns with Flow Café’s commitment to the future of food and environmental responsibility."
+          "The design DNA is built around three core elements: 1. Energy - A bright and inviting ambiance shaped by pastel tones, natural wood textures, and abundant greenery, fostering motivation and productivity. 2. Craft - Every detail is designed to stimulate creativity and meaningful conversations, from the unique seating arrangements to the tactile materials. 3. Sustainability - The integration of ecoconscious materials, microgreen farming, and waste-reducing features aligns with Flow Café’s commitment to the future of food and environmental responsibility."
         ],
         "images": [
           "/projects/flow-cafe/flow-cafe-by-twentyone06-12.jpg",
@@ -2356,7 +2356,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
           "Direction"
         ],
         "paragraphs": [
-          "To reflect the chef’s avant-garde style, the space integrates unexpected design details – from Astro Boy inspired murals to matcha whisk pendant lights. The L shaped layout ensures a natural flow, allowing guests to engage with the culinary theatrics unfolding in the open kitchen. Every design element, from seating to lighting, is curated to enhance the dining journey."
+          "To reflect the chef’s avant-garde style, the space integrates unexpected design details - from Astro Boy inspired murals to matcha whisk pendant lights. The L shaped layout ensures a natural flow, allowing guests to engage with the culinary theatrics unfolding in the open kitchen. Every design element, from seating to lighting, is curated to enhance the dining journey."
         ],
         "images": [
           "/projects/reif-kushiyaki/9.jpg"
@@ -2393,8 +2393,8 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         ],
         "paragraphs": [
           "A defining feature of Reif Kushiyaki is the open-plan kitchen, framed by large windows that invite diners to witness the precision and artistry behind each dish. This transparency enhances the storytelling aspect of the restaurant, ensuring that food isn’t just served, it’s performed.",
-          "Matcha Whisk Pendant Lights – A playful nod to Japanese tea culture, adding warmth and character.",
-          "Astro Boy Mural – A pop of nostalgia that reflects Chef Reif’s playful personality."
+          "Matcha Whisk Pendant Lights - A playful nod to Japanese tea culture, adding warmth and character.",
+          "Astro Boy Mural - A pop of nostalgia that reflects Chef Reif’s playful personality."
         ],
         "images": [
           "/projects/reif-kushiyaki/13-1.jpg",
@@ -2663,7 +2663,7 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         ],
         "paragraphs": [
           "The VOCO™ (Party) Hotel Design embodies the Design Philosophy of \"Small Change, Big Impact,\" aligning with the brand pillars of VOCO™ Hotels. It aims to create a sleek and sophisticated atmosphere that offers adult guests a memorable and enjoyable experience, perfect for vibrant social interactions and relaxation.",
-          "By focusing on details throughout the design—such as color schemes, finishes, lighting, décor, and furnishings— the ambiance is elevated to a refined and upscale level."
+          "By focusing on details throughout the design-such as color schemes, finishes, lighting, décor, and furnishings- the ambiance is elevated to a refined and upscale level."
         ],
         "images": [
           "/projects/voco-monaco/voco-monaco-images08.jpg"
@@ -2886,15 +2886,15 @@ export const projectCases: Record<string, ProjectCaseStudy> = {
         "items": [
           {
             "src": "/projects/nama-yoso/DesignDetails12-BQesUUSh.png",
-            "label": "Zen Garden feature – Artistic stone and sand artwork"
+            "label": "Zen Garden feature - Artistic stone and sand artwork"
           },
           {
             "src": "/projects/nama-yoso/DesignDetails13-_U2X3jVX.png",
-            "label": "The Mountain Wall – Bespoke concrete texture finish Adorned"
+            "label": "The Mountain Wall - Bespoke concrete texture finish Adorned"
           },
           {
             "src": "/projects/nama-yoso/DesignDetails14-ZJYSlhRY.png",
-            "label": "Custom furniture – Natural wood with leather upholstery"
+            "label": "Custom furniture - Natural wood with leather upholstery"
           }
         ]
       },

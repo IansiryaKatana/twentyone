@@ -28,7 +28,7 @@ export function AdminTablePagination({
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm text-[var(--admin-muted)]">
       <p>
-        Showing {start}–{end} of {totalRows}
+        Showing {start}-{end} of {totalRows}
       </p>
       <div className="flex items-center gap-1">
         <button

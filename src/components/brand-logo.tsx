@@ -2,7 +2,7 @@ import { nav } from "@/data/content";
 import { cn } from "@/lib/utils";
 
 type BrandLogoProps = {
-  /** Background behind the wordmark — picks matching type color. */
+  /** Background behind the wordmark - picks matching type color. */
   surface: "light" | "dark";
   className?: string;
 };

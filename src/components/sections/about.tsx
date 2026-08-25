@@ -7,7 +7,7 @@ export function About() {
   return (
     <section id="about" className="relative scroll-mt-24 bg-cream py-20 md:py-28">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 md:grid-cols-12 md:px-10">
-        {/* Left rail — label + small image */}
+        {/* Left rail - label + small image */}
         <div className="md:col-span-3">
           <p className="text-xs uppercase tracking-[0.3em] text-muted-ink">
             {about.eyebrow}
@@ -25,7 +25,7 @@ export function About() {
           </Reveal>
         </div>
 
-        {/* Middle — heading + copy + cta */}
+        {/* Middle - heading + copy + cta */}
         <div className="md:col-span-6">
           <LinesReveal
             as="h2"
@@ -44,7 +44,7 @@ export function About() {
           </Reveal>
         </div>
 
-        {/* Right — feature image */}
+        {/* Right - feature image */}
         <div className="md:col-span-3">
           <Reveal y={40} className="overflow-hidden rounded-md">
             <motion.img

@@ -10,7 +10,7 @@ type ResponsiveBgImageProps = {
 };
 
 /**
- * Serves mobile ≤767, tablet 768–1023, desktop ≥1024.
+ * Serves mobile ≤767, tablet 768-1023, desktop ≥1024.
  * Falls back through tablet → desktop when a slot is empty (already resolved).
  */
 export function ResponsiveBgImage({

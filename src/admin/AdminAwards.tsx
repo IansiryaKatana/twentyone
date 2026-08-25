@@ -337,7 +337,7 @@ export function AdminAwards() {
                   <td className={adminTableCell}>{statusLabel(row.status)}</td>
                   <td className={`${adminTableCell} max-w-xl`}>{row.title}</td>
                   <td className={`${adminTableCell} max-w-[12rem] truncate`}>
-                    {row.href ? "Yes" : "—"}
+                    {row.href ? "Yes" : "-"}
                   </td>
                   <td className={adminTableCell}>{row.sort_order}</td>
                   <td className={adminTableCell}>{row.published ? "Yes" : "No"}</td>
@@ -424,7 +424,7 @@ export function AdminAwards() {
                 value={draft.title}
                 onChange={(e) => setDraft({ ...draft, title: e.target.value })}
                 disabled={!canMutate}
-                placeholder="CID Awards 2024 MENA — …"
+                placeholder="CID Awards 2024 MENA - …"
               />
             </div>
             <div>

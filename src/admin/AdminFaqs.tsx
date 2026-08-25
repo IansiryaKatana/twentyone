@@ -1038,7 +1038,7 @@ export function AdminFaqs() {
 
                     <td className={adminTableCell}>
 
-                      {topics.find((t) => t.id === row.topic_id)?.label ?? "—"}
+                      {topics.find((t) => t.id === row.topic_id)?.label ?? "-"}
 
                     </td>
 

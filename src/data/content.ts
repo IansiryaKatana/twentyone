@@ -915,7 +915,7 @@ export const contactPage = {
     },
     {
       label: "Studio Hours",
-      lines: ["Mon – Fri · 9:00 – 18:00", "Sat by appointment"],
+      lines: ["Mon - Fri · 9:00 - 18:00", "Sat by appointment"],
     },
   ],
 };

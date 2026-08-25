@@ -10,7 +10,7 @@ const TONE = {
   red: "bg-[var(--nh-red)] hover:bg-white hover:text-black",
   light:
     "border border-black/30 bg-[var(--nh-gray)]/80 text-black hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)] hover:text-white",
-  dark: "border border-white/40 bg-transparent text-white hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)]",
+  dark: "border border-white/40 bg-black text-white hover:border-[var(--nh-red)] hover:bg-[var(--nh-red)]",
   linkedin: "bg-[#0A66C2] hover:opacity-90",
   instagram:
     "bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] hover:opacity-90",

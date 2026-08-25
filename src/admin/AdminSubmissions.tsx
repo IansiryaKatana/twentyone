@@ -65,7 +65,7 @@ function payloadEntries(payload: Json): Array<{ key: string; label: string; valu
       {
         key: "payload",
         label: "Details",
-        value: payload == null ? "—" : String(payload),
+        value: payload == null ? "-" : String(payload),
       },
     ];
   }
@@ -73,8 +73,8 @@ function payloadEntries(payload: Json): Array<{ key: string; label: string; valu
   return Object.entries(payload as Record<string, unknown>)
     .filter(([key]) => !HIDDEN_PAYLOAD_KEYS.has(key))
     .map(([key, raw]) => {
-      let value = "—";
-      if (raw == null || raw === "") value = "—";
+      let value = "-";
+      if (raw == null || raw === "") value = "-";
       else if (typeof raw === "string" || typeof raw === "number" || typeof raw === "boolean") {
         value = String(raw);
       } else {
@@ -705,7 +705,7 @@ export function AdminSubmissions() {
                       >
                         {entry.value}
                       </a>
-                    ) : entry.key === "phone" && entry.value !== "—" ? (
+                    ) : entry.key === "phone" && entry.value !== "-" ? (
                       <a
                         href={`tel:${entry.value}`}
                         className="text-[var(--admin-primary)] hover:underline"

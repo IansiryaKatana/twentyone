@@ -1054,7 +1054,7 @@ export function AdminServices() {
 
                     <td className={adminTableCell}>
 
-                      {services.find((s) => s.id === row.service_id)?.label ?? "—"}
+                      {services.find((s) => s.id === row.service_id)?.label ?? "-"}
 
                     </td>
 

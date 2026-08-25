@@ -61,11 +61,12 @@ function decodeEntities(s) {
     .replace(/&#8216;/g, "'")
     .replace(/&#8220;/g, '"')
     .replace(/&#8221;/g, '"')
-    .replace(/&#8211;/g, "–")
-    .replace(/&#8212;/g, "—")
+    .replace(/&#8211;/g, "-")
+    .replace(/&#8212;/g, "-")
     .replace(/&nbsp;/g, " ")
     .replace(/&#160;/g, " ")
-    .replace(/\\\//g, "/");
+    .replace(/\\\//g, "/")
+    .replace(/[\u2013\u2014]/g, "-");
 }
 
 function decodeHtml(html) {

@@ -41,7 +41,7 @@ export function Showcase() {
       className="relative h-[100svh] min-h-[640px] w-full overflow-hidden bg-ink touch-pan-y"
       {...swipe}
     >
-      {/* Background slides — clip-wipe reveal */}
+      {/* Background slides - clip-wipe reveal */}
       <AnimatePresence initial={false}>
         <motion.div
           key={index}

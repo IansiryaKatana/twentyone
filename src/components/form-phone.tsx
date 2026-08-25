@@ -10,7 +10,7 @@ export type PhoneCountry = {
   dial: string;
 };
 
-/** Studio default — Dubai / UAE */
+/** Studio default - Dubai / UAE */
 export const DEFAULT_PHONE_COUNTRY: PhoneCountry = {
   code: "AE",
   name: "United Arab Emirates",

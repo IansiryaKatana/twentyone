@@ -5,7 +5,7 @@ type NhSectionTitleProps = {
   title: string | readonly string[];
   /** `light` = black display on cream/gray; `dark` = white display on black */
   tone?: "light" | "dark";
-  /** Detective overlay color — default brand red */
+  /** Detective overlay color - default brand red */
   accent?: "red" | "white" | "black";
   /** Show Detective lockup under the Zeuxis title */
   lockup?: boolean;

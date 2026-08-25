@@ -83,13 +83,13 @@ function ServiceCard({
           <h3 className="font-display max-w-[95%] text-[3.07125rem] font-medium leading-[1.05] text-black md:text-[clamp(1.35rem,5.4vw,4rem)]">
             {item.title}
           </h3>
-          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/65 md:text-[clamp(0.8rem,1.8vw,15.5px)] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(1.04rem,2.34vw,1.26rem)]">
+          <p className="font-detective mt-3 max-w-[28rem] text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/65 md:text-[clamp(0.8rem,1.8vw,15.5px)] md:transition-all md:duration-500 md:group-hover:max-h-0 md:group-hover:overflow-hidden md:group-hover:opacity-0 lg:text-[clamp(0.936rem,2.106vw,1.134rem)]">
             {item.description}
           </p>
 
           <ul
             className={cn(
-              "font-detective mt-3 space-y-0.5 text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/70 md:text-[clamp(0.8rem,1.8vw,15.5px)] lg:text-[clamp(1.04rem,2.34vw,1.26rem)]",
+              "font-detective mt-3 space-y-0.5 text-[clamp(1.08rem,2.43vw,20.925px)] leading-[1.15] text-black/70 md:text-[clamp(0.8rem,1.8vw,15.5px)] lg:text-[clamp(0.936rem,2.106vw,1.134rem)]",
               expanded ? "block" : "hidden",
               "md:block md:max-h-0 md:translate-y-2 md:overflow-hidden md:opacity-0 md:transition-all md:duration-500 md:group-hover:max-h-[22rem] md:group-hover:translate-y-0 md:group-hover:opacity-100",
             )}

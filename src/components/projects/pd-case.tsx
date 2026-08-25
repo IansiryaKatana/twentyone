@@ -46,7 +46,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
 
   return (
     <div className="bg-[var(--nh-black)]">
-      {/* Challenge — editorial text */}
+      {/* Challenge - editorial text */}
       <section className="px-5 py-16 md:px-10 md:py-24 lg:px-[7vw]">
         <div className="mx-auto max-w-3xl">
           <Reveal>
@@ -66,7 +66,7 @@ export function PdCase({ project, featured }: PdCaseProps) {
 
       {imgA ? <FullBleedImage src={imgA} alt={`${project.title}, space`} /> : null}
 
-      {/* Approach — split */}
+      {/* Approach - split */}
       <section className="grid grid-cols-1 overflow-hidden lg:grid-cols-2">
         <div className="flex flex-col justify-center px-5 py-16 md:px-10 md:py-24 lg:px-16 xl:px-20">
           <Reveal>

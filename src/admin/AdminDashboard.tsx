@@ -86,7 +86,7 @@ export function AdminDashboard() {
               {card.label}
             </p>
             <p className="font-display mt-2 text-3xl font-medium text-[var(--admin-ink)]">
-              {loading ? "—" : card.value}
+              {loading ? "-" : card.value}
             </p>
           </Link>
         ))}

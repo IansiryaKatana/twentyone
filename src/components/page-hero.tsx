@@ -26,7 +26,7 @@ export function PageHero({
   breadcrumb?: PageHeroCrumb[];
   title: string[];
   description?: string;
-  /** Optional full-bleed background — desktop (and fallback). */
+  /** Optional full-bleed background - desktop (and fallback). */
   image?: string;
   /** Optional tablet background; falls back to `image` when omitted. */
   imageTablet?: string;

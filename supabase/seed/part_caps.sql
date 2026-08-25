@@ -5,7 +5,7 @@ INSERT INTO public.service_capabilities (
       '243858f3-877f-4b89-a7b2-f9a8cedf3bd1',
       '01',
       'Hospitality, F&B, and Hotel Interiors',
-      'Full-service interior design for hospitality, F&B, and hotels across the UAE and GCC — from concept through handover.',
+      'Full-service interior design for hospitality, F&B, and hotels across the UAE and GCC - from concept through handover.',
       'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1000',
       0, true
     );
@@ -170,7 +170,7 @@ INSERT INTO public.service_capabilities (
       '28fed4eb-1a30-4571-a907-fc8511d7b300',
       '01',
       'Pre-Design Strategic Consultation',
-      'Strategic consultation before drawing begins — clarifying commercial, experiential, and operational goals.',
+      'Strategic consultation before drawing begins - clarifying commercial, experiential, and operational goals.',
       'https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1000',
       0, true
     );

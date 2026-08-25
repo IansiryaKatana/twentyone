@@ -19,7 +19,7 @@ export async function sendTransactionalEmail(input: {
       },
     });
   } catch {
-    // Form already saved — never block UX on mail delivery.
+    // Form already saved - never block UX on mail delivery.
   }
 }
 

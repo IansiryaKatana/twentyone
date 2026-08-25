@@ -37,7 +37,7 @@ type UseAdminReorderOptions<T extends AdminReorderRow> = {
   page: number;
   pageSize: number;
   canMutate: boolean;
-  /** True when search/filters are active — drag is disabled so order maps cleanly to `rows`. */
+  /** True when search/filters are active - drag is disabled so order maps cleanly to `rows`. */
   filtersActive: boolean;
   onError?: (message: string) => void;
   onPersisted?: () => void | Promise<void>;

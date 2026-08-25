@@ -81,8 +81,12 @@ function asFaqLinkTo(value: string | null): "/services" | "/projects" | undefine
   return undefined;
 }
 
+function dashToComma(value: string): string {
+  return value.replace(/\s+[—–-]\s+/g, ", ");
+}
+
 function asBullets(value: unknown): string[] {
-  return asStringArray(value);
+  return asStringArray(value).map(dashToComma);
 }
 
 export function mapProject(row: ProjectRow): Project {
@@ -175,19 +179,19 @@ export function mapService(
     id: row.slug,
     slug: row.slug,
     label: row.label,
-    intro: row.intro || row.detail || row.description,
+    intro: dashToComma(row.intro || row.detail || row.description),
     heroImage: row.hero_image || row.image,
     indexLabel: row.index_label ?? "",
     title: row.title || row.label,
-    description: row.description,
-    detail: row.detail,
+    description: dashToComma(row.description),
+    detail: dashToComma(row.detail),
     bullets: asBullets(row.bullets),
     cta: row.cta,
     image: row.image || row.hero_image,
     items: sortedCaps.map((cap) => ({
       index: cap.index_label,
       title: cap.title,
-      description: cap.description,
+      description: dashToComma(cap.description),
       image: cap.image,
     })),
   };

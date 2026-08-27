@@ -8,7 +8,7 @@ import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { HexIconButton } from "@/components/hex-icon-button";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { cn } from "@/lib/utils";
-import teamBg from "@/Assets/team-image-bg.jpg";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 
 function TeamCard({ member }: { member: TeamMember }) {
   const linkedin = member.linkedin?.trim();
@@ -70,11 +70,12 @@ function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export function AboutTeamSection() {
-  const { teamMembers: cmsTeamMembers } = useCmsContent();
+  const { teamMembers: cmsTeamMembers, sectionBackgrounds } = useCmsContent();
   const teamMembers = cmsTeamMembers.filter(
     (member) => !/govind/i.test(member.name),
   );
   const { eyebrow, title, description } = aboutPage.team;
+  const teamBg = sectionBackgrounds.aboutTeam;
   const reduced = useReducedMotionSafe();
   const trackRef = React.useRef<HTMLDivElement | null>(null);
   const [index, setIndex] = React.useState(0);
@@ -140,9 +141,10 @@ export function AboutTeamSection() {
     <section className="relative overflow-hidden bg-cream py-20 md:py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${teamBg})` }}
-      />
+        className="pointer-events-none absolute inset-0"
+      >
+        <ResponsiveBgImage bg={teamBg} />
+      </div>
       <div
         aria-hidden
         className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"

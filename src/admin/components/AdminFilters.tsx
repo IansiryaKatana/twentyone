@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 import { Search, X } from "lucide-react";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import {
   adminBtnGhost,
   adminInput,
-  adminSelect,
 } from "@/admin/adminClassNames";
 import type { AdminFilterDef } from "@/admin/useAdminFilters";
 
@@ -52,19 +52,16 @@ export function AdminFilters({
           <label className="sr-only" htmlFor={`filter-${def.key}`}>
             {def.label}
           </label>
-          <select
+          <AdminSelect
             id={`filter-${def.key}`}
-            className={adminSelect}
+            aria-label={def.label}
             value={filters[def.key] ?? "all"}
-            onChange={(e) => onFilterChange?.(def.key, e.target.value)}
-          >
-            <option value="all">All {def.label.toLowerCase()}</option>
-            {def.options.map((opt) => (
-              <option key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
+            onChange={(value) => onFilterChange?.(def.key, value)}
+            options={[
+              { value: "all", label: `All ${def.label.toLowerCase()}` },
+              ...def.options,
+            ]}
+          />
         </div>
       ))}
 

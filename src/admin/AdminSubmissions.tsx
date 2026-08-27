@@ -9,6 +9,7 @@ import { AdminTablePagination } from "@/admin/components/AdminTablePagination";
 import { AdminFilters } from "@/admin/components/AdminFilters";
 import { AdminBulkBar } from "@/admin/components/AdminBulkBar";
 import { EntityDetailSheet } from "@/admin/components/EntityDetailSheet";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import { useAdminTablePagination } from "@/admin/useAdminTablePagination";
 import { useAdminSelection } from "@/admin/useAdminSelection";
 import { matchesQuery, useAdminFilters, type AdminFilterDef } from "@/admin/useAdminFilters";
@@ -547,21 +548,25 @@ export function AdminSubmissions() {
 
                 key={row.id}
 
-                className={
+                className={cn(
+
+                  "cursor-pointer transition-colors hover:bg-[color-mix(in_srgb,var(--admin-primary)_4%,white)]",
 
                   selection.isSelected(row.id)
 
                     ? "bg-[color-mix(in_srgb,var(--admin-primary)_6%,white)]"
 
-                    : undefined
+                    : undefined,
 
-                }
+                )}
+
+                onClick={() => setViewRow(row)}
 
               >
 
                 {canMutate ? (
 
-                  <td className={adminTableCell}>
+                  <td className={adminTableCell} onClick={(e) => e.stopPropagation()}>
 
                     <input
 
@@ -589,7 +594,7 @@ export function AdminSubmissions() {
 
                 </td>
 
-                <td className={adminTableCell}>
+                <td className={adminTableCell} onClick={(e) => e.stopPropagation()}>
 
                   <div className="flex justify-end gap-1">
 
@@ -663,18 +668,22 @@ export function AdminSubmissions() {
               {canMutate ? (
                 <label className="inline-flex items-center gap-2">
                   <span className="sr-only">Status</span>
-                  <select
-                    className={cn(
-                      "appearance-none rounded-full border px-3 py-1.5 text-xs font-medium uppercase tracking-[0.12em] outline-none",
+                  <AdminSelect
+                    size="compact"
+                    className="w-auto min-w-[8.5rem]"
+                    aria-label="Status"
+                    triggerClassName={cn(
+                      "border",
                       statusBadgeClass(viewRow.status),
                     )}
                     value={viewRow.status}
-                    onChange={(e) => void updateStatus(viewRow.id, e.target.value)}
-                  >
-                    <option value="new">New</option>
-                    <option value="read">Read</option>
-                    <option value="archived">Archived</option>
-                  </select>
+                    onChange={(status) => void updateStatus(viewRow.id, status)}
+                    options={[
+                      { value: "new", label: "New" },
+                      { value: "read", label: "Read" },
+                      { value: "archived", label: "Archived" },
+                    ]}
+                  />
                 </label>
               ) : (
                 <span

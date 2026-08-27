@@ -144,7 +144,7 @@ export function AdminBackgrounds() {
     <div>
       <AdminPageHeading
         title="Section backgrounds"
-        description="Homepage hero is under “New home - Hero”. Empty slots show the live built-in fallback; uploads save automatically."
+        description="Homepage hero is under “Home - Hero”. Empty slots show the live built-in fallback; uploads save automatically."
         actions={
           canMutate ? (
             <button

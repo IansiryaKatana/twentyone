@@ -10,7 +10,6 @@ import { useCmsContent } from "@/hooks/useCmsContent";
 import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import { EASE, Reveal, Stagger, StaggerItem, useReducedMotionSafe } from "@/components/anim";
 import { cn } from "@/lib/utils";
-import contactBg from "@/Assets/contbg.jpg";
 
 type Section = (typeof servicesPage.sections)[number];
 
@@ -227,15 +226,16 @@ function ServiceSection({
 
 function ServicesContact() {
   const { contact } = servicesPage;
+  const { sectionBackgrounds } = useCmsContent();
+  const contactBg = sectionBackgrounds.servicesContact;
   return (
     <section id="lets-talk" className="scroll-mt-24 bg-cream">
       <div className="grid w-full grid-cols-1 md:grid-cols-2 md:items-stretch">
         <div className="relative overflow-hidden px-5 py-20 md:min-h-[36rem] md:px-10 md:py-28 lg:px-14">
-          <img
-            src={contactBg}
-            alt=""
-            aria-hidden
-            className="pointer-events-none absolute inset-0 size-full max-w-none object-cover object-center"
+          <ResponsiveBgImage
+            bg={contactBg}
+            className="pointer-events-none absolute inset-0"
+            imgClassName="object-center"
           />
           <div
             className="absolute inset-0 bg-gradient-to-r from-cream/80 via-cream/50 to-cream/35"

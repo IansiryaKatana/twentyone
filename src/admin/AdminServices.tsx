@@ -22,6 +22,8 @@ import { AdminBulkBar } from "@/admin/components/AdminBulkBar";
 
 import { ImageUploadField } from "@/admin/components/ImageUploadField";
 
+import { AdminSelect } from "@/admin/components/AdminSelect";
+
 import { useAdminTablePagination, validateSlug } from "@/admin/useAdminTablePagination";
 
 import { useAdminSelection } from "@/admin/useAdminSelection";
@@ -43,8 +45,6 @@ import {
   adminLabel,
 
   adminSectionTitle,
-
-  adminSelect,
 
   adminTable,
 
@@ -1368,27 +1368,15 @@ export function AdminServices() {
 
               <label className={adminLabel}>Service</label>
 
-              <select
-
-                className={adminSelect}
+              <AdminSelect
 
                 value={capDraft.service_id}
 
-                onChange={(e) => setCapDraft({ ...capDraft, service_id: e.target.value })}
+                onChange={(service_id) => setCapDraft({ ...capDraft, service_id })}
 
-              >
+                options={services.map((s) => ({ value: s.id, label: s.label }))}
 
-                {services.map((s) => (
-
-                  <option key={s.id} value={s.id}>
-
-                    {s.label}
-
-                  </option>
-
-                ))}
-
-              </select>
+              />
 
             </div>
 

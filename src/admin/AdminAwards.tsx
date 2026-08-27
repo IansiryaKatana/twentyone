@@ -15,12 +15,12 @@ import { useAdminSelection } from "@/admin/useAdminSelection";
 import { useAdminReorder } from "@/admin/useAdminReorder";
 import { AdminDndProvider, AdminSortableBody, AdminSortableTr } from "@/admin/components/AdminSortable";
 import { matchesQuery, useAdminFilters, type AdminFilterDef } from "@/admin/useAdminFilters";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import {
   adminBtnGhost,
   adminBtnPrimary,
   adminInput,
   adminLabel,
-  adminSelect,
   adminTable,
   adminTableCell,
   adminTableHeadCell,
@@ -404,18 +404,12 @@ export function AdminAwards() {
           <div className="space-y-4">
             <div>
               <label className={adminLabel}>Status</label>
-              <select
-                className={adminSelect}
+              <AdminSelect
                 value={draft.status}
-                onChange={(e) => setDraft({ ...draft, status: e.target.value })}
+                onChange={(status) => setDraft({ ...draft, status })}
+                options={STATUS_OPTIONS}
                 disabled={!canMutate}
-              >
-                {STATUS_OPTIONS.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
             <div>
               <label className={adminLabel}>Award / category / project</label>

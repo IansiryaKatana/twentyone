@@ -598,6 +598,16 @@ export const privacyPage = {
   title: ["Privacy", "Policy"],
   description:
     "How we collect, use, and protect your personal data when you visit our website or engage with TwentyOne06.",
+  seo: {
+    title: "Privacy Policy, Twentyone06",
+    description:
+      "How TwentyOne06 collects, uses, and protects your personal data under the UAE PDPL.",
+    keywords: [
+      "TwentyOne06 privacy policy",
+      "UAE PDPL",
+      "interior design studio Dubai privacy",
+    ],
+  },
   /** Set when hero art is ready, PageHero will go full-bleed with overlay text. */
   image: undefined as string | undefined,
   controller: legalController,
@@ -696,6 +706,15 @@ export const termsPage = {
   title: ["Terms and", "Conditions"],
   description:
     "The terms that govern your use of the TwentyOne06 website and how we engage with enquiries and services.",
+  seo: {
+    title: "Terms and Conditions, Twentyone06",
+    description:
+      "Terms governing use of the TwentyOne06 website, enquiries, and related services.",
+    keywords: [
+      "TwentyOne06 terms",
+      "interior design studio Dubai terms",
+    ],
+  },
   /** Full-bleed hero with overlay text, same treatment as Privacy. */
   image: undefined as string | undefined,
   controller: legalController,
@@ -787,6 +806,16 @@ export const contactPage = {
   title: ["Let’s Talk!"],
   description:
     "We design spaces for people.\nLet's start with yours.",
+  seo: {
+    title: "Let's Talk, TwentyOne06",
+    description:
+      "We design spaces for people. Let's start with yours. Share your brief with TwentyOne06, interior design, branding, design management, and strategy across Dubai and the GCC.",
+    keywords: [
+      "contact TwentyOne06",
+      "interior design studio Dubai contact",
+      "hospitality design enquiry Dubai",
+    ],
+  },
   body:
     "You've seen what we do. Now let's talk about what we can do for you. Whether you have a finished brief or just an idea. Share it with us and we'll take it from there.",
   map: {
@@ -1461,6 +1490,29 @@ export const journalPage = {
     { label: "Home", to: "/" as const },
     { label: "Blogs" },
   ],
+  seo: {
+    title: "Our Blogs, Twentyone06",
+    description:
+      "Studio notes on space, material, and modern living from Twentyone06.",
+    keywords: [
+      "TwentyOne06 blog",
+      "interior design Dubai insights",
+      "hospitality design articles UAE",
+    ],
+  },
+};
+
+export const notFoundPage = {
+  eyebrow: "Error 404",
+  title: ["Page Not", "Found."],
+  description:
+    "The page you're looking for has moved, been removed, or never existed. Let's get you back to the work that matters.",
+  seo: {
+    title: "Page Not Found, TwentyOne06",
+    description:
+      "This page has moved, been removed, or never existed. Return to TwentyOne06, Dubai's interior design and branding studio.",
+    keywords: [],
+  },
 };
 
 export const journalPosts: JournalPost[] = scrapedJournalPosts;

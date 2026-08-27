@@ -24,6 +24,8 @@ import { EntityDetailSheet } from "@/admin/components/EntityDetailSheet";
 
 import { AdminRichTextField } from "@/admin/components/AdminRichTextField";
 
+import { AdminSelect } from "@/admin/components/AdminSelect";
+
 import { useAdminTablePagination, validateSlug } from "@/admin/useAdminTablePagination";
 
 import { useAdminSelection } from "@/admin/useAdminSelection";
@@ -45,8 +47,6 @@ import {
   adminLabel,
 
   adminSectionTitle,
-
-  adminSelect,
 
   adminTable,
 
@@ -1222,27 +1222,15 @@ export function AdminFaqs() {
 
               <label className={adminLabel}>Topic</label>
 
-              <select
-
-                className={adminSelect}
+              <AdminSelect
 
                 value={entryDraft.topic_id}
 
-                onChange={(e) => setEntryDraft({ ...entryDraft, topic_id: e.target.value })}
+                onChange={(topic_id) => setEntryDraft({ ...entryDraft, topic_id })}
 
-              >
+                options={topics.map((t) => ({ value: t.id, label: t.label }))}
 
-                {topics.map((t) => (
-
-                  <option key={t.id} value={t.id}>
-
-                    {t.label}
-
-                  </option>
-
-                ))}
-
-              </select>
+              />
 
             </div>
 

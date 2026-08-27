@@ -7,7 +7,7 @@ import { EASE, useReducedMotionSafe } from "@/components/anim";
 import { useCarouselSwipe } from "@/hooks/useCarouselSwipe";
 import { HexIconButton } from "@/components/hex-icon-button";
 import { cn } from "@/lib/utils";
-import testiBg from "@/Assets/testi-bg.jpg";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 
 const QUOTE_PREVIEW_CHARS = 220;
 
@@ -15,6 +15,7 @@ export function NhTestimonial() {
   const cms = useCmsContent();
   const testimonials =
     cms.testimonials.length > 0 ? cms.testimonials : newHome.testimonials;
+  const testiBg = cms.sectionBackgrounds.newHomeTestimonial;
   const reduced = useReducedMotionSafe();
   const [index, setIndex] = React.useState(0);
   const [paused, setPaused] = React.useState(false);
@@ -71,9 +72,10 @@ export function NhTestimonial() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${testiBg})` }}
-      />
+        className="pointer-events-none absolute inset-0"
+      >
+        <ResponsiveBgImage bg={testiBg} />
+      </div>
       <div
         aria-hidden
         className="absolute inset-0 bg-[var(--nh-black)]/55"

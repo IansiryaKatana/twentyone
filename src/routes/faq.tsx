@@ -2,20 +2,18 @@ import { createFileRoute } from "@tanstack/react-router";
 import { FaqPage } from "@/components/pages/faq-page";
 import { faqPage } from "@/data/content";
 import { fetchFaqCategories, getFaqSchemaFromCategories } from "@/lib/cms/contentAccess";
+import { fetchMarketingSeo, pageSeoHead } from "@/lib/cms/pageSeo";
 
 export const Route = createFileRoute("/faq")({
   loader: async () => {
-    const categories = await fetchFaqCategories();
-    return { categories };
+    const [categories, seo] = await Promise.all([
+      fetchFaqCategories(),
+      fetchMarketingSeo("faq", faqPage.seo),
+    ]);
+    return { categories, seo };
   },
   head: ({ loaderData }) => ({
-    meta: [
-      { title: faqPage.seo.title },
-      { name: "description", content: faqPage.seo.description },
-      { name: "keywords", content: faqPage.seo.keywords.join(", ") },
-      { property: "og:title", content: faqPage.seo.title },
-      { property: "og:description", content: faqPage.seo.description },
-    ],
+    ...pageSeoHead(loaderData?.seo ?? faqPage.seo),
     scripts: [
       {
         type: "application/ld+json",

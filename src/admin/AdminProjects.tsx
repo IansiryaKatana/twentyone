@@ -17,12 +17,12 @@ import { useAdminSelection } from "@/admin/useAdminSelection";
 import { useAdminReorder } from "@/admin/useAdminReorder";
 import { matchesQuery, useAdminFilters, type AdminFilterDef } from "@/admin/useAdminFilters";
 import { AdminDndProvider, AdminSortableBody, AdminSortableTr } from "@/admin/components/AdminSortable";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import {
   adminBtnGhost,
   adminBtnPrimary,
   adminInput,
   adminLabel,
-  adminSelect,
   adminTable,
   adminTableCell,
   adminTableHeadCell,
@@ -468,27 +468,27 @@ export function AdminProjects() {
             </div>
             <div>
               <label className={adminLabel}>Category</label>
-              <select
-                className={adminSelect}
+              <AdminSelect
                 value={draft.category}
-                onChange={(e) => setDraft({ ...draft, category: e.target.value })}
-              >
-                <option value="Residential">Residential</option>
-                <option value="Hospitality">Hospitality</option>
-                <option value="Commercial">Commercial</option>
-              </select>
+                onChange={(category) => setDraft({ ...draft, category })}
+                options={[
+                  { value: "Residential", label: "Residential" },
+                  { value: "Hospitality", label: "Hospitality" },
+                  { value: "Commercial", label: "Commercial" },
+                ]}
+              />
             </div>
             <div>
               <label className={adminLabel}>Span</label>
-              <select
-                className={adminSelect}
+              <AdminSelect
                 value={draft.span}
-                onChange={(e) => setDraft({ ...draft, span: e.target.value })}
-              >
-                <option value="short">Short</option>
-                <option value="tall">Tall</option>
-                <option value="wide">Wide</option>
-              </select>
+                onChange={(span) => setDraft({ ...draft, span })}
+                options={[
+                  { value: "short", label: "Short" },
+                  { value: "tall", label: "Tall" },
+                  { value: "wide", label: "Wide" },
+                ]}
+              />
             </div>
             <div className="md:col-span-2">
               <label className={adminLabel}>Services</label>

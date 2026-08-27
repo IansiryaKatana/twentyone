@@ -17,12 +17,12 @@ import { useAdminTablePagination } from "@/admin/useAdminTablePagination";
 import { useAdminSelection } from "@/admin/useAdminSelection";
 import { useAdminReorder } from "@/admin/useAdminReorder";
 import { matchesQuery, useAdminFilters, type AdminFilterDef } from "@/admin/useAdminFilters";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import {
   adminBtnGhost,
   adminBtnPrimary,
   adminInput,
   adminLabel,
-  adminSelect,
   adminTable,
   adminTableCell,
   adminTableHeadCell,
@@ -414,15 +414,15 @@ export function AdminTestimonials() {
             </div>
             <div>
               <label className={adminLabel}>Status</label>
-              <select
-                className={adminSelect}
+              <AdminSelect
                 value={draft.status}
-                onChange={(e) => setDraft({ ...draft, status: e.target.value })}
-              >
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
-              </select>
+                onChange={(status) => setDraft({ ...draft, status })}
+                options={[
+                  { value: "pending", label: "Pending" },
+                  { value: "approved", label: "Approved" },
+                  { value: "rejected", label: "Rejected" },
+                ]}
+              />
             </div>
             <ImageUploadField
               value={draft.image}

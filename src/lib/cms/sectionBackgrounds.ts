@@ -3,18 +3,26 @@ import aboutHeroMobile from "@/Assets/about-us-mobile.webp";
 import servicesHeroImage from "@/Assets/projects-twentyone06.jpg";
 import projectsHeroImage from "@/Assets/background.webp";
 import philosophyImage from "@/Assets/we-design-for-twentyone06.webp";
+import teamSectionBg from "@/Assets/team-image-bg.jpg";
+import readyToWorkBg from "@/Assets/ready-to-work-together.webp";
+import testiBg from "@/Assets/testi-bg.jpg";
+import servicesContactBg from "@/Assets/contbg.jpg";
 
 export const SECTION_BACKGROUND_SETTING_KEY = "section_backgrounds";
 
 export const SECTION_BACKGROUND_KEYS = [
   "newHomeHero",
   "newHomePhilosophy",
+  "newHomeTestimonial",
   "newHomeContact",
   "about",
+  "aboutTeam",
+  "aboutCta",
   "contact",
   "faq",
   "journal",
   "services",
+  "servicesContact",
   "projects",
 ] as const;
 
@@ -60,17 +68,33 @@ export const SECTION_BACKGROUND_META: Record<
     description: "Projects page full-bleed hero background",
   },
   newHomeHero: {
-    label: "New home - Hero",
+    label: "Home - Hero",
     description: "Homepage hero atmosphere image",
   },
   newHomePhilosophy: {
-    label: "New home - Philosophy",
+    label: "Home - Philosophy",
     description: "Philosophy section art panel",
   },
   newHomeContact: {
-    label: "New home - Contact panel",
+    label: "Home - Contact panel",
     description:
       "Desktop right-side image beside the homepage contact form (~60% width)",
+  },
+  newHomeTestimonial: {
+    label: "Home - Testimonials",
+    description: "Testimonials section atmosphere background",
+  },
+  aboutTeam: {
+    label: "About - Team",
+    description: "Our Team section background on the About page",
+  },
+  aboutCta: {
+    label: "About - Ready to work",
+    description: "Bottom “ready to work together” band on the About page",
+  },
+  servicesContact: {
+    label: "Services - Contact panel",
+    description: "Left-side image behind the Let’s Talk strip on Services",
   },
 };
 
@@ -120,6 +144,26 @@ export const SECTION_BACKGROUND_DEFAULTS: SectionBackgroundConfig = {
     desktop: aboutHeroDesktop,
     tablet: aboutHeroDesktop,
     mobile: aboutHeroMobile,
+  },
+  newHomeTestimonial: {
+    desktop: testiBg,
+    tablet: testiBg,
+    mobile: testiBg,
+  },
+  aboutTeam: {
+    desktop: teamSectionBg,
+    tablet: teamSectionBg,
+    mobile: teamSectionBg,
+  },
+  aboutCta: {
+    desktop: readyToWorkBg,
+    tablet: readyToWorkBg,
+    mobile: readyToWorkBg,
+  },
+  servicesContact: {
+    desktop: servicesContactBg,
+    tablet: servicesContactBg,
+    mobile: servicesContactBg,
   },
 };
 

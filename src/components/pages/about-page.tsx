@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Instagram, Linkedin } from "lucide-react";
 import { aboutPage } from "@/data/content";
 import ceoPortrait from "@/Assets/ceo-twentyone06.webp";
-import readyToWorkBg from "@/Assets/ready-to-work-together.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero, PillCta } from "@/components/page-hero";
 import { BrandButton } from "@/components/brand-button";
@@ -13,6 +12,7 @@ import { AboutWhySection } from "@/components/sections/about-why";
 import { AboutAwardsSection } from "@/components/sections/about-awards";
 import { NhSectionTitle } from "@/components/new-home/nh-section-title";
 import { useCmsContent } from "@/hooks/useCmsContent";
+import { ResponsiveBgImage } from "@/components/responsive-bg-image";
 import {
   CountUp,
   EASE,
@@ -26,6 +26,7 @@ export function AboutPage() {
   const { milestones, workTogether } = aboutPage;
   const { sectionBackgrounds, teamMembers } = useCmsContent();
   const bg = sectionBackgrounds.about;
+  const ctaBg = sectionBackgrounds.aboutCta;
   const founder =
     teamMembers.find((member) => /govind/i.test(member.name)) ?? null;
   const founderImage = founder?.image?.trim() || ceoPortrait;
@@ -176,12 +177,7 @@ export function AboutPage() {
       <AboutAwardsSection />
 
       <section className="relative flex min-h-[70svh] items-center justify-center overflow-hidden bg-[var(--nh-black)] py-20 md:min-h-[826px] md:py-24">
-        <img
-          src={readyToWorkBg}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <ResponsiveBgImage bg={ctaBg} />
         <div className="absolute inset-0 bg-black/55" aria-hidden />
         <div className="relative z-10 flex flex-col items-center gap-6 px-5 text-center md:gap-7 md:px-[7vw]">
           <LinesReveal

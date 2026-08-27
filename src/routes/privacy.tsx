@@ -1,16 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PrivacyPage } from "@/components/pages/privacy-page";
+import { privacyPage } from "@/data/content";
+import { fetchMarketingSeo, pageSeoHead } from "@/lib/cms/pageSeo";
 
 export const Route = createFileRoute("/privacy")({
-  head: () => ({
-    meta: [
-      { title: "Privacy Policy, Twentyone06" },
-      {
-        name: "description",
-        content:
-          "How TwentyOne06 collects, uses, and protects your personal data under the UAE PDPL.",
-      },
-    ],
+  loader: async () => ({
+    seo: await fetchMarketingSeo("privacy", privacyPage.seo),
   }),
+  head: ({ loaderData }) => pageSeoHead(loaderData?.seo ?? privacyPage.seo),
   component: PrivacyPage,
 });

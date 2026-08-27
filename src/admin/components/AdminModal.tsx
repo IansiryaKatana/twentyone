@@ -7,7 +7,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { adminBtnPrimary, adminBtnSecondary } from "@/admin/adminClassNames";
+import { adminBtnPrimary, adminBtnSecondary, adminPageTitle } from "@/admin/adminClassNames";
 import { cn } from "@/lib/utils";
 
 type AdminModalProps = {
@@ -82,7 +82,7 @@ export function AdminModal({
         )}
       >
         <SheetHeader className="shrink-0 space-y-1 border-b border-[var(--admin-border)] px-5 py-4 text-left">
-          <SheetTitle className="font-display text-xl font-medium uppercase tracking-tight text-[var(--admin-ink)]">
+          <SheetTitle className={adminPageTitle}>
             {title}
           </SheetTitle>
           {description ? (

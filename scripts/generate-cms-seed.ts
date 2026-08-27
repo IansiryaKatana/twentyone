@@ -1,7 +1,7 @@
 /**
  * Generates SQL seed from src/data/content.ts
  * Run: npx tsx scripts/generate-cms-seed.ts
- * Writes: supabase/seed/cms_content.sql
+ * Writes: supabase/seed/cms_content.sql and supabase/seed/part_marketing.sql
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
@@ -13,13 +13,10 @@ import {
   legalController,
   nav,
   newHome,
-  privacyPage,
   projects,
   services,
-  termsPage,
-  aboutPage,
-  contactPage,
 } from "../src/data/content.ts";
+import { getMarketingCatalog } from "../src/lib/cms/marketingCatalog.ts";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -44,19 +41,6 @@ function escapeHtml(s: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-function sectionsToHtml(
-  sections: { title: string; paragraphs: string[] }[],
-): string {
-  return sections
-    .map((section) => {
-      const paras = section.paragraphs
-        .map((p) => `<p>${escapeHtml(p)}</p>`)
-        .join("");
-      return `<h2>${escapeHtml(section.title)}</h2>${paras}`;
-    })
-    .join("\n");
 }
 
 import { createHash } from "node:crypto";
@@ -177,7 +161,7 @@ newHome.testimonials.forEach((t, i) => {
   );`);
 });
 
-// ---- Marketing pages (legal + about + new-home chrome) ----
+// ---- Marketing pages (from live page copy in content.ts) ----
 function marketingInsert(
   slug: string,
   title: string,
@@ -187,47 +171,10 @@ function marketingInsert(
     VALUES (${lit(uuidFromSlug(slug, "mpage"))}, ${lit(slug)}, ${lit(title)}, ${jsonb(content)}, true);`);
 }
 
-marketingInsert("privacy", "Privacy Policy", {
-  eyebrow: privacyPage.eyebrow,
-  title: privacyPage.title,
-  description: privacyPage.description,
-  image: privacyPage.image ?? null,
-  body_html: sectionsToHtml(privacyPage.sections),
-  sections: privacyPage.sections,
-  controller: privacyPage.controller,
-});
-
-marketingInsert("terms", "Terms and Conditions", {
-  eyebrow: termsPage.eyebrow,
-  title: termsPage.title,
-  description: termsPage.description,
-  image: termsPage.image ?? null,
-  body_html: sectionsToHtml(termsPage.sections),
-  sections: termsPage.sections,
-  controller: termsPage.controller,
-});
-
-marketingInsert("about", "About", {
-  eyebrow: aboutPage.eyebrow,
-  title: aboutPage.title,
-  description: aboutPage.description,
-  body_html: aboutPage.story.map((p) => `<p>${escapeHtml(p)}</p>`).join(""),
-  story: aboutPage.story,
-  imageA: aboutPage.imageA,
-  imageB: aboutPage.imageB,
-  cta: aboutPage.cta,
-});
-
-marketingInsert("new-home", "New Home", newHome);
-
-marketingInsert("contact", "Contact", {
-  eyebrow: contactPage.eyebrow,
-  title: contactPage.title,
-  description: contactPage.description,
-  image: contactPage.image,
-  details: contactPage.details,
-  form: contactPage.form,
-});
+const marketingCatalog = getMarketingCatalog();
+for (const page of marketingCatalog) {
+  marketingInsert(page.slug, page.title, page.content);
+}
 
 // ---- Site settings ----
 const settings: Record<string, unknown> = {
@@ -283,3 +230,22 @@ const outPath = resolve(__dirname, "../supabase/seed/cms_content.sql");
 mkdirSync(dirname(outPath), { recursive: true });
 writeFileSync(outPath, sql.join("\n"), "utf8");
 console.log(`Wrote ${outPath} (${sql.length} statements)`);
+
+const marketingSql: string[] = [];
+marketingSql.push("-- Marketing pages aligned from live site copy in content.ts");
+marketingSql.push("BEGIN;");
+marketingSql.push("DELETE FROM public.marketing_pages WHERE slug = 'new-home';");
+for (const page of marketingCatalog) {
+  marketingSql.push(`INSERT INTO public.marketing_pages (id, slug, title, content, published)
+    VALUES (${lit(uuidFromSlug(page.slug, "mpage"))}, ${lit(page.slug)}, ${lit(page.title)}, ${jsonb(page.content)}, true)
+    ON CONFLICT (slug) DO UPDATE SET
+      title = EXCLUDED.title,
+      content = EXCLUDED.content,
+      published = EXCLUDED.published,
+      updated_at = now();`);
+}
+marketingSql.push("COMMIT;");
+
+const marketingPath = resolve(__dirname, "../supabase/seed/part_marketing.sql");
+writeFileSync(marketingPath, marketingSql.join("\n"), "utf8");
+console.log(`Wrote ${marketingPath} (${marketingSql.length} statements)`);

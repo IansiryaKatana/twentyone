@@ -7,12 +7,12 @@ import { AdminPageHeading } from "@/admin/components/AdminPageHeading";
 import { AdminModal } from "@/admin/components/AdminModal";
 import { AdminTablePagination } from "@/admin/components/AdminTablePagination";
 import { useAdminTablePagination } from "@/admin/useAdminTablePagination";
+import { AdminSelect } from "@/admin/components/AdminSelect";
 import {
   adminBtnGhost,
   adminBtnPrimary,
   adminInput,
   adminLabel,
-  adminSelect,
   adminTable,
   adminTableCell,
   adminTableHeadCell,
@@ -247,17 +247,11 @@ export function AdminUsers() {
             </div>
             <div>
               <label className={adminLabel}>Role</label>
-              <select
-                className={adminSelect}
+              <AdminSelect
                 value={draft.role}
-                onChange={(e) => setDraft({ ...draft, role: e.target.value as AdminRole })}
-              >
-                {ROLES.map((r) => (
-                  <option key={r} value={r}>
-                    {r}
-                  </option>
-                ))}
-              </select>
+                onChange={(role) => setDraft({ ...draft, role: role as AdminRole })}
+                options={ROLES.map((r) => ({ value: r, label: r }))}
+              />
             </div>
             <div>
               <label className={adminLabel}>

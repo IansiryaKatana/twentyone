@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { servicesPage } from "@/data/content";
 import { ServicesIndexPage } from "@/components/pages/services-index-page";
+import { fetchMarketingSeo, pageSeoHead } from "@/lib/cms/pageSeo";
 
 const schema = {
   "@context": "https://schema.org",
@@ -34,14 +35,11 @@ const schema = {
 };
 
 export const Route = createFileRoute("/services/")({
-  head: () => ({
-    meta: [
-      { title: servicesPage.seo.title },
-      { name: "description", content: servicesPage.seo.description },
-      { name: "keywords", content: servicesPage.seo.keywords.join(", ") },
-      { property: "og:title", content: servicesPage.seo.title },
-      { property: "og:description", content: servicesPage.seo.description },
-    ],
+  loader: async () => ({
+    seo: await fetchMarketingSeo("services", servicesPage.seo),
+  }),
+  head: ({ loaderData }) => ({
+    ...pageSeoHead(loaderData?.seo ?? servicesPage.seo),
     scripts: [
       {
         type: "application/ld+json",

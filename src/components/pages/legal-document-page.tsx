@@ -57,78 +57,16 @@ function parseController(value: unknown, fallback: LegalController): LegalContro
   };
 }
 
-function parseSections(value: unknown, fallback: LegalSection[]): LegalSection[] {
-  if (!Array.isArray(value)) return fallback;
-
-  const parsed: LegalSection[] = [];
-  for (const item of value) {
-    const s = asRecord(item);
-    if (typeof s.id !== "string" || typeof s.title !== "string") continue;
-
-    const section: LegalSection = {
-      id: s.id,
-      title: s.title,
-      paragraphs: Array.isArray(s.paragraphs)
-        ? s.paragraphs.filter((p): p is string => typeof p === "string")
-        : [],
-    };
-
-    if (s.showAddress === true) section.showAddress = true;
-
-    const link = asRecord(s.link);
-    if (
-      typeof link.label === "string" &&
-      (link.to === "/privacy" || link.to === "/terms")
-    ) {
-      section.link = { label: link.label, to: link.to };
-    }
-
-    parsed.push(section);
-  }
-
-  return parsed.length > 0 ? parsed : fallback;
-}
-
-/** Merge CMS marketing page content with static fallback and site legal controller. */
+/** Live legal copy stays on the site. Site settings may supply the controller address. */
 export function resolveLegalDoc(
-  cmsContent: unknown,
+  _cmsContent: unknown,
   fallback: LegalDoc,
   siteLegalController?: unknown,
 ): LegalDoc {
-  if (!cmsContent || typeof cmsContent !== "object") return fallback;
-
-  const c = asRecord(cmsContent);
-  const controller = parseController(
-    c.controller,
-    parseController(siteLegalController, fallback.controller),
-  );
-
-  const base: LegalDoc = {
-    eyebrow: typeof c.eyebrow === "string" ? c.eyebrow : fallback.eyebrow,
-    title: Array.isArray(c.title)
-      ? c.title.filter((line): line is string => typeof line === "string")
-      : fallback.title,
-    description: typeof c.description === "string" ? c.description : fallback.description,
-    image:
-      typeof c.image === "string" && c.image.trim()
-        ? c.image
-        : fallback.image,
-    controller,
-    sections: fallback.sections,
+  return {
+    ...fallback,
+    controller: parseController(siteLegalController, fallback.controller),
   };
-
-  if (typeof c.body_html === "string" && c.body_html.trim()) {
-    return { ...base, body_html: c.body_html };
-  }
-
-  if (Array.isArray(c.sections) && c.sections.length > 0) {
-    return {
-      ...base,
-      sections: parseSections(c.sections, fallback.sections ?? []),
-    };
-  }
-
-  return fallback;
 }
 
 function ControllerBlock({ controller }: { controller: LegalController }) {

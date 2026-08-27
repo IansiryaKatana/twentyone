@@ -85,7 +85,7 @@ export function AdminDashboard() {
             <p className="text-xs uppercase tracking-[0.16em] text-[var(--admin-muted)]">
               {card.label}
             </p>
-            <p className="font-display mt-2 text-3xl font-medium text-[var(--admin-ink)]">
+            <p className="font-detective mt-2 text-3xl font-bold text-[var(--admin-ink)]">
               {loading ? "-" : card.value}
             </p>
           </Link>

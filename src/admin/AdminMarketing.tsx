@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Pencil, Plus, Trash2 } from "lucide-react";
+import { Pencil, Plus, RefreshCw, Trash2 } from "lucide-react";
 import { getSupabase } from "@/integrations/supabase/client";
 import type { Json, Tables } from "@/integrations/supabase/database.types";
 import { useCms } from "@/contexts/CmsContext";
@@ -13,6 +13,8 @@ import { AdminRichTextField } from "@/admin/components/AdminRichTextField";
 import { useAdminTablePagination, validateSlug } from "@/admin/useAdminTablePagination";
 import { useAdminSelection } from "@/admin/useAdminSelection";
 import { matchesQuery, useAdminFilters, type AdminFilterDef } from "@/admin/useAdminFilters";
+import { getMarketingCatalog } from "@/lib/cms/marketingCatalog";
+import { parsePageSeo } from "@/lib/cms/pageSeo";
 import {
   adminBtnGhost,
   adminBtnPrimary,
@@ -33,6 +35,9 @@ type ContentFields = {
   titleLine2: string;
   description: string;
   body_html: string;
+  seoTitle: string;
+  seoDescription: string;
+  seoKeywords: string;
 };
 
 const MARKETING_FILTERS: AdminFilterDef[] = [
@@ -53,6 +58,9 @@ function emptyContentFields(): ContentFields {
     titleLine2: "",
     description: "",
     body_html: "",
+    seoTitle: "",
+    seoDescription: "",
+    seoKeywords: "",
   };
 }
 
@@ -68,6 +76,7 @@ function readContentFields(content: Json | null): { fields: ContentFields; base:
   const title = Array.isArray(base.title)
     ? base.title.filter((line): line is string => typeof line === "string")
     : [];
+  const seo = parsePageSeo(base.seo, { title: "", description: "", keywords: [] });
 
   return {
     base,
@@ -77,18 +86,30 @@ function readContentFields(content: Json | null): { fields: ContentFields; base:
       titleLine2: title[1] ?? "",
       description: typeof base.description === "string" ? base.description : "",
       body_html: typeof base.body_html === "string" ? base.body_html : "",
+      seoTitle: seo.title,
+      seoDescription: seo.description,
+      seoKeywords: seo.keywords.join(", "),
     },
   };
 }
 
 function mergeContentFields(base: Record<string, unknown>, fields: ContentFields): Json {
   const title = [fields.titleLine1.trim(), fields.titleLine2.trim()].filter(Boolean);
+  const keywords = fields.seoKeywords
+    .split(",")
+    .map((k) => k.trim())
+    .filter(Boolean);
   return {
     ...base,
     eyebrow: fields.eyebrow.trim(),
     title,
     description: fields.description.trim(),
     body_html: fields.body_html,
+    seo: {
+      title: fields.seoTitle.trim(),
+      description: fields.seoDescription.trim(),
+      keywords,
+    },
   } as Json;
 }
 
@@ -121,6 +142,8 @@ export function AdminMarketing() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
   const [bulkBusy, setBulkBusy] = useState(false);
+  const [alignOpen, setAlignOpen] = useState(false);
+  const [alignBusy, setAlignBusy] = useState(false);
 
   const filterState = useAdminFilters(MARKETING_FILTERS);
 
@@ -253,17 +276,79 @@ export function AdminMarketing() {
     await refetch();
   };
 
+  const confirmAlignFromLiveCopy = async () => {
+    if (!canMutate) return;
+    const sb = getSupabase();
+    if (!sb) return;
+
+    setAlignBusy(true);
+    setErr(null);
+
+    const { data: existing, error: readErr } = await sb
+      .from("marketing_pages")
+      .select("slug");
+    if (readErr) {
+      setAlignBusy(false);
+      setErr(readErr.message);
+      return;
+    }
+
+    const slugs = new Set((existing ?? []).map((row) => row.slug));
+    if (slugs.has("new-home") && !slugs.has("home")) {
+      const { error: renameErr } = await sb
+        .from("marketing_pages")
+        .update({ slug: "home", title: "Home", updated_at: new Date().toISOString() })
+        .eq("slug", "new-home");
+      if (renameErr) {
+        setAlignBusy(false);
+        setErr(renameErr.message);
+        return;
+      }
+    }
+
+    const catalog = getMarketingCatalog();
+    const { error: upsertErr } = await sb.from("marketing_pages").upsert(
+      catalog.map((entry) => ({
+        slug: entry.slug,
+        title: entry.title,
+        content: entry.content as Json,
+        published: true,
+        updated_at: new Date().toISOString(),
+      })),
+      { onConflict: "slug" },
+    );
+
+    if (upsertErr) {
+      setAlignBusy(false);
+      setErr(upsertErr.message);
+      return;
+    }
+
+    await sb.from("marketing_pages").delete().eq("slug", "new-home");
+
+    setAlignBusy(false);
+    setAlignOpen(false);
+    await refresh();
+    await refetch();
+  };
+
   return (
     <div>
       <AdminPageHeading
         title="Marketing pages"
-        description="Legal pages, About, and structured content blocks (e.g. new-home)."
+        description="SEO for every public page lives here. Page copy is taken from the live site — align these records from that copy rather than pushing old marketing seed onto the pages."
         actions={
           canMutate ? (
-            <button type="button" className={adminBtnPrimary} onClick={openCreate}>
-              <Plus className="size-4" />
-              Add page
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button type="button" className={adminBtnGhost} onClick={() => setAlignOpen(true)}>
+                <RefreshCw className="size-4" />
+                Align with live copy
+              </button>
+              <button type="button" className={adminBtnPrimary} onClick={openCreate}>
+                <Plus className="size-4" />
+                Add page
+              </button>
+            </div>
           ) : null
         }
       />
@@ -414,8 +499,60 @@ export function AdminMarketing() {
             </label>
 
             <div className="border-t border-[var(--admin-border)] pt-4">
-              <p className="mb-3 font-display text-sm font-medium uppercase tracking-tight text-[var(--admin-ink)]">
+              <p className="mb-1 font-detective text-[18px] font-bold uppercase text-[var(--admin-ink)]">
+                SEO
+              </p>
+              <p className="mb-3 text-sm text-[var(--admin-muted)]">
+                Title, description, and keywords used in the page head. This is the per-page SEO editor.
+              </p>
+
+              <div className="space-y-4">
+                <div>
+                  <label className={adminLabel}>SEO title</label>
+                  <input
+                    className={adminInput}
+                    value={contentFields.seoTitle}
+                    onChange={(e) =>
+                      setContentFields({ ...contentFields, seoTitle: e.target.value })
+                    }
+                    disabled={!canMutate}
+                    placeholder="Page title in Google"
+                  />
+                </div>
+                <div>
+                  <label className={adminLabel}>SEO description</label>
+                  <textarea
+                    className={adminTextarea}
+                    value={contentFields.seoDescription}
+                    onChange={(e) =>
+                      setContentFields({ ...contentFields, seoDescription: e.target.value })
+                    }
+                    disabled={!canMutate}
+                    rows={3}
+                  />
+                </div>
+                <div>
+                  <label className={adminLabel}>Keywords</label>
+                  <textarea
+                    className={adminTextarea}
+                    value={contentFields.seoKeywords}
+                    onChange={(e) =>
+                      setContentFields({ ...contentFields, seoKeywords: e.target.value })
+                    }
+                    disabled={!canMutate}
+                    rows={3}
+                    placeholder="Comma-separated"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="border-t border-[var(--admin-border)] pt-4">
+              <p className="mb-1 font-detective text-[18px] font-bold uppercase text-[var(--admin-ink)]">
                 Page content
+              </p>
+              <p className="mb-3 text-sm text-[var(--admin-muted)]">
+                Snapshot of the live page copy. Visible pages keep the edited site text; use Align to refresh these fields. SEO above is what publishes in the page head.
               </p>
 
               <div className="space-y-4">
@@ -503,6 +640,17 @@ export function AdminMarketing() {
         saveVariant="danger"
         side="bottom"
         saving={bulkBusy}
+      />
+
+      <AdminModal
+        open={alignOpen}
+        onOpenChange={setAlignOpen}
+        title="Align with live page copy"
+        description="Replace marketing records with the copy currently on the site. Adds missing pages, renames New home to Home, and fills SEO from the live pages. Existing SEO edits will be overwritten."
+        onSave={() => void confirmAlignFromLiveCopy()}
+        saveLabel="Align now"
+        side="bottom"
+        saving={alignBusy}
       />
     </div>
   );

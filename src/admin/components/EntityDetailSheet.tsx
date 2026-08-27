@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
-import { adminBtnPrimary } from "@/admin/adminClassNames";
+import { adminBtnPrimary, adminPageTitle } from "@/admin/adminClassNames";
 import { cn } from "@/lib/utils";
 
 type EntityDetailSheetProps = {
@@ -57,7 +57,7 @@ export function EntityDetailSheet({
         className="admin-theme flex h-full w-full flex-col gap-0 p-0 sm:max-w-lg"
       >
         <SheetHeader className="shrink-0 space-y-1 border-b border-[var(--admin-border)] px-5 py-4 text-left">
-          <SheetTitle className="font-display text-xl font-medium uppercase tracking-tight text-[var(--admin-ink)]">
+          <SheetTitle className={adminPageTitle}>
             {title}
           </SheetTitle>
           {description ? (

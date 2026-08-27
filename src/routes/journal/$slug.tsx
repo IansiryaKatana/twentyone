@@ -8,14 +8,19 @@ export const Route = createFileRoute("/journal/$slug")({
     if (!post) throw notFound();
     return { post };
   },
-  head: ({ params }) => ({
+  head: ({ loaderData }) => ({
     meta: [
       {
-        title: `${params.slug}, Twentyone06`,
+        title: `${loaderData?.post.title ?? "Article"}, Twentyone06`,
       },
       {
         name: "description",
-        content: "Twentyone06 blog article.",
+        content: loaderData?.post.excerpt ?? "Studio notes from Twentyone06.",
+      },
+      { property: "og:title", content: `${loaderData?.post.title ?? "Article"}, Twentyone06` },
+      {
+        property: "og:description",
+        content: loaderData?.post.excerpt ?? "Studio notes from Twentyone06.",
       },
     ],
   }),

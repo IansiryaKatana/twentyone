@@ -142,7 +142,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             >
               {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
-            <span className="font-display text-sm font-medium uppercase">Admin</span>
+            <span className="font-detective text-[18px] font-bold uppercase">Admin</span>
           </header>
 
           <main className="min-h-0 flex-1 overflow-y-auto px-4 py-6 md:px-8 md:py-8">{children}</main>

@@ -59,7 +59,7 @@ function brandedShell(opts: {
           <tr>
             <td style="padding:20px 32px 28px;border-top:1px solid rgba(255,255,255,0.08);font-size:12px;line-height:1.6;color:${BRAND.muted};">
               <strong style="color:${BRAND.white};">TwentyOne06</strong><br/>
-              Pearl Coast - Office 304, 23rd St, Al Barsha First, Dubai<br/>
+              Al Maktab - Office 304, 23rd St, Al Barsha First, Dubai<br/>
               <a href="mailto:info@twentyone06.com" style="color:${BRAND.white};">info@twentyone06.com</a> · 04 554 8082
             </td>
           </tr>
@@ -99,7 +99,7 @@ function contactThankYouText(firstName: string) {
     "Warm regards,",
     "The TwentyOne06 Team",
     "",
-    "TwentyOne06 · Pearl Coast - Office 304, Dubai",
+    "TwentyOne06 · Al Maktab - Office 304, Dubai",
     "info@twentyone06.com · 04 554 8082",
   ].join("\n");
 }
@@ -125,7 +125,7 @@ function newsletterText() {
     "",
     "If this wasn't you, you can ignore this email.",
     "",
-    "TwentyOne06 · Pearl Coast - Office 304, Dubai",
+    "TwentyOne06 · Al Maktab - Office 304, Dubai",
     "info@twentyone06.com · 04 554 8082",
   ].join("\n");
 }

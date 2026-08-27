@@ -22,7 +22,7 @@ function MaskedHeroTitle({ lines }: { lines: readonly string[] }) {
   const lead = words.slice(0, -1).join(" ");
 
   return (
-    <h1 ref={ref} className={HERO_DISPLAY}>
+    <h1 ref={ref} className={cn(HERO_DISPLAY, "w-full")}>
       <span className="block overflow-hidden">
         <motion.span
           className="block text-[var(--nh-white)]"
@@ -349,18 +349,18 @@ export function ProjectCaseView({ study }: { study: ProjectCaseStudy }) {
             </Link>
           </Reveal>
 
-          <div className="mx-auto mt-10 max-w-4xl text-center md:mt-14">
+          <div className="mt-10 w-full text-center md:mt-14">
             <Reveal delay={0.05}>
               <p className="text-xs uppercase tracking-[0.28em] text-[var(--nh-muted)]">
                 {study.eyebrow}
               </p>
               {study.tags ? <p className={cn(EYEBROW, "mt-3")}>{study.tags}</p> : null}
             </Reveal>
-            <div className="mt-5 md:mt-7">
+            <div className="mt-5 w-full md:mt-7">
               <MaskedHeroTitle lines={study.titleLines} />
             </div>
             {study.intro ? (
-              <Reveal delay={0.28} className="mx-auto mt-7 max-w-xl md:mt-9">
+              <Reveal delay={0.28} className="mt-7 w-full md:mt-9">
                 <p className={BODY}>{study.intro}</p>
               </Reveal>
             ) : null}

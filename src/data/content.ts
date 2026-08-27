@@ -390,7 +390,7 @@ export const footer = {
   location: {
     title: "Location",
     lines: [
-      "Pearl Coast, Office 304",
+      "Al Maktab, Office 304",
       "23rd St, Al Barsha First",
       "Al Barsha, Dubai",
     ],
@@ -419,7 +419,7 @@ export const footer = {
 export const legalController = {
   name: "TWENTYONE ZERO SIX PROJECT MANAGEMENT (trading as 'TwentyOne06')",
   lines: [
-    "Pearl Coast, Office 304, 23rd Street",
+    "Al Maktab, Office 304, 23rd Street",
     "Al Barsha First, Al Barsha, Dubai",
     "United Arab Emirates",
   ],
@@ -898,7 +898,7 @@ export const contactPage = {
     {
       label: "Visit",
       lines: [
-        "Pearl Coast, Office 304",
+        "Al Maktab, Office 304",
         "23rd St, Al Barsha First",
         "Al Barsha, Dubai",
       ],

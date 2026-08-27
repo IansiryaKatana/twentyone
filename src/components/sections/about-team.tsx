@@ -59,7 +59,7 @@ function TeamCard({ member }: { member: TeamMember }) {
         )}
       </div>
 
-      <h3 className="font-display mt-4 text-[clamp(1.640625rem,3vw,1.734375rem)] font-medium uppercase leading-[0.92] tracking-[0.02em] text-ink md:text-[clamp(2.053125rem,3.75vw,2.165625rem)]">
+      <h3 className="font-display mt-4 text-[clamp(1.640625rem,3vw,1.734375rem)] font-medium uppercase leading-[0.92] tracking-[0.02em] text-white md:text-[clamp(2.053125rem,3.75vw,2.165625rem)]">
         {member.name}
       </h3>
       <p className="font-detective mt-1 text-[0.9375rem] tracking-wide text-crimson md:text-[1.09375rem]">
@@ -145,16 +145,16 @@ export function AboutTeamSection() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-cream/80 via-cream/60 to-cream/75"
+        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"
       />
       <div className="relative px-5 md:px-[7vw]">
         <div className="flex flex-col items-center gap-6 text-center">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.22em] text-muted-ink">{eyebrow}</p>
+            <p className="font-detective text-[clamp(1.05rem,1.8vw,1.25rem)] uppercase tracking-[0.22em] leading-[1.35] text-white/75">{eyebrow}</p>
             <div className="mt-3 flex justify-center">
-              <NhSectionTitle title={title} />
+              <NhSectionTitle title={title} tone="dark" />
             </div>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-ink">{description}</p>
+            <p className="font-detective mx-auto mt-4 max-w-md text-[clamp(1.05rem,1.8vw,1.25rem)] leading-[1.35] text-white/75">{description}</p>
           </Reveal>
         </div>
       </div>
@@ -169,7 +169,7 @@ export function AboutTeamSection() {
               <HexIconButton
                 label="Previous team members"
                 size="sm"
-                tone="light"
+                tone="dark"
                 disabled={index === 0}
                 onClick={prev}
                 className="size-10 bg-transparent [--btn-cut:10px]"
@@ -212,7 +212,7 @@ export function AboutTeamSection() {
               <HexIconButton
                 label="Next team members"
                 size="sm"
-                tone="light"
+                tone="dark"
                 disabled={index >= maxIndex}
                 onClick={next}
                 className="size-10 bg-transparent [--btn-cut:10px]"
@@ -241,7 +241,7 @@ export function AboutTeamSection() {
                   "h-1.5 rounded-none transition-all duration-300",
                   index === dotIndex
                     ? "w-8 bg-crimson"
-                    : "w-4 bg-ink/20 hover:bg-ink/40",
+                    : "w-4 bg-white/25 hover:bg-white/45",
                 )}
               />
             ))}
@@ -253,7 +253,7 @@ export function AboutTeamSection() {
             <HexIconButton
               label="Previous team members"
               size="sm"
-              tone="light"
+              tone="dark"
               disabled={index === 0}
               onClick={prev}
               className="size-10 bg-transparent [--btn-cut:10px]"
@@ -263,7 +263,7 @@ export function AboutTeamSection() {
             <HexIconButton
               label="Next team members"
               size="sm"
-              tone="light"
+              tone="dark"
               disabled={index >= maxIndex}
               onClick={next}
               className="size-10 bg-transparent [--btn-cut:10px]"

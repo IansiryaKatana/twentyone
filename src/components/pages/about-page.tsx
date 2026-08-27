@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
+import { Instagram, Linkedin } from "lucide-react";
 import { aboutPage } from "@/data/content";
 import ceoPortrait from "@/Assets/ceo-twentyone06.webp";
 import readyToWorkBg from "@/Assets/ready-to-work-together.webp";
 import { PageShell } from "@/components/page-shell";
 import { PageHero, PillCta } from "@/components/page-hero";
 import { BrandButton } from "@/components/brand-button";
+import { HexIconButton } from "@/components/hex-icon-button";
 import { Partners } from "@/components/sections/partners";
 import { AboutTeamSection } from "@/components/sections/about-team";
 import { AboutWhySection } from "@/components/sections/about-why";
@@ -30,6 +32,12 @@ export function AboutPage() {
   const founderName = founder?.name?.trim() || "Govind Shepley";
   const founderTitle =
     founder?.title?.trim() || "Founder & Creative Director";
+  const founderLinkedin =
+    founder?.linkedin?.trim() ||
+    "https://www.linkedin.com/in/govind-shepley-98869b38/";
+  const founderInstagram =
+    founder?.instagram?.trim() ||
+    "https://www.instagram.com/govind_shepley/";
 
   return (
     <PageShell headerVariant="overlay">
@@ -53,6 +61,30 @@ export function AboutPage() {
                 whileHover={{ scale: 1.04 }}
                 transition={{ duration: 0.8, ease: EASE }}
               />
+              {(founderLinkedin || founderInstagram) && (
+                <div className="absolute top-3 right-3 z-10 flex flex-col gap-2">
+                  {founderLinkedin ? (
+                    <HexIconButton
+                      href={founderLinkedin}
+                      label={`${founderName} on LinkedIn`}
+                      size="sm"
+                      tone="linkedin"
+                    >
+                      <Linkedin className="size-3.5 fill-current" strokeWidth={0} />
+                    </HexIconButton>
+                  ) : null}
+                  {founderInstagram ? (
+                    <HexIconButton
+                      href={founderInstagram}
+                      label={`${founderName} on Instagram`}
+                      size="sm"
+                      tone="instagram"
+                    >
+                      <Instagram className="size-3.5" strokeWidth={2} />
+                    </HexIconButton>
+                  ) : null}
+                </div>
+              )}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-16">
                 <p className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-medium uppercase leading-[1.05] text-[var(--nh-white)]">
                   {founderName}

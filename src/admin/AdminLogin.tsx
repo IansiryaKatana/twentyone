@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearch } from "@tanstack/react-router";
 import { Eye, EyeOff } from "lucide-react";
 import { useAdminAuth } from "@/contexts/AdminAuthContext";
@@ -14,7 +14,7 @@ import heroSilhouettes from "@/Assets/silhouettes-no-face.png";
 import "@/admin/admin-theme.css";
 
 export function AdminLogin() {
-  const { signInWithPassword, configured } = useAdminAuth();
+  const { signInWithPassword, configured, loading, session, isAdmin, signingOut } = useAdminAuth();
   const navigate = useNavigate();
   const search = useSearch({ strict: false }) as { from?: string };
   const [email, setEmail] = useState("");
@@ -23,17 +23,29 @@ export function AdminLogin() {
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
+  const nextPath =
+    search.from && search.from.startsWith("/admin") && search.from !== "/admin/login"
+      ? search.from
+      : "/admin";
+
+  useEffect(() => {
+    if (loading || busy || signingOut) return;
+    if (session && isAdmin) {
+      void navigate({ to: nextPath });
+    }
+  }, [loading, busy, signingOut, session, isAdmin, navigate, nextPath]);
+
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
     setErr(null);
     const { error } = await signInWithPassword(email.trim(), password);
-    setBusy(false);
     if (error) {
+      setBusy(false);
       setErr(error);
       return;
     }
-    void navigate({ to: search.from ?? "/admin" });
+    await navigate({ to: nextPath });
   };
 
   return (

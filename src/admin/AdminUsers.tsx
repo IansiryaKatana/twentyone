@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Pencil, Plus, Trash2 } from "lucide-react";
 import { getSupabase } from "@/integrations/supabase/client";
 import type { AdminRole, Tables } from "@/integrations/supabase/database.types";
@@ -8,6 +8,7 @@ import { AdminModal } from "@/admin/components/AdminModal";
 import { AdminTablePagination } from "@/admin/components/AdminTablePagination";
 import { useAdminTablePagination } from "@/admin/useAdminTablePagination";
 import { AdminSelect } from "@/admin/components/AdminSelect";
+import { assignableAdminRoles } from "@/admin/adminAccess";
 import {
   adminBtnGhost,
   adminBtnPrimary,
@@ -21,8 +22,6 @@ import {
 } from "@/admin/adminClassNames";
 
 type Row = Tables<"admin_users">;
-
-const ROLES: AdminRole[] = ["owner", "admin", "editor", "viewer"];
 
 function emptyUser(): Row {
   const now = new Date().toISOString();
@@ -63,6 +62,7 @@ async function callAdminUserAuth(body: Record<string, unknown>) {
 export function AdminUsers() {
   const { role, refreshAdminUser } = useAdminAuth();
   const canMutate = role === "owner" || role === "admin";
+  const roleOptions = assignableAdminRoles(role);
 
   const [rows, setRows] = useState<Row[]>([]);
   const [err, setErr] = useState<string | null>(null);
@@ -88,12 +88,26 @@ export function AdminUsers() {
     void refresh();
   }, [refresh]);
 
-  const pagination = useAdminTablePagination(rows);
+  const visibleRows = useMemo(() => {
+    if (role === "owner") return rows;
+    return rows.filter((row) => row.role !== "owner");
+  }, [rows, role]);
+
+  const pagination = useAdminTablePagination(visibleRows);
 
   const save = async () => {
     if (!draft || !canMutate) return;
     if (!draft.email.trim()) {
       setSaveErr("Email is required.");
+      return;
+    }
+    if (role !== "owner" && draft.role === "owner") {
+      setSaveErr("You cannot assign the owner role.");
+      return;
+    }
+    const existing = rows.find((r) => r.id === draft.id);
+    if (role !== "owner" && existing?.role === "owner") {
+      setSaveErr("You cannot edit owner users.");
       return;
     }
 
@@ -179,7 +193,7 @@ export function AdminUsers() {
 
       <div className={adminTableWrap}>
         <div className={adminToolbar}>
-          <p className="text-sm text-[var(--admin-muted)]">{rows.length} users</p>
+          <p className="text-sm text-[var(--admin-muted)]">{visibleRows.length} users</p>
         </div>
         <table className={adminTable}>
           <thead>
@@ -198,7 +212,7 @@ export function AdminUsers() {
                 <td className={adminTableCell}>{row.is_active ? "Yes" : "No"}</td>
                 <td className={adminTableCell}>
                   <div className="flex justify-end gap-1">
-                    {canMutate ? (
+                    {canMutate && (role === "owner" || row.role !== "owner") ? (
                       <>
                         <button
                           type="button"
@@ -249,8 +263,8 @@ export function AdminUsers() {
               <label className={adminLabel}>Role</label>
               <AdminSelect
                 value={draft.role}
-                onChange={(role) => setDraft({ ...draft, role: role as AdminRole })}
-                options={ROLES.map((r) => ({ value: r, label: r }))}
+                onChange={(nextRole) => setDraft({ ...draft, role: nextRole as AdminRole })}
+                options={roleOptions.map((r) => ({ value: r, label: r }))}
               />
             </div>
             <div>
@@ -284,6 +298,12 @@ export function AdminUsers() {
         description="This cannot be undone."
         onSave={async () => {
           if (!deleteId || !canMutate) return;
+          const target = rows.find((r) => r.id === deleteId);
+          if (role !== "owner" && target?.role === "owner") {
+            setErr("You cannot delete owner users.");
+            setDeleteId(null);
+            return;
+          }
           const sb = getSupabase();
           if (!sb) return;
           await sb.from("admin_users").delete().eq("id", deleteId);

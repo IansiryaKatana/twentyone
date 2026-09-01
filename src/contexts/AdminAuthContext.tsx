@@ -23,6 +23,7 @@ type AdminAuthContextValue = {
   isAdmin: boolean;
   signInWithPassword: (email: string, password: string) => Promise<{ error: string | null }>;
   signOut: () => Promise<void>;
+  signingOut: boolean;
   refreshAdminUser: () => Promise<void>;
 };
 
@@ -111,6 +112,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(configured);
   const [session, setSession] = useState<Session | null>(null);
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+  const [signingOut, setSigningOut] = useState(false);
 
   const syncAdminUser = useCallback(async (nextSession: Session | null) => {
     if (!nextSession) {
@@ -150,7 +152,9 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       });
     });
 
-    const { data: subscription } = sb.auth.onAuthStateChange((_event, nextSession) => {
+    const { data: subscription } = sb.auth.onAuthStateChange((event, nextSession) => {
+      if (!mounted) return;
+      if (event === "INITIAL_SESSION") return;
       setSession(nextSession);
       void syncAdminUser(nextSession);
     });
@@ -181,11 +185,15 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
   );
 
   const signOut = useCallback(async () => {
+    setSigningOut(true);
     const sb = getSupabase();
-    if (!sb) return;
-    await sb.auth.signOut();
-    setSession(null);
-    setAdminUser(null);
+    try {
+      if (sb) await sb.auth.signOut();
+      setSession(null);
+      setAdminUser(null);
+    } finally {
+      setSigningOut(false);
+    }
   }, []);
 
   const role = adminUser?.is_active ? adminUser.role : null;
@@ -204,6 +212,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       isAdmin,
       signInWithPassword,
       signOut,
+      signingOut,
       refreshAdminUser,
     }),
     [
@@ -215,6 +224,7 @@ export function AdminAuthProvider({ children }: { children: ReactNode }) {
       isAdmin,
       signInWithPassword,
       signOut,
+      signingOut,
       refreshAdminUser,
     ],
   );

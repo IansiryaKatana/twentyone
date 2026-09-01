@@ -7,6 +7,14 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { adminBtnPrimary, adminBtnSecondary, adminPageTitle } from "@/admin/adminClassNames";
 import { cn } from "@/lib/utils";
 
@@ -22,10 +30,48 @@ type AdminModalProps = {
   saving?: boolean;
   saveDisabled?: boolean;
   wide?: boolean;
-  /** bottom = confirm/delete; right = create/edit forms */
+  /** bottom = centered confirm dialog; right = create/edit sheet */
   side?: "right" | "bottom";
   saveVariant?: "primary" | "danger";
 };
+
+const dangerBtnClass =
+  "inline-flex items-center justify-center gap-2 rounded-[var(--admin-radius-lg)] bg-red-600 px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em] text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50";
+
+function ActionButtons({
+  onOpenChange,
+  onSave,
+  saveLabel,
+  saving,
+  saveDisabled,
+  saveVariant,
+}: Pick<
+  AdminModalProps,
+  "onOpenChange" | "onSave" | "saveLabel" | "saving" | "saveDisabled" | "saveVariant"
+>) {
+  return (
+    <>
+      <button
+        type="button"
+        className={adminBtnSecondary}
+        onClick={() => onOpenChange(false)}
+        disabled={saving}
+      >
+        Cancel
+      </button>
+      {onSave ? (
+        <button
+          type="button"
+          className={saveVariant === "danger" ? dangerBtnClass : adminBtnPrimary}
+          onClick={onSave}
+          disabled={saving || saveDisabled}
+        >
+          {saving ? "Working…" : saveLabel}
+        </button>
+      ) : null}
+    </>
+  );
+}
 
 export function AdminModal({
   open,
@@ -64,27 +110,55 @@ export function AdminModal({
     return () => cancelAnimationFrame(id);
   }, [open, children, updateProgress]);
 
-  const isBottom = side === "bottom";
+  const actions =
+    footer ?? (
+      <ActionButtons
+        onOpenChange={onOpenChange}
+        onSave={onSave}
+        saveLabel={saveLabel}
+        saving={saving}
+        saveDisabled={saveDisabled}
+        saveVariant={saveVariant}
+      />
+    );
+
+  if (side === "bottom") {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent
+          showCloseButton
+          className="admin-theme gap-0 border-[var(--admin-border)] bg-white p-0 text-[var(--admin-ink)] sm:max-w-md"
+        >
+          <DialogHeader className="space-y-1 px-5 py-4 text-left">
+            <DialogTitle className={adminPageTitle}>{title}</DialogTitle>
+            {description ? (
+              <DialogDescription className="text-sm text-[var(--admin-muted)]">
+                {description}
+              </DialogDescription>
+            ) : null}
+          </DialogHeader>
+          {children ? <div className="px-5 pb-2">{children}</div> : null}
+          <DialogFooter className="flex-row gap-2 border-t border-[var(--admin-border)] px-5 py-4 sm:justify-end">
+            {actions}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
-        side={side}
+        side="right"
         showCloseButton
         className={cn(
           "admin-theme flex flex-col gap-0 p-0",
-          isBottom
-            ? "inset-x-0 bottom-0 h-auto max-h-[88vh] rounded-t-[var(--admin-radius-lg)] border-t"
-            : cn(
-                "inset-y-0 right-0 h-full w-full border-l sm:max-w-xl",
-                wide && "sm:max-w-2xl lg:max-w-3xl",
-              ),
+          "inset-y-0 right-0 h-full w-full border-l sm:max-w-xl",
+          wide && "sm:max-w-2xl lg:max-w-3xl",
         )}
       >
         <SheetHeader className="shrink-0 space-y-1 border-b border-[var(--admin-border)] px-5 py-4 text-left">
-          <SheetTitle className={adminPageTitle}>
-            {title}
-          </SheetTitle>
+          <SheetTitle className={adminPageTitle}>{title}</SheetTitle>
           {description ? (
             <SheetDescription className="text-sm text-[var(--admin-muted)]">
               {description}
@@ -110,10 +184,7 @@ export function AdminModal({
             <div
               ref={scrollRef}
               onScroll={updateProgress}
-              className={cn(
-                "min-h-0 flex-1 overflow-y-auto px-5 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-                isBottom && "max-h-[50vh]",
-              )}
+              className="min-h-0 flex-1 overflow-y-auto px-5 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {children}
             </div>
@@ -121,32 +192,7 @@ export function AdminModal({
         ) : null}
 
         <SheetFooter className="shrink-0 flex-row gap-2 border-t border-[var(--admin-border)] px-5 py-4 sm:justify-end">
-          {footer ?? (
-            <>
-              <button
-                type="button"
-                className={adminBtnSecondary}
-                onClick={() => onOpenChange(false)}
-                disabled={saving}
-              >
-                Cancel
-              </button>
-              {onSave ? (
-                <button
-                  type="button"
-                  className={
-                    saveVariant === "danger"
-                      ? "inline-flex items-center justify-center gap-2 rounded-[var(--admin-radius-lg)] bg-red-600 px-4 py-2.5 text-sm font-medium uppercase tracking-[0.12em] text-white transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
-                      : adminBtnPrimary
-                  }
-                  onClick={onSave}
-                  disabled={saving || saveDisabled}
-                >
-                  {saving ? "Working…" : saveLabel}
-                </button>
-              ) : null}
-            </>
-          )}
+          {actions}
         </SheetFooter>
       </SheetContent>
     </Sheet>

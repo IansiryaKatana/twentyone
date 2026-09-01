@@ -57,6 +57,8 @@ Deno.serve(async (req) => {
       return json({ ok: false, error: "Forbidden" }, 403);
     }
 
+    const callerIsOwner = adminRow.role === "owner";
+
     const body = (await req.json()) as RequestBody;
     const email = body.email?.trim().toLowerCase();
     const password = body.password;
@@ -66,6 +68,10 @@ Deno.serve(async (req) => {
     }
 
     if (body.action === "create_user") {
+      if (!callerIsOwner && body.role === "owner") {
+        return json({ ok: false, error: "You cannot create an owner" }, 403);
+      }
+
       if (!password || password.length < 8) {
         return json({ ok: false, error: "Password must be at least 8 characters" }, 400);
       }
@@ -105,6 +111,17 @@ Deno.serve(async (req) => {
     if (body.action === "set_password") {
       if (!password || password.length < 8) {
         return json({ ok: false, error: "Password must be at least 8 characters" }, 400);
+      }
+
+      if (!callerIsOwner) {
+        const { data: targetAdmin } = await serviceClient
+          .from("admin_users")
+          .select("role")
+          .eq("email", email)
+          .maybeSingle();
+        if (targetAdmin?.role === "owner") {
+          return json({ ok: false, error: "You cannot update an owner" }, 403);
+        }
       }
 
       const { data: list } = await serviceClient.auth.admin.listUsers();

@@ -28,6 +28,7 @@ import {
   adminShell,
   adminSidebar,
 } from "@/admin/adminClassNames";
+import { AdminModal } from "@/admin/components/AdminModal";
 
 type NavItem = {
   to: string;
@@ -47,10 +48,25 @@ const NAV: NavItem[] = [
   { to: "/admin/awards", label: "Awards", icon: Trophy },
   { to: "/admin/why-us", label: "Why Us", icon: Sparkles },
   { to: "/admin/media", label: "Media", icon: Image },
-  { to: "/admin/backgrounds", label: "Backgrounds", icon: PanelsTopLeft },
+  {
+    to: "/admin/backgrounds",
+    label: "Backgrounds",
+    icon: PanelsTopLeft,
+    roles: ["owner"],
+  },
   { to: "/admin/submissions", label: "Submissions", icon: Inbox },
-  { to: "/admin/marketing", label: "Marketing", icon: Newspaper },
-  { to: "/admin/site", label: "Site settings", icon: Settings },
+  {
+    to: "/admin/marketing",
+    label: "Marketing",
+    icon: Newspaper,
+    roles: ["owner"],
+  },
+  {
+    to: "/admin/site",
+    label: "Site settings",
+    icon: Settings,
+    roles: ["owner"],
+  },
   {
     to: "/admin/users",
     label: "Users",
@@ -69,8 +85,15 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const { adminUser, role, signOut } = useAdminAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoutOpen, setLogoutOpen] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
   const navItems = NAV.filter((item) => canSeeNav(role, item));
+
+  const confirmSignOut = async () => {
+    setSigningOut(true);
+    await signOut();
+  };
 
   const sidebar = (
     <aside className={`${adminSidebar} h-full w-64 shrink-0 overflow-hidden`}>
@@ -105,7 +128,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
         <p className="text-xs uppercase tracking-[0.14em] text-white/45">{role ?? "-"}</p>
         <button
           type="button"
-          onClick={() => void signOut()}
+          onClick={() => setLogoutOpen(true)}
           className="mt-3 inline-flex w-full items-center justify-between gap-2 rounded-[var(--admin-radius-lg)] bg-[var(--admin-primary)] px-3 py-2.5 text-sm font-medium text-white transition hover:opacity-90"
         >
           <span>Sign out</span>
@@ -148,6 +171,21 @@ export function AdminShell({ children }: { children: ReactNode }) {
           <main className="min-h-0 flex-1 overflow-y-auto px-4 py-6 md:px-8 md:py-8">{children}</main>
         </div>
       </div>
+
+      <AdminModal
+        open={logoutOpen}
+        onOpenChange={(open) => {
+          if (signingOut && !open) return;
+          setLogoutOpen(open);
+        }}
+        title="Sign out"
+        description="Are you sure you want to sign out of the admin portal?"
+        onSave={() => void confirmSignOut()}
+        saveLabel="Sign out"
+        saveVariant="danger"
+        saving={signingOut}
+        side="bottom"
+      />
     </div>
   );
 }
